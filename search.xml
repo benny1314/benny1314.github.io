@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[ArrayList源码阅读]]></title>
-      <url>http://51tutechan.cn/2016/08/01/160801_SC_jdk8_ArrayList/</url>
+      <url>/2016/08/01/160801_SC_jdk8_ArrayList/</url>
       <content type="html"><![CDATA[<h2 id="ArrayList源码阅读【JDK8】"><a href="#ArrayList源码阅读【JDK8】" class="headerlink" title="ArrayList源码阅读【JDK8】"></a>ArrayList源码阅读【JDK8】</h2><a id="more"></a>
 <p><img src="http://ww2.sinaimg.cn/large/610dc034jw1f65f0oqodoj20qo0hntc9.jpg" alt="07月25日"></p>
 <h3 id="arrayList的类图"><a href="#arrayList的类图" class="headerlink" title="arrayList的类图"></a>arrayList的类图</h3><p><img src="http://7xjlkb.com1.z0.glb.clouddn.com/sourcecode_jdk8_arraylist.png" alt="image"></p>
@@ -14,7 +14,7 @@
     
     <entry>
       <title><![CDATA[RSA加密签名]]></title>
-      <url>http://51tutechan.cn/2016/07/25/160725_rsa_algorithm/</url>
+      <url>/2016/07/25/160725_rsa_algorithm/</url>
       <content type="html"><![CDATA[<h2 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h2><p><img src="http://ww2.sinaimg.cn/large/c85e4a5cgw1f62hzfvzwwj20hs0qogpo.jpg" alt="就问你美不美"></p>
 <a id="more"></a>
 <h3 id="对称加密算法"><a href="#对称加密算法" class="headerlink" title="对称加密算法"></a>对称加密算法</h3><ul>
@@ -436,7 +436,7 @@
     
     <entry>
       <title><![CDATA[关于Linux命令的那点小事]]></title>
-      <url>http://51tutechan.cn/2016/07/06/160706_linuxcommand/</url>
+      <url>/2016/07/06/160706_linuxcommand/</url>
       <content type="html"><![CDATA[<h2 id="Linux命令那点事—ls命令-list"><a href="#Linux命令那点事—ls命令-list" class="headerlink" title="Linux命令那点事—ls命令[list]"></a>Linux命令那点事—<code>ls</code>命令[list]</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034gw1f59lsn7wjnj20du0ku40c.jpg" alt="就问你美不美"></p>
 <a id="more"></a>
 <ul>
@@ -1678,7 +1678,7 @@
     
     <entry>
       <title><![CDATA[plantUML的使用]]></title>
-      <url>http://51tutechan.cn/2016/07/05/160705_plantuml/</url>
+      <url>/2016/07/05/160705_plantuml/</url>
       <content type="html"><![CDATA[<h2 id="类之间的关系"><a href="#类之间的关系" class="headerlink" title="类之间的关系"></a>类之间的关系</h2><p><img src="http://ww1.sinaimg.cn/large/610dc034jw1f566a296rpj20lc0sggoj.jpg" alt="就问你美不美"></p>
 <a id="more"></a>
 <hr>
@@ -1823,7 +1823,7 @@
     
     <entry>
       <title><![CDATA[Linux Shell 命令行及脚本编程]]></title>
-      <url>http://51tutechan.cn/2016/07/03/160703_linuxShellLine/</url>
+      <url>/2016/07/03/160703_linuxShellLine/</url>
       <content type="html"><![CDATA[<h2 id="Linux-及-Linux-Shell-简介"><a href="#Linux-及-Linux-Shell-简介" class="headerlink" title="Linux 及 Linux Shell 简介"></a>Linux 及 Linux Shell 简介</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034gw1f5pu0w0r56j20m80rsjuy.jpg" alt="image"></p>
 <a id="more"></a>
 <h3 id="1-1-5-Linux的理念"><a href="#1-1-5-Linux的理念" class="headerlink" title="1.1.5 Linux的理念"></a>1.1.5 Linux的理念</h3><ul>
@@ -3795,7 +3795,7 @@
     
     <entry>
       <title><![CDATA[代码整洁之道]]></title>
-      <url>http://51tutechan.cn/2016/07/02/160706_clean_code/</url>
+      <url>/2016/07/02/160706_clean_code/</url>
       <content type="html"><![CDATA[<h2 id="本书结构"><a href="#本书结构" class="headerlink" title="本书结构"></a>本书结构</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f5byokn81tj20dw0hiwfe.jpg" alt="就问你美不美"></p>
 <a id="more"></a>
 <hr>
@@ -3925,7 +3925,7 @@
     
     <entry>
       <title><![CDATA[jQuery plugin 插件编写时遇到的问题总结]]></title>
-      <url>http://51tutechan.cn/2016/06/30/160630_jqueryplugin/</url>
+      <url>/2016/06/30/160630_jqueryplugin/</url>
       <content type="html"><![CDATA[<h2 id="1、模板方法替换时，正则使用问题。"><a href="#1、模板方法替换时，正则使用问题。" class="headerlink" title="1、模板方法替换时，正则使用问题。"></a>1、模板方法替换时，正则使用问题。</h2><p><img src="http://ww1.sinaimg.cn/mw690/692a6bbcgw1f4fz7s830fj20gg0o00y5.jpg" alt="就问你美不美"></p>
 <a id="more"></a>
 <ul>
@@ -3952,7 +3952,7 @@
     
     <entry>
       <title><![CDATA[博客初搭建]]></title>
-      <url>http://51tutechan.cn/2016/06/28/160628_first/</url>
+      <url>/2016/06/28/160628_first/</url>
       <content type="html"><![CDATA[<h2 id="博客说明"><a href="#博客说明" class="headerlink" title="博客说明"></a>博客说明</h2><ul>
 <li>以后我的每一篇博文中，都会附带一个美女高清大图。</li>
 <li>算是作为一个程序员的福利。</li>
