@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Benny" />
+
+
+
+<meta name="description" content="Linux命令那点事—ls命令[list]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Linux命令的那点小事">
+<meta property="og:url" content="http:51tutechan.cn/2016/07/06/160706_linuxcommand/index.html">
+<meta property="og:site_name" content="Benny">
+<meta property="og:description" content="Linux命令那点事—ls命令[list]">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/610dc034gw1f59lsn7wjnj20du0ku40c.jpg">
+<meta property="og:image" content="http://7xjlkb.com1.z0.glb.clouddn.com/lsAuthority.png">
+<meta property="og:image" content="http://7xjlkb.com1.z0.glb.clouddn.com/permission.png">
+<meta property="og:updated_time" content="2016-07-07T03:01:19.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于Linux命令的那点小事">
+<meta name="twitter:description" content="Linux命令那点事—ls命令[list]">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/610dc034gw1f59lsn7wjnj20du0ku40c.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Benny" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>关于Linux命令的那点小事 | Benny</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Benny</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Coding is my life</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/">RSA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery-plugin/">jquery plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plantUML/">plantUML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码整洁/">代码整洁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/问题/">问题</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Benny</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Benny</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Coding is my life</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-160706_linuxcommand" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/06/160706_linuxcommand/" class="article-date">
+      <time datetime="2016-07-06T00:50:27.000Z" itemprop="datePublished">2016-07-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于Linux命令的那点小事
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/linux/">linux</a><a class="article-category-link" href="/categories/linux/linux-command/">linux command</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="Linux命令那点事—ls命令-list"><a href="#Linux命令那点事—ls命令-list" class="headerlink" title="Linux命令那点事—ls命令[list]"></a>Linux命令那点事—<code>ls</code>命令[list]</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034gw1f59lsn7wjnj20du0ku40c.jpg" alt="就问你美不美"></p>
+<a id="more"></a>
+<ul>
+<li><p><code>命令格式</code></p>
+<blockquote>
+<p>ls  [选项] [目录名]</p>
+</blockquote>
+</li>
+<li><p><code>命令功能</code></p>
+<blockquote>
+<p>列出目标目录中所有的子目录和文件。</p>
+</blockquote>
+</li>
+<li><p><code>常用参数</code></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>列出目录下的所有文件，包括以 . 开头的隐含文件。</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>把文件名中不可输出的字符用反斜杠加字符编号(就象在C语言里一样)的形式列出。</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>输出文件的 i 节点的修改时间，并以此排序。</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>将目录象文件一样显示，而不是显示其下的文件。</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>输出时间的全部信息，而不是输出简略信息。</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>-U 对输出的文件不排序。</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>无用。</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>输出文件的 i 节点的索引信息。</td>
+</tr>
+<tr>
+<td>-k</td>
+<td>以 k 字节的形式表示文件的大小。</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>列出文件的详细信息。</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>横向输出文件名，并以“，”作分格符。</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>用数字的 UID,GID 代替名称。</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>显示文件的除组信息外的详细信息。</td>
+</tr>
+<tr>
+<td>-p -F</td>
+<td>在每个文件名后附上一个字符以说明该文件的类型，“*”表示可执行的普通文件；“/”表示目录；“@”表示符号链接；“</td>
+<td>”表示FIFOs；“”表示套接字(sockets)。</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>用?代替不可输出的字符。</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>对目录反向排序。</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>在每个文件名后输出该文件的大小。</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>以时间排序。</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>以文件上次被访问的时间排序。</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>按列输出，横向排序。</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>显示除 “.”和“..”外的所有文件。</td>
+</tr>
+<tr>
+<td>-B</td>
+<td>不输出以 “~”结尾的备份文件。</td>
+</tr>
+<tr>
+<td>-C</td>
+<td>按列输出，纵向排序。</td>
+</tr>
+<tr>
+<td>-F</td>
+<td>在每个文件名后附上一个字符以说明该文件的类型，见-p -F命令。</td>
+</tr>
+<tr>
+<td>-G</td>
+<td>输出文件的组的信息。</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>列出链接文件名而不是链接到的文件。</td>
+</tr>
+<tr>
+<td>-N</td>
+<td>不限制文件长度。</td>
+</tr>
+<tr>
+<td>-Q</td>
+<td>把输出的文件名用双引号括起来。</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>列出所有子目录下的文件。</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>以文件大小排序。</td>
+</tr>
+<tr>
+<td>-X</td>
+<td>以文件的扩展名(最后一个 . 后的字符)排序。</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>一行只输出一个文件。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–colorno</td>
+<td>不显示彩色文件名</td>
+</tr>
+<tr>
+<td>–help</td>
+<td>在标准输出上显示帮助信息。</td>
+</tr>
+<tr>
+<td>–version</td>
+<td>在标准输出上输出版本信息并退出。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><ul>
+<li>最近修改的文件显示在最上面</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# ls -t </div><div class="line">tmp root etc dev lib boot sys proc data home bin sbin usr var lost+found media mnt opt selinux srv misc</div></pre></td></tr></table></figure>
+<ul>
+<li>显示递归文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# ls -R</div><div class="line">.: anaconda-ks.cfg install.log install.log.syslog satools ./satools: black.txt freemem.sh iptables.sh lnmp.sh mysql php502_check.sh ssh_safe.sh</div></pre></td></tr></table></figure>
+<ul>
+<li>列出可读文件和文件夹详细信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# ls -n</div><div class="line"></div><div class="line">total 254</div><div class="line">drwxr-xr-x   2 0 0  4096 Jun 12 04:03 bin</div><div class="line">drwxr-xr-x   4 0 0  1024 Jun 15 14:45 boot</div><div class="line">drwxr-xr-x   6 0 0  4096 Jun 12 10:26 data</div><div class="line">drwxr-xr-x  10 0 0  3520 Sep 26 15:38 dev</div><div class="line">drwxr-xr-x  75 0 0  4096 Oct 16 04:02 etc</div></pre></td></tr></table></figure>
+<ul>
+<li><p>ls命令和它的别名  <code>alias ls=&quot;ls -l&quot;</code></p>
+<ul>
+<li><p>我们可以通过不加任何参数的alias命令来看到目前系统中可用的所有alias设置，当然它们同时也可以unalias来取消。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># alias</div><div class="line">alias cp=&apos;cp -i&apos;</div><div class="line">alias l.=&apos;ls -d .* --color=auto&apos;</div><div class="line">alias ll=&apos;ls -l --color=auto&apos;</div><div class="line">alias ls=&apos;ls --color=auto&apos;</div><div class="line">alias mv=&apos;mv -i&apos;</div><div class="line">alias rm=&apos;rm -i&apos;</div><div class="line">alias which=&apos;alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除一项之前定义的alias设置，只需用unalias命令即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># unalias ls</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>显示文件夹信息</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# ls -ld /etc/ </div><div class="line">drwxr-xr-x 75 root root 4096 Oct 16 04:02 /etc/</div></pre></td></tr></table></figure>
+<ul>
+<li><p>计算当前目录下的文件数量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -|*|grep &quot;^-&quot;| wc -|</div></pre></td></tr></table></figure>
+</li>
+<li><p>linux下文件颜色的含义</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>颜色</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>绿色</td>
+<td>代表可执行文件</td>
+</tr>
+<tr>
+<td>红色</td>
+<td>代表压缩文件</td>
+</tr>
+<tr>
+<td>深蓝色</td>
+<td>代表目录</td>
+</tr>
+<tr>
+<td>浅蓝色</td>
+<td>代表链接文件</td>
+</tr>
+<tr>
+<td>灰色</td>
+<td>代表其它的文件</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>列出当前目录下的所有文件（包括隐藏文件）的绝对路径， 对目录不做递归</li>
+</ul>
+<blockquote>
+<p>命令： find $PWD -maxdepth 1 | xargs ls -ld</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@localhost opt]# find $PWD -maxdepth 1 | xargs ls -ld</div><div class="line">drwxr-xr-x 8 root root 4096 10-11 03:43 /opt</div><div class="line">drwxr-xr-x 2 root root 4096 2012-03-08 /opt/log</div><div class="line">drwxr-xr-x 2 root root 4096 2012-03-08 /opt/script</div><div class="line">drwxr-xr-x 5 root root 4096 10-11 03:21 /opt/soft</div><div class="line">drwxr-xr-x 2 root root 4096 2012-03-08 /opt/src</div><div class="line">drwxr-xr-x 4 root root 4096 10-11 05:22 /opt/svndata</div><div class="line">drwxr-xr-x 4 root root 4096 10-09 00:45 /opt/web</div></pre></td></tr></table></figure>
+<ul>
+<li>递归列出当前目录下的所有文件（包括隐藏文件）的绝对路径</li>
+</ul>
+<blockquote>
+<p>命令：  find $PWD | xargs ls -ld </p>
+</blockquote>
+<ul>
+<li>指定文件时间输出格式</li>
+</ul>
+<blockquote>
+<p>命令 ：ls -tl –time-style=full-iso</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@localhost soft]# ls -tl --time-style=full-iso </div><div class="line">总计 350644</div><div class="line">drwxr-xr-x 16 1016 1016 4096 2012-10-11 03:25:58.000000000 +0800 subversion-1.6.1</div></pre></td></tr></table></figure>
+<blockquote>
+<p>命令 ：ls -ctl –time-style=long-iso</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@localhost soft]# ls -ctl --time-style=long-iso</div><div class="line">总计 350644</div><div class="line">drwxr-xr-x 16 1016 1016      4096 2012-10-11 03:25 subversion-1.6.1</div></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>ls -lh</code> 可以将文件大小显示为符合人类阅读习惯的格式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ lib]# ls -l -h</div><div class="line">total 168K</div><div class="line">drwxr-xr-x 2 root   root    4.0K Aug 18  2014 alternatives</div><div class="line">drwxr-xr-x 2 root   root    4.0K Jul 14  2008 bluetooth</div><div class="line">drwxr-xr-x 2 root   root    4.0K Aug  2  2012 cs</div><div class="line">drwx------ 2 apache apache  4.0K Sep 16  2014 dav</div><div class="line">drwxr-xr-x 2 root   root    4.0K Oct  2  2013 dbus</div><div class="line">drwxr-xr-x 2 root   root    4.0K Jan 23  2013 dhclient</div><div class="line">drwxr-x--- 2 root   root    4.0K Mar  6  2011 dhcpv6</div><div class="line">drwxr-xr-x 2 root   root    4.0K May 11  2011 games</div><div class="line">drwxr-xr-x 2 root   root    4.0K Jan  9  2013 hal</div><div class="line">drwxr-xr-x 8 root   root    4.0K Aug 18  2014 iscsi</div></pre></td></tr></table></figure>
+<ul>
+<li>列出文件并标记颜色分类</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@localhost nginx-1.2.1]# ls --color=auto </div><div class="line">auto CHANGES CHANGES.ru conf configure contrib html LICENSE Makefile man objs README src</div></pre></td></tr></table></figure>
+<h2 id="ls-l-文件列表权限详解"><a href="#ls-l-文件列表权限详解" class="headerlink" title="ls -l 文件列表权限详解"></a><code>ls -l</code> 文件列表权限详解</h2><ul>
+<li>使用 ls -l 命令 执行结果如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[root@iZ251fgdsaZ var]#ls -l</div><div class="line">-rwxrwxrwx  1 root root     1290 May 31 11:08 home.php</div><div class="line">-rwxrwxrwx  1 root root     5669 May 31 11:08 index.php</div><div class="line">drwxrwxrwx  5 root root     4096 Jun 27 17:02 install</div><div class="line">-rwxrwxrwx  1 root root     1025 May 31 11:08 member.php</div><div class="line">-rwxrwxrwx  1 root root     2462 May 31 11:08 misc.php</div><div class="line">-rwxrwxrwx  1 root root     1757 May 31 11:08 plugin.php</div><div class="line">-rwxrwxrwx  1 root root      988 May 31 11:08 portal.php</div><div class="line">-rwxrwxrwx  1 root root      582 May 31 11:08 robots.txt</div><div class="line">-rwxrwxrwx  1 root root     1161 May 31 11:08 search.php</div><div class="line">drwxrwxrwx 10 root root     4096 Jun 27 11:13 source</div><div class="line">drwxrwxrwx  6 root  adm     4096 Jun 11 22:41 tomcat9</div><div class="line">drwxrwxrwx  5 root root     4096 Jun 13 02:21 template</div></pre></td></tr></table></figure>
+<ul>
+<li>文件列表权限图解</li>
+</ul>
+<p><img src="http://7xjlkb.com1.z0.glb.clouddn.com/lsAuthority.png" alt="文件列表权限详解"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">第一列 ： “drwxr-x---”  表识文件的类型 和文件权限 </div><div class="line"></div><div class="line">第二列： “2”是纯数字 ，表示 文件链接个数</div><div class="line"></div><div class="line">第三列 ： “root” 表示文件的所有者 </div><div class="line"></div><div class="line">第四列：“adm” 表示为文件的所在群组 </div><div class="line"></div><div class="line">第五列：“4096”，表示为文件长度（大小）</div><div class="line"></div><div class="line">第六列：“2016-08-07 11:03”，表示文件最后更新（修改）时间</div><div class="line"></div><div class="line">第七列：“tomcat9” 表示文件的名称</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>drwxrwxrwx</code>第一列共有10个字符，第一个字符代表文件的类型，后面9个字符表示文件的权限</p>
+</blockquote>
+<ul>
+<li><p><code>d rwx rwx rwx</code> </p>
+</li>
+<li><p><code>d</code>代表是目录， </p>
+</li>
+<li>第一个<code>rwx</code>  代表所有者的读、写、执行的权限</li>
+<li>第二个<code>rwx</code>  代表用户组读、写、执行的权限</li>
+<li>第三个<code>rwx</code>  代表其他用户读、写、执行的权限</li>
+<li>如果没有权限的话，用<code>-</code>来代替，例如：<code>drwx-w-r--</code></li>
+</ul>
+<h2 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h2><p><img src="http://7xjlkb.com1.z0.glb.clouddn.com/permission.png" alt="文件列表权限详解"></p>
+<ul>
+<li>文件类型和文件权限 ，即为列表第一列内容：<blockquote>
+<p>“drwxr-x—” 含义：有两部分组成 ，一部分是第一列即为“d” ,表示文件类型（目录或文件夹），另一部分是“rwxr-x—” 表示文件权限，权限有分为三段：即为 “ rwx ”,“  r-x  ”和 “ —  ”分别表示 ，文件所有者的权限，文件所属组的权限 和其他用户对文件的权限。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">d ：目录   </div><div class="line">- ：文件   </div><div class="line">l ：链接   </div><div class="line">s ：socket   </div><div class="line">p ：named pipe   </div><div class="line">b ：block device   </div><div class="line">c  ：character device</div></pre></td></tr></table></figure>
+<ul>
+<li>文件权限 ：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">r :含义为 “可读”，用数字 4 表示   </div><div class="line">  </div><div class="line"> w:含义为 “可写”用数字 2 表示  </div><div class="line">  </div><div class="line"> X（小X）：含义为“可执行”用数字 1 表示  </div><div class="line">  </div><div class="line"> -：含义为“无权限”用数字0 表示  </div><div class="line">  </div><div class="line">X （大X）：含义为只有目标文件对某些用户是可执行的或该目标文件是目录时才追加x 属性。   </div><div class="line">s：含义为 在文件执行时把进程的属主或组ID置为该文件的文件属主。方式“u＋s”设置文件的用         户ID位，“g＋s”设置组ID位。</div></pre></td></tr></table></figure>
+<h2 id="文件权限的修改"><a href="#文件权限的修改" class="headerlink" title="文件权限的修改"></a>文件权限的修改</h2><ul>
+<li><p>命令：  chmod  文件权限 文件名称 [-R]</p>
+<ul>
+<li><p>(1) 直接给文件赋相应的权限即为 :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod   a+x  auth.log   #含义为 给 auth.log 文件赋予所有者可执行权限</div></pre></td></tr></table></figure>
+</li>
+<li><p>(2) 使用数字方式代替权限 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 777 auth.log #含义为给auth.log文件赋予任何可读，可写，可执行权限</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>数字含义详见下表<br>|所有者|群组|其他|三位代表权限的数字|<br>|—|—|—|—|<br>|rwx|rwx|rwx|实际结果|<br>|521|521|521|777|<br>|421|401|401|705||</p>
+</li>
+</ul>
+<h2 id="文件所有者的更改"><a href="#文件所有者的更改" class="headerlink" title="文件所有者的更改"></a>文件所有者的更改</h2><ul>
+<li>命令： chown  用户名  文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chown MySQL auth.log #含义为 把 文件 auth.log 的所有者更改为 mysql</div></pre></td></tr></table></figure>
+<h2 id="文件所在组的更改"><a href="#文件所在组的更改" class="headerlink" title="文件所在组的更改"></a>文件所在组的更改</h2><ul>
+<li>命令 chgrp [-R]  群组名称  文件名称</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chgrp  -R  mysql  apache2  #含义为 ，把 目录apache2 的所在组更改为mysql</div></pre></td></tr></table></figure>
+<h2 id="Linux-命令英文缩写"><a href="#Linux-命令英文缩写" class="headerlink" title="Linux 命令英文缩写"></a>Linux 命令英文缩写</h2><table>
+<thead>
+<tr>
+<th>缩写</th>
+<th>完整</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ls</td>
+<td>list</td>
+<td>(列出目录内容)</td>
+</tr>
+<tr>
+<td>cd</td>
+<td>Change Directory</td>
+<td>（改变目录）</td>
+</tr>
+<tr>
+<td>su</td>
+<td>switch user</td>
+<td>切换用户</td>
+</tr>
+<tr>
+<td>rpm</td>
+<td>redhat package manager</td>
+<td>红帽子打包管理器</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>print work directory</td>
+<td>打印当前目录 显示出当前工作目录的绝对路径</td>
+</tr>
+<tr>
+<td>ps</td>
+<td>process status</td>
+<td>(进程状态，类似于windows的任务管理器) 常用参数</td>
+<td>－auxf</td>
+</tr>
+<tr>
+<td>ps -auxf</td>
+<td>显示进程状态</td>
+</tr>
+<tr>
+<td>df</td>
+<td>disk free</td>
+<td>其功能是显示磁盘可用空间数目信息及空间结点信息。换句话说，就是报告在任何安装的设备或目录中，还剩多少自由的空间。</td>
+</tr>
+<tr>
+<td>rpm</td>
+<td>即RedHat Package Management</td>
+<td>是RedHat的发明之一</td>
+</tr>
+<tr>
+<td>rmdir</td>
+<td>Remove Directory</td>
+<td>（删除目录）</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>Remove</td>
+<td>（删除目录或文件）</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>concatenate</td>
+<td>连锁 cat file1 file2&gt;&gt;file3把文件1和文件2的内容联合起来放到file3中</td>
+</tr>
+<tr>
+<td>insmod</td>
+<td>install module</td>
+<td>,载入模块</td>
+</tr>
+<tr>
+<td>ln -s</td>
+<td>link -soft</td>
+<td>创建一个软链接，相当于创建一个快捷方式</td>
+</tr>
+<tr>
+<td>mkdir</td>
+<td>Make Directory</td>
+<td>(创建目录</td>
+</tr>
+<tr>
+<td>touch</td>
+</tr>
+<tr>
+<td>man</td>
+<td>Manual</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>Print working directory</td>
+</tr>
+<tr>
+<td>su</td>
+<td>Swith user</td>
+</tr>
+<tr>
+<td>cd</td>
+<td>Change directory</td>
+</tr>
+<tr>
+<td>ls</td>
+<td>List files</td>
+</tr>
+<tr>
+<td>ps</td>
+<td>Process Status</td>
+</tr>
+<tr>
+<td>mkdir</td>
+<td>Make directory</td>
+</tr>
+<tr>
+<td>rmdir</td>
+<td>Remove directory</td>
+</tr>
+<tr>
+<td>mkfs</td>
+<td>Make file system</td>
+</tr>
+<tr>
+<td>fsck</td>
+<td>File system check</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>Concatenate</td>
+</tr>
+<tr>
+<td>uname</td>
+<td>Unix name</td>
+</tr>
+<tr>
+<td>df</td>
+<td>Disk free</td>
+</tr>
+<tr>
+<td>du</td>
+<td>Disk usage</td>
+</tr>
+<tr>
+<td>lsmod</td>
+<td>List modules</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>Move file</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>Remove file</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>Copy file</td>
+</tr>
+<tr>
+<td>ln</td>
+<td>Link files</td>
+</tr>
+<tr>
+<td>fg</td>
+<td>Foreground</td>
+</tr>
+<tr>
+<td>bg</td>
+<td>Background</td>
+</tr>
+<tr>
+<td>chown</td>
+<td>Change owner</td>
+</tr>
+<tr>
+<td>chgrp</td>
+<td>Change group</td>
+</tr>
+<tr>
+<td>chmod</td>
+<td>Change mode</td>
+</tr>
+<tr>
+<td>umount</td>
+<td>Unmount</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>本来应根据其功能描述“Convert an copy”命名为“cc”，但“cc”已经被用以代表“C Complier”，所以命名为“dd”</td>
+</tr>
+<tr>
+<td>tar</td>
+<td>Tape archive</td>
+</tr>
+<tr>
+<td>ldd</td>
+<td>List dynamic dependencies</td>
+</tr>
+<tr>
+<td>insmod</td>
+<td>Install module</td>
+</tr>
+<tr>
+<td>rmmod</td>
+<td>Remove module</td>
+</tr>
+<tr>
+<td>lsmod</td>
+<td>List module</td>
+</tr>
+<tr>
+<td>文件结尾的”rc”（如.bashrc、.xinitrc等）</td>
+<td>Resource configuration</td>
+</tr>
+<tr>
+<td>Knnxxx / Snnxxx（位于rcx.d目录下）</td>
+<td>K（Kill）；S(Service)；nn（执行顺序号）；xxx（服务标识）</td>
+</tr>
+<tr>
+<td>.a（扩展名a）</td>
+<td>Archive，static library</td>
+</tr>
+<tr>
+<td>.so（扩展名so）</td>
+<td>Shared object，dynamically linked library</td>
+</tr>
+<tr>
+<td>.o（扩展名o）</td>
+<td>Object file，complied result of C/C++ source file</td>
+</tr>
+<tr>
+<td>RPM</td>
+<td>Red hat package manager</td>
+</tr>
+<tr>
+<td>dpkg</td>
+<td>Debian package manager</td>
+</tr>
+<tr>
+<td>apt</td>
+<td>Advanced package tool（Debian或基于Debian的发行版中提供）</td>
+</tr>
+<tr>
+<td>部分Linux命令缩</td>
+</tr>
+<tr>
+<td>bin</td>
+<td>BINaries</td>
+<td>#下面的是一些二进制程序文件</td>
+</tr>
+<tr>
+<td>/dev</td>
+<td>DEVices</td>
+<td>#下面的是一些硬件驱动</td>
+</tr>
+<tr>
+<td>/etc</td>
+<td>ETCetera</td>
+<td>#目录存放着各种系统配置文件, 类似于windows下的system</td>
+</tr>
+<tr>
+<td>/lib</td>
+<td>LIBrary</td>
+</tr>
+<tr>
+<td>/proc</td>
+<td>PROCesses</td>
+</tr>
+<tr>
+<td>/sbin</td>
+<td>Superuser BINaries</td>
+</tr>
+<tr>
+<td>/tmp</td>
+<td>TeMPorary</td>
+</tr>
+<tr>
+<td>/usr</td>
+<td>Unix Shared Resources </td>
+</tr>
+<tr>
+<td>/var</td>
+<td>VARiable ?</td>
+</tr>
+<tr>
+<td>/bootboot</td>
+<td>#下面的是开机启动文件</td>
+</tr>
+<tr>
+<td>FIFO</td>
+<td>First In, First Out</td>
+</tr>
+<tr>
+<td>GRUB</td>
+<td>GRand Unified Bootloader</td>
+</tr>
+<tr>
+<td>IFS</td>
+<td>Internal Field Seperators</td>
+</tr>
+<tr>
+<td>LILO</td>
+<td>LInux LOader</td>
+</tr>
+<tr>
+<td>MySQ</td>
+<td>My是最初作者女儿的名字，SQL  Structured Query Language</td>
+</tr>
+<tr>
+<td>PHP</td>
+<td>Personal Home Page Tools  PHP Hypertext Preprocessor</td>
+</tr>
+<tr>
+<td>PS</td>
+<td>Prompt String</td>
+</tr>
+<tr>
+<td>Perl</td>
+<td>“Pratical Extraction and Report Language”  “Pathologically Eclectic Rubbish Lister”</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>得名于电视剧Monty Python’s Flying Circus</td>
+</tr>
+<tr>
+<td>Tcl</td>
+<td>Tool Command Language</td>
+</tr>
+<tr>
+<td>Tk</td>
+<td>ToolKit</td>
+</tr>
+<tr>
+<td>VT</td>
+<td>Video Terminal</td>
+</tr>
+<tr>
+<td>YaST</td>
+<td>Yet Another Setup Tool</td>
+</tr>
+<tr>
+<td>apache</td>
+<td>“a patchy” server</td>
+</tr>
+<tr>
+<td>apt</td>
+<td>Advanced Packaging Tool</td>
+</tr>
+<tr>
+<td>ar</td>
+<td>archiver</td>
+</tr>
+<tr>
+<td>as</td>
+<td>assembler</td>
+</tr>
+<tr>
+<td>awk</td>
+<td>“Aho Weiberger and Kernighan” 三个作者的姓的第一个字母</td>
+</tr>
+<tr>
+<td>bash</td>
+<td>Bourne Again SHell</td>
+</tr>
+<tr>
+<td>bc</td>
+<td>Basic (Better) Calculator</td>
+</tr>
+<tr>
+<td>bg</td>
+<td>BackGround</td>
+</tr>
+<tr>
+<td>biff</td>
+<td>作者Heidi Stettner在U.C.Berkely养的一条狗,喜欢对邮递员汪汪叫。</td>
+</tr>
+<tr>
+<td>cal</td>
+<td>CALendar</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>CATenate</td>
+</tr>
+<tr>
+<td>cd</td>
+<td>Change Directory</td>
+</tr>
+<tr>
+<td>chgrp</td>
+<td>CHange GRouP</td>
+</tr>
+<tr>
+<td>chmod</td>
+<td>CHange MODe</td>
+</tr>
+<tr>
+<td>chown</td>
+<td>CHange OWNer</td>
+</tr>
+<tr>
+<td>chsh</td>
+<td>CHange SHell</td>
+</tr>
+<tr>
+<td>cmp</td>
+<td>compare</td>
+</tr>
+<tr>
+<td>cobra</td>
+<td>Common Object Request Broker Architecture</td>
+</tr>
+<tr>
+<td>comm</td>
+<td>common</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>CoPy</td>
+</tr>
+<tr>
+<td>cpio</td>
+<td>CoPy In and Out</td>
+</tr>
+<tr>
+<td>cpp</td>
+<td>C Pre Processor</td>
+</tr>
+<tr>
+<td>cron</td>
+<td>Chronos 希腊文时间</td>
+</tr>
+<tr>
+<td>cups</td>
+<td>Common Unix Printing System</td>
+</tr>
+<tr>
+<td>cvs</td>
+<td>Current Version System</td>
+</tr>
+<tr>
+<td>daemon</td>
+<td>Disk And Execution MONitor</td>
+</tr>
+<tr>
+<td>dc</td>
+<td>Desk Calculator</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>Disk Dump</td>
+</tr>
+<tr>
+<td>df</td>
+<td>Disk Free</td>
+</tr>
+<tr>
+<td>diff</td>
+<td>DIFFerence</td>
+</tr>
+<tr>
+<td>dmesg</td>
+<td>diagnostic message</td>
+</tr>
+<tr>
+<td>du</td>
+<td>Disk Usage</td>
+</tr>
+<tr>
+<td>ed</td>
+<td>editor</td>
+</tr>
+<tr>
+<td>egrep</td>
+<td>Extended GREP</td>
+</tr>
+<tr>
+<td>elf</td>
+<td>Extensible Linking Format</td>
+</tr>
+<tr>
+<td>elm</td>
+<td>ELectronic Mail</td>
+</tr>
+<tr>
+<td>emacs</td>
+<td>Editor MACroS</td>
+</tr>
+<tr>
+<td>eval</td>
+<td>EVALuate</td>
+</tr>
+<tr>
+<td>ex</td>
+<td>EXtended</td>
+</tr>
+<tr>
+<td>exec</td>
+<td>EXECute</td>
+</tr>
+<tr>
+<td>fd</td>
+<td>file descriptors</td>
+</tr>
+<tr>
+<td>fg</td>
+<td>ForeGround</td>
+</tr>
+<tr>
+<td>fgrep</td>
+<td>Fixed GREP</td>
+</tr>
+<tr>
+<td>fmt</td>
+<td>format</td>
+</tr>
+<tr>
+<td>fsck</td>
+<td>File System ChecK</td>
+</tr>
+<tr>
+<td>fstab</td>
+<td>FileSystem TABle</td>
+</tr>
+<tr>
+<td>fvwm</td>
+<td>F<em>*</em> Virtual Window Manager</td>
+</tr>
+<tr>
+<td>gawk</td>
+<td>GNU AWK</td>
+</tr>
+<tr>
+<td>gpg</td>
+<td>GNU Privacy Guard</td>
+</tr>
+<tr>
+<td>groff</td>
+<td>GNU troff</td>
+</tr>
+<tr>
+<td>hal</td>
+<td>Hardware Abstraction Layer</td>
+</tr>
+<tr>
+<td>joe</td>
+<td>Joe’s Own Editor</td>
+</tr>
+<tr>
+<td>ksh</td>
+<td>Korn SHell</td>
+</tr>
+<tr>
+<td>lame</td>
+<td>Lame Ain’t an MP3 Encoder</td>
+</tr>
+<tr>
+<td>lex</td>
+<td>LEXical analyser</td>
+</tr>
+<tr>
+<td>lisp</td>
+<td>LISt Processing  Lots of Irritating Superfluous Parentheses</td>
+</tr>
+<tr>
+<td>ln</td>
+<td>LiNk</td>
+</tr>
+<tr>
+<td>lpr</td>
+<td>Line PRint</td>
+</tr>
+<tr>
+<td>ls</td>
+<td>list</td>
+</tr>
+<tr>
+<td>lsof</td>
+<td>LiSt Open Files</td>
+</tr>
+<tr>
+<td>m4</td>
+<td>Macro processor Version 4</td>
+</tr>
+<tr>
+<td>man</td>
+<td>MANual pages</td>
+</tr>
+<tr>
+<td>mawk</td>
+<td>Mike Brennan’s AWK</td>
+</tr>
+<tr>
+<td>mc</td>
+<td>Midnight Commander</td>
+</tr>
+<tr>
+<td>mkfs</td>
+<td>MaKe FileSystem</td>
+</tr>
+<tr>
+<td>mknod</td>
+<td>MaKe NODe</td>
+</tr>
+<tr>
+<td>motd</td>
+<td>Message of The Day</td>
+</tr>
+<tr>
+<td>mozilla</td>
+<td>MOsaic GodZILLa</td>
+</tr>
+<tr>
+<td>mtab</td>
+<td>Mount TABle</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>MoVe</td>
+</tr>
+<tr>
+<td>nano</td>
+<td>Nano’s ANOther editor</td>
+</tr>
+<tr>
+<td>nawk</td>
+<td>New AWK</td>
+</tr>
+<tr>
+<td>nl</td>
+<td>Number of Lines</td>
+</tr>
+<tr>
+<td>nm</td>
+<td>names</td>
+</tr>
+<tr>
+<td>nohup</td>
+<td>No HangUP</td>
+</tr>
+<tr>
+<td>nroff</td>
+<td>New ROFF</td>
+</tr>
+<tr>
+<td>od</td>
+<td>Octal Dump</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>PASSWorD</td>
+</tr>
+<tr>
+<td>pg</td>
+<td>pager</td>
+</tr>
+<tr>
+<td>pico</td>
+<td>PIne’s message COmposition editor</td>
+</tr>
+<tr>
+<td>pine</td>
+<td>“Program for Internet News &amp; Email”  “Pine is not Elm”</td>
+</tr>
+<tr>
+<td>ping</td>
+<td>拟声 又  Packet InterNet Grouper</td>
+</tr>
+<tr>
+<td>pirntcap</td>
+<td>PRINTer CAPability</td>
+</tr>
+<tr>
+<td>popd</td>
+<td>POP Directory</td>
+</tr>
+<tr>
+<td>pr</td>
+<td>pre</td>
+</tr>
+<tr>
+<td>printf</td>
+<td>PRINT Formatted</td>
+</tr>
+<tr>
+<td>ps</td>
+<td>Processes Status</td>
+</tr>
+<tr>
+<td>pty</td>
+<td>pseudo tty</td>
+</tr>
+<tr>
+<td>pushd</td>
+<td>PUSH Directory</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>Print Working Directory</td>
+</tr>
+<tr>
+<td>rc</td>
+<td>runcom  run command, rc还是plan9的shell</td>
+</tr>
+<tr>
+<td>rev</td>
+<td>REVerse</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>ReMove</td>
+</tr>
+<tr>
+<td>rn</td>
+<td>Read News</td>
+</tr>
+<tr>
+<td>roff</td>
+<td>RunOFF</td>
+</tr>
+<tr>
+<td>rpm</td>
+<td>RPM Package Manager  RedHat Package Manager</td>
+</tr>
+<tr>
+<td>rsh, rlogin, rvim中的r</td>
+<td>Remote</td>
+</tr>
+<tr>
+<td>rxvt</td>
+<td>ouR XVT</td>
+</tr>
+<tr>
+<td>seamoneky</td>
+<td>我</td>
+</tr>
+<tr>
+<td>sed</td>
+<td>Stream EDitor</td>
+</tr>
+<tr>
+<td>seq</td>
+<td>SEQuence</td>
+</tr>
+<tr>
+<td>shar</td>
+<td>SHell ARchive</td>
+</tr>
+<tr>
+<td>slrn</td>
+<td>S-Lang rn</td>
+</tr>
+<tr>
+<td>ssh</td>
+<td>Secure SHell</td>
+</tr>
+<tr>
+<td>ssl</td>
+<td>Secure Sockets Layer</td>
+</tr>
+<tr>
+<td>stty</td>
+<td>Set TTY</td>
+</tr>
+<tr>
+<td>su</td>
+<td>Substitute User</td>
+</tr>
+<tr>
+<td>svn</td>
+<td>SubVersioN</td>
+</tr>
+<tr>
+<td>tar</td>
+<td>Tape ARchive</td>
+</tr>
+<tr>
+<td>tcsh</td>
+<td>TENEX C shell</td>
+</tr>
+<tr>
+<td>tee</td>
+<td>T (T形水管接口)</td>
+</tr>
+<tr>
+<td>telnet</td>
+<td>TEminaL over Network</td>
+</tr>
+<tr>
+<td>termcap</td>
+<td>terminal capability</td>
+</tr>
+<tr>
+<td>terminfo</td>
+<td>terminal information</td>
+</tr>
+<tr>
+<td>tex</td>
+<td>τέχνη的缩写，希腊文art</td>
+</tr>
+<tr>
+<td>tr</td>
+<td>traslate</td>
+</tr>
+<tr>
+<td>troff</td>
+<td>Typesetter new ROFF</td>
+</tr>
+<tr>
+<td>tsort</td>
+<td>Topological SORT</td>
+</tr>
+<tr>
+<td>tty</td>
+<td>TeleTypewriter</td>
+</tr>
+<tr>
+<td>twm</td>
+<td>Tom’s Window Manager</td>
+</tr>
+<tr>
+<td>tz</td>
+<td>TimeZone</td>
+</tr>
+<tr>
+<td>udev</td>
+<td>Userspace DEV</td>
+</tr>
+<tr>
+<td>ulimit</td>
+<td>User’s LIMIT</td>
+</tr>
+<tr>
+<td>umask</td>
+<td>User’s MASK</td>
+</tr>
+<tr>
+<td>uniq</td>
+<td>UNIQue</td>
+</tr>
+<tr>
+<td>vi</td>
+<td>VIsual  Very Inconvenient</td>
+</tr>
+<tr>
+<td>vim</td>
+<td>Vi IMproved</td>
+</tr>
+<tr>
+<td>wall</td>
+<td>write all</td>
+</tr>
+<tr>
+<td>wc</td>
+<td>Word Count</td>
+</tr>
+<tr>
+<td>wine</td>
+<td>WINE Is Not an Emulator</td>
+</tr>
+<tr>
+<td>xargs</td>
+<td>eXtended ARGuments</td>
+</tr>
+<tr>
+<td>xdm</td>
+<td>X Display Manager</td>
+</tr>
+<tr>
+<td>xlfd</td>
+<td>X Logical Font Description</td>
+</tr>
+<tr>
+<td>xmms</td>
+<td>X Multimedia System</td>
+</tr>
+<tr>
+<td>xrdb</td>
+<td>X Resources DataBase</td>
+</tr>
+<tr>
+<td>xwd</td>
+<td>X Window Dump</td>
+</tr>
+<tr>
+<td>yacc</td>
+<td>yet another compiler compiler</td>
+</tr>
+<tr>
+<td>Fish</td>
+<td>the Friendly Interactive SHell</td>
+</tr>
+<tr>
+<td>su</td>
+<td>Switch User</td>
+</tr>
+<tr>
+<td>MIME</td>
+<td>Multipurpose Internet Mail Extensions</td>
+</tr>
+<tr>
+<td>ECMA</td>
+<td>European Computer Manufacturers Association</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2016/07/06/160706_linuxcommand/">关于Linux命令的那点小事</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Benny</a></p>
+        <p><span>Created:</span>2016-07-06, 08:50:27</p>
+        <p><span>Updated:</span>2016-07-07, 11:01:19</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2016/07/06/160706_linuxcommand/" title="关于Linux命令的那点小事">http:51tutechan.cn/2016/07/06/160706_linuxcommand/</a>
+            <span class="copy-path" data-clipboard-text="From http:51tutechan.cn/2016/07/06/160706_linuxcommand/　　By Benny" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/07/25/160725_rsa_algorithm/">
+                    RSA加密签名
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/07/05/160705_plantuml/">
+                    plantUML的使用
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux命令那点事—ls命令-list"><span class="toc-number">1.</span> <span class="toc-text">Linux命令那点事—ls命令[list]</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">1.1.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ls-l-文件列表权限详解"><span class="toc-number">2.</span> <span class="toc-text">ls -l 文件列表权限详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件类型"><span class="toc-number">3.</span> <span class="toc-text">文件类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件权限的修改"><span class="toc-number">4.</span> <span class="toc-text">文件权限的修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件所有者的更改"><span class="toc-number">5.</span> <span class="toc-text">文件所有者的更改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件所在组的更改"><span class="toc-number">6.</span> <span class="toc-text">文件所在组的更改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-命令英文缩写"><span class="toc-number">7.</span> <span class="toc-text">Linux 命令英文缩写</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"关于Linux命令的那点小事　| Benny　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/07/25/160725_rsa_algorithm/" title="Pre: RSA加密签名">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/07/05/160705_plantuml/" title="Next: plantUML的使用">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/25/160725_rsa_algorithm/">RSA加密签名</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/160706_linuxcommand/">关于Linux命令的那点小事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/05/160705_plantuml/">plantUML的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/03/160703_linuxShellLine/">Linux Shell 命令行及脚本编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/02/160706_clean_code/">代码整洁之道</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/30/160630_jqueryplugin/">jQuery plugin 插件编写时遇到的问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/28/160628_first/">博客初搭建</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Benny
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

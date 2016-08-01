@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Benny" />
+
+
+
+<meta name="description" content="本书结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码整洁之道">
+<meta property="og:url" content="http:51tutechan.cn/2016/07/02/160706_clean_code/index.html">
+<meta property="og:site_name" content="Benny">
+<meta property="og:description" content="本书结构">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/610dc034jw1f5byokn81tj20dw0hiwfe.jpg">
+<meta property="og:image" content="http://7xjlkb.com1.z0.glb.clouddn.com/cleancode.png">
+<meta property="og:updated_time" content="2016-07-06T02:52:49.177Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码整洁之道">
+<meta name="twitter:description" content="本书结构">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/610dc034jw1f5byokn81tj20dw0hiwfe.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Benny" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>代码整洁之道 | Benny</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Benny</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Coding is my life</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/">RSA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery-plugin/">jquery plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plantUML/">plantUML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码整洁/">代码整洁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/问题/">问题</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Benny</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Benny</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Coding is my life</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-160706_clean_code" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/02/160706_clean_code/" class="article-date">
+      <time datetime="2016-07-02T04:50:27.000Z" itemprop="datePublished">2016-07-02</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      代码整洁之道
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/优雅的代码/">优雅的代码</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码整洁/">代码整洁</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="本书结构"><a href="#本书结构" class="headerlink" title="本书结构"></a>本书结构</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f5byokn81tj20dw0hiwfe.jpg" alt="就问你美不美"></p>
+<a id="more"></a>
+<hr>
+<p><img src="http://7xjlkb.com1.z0.glb.clouddn.com/cleancode.png" alt="代码整洁之道"></p>
+<hr>
+<h2 id="有意义的命名"><a href="#有意义的命名" class="headerlink" title="有意义的命名"></a>有意义的命名</h2><h3 id="2-1-介绍"><a href="#2-1-介绍" class="headerlink" title="2.1 介绍"></a>2.1 介绍</h3><h3 id="2-2-名副其实"><a href="#2-2-名副其实" class="headerlink" title="2.2 名副其实"></a>2.2 名副其实</h3><ul>
+<li>变量和函数或类的名称应该已经答复了大问题，他该告诉你，他为什么会存在，他做什么事，应该怎么用。</li>
+<li>如果<code>名称</code>需要注释来补充，那就不算是名副其实。<blockquote>
+<p>以下的代码不能让人一目了然</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">List&lt;<span class="keyword">int</span>[]&gt; flaggedCells = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">int</span>[]&gt;();   (<span class="number">1</span>)</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span>[] cell : gameBoard)&#123;</div><div class="line">    <span class="keyword">if</span>(cell[STATUS_VALUE] == FLAGGED)&#123;...&#125;           (<span class="number">2</span>)  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>可以更进一步，修改成：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">List&lt;Cell&gt; flaggedCells = <span class="keyword">new</span> ArrayList&lt;Cell&gt;();</div><div class="line"><span class="keyword">for</span>(Cell cell : gameBoard )&#123;</div><div class="line">    <span class="keyword">if</span>(cell.isFlagged())&#123;...&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>主要有两点：</p>
+<ul>
+<li>(1)、将int[]的List换成Cell的List</li>
+<li>(2)、将状态判断提取成一个函数<code>isFlagged</code></li>
+</ul>
+</blockquote>
+<h3 id="2-3-避免误导"><a href="#2-3-避免误导" class="headerlink" title="2.3 避免误导"></a>2.3 避免误导</h3><ul>
+<li>程序员必须避免留下掩藏代码本意的错误线索，应当避免使用与本意相悖的词。</li>
+<li>不要使用<code>hp</code>、<code>aix</code>、<code>sco</code>作为变量名，因为他们都是UNIX平台或类UNIX平台的专有名词。</li>
+<li>不要使用account<code>List</code> 来指称一组账号，除非他真的是List类型。</li>
+<li>不要使用不同之处较小的名称。例如：<code>XYZControllerForEfficientHandingOfStrings</code>和<code>XYZControllerForEfficientStorageOfStrings</code><blockquote>
+<p>误导性名称是最可怕的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</div><div class="line"><span class="keyword">if</span> (O == <span class="number">1</span>) &#123; </div><div class="line">    a == <span class="number">0l</span>;    </div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    l = <span class="number">01</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-4-做有意义的区分"><a href="#2-4-做有意义的区分" class="headerlink" title="2.4 做有意义的区分"></a>2.4 做有意义的区分</h3><ul>
+<li>以数字系列命名(a1、a2、…aN)是依意命名的对立面。这样的名称纯属误导————完全没有提供正确的信息；没有提供导向作者意图的线索。<blockquote>
+<p>例如一下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyChars</span><span class="params">(<span class="keyword">char</span> a1[], <span class="keyword">char</span> a2[])</span></span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; a1.length; i++)&#123;</div><div class="line">        a2[i] == a1[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p><strong>如果将参数名改为<code>source</code>和<code>destination</code>，这个函数就会好很多。</strong></p>
+</blockquote>
+<ul>
+<li>废话是另一种没意义的区分。假如你有一个<code>Product</code>类。如果还有一个<code>ProductInfo</code>类和<code>ProductData</code>类，<br>虽然他们名称不同，但意思却无区别。info和Data就像a、an、the一样是意义含混的废话。</li>
+<li>废话都是冗余。<code>Variable</code>一词永远都不要出现在变量名中。<code>Table</code>一词永远不要出现在表明中。<br>nameString会比name好么？难道Name会是浮点数么？<blockquote>
+<p>看下面这种情况：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">getActiveAccount();</div><div class="line">getActiveAccounts();</div><div class="line">getActiveAccountInfo();</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>　程序员怎么能知道调用哪个呢？如果缺少明确约定，变量 <code>moneyAmount</code> 与 <code>money</code> 没有区别，<br> <code>customerInfo</code> 与 <code>customer</code> 没有区别，<code>accountData</code>与<code>account</code>没有区别，<br> 要区分名称就要以读者能鉴别不同之处的方式来区分。</p>
+</blockquote>
+<h3 id="2-5-使用读的出来的名称"><a href="#2-5-使用读的出来的名称" class="headerlink" title="2.5 使用读的出来的名称"></a>2.5 使用读的出来的名称</h3><ul>
+<li>总结下来就是一句，不要自造词，引号使用恰当的英语单词。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DtaRcrd102P</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> Date genymdhms;</div><div class="line">    <span class="keyword">private</span> Date modymdhms;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String pszqint = <span class="string">"102"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在看看下面的代码：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Customer</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> Date generationTimstamp;</div><div class="line">    <span class="keyword">private</span> Date modificationTimestamp;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String recordId = <span class="string">"102"</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这样应该不会发生，生成时间戳被设置成明天了，应该不会了吧。</p>
+</blockquote>
+<h3 id="2-6-使用可搜索的名称"><a href="#2-6-使用可搜索的名称" class="headerlink" title="2.6 使用可搜索的名称"></a>2.6 使用可搜索的名称</h3><ul>
+<li>不要使用单字母如<code>e</code>或者单数字如<code>3</code>来作为变量名，它是英文中最常用的字母，在每个程序、每段代码中都有可能出现。</li>
+<li><strong>名称长短与其作用域大小相对应</strong>，比如你就3行代码，你就没必要起很长的变量名，你都可以搜索的到。</li>
+</ul>
+<h3 id="2-7-避免使用编码"><a href="#2-7-避免使用编码" class="headerlink" title="2.7 避免使用编码"></a>2.7 避免使用编码</h3><h4 id="2-7-1-匈牙利语标记法"><a href="#2-7-1-匈牙利语标记法" class="headerlink" title="2.7.1 匈牙利语标记法"></a>2.7.1 匈牙利语标记法</h4><ul>
+<li><code>Fortran</code>语言要求首字符体现出类型。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  类型变化时，名称并不变化。</span></div><div class="line">PhoneNumber phoneString;</div></pre></td></tr></table></figure>
+<h4 id="2-7-2-成员前缀"><a href="#2-7-2-成员前缀" class="headerlink" title="2.7.2 成员前缀"></a>2.7.2 成员前缀</h4><ul>
+<li>不必使用m_前缀来标明成员变量。</li>
+</ul>
+<hr>
+<pre><code>private String m_dsc;
+</code></pre><blockquote>
+<p>远不如使用：</p>
+</blockquote>
+<pre><code>private String description;
+</code></pre><blockquote>
+<p>人们很快会无视前缀(或后缀)，只看到名称中有意义的部分。代码读的越多严重就越没有前缀。</p>
+</blockquote>
+<h4 id="2-7-3-接口和实现"><a href="#2-7-3-接口和实现" class="headerlink" title="2.7.3 接口和实现"></a>2.7.3 接口和实现</h4><ul>
+<li>一个创建形状的抽象工厂，该工厂是个接口，要用具体类来实现。你如何来命名。</li>
+<li><code>IShapeFactory</code> 或者是 <code>ShapeFactory</code></li>
+<li>我喜欢不加修饰的接口，不喜欢 <del>IShapeFactory</del>，前导字母I被滥用到了说好听点是干扰，说难听点根本就是废话的程度。</li>
+</ul>
+<h3 id="2-8避免思维映射"><a href="#2-8避免思维映射" class="headerlink" title="2.8避免思维映射"></a>2.8避免思维映射</h3><ul>
+<li>一个专业的程序员知道，明确才是王道，专业程序员能善用其能，编写其他人能理解的代码。</li>
+</ul>
+<h3 id="2-9类名"><a href="#2-9类名" class="headerlink" title="2.9类名"></a>2.9类名</h3><ul>
+<li>类名和对象名应该是名词或名词短语，如 <code>Customer</code>、<code>WikiPage</code>、 <code>Account</code>、 <code>AddressParser</code> 。避免使用 <del>Manager</del>、<del>Processor</del> 、<del>Data</del> 和 <del>Info</del> 这样的类名。</li>
+<li><strong><em>类名不应该是动词</em></strong>。</li>
+</ul>
+<h3 id="2-10-方法名"><a href="#2-10-方法名" class="headerlink" title="2.10 方法名"></a>2.10 方法名</h3><ul>
+<li>方法名应该是动词或动词短语，如 <code>postPayment</code>、<code>deletePage</code>、<code>save</code> 。属性访问器、修改器和断言应该根据其值命名，并根据<em><em>Javabean</em></em>标准加上 <code>get</code> <code>set</code> 和 <code>is</code> 前缀。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">String name = employee.getName();</div><div class="line">customer.setName(&quot;Benny&quot;);</div><div class="line">if ( payCheck.isPosted() )&#123; ... &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>重载构造器</strong>，使用描述了参数的静态工厂方法命名，例如：</p>
+</blockquote>
+<hr>
+<pre><code>Complex fulcrumPoint = Complex.FromReadNumber(23.0);
+</code></pre><hr>
+<blockquote>
+<p>通常好于：</p>
+</blockquote>
+<hr>
+<pre><code>Complex fulcrumpoint = new Complex(23.0);
+</code></pre><h3 id="2-11-别扮可爱"><a href="#2-11-别扮可爱" class="headerlink" title="2.11 别扮可爱"></a>2.11 别扮可爱</h3><ul>
+<li>不要用俗话或俚语。例如，不要使用<code>whack</code>()来表示<code>kill</code>()。别用<code>eatMyshorts</code>()这类与文化紧密相关的词语表示<code>abort</code>()。</li>
+</ul>
+<h3 id="2-12-每个概念对应一个词"><a href="#2-12-每个概念对应一个词" class="headerlink" title="2.12 每个概念对应一个词"></a>2.12 每个概念对应一个词</h3><ul>
+<li>简单点说不要里面即出现<code>DriverManager</code>又出现<code>Protocol-Controller</code>，<br>为什么不全用<code>Controler</code>或者<code>Manager</code>，这种名称会让人觉得这两个对象是不同类型的，也分属不同的类。</li>
+</ul>
+<h3 id="2-13-别用双关语"><a href="#2-13-别用双关语" class="headerlink" title="2.13 别用双关语"></a>2.13 别用双关语</h3><ul>
+<li>在多个类中都有<code>add</code>方法，该方法通过增加或连接两个现存值来获得新值。</li>
+<li>假如要写个新类，该类中只有一个方法，将单个参数放到<code>Collection</code>中去，此时如果叫做<code>add</code>的话，<br>这样做貌似和其他<code>add</code>方法保持了一致， 但实际上语义不同，应该用<code>insert</code>或者<code>append</code>之类的词来命名才对，<br>将该方法命名为<code>add</code>，就是双关语了。</li>
+</ul>
+<h3 id="2-13-使用解决方案领域名称"><a href="#2-13-使用解决方案领域名称" class="headerlink" title="2.13 使用解决方案领域名称"></a>2.13 使用解决方案领域名称</h3>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2016/07/02/160706_clean_code/">代码整洁之道</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Benny</a></p>
+        <p><span>Created:</span>2016-07-02, 12:50:27</p>
+        <p><span>Updated:</span>2016-07-06, 10:52:49</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2016/07/02/160706_clean_code/" title="代码整洁之道">http:51tutechan.cn/2016/07/02/160706_clean_code/</a>
+            <span class="copy-path" data-clipboard-text="From http:51tutechan.cn/2016/07/02/160706_clean_code/　　By Benny" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/07/03/160703_linuxShellLine/">
+                    Linux Shell 命令行及脚本编程
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/06/30/160630_jqueryplugin/">
+                    jQuery plugin 插件编写时遇到的问题总结
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#本书结构"><span class="toc-number">1.</span> <span class="toc-text">本书结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有意义的命名"><span class="toc-number">2.</span> <span class="toc-text">有意义的命名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-介绍"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-名副其实"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 名副其实</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-避免误导"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 避免误导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-做有意义的区分"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 做有意义的区分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-使用读的出来的名称"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 使用读的出来的名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-使用可搜索的名称"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 使用可搜索的名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-避免使用编码"><span class="toc-number">2.7.</span> <span class="toc-text">2.7 避免使用编码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-1-匈牙利语标记法"><span class="toc-number">2.7.1.</span> <span class="toc-text">2.7.1 匈牙利语标记法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-2-成员前缀"><span class="toc-number">2.7.2.</span> <span class="toc-text">2.7.2 成员前缀</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-3-接口和实现"><span class="toc-number">2.7.3.</span> <span class="toc-text">2.7.3 接口和实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8避免思维映射"><span class="toc-number">2.8.</span> <span class="toc-text">2.8避免思维映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9类名"><span class="toc-number">2.9.</span> <span class="toc-text">2.9类名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-方法名"><span class="toc-number">2.10.</span> <span class="toc-text">2.10 方法名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-别扮可爱"><span class="toc-number">2.11.</span> <span class="toc-text">2.11 别扮可爱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-每个概念对应一个词"><span class="toc-number">2.12.</span> <span class="toc-text">2.12 每个概念对应一个词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-别用双关语"><span class="toc-number">2.13.</span> <span class="toc-text">2.13 别用双关语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-使用解决方案领域名称"><span class="toc-number">2.14.</span> <span class="toc-text">2.13 使用解决方案领域名称</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"代码整洁之道　| Benny　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/07/03/160703_linuxShellLine/" title="Pre: Linux Shell 命令行及脚本编程">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/06/30/160630_jqueryplugin/" title="Next: jQuery plugin 插件编写时遇到的问题总结">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/25/160725_rsa_algorithm/">RSA加密签名</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/160706_linuxcommand/">关于Linux命令的那点小事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/05/160705_plantuml/">plantUML的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/03/160703_linuxShellLine/">Linux Shell 命令行及脚本编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/02/160706_clean_code/">代码整洁之道</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/30/160630_jqueryplugin/">jQuery plugin 插件编写时遇到的问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/28/160628_first/">博客初搭建</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Benny
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

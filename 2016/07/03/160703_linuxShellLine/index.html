@@ -1,0 +1,2488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Benny" />
+
+
+
+<meta name="description" content="Linux 及 Linux Shell 简介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux Shell 命令行及脚本编程">
+<meta property="og:url" content="http:51tutechan.cn/2016/07/03/160703_linuxShellLine/index.html">
+<meta property="og:site_name" content="Benny">
+<meta property="og:description" content="Linux 及 Linux Shell 简介">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/610dc034gw1f5pu0w0r56j20m80rsjuy.jpg">
+<meta property="og:updated_time" content="2016-07-15T01:20:11.370Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux Shell 命令行及脚本编程">
+<meta name="twitter:description" content="Linux 及 Linux Shell 简介">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/610dc034gw1f5pu0w0r56j20m80rsjuy.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Benny" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Linux Shell 命令行及脚本编程 | Benny</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Benny</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Coding is my life</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/">RSA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery-plugin/">jquery plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plantUML/">plantUML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码整洁/">代码整洁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/问题/">问题</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Benny</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Benny</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Coding is my life</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-160703_linuxShellLine" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/03/160703_linuxShellLine/" class="article-date">
+      <time datetime="2016-07-03T00:50:27.000Z" itemprop="datePublished">2016-07-03</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux Shell 命令行及脚本编程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/linux/">linux</a><a class="article-category-link" href="/categories/linux/Shell编程/">Shell编程</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="Linux-及-Linux-Shell-简介"><a href="#Linux-及-Linux-Shell-简介" class="headerlink" title="Linux 及 Linux Shell 简介"></a>Linux 及 Linux Shell 简介</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034gw1f5pu0w0r56j20m80rsjuy.jpg" alt="image"></p>
+<a id="more"></a>
+<h3 id="1-1-5-Linux的理念"><a href="#1-1-5-Linux的理念" class="headerlink" title="1.1.5 Linux的理念"></a>1.1.5 Linux的理念</h3><ul>
+<li>小即是美</li>
+<li>让程序只做好一件事</li>
+<li>可移植性比效率更重要</li>
+<li>一切皆文件</li>
+<li>使用<code>Shell</code>脚本来提高效率和可移植性</li>
+<li>避免使用可定制性低下的用户界面</li>
+<li>所有程序都是数据的过滤器</li>
+</ul>
+<h3 id="1-2-什么是Linux-Shell"><a href="#1-2-什么是Linux-Shell" class="headerlink" title="1.2 什么是Linux Shell"></a>1.2 什么是Linux Shell</h3><ul>
+<li><code>Shell</code> 是一个用户程序，或是一个为用户与系统交互提供的环境。</li>
+<li><code>Shell</code> 是一个执行从标准输入设备读入命令的语言解释程序。</li>
+<li>当你登录活或打开控制台时<code>Shell</code>就会执行。</li>
+<li><code>Shell</code> 不是系统内核的一部分，但是它使用系统内核执行程序，创建文件等。</li>
+<li><code>Shell</code>进程会提供一个命令行提示符，普通用户用<code>$</code>作提示符，超级用户(<code>root</code>)用<code>#</code>作提示符。</li>
+</ul>
+<blockquote>
+<p><code>Shell</code>编辑和回调命令</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CTRL + W</td>
+<td>删除光标位置钱的单词</td>
+</tr>
+<tr>
+<td>CTRL + U</td>
+<td>清空行</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>自动补全文件名的单词</td>
+</tr>
+<tr>
+<td>CTRL + R</td>
+<td>搜索先前使用的命令</td>
+</tr>
+<tr>
+<td>CTRL + C</td>
+<td>中止当前命令</td>
+</tr>
+<tr>
+<td>CTRL + D</td>
+<td>退出登录</td>
+</tr>
+<tr>
+<td>ECS + T</td>
+<td>调换光标钱的两个单词</td>
+</tr>
+<tr>
+<td>上/下箭头</td>
+<td>删除光标位置钱的单词</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>当用户准备结束登陆对话进程时，可以输入<code>logout</code>、<code>exit</code>或<code>CTRL + D</code>组合键结束登录。</p>
+</blockquote>
+<h3 id="1-3-Shell-的种类"><a href="#1-3-Shell-的种类" class="headerlink" title="1.3 Shell 的种类"></a>1.3 Shell 的种类</h3><ul>
+<li><code>Shell</code> 有多种类型，最常用的有三种，<code>Bourne(sh)</code>、<code>C Shell</code>、<code>Korn Shell</code>。</li>
+<li>使用 <code>cat /etc/shells</code>命令查看系统中所有可用的Shell。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cat   /etc/shells</td>
+<td>查看系统中所有可用的Shell</td>
+</tr>
+<tr>
+<td>grep root /etc/passwd</td>
+<td>查看用户使用的哪种Shell</td>
+</tr>
+<tr>
+<td>echo $SHELL</td>
+<td>查看用户使用的哪种Shell</td>
+</tr>
+<tr>
+<td>ps -p $$</td>
+<td>查看用户使用的哪种Shell</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-5-Shell脚本是什么"><a href="#1-5-Shell脚本是什么" class="headerlink" title="1.5 Shell脚本是什么"></a>1.5 Shell脚本是什么</h3><ul>
+<li><code>Shell</code> 脚本是<code>Linux/Unix</code>编程环境的重要组成部分。</li>
+<li><code>Shell</code> 脚本一般有以下及部分组成。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>解释</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shell关键字</td>
+<td>例如：if…else、for do … done</td>
+</tr>
+<tr>
+<td>Shell 命令</td>
+<td>例如:export、echo、exit、pwd、return</td>
+</tr>
+<tr>
+<td>Linux 命令</td>
+<td>例如:date、rm、mkdir</td>
+</tr>
+<tr>
+<td>文本处理功能</td>
+<td>例如:awk、cut、sed、grep</td>
+</tr>
+<tr>
+<td>函数</td>
+<td>例如:通常函数吧一些常用的功能放在一起。例如，/etc/init.d 目录中的大部分或全部系统Shell脚本所使用的函数都包含在文件 /etc/init.d/functions中。</td>
+</tr>
+<tr>
+<td>控制流语句</td>
+<td>例如:例如 if…then…else 或 执行重复操作的Shell循环。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-6-为什么使用Shell脚本"><a href="#1-6-为什么使用Shell脚本" class="headerlink" title="1.6 为什么使用Shell脚本"></a>1.6 为什么使用Shell脚本</h3><blockquote>
+<p>使用<code>Shell</code>的简单原因</p>
+</blockquote>
+<ul>
+<li>使用简单</li>
+<li>节省时间</li>
+<li>可以创建你自己的自动化工具和应用程序</li>
+<li>使系统管理任务自动化</li>
+<li>因为脚本经过很好的测试，所以使用脚本做类似配置服务或系统管理任务时，发生错误的机会将大大减少。</li>
+</ul>
+<hr>
+<blockquote>
+<p>我们经常使用的脚本实例有</p>
+</blockquote>
+<ul>
+<li>监控你的<code>Linux</code>系统</li>
+<li>备份数据和创建快照</li>
+<li>创建邮件告警系统</li>
+<li>查找耗尽系统资源的进程</li>
+<li>查找是否所有的网络服务都正常运行等等。</li>
+</ul>
+<h3 id="1-7-创建你的第一个Shell-脚本"><a href="#1-7-创建你的第一个Shell-脚本" class="headerlink" title="1.7 创建你的第一个Shell 脚本"></a>1.7 创建你的第一个Shell 脚本</h3><ul>
+<li>一个<code>Shell</code>脚本就是一个包含<code>ASCII</code>文本的文件。</li>
+</ul>
+<blockquote>
+<p>如果你像成功的写一个<code>Shell</code>脚本，你需要做一下三件事情。</p>
+<ul>
+<li>写一个脚本</li>
+<li>允许<code>Shell</code>执行它</li>
+<li>把它放在<code>Shell</code>可以找到的地方</li>
+</ul>
+</blockquote>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash				(1)</div><div class="line"># My First Script		(2)</div><div class="line">ls -l .*				(3)</div></pre></td></tr></table></figure>
+<ul>
+<li>脚本的第一行是很重要的，他是一个告诉<code>Shell</code>使用什么程序解释器的特别指示。</li>
+<li>上面例子中使用的是<code>/bin/bash</code>。如果使用其他脚本语言比如<code>Perl</code>、<code>awk</code>、<code>python</code>等也同样使用这个机制。</li>
+<li>脚本的第二行是一个注释。每一行中出现在<code>#</code>符号后面的任何内容都将被<code>bash</code>忽略。</li>
+<li>默认情况下，<code>Linux</code>是不允许文件执行的（权限不足）,使用下面命令赋予权限</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ chmod 755 myscript</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>777</td>
+<td>全部权限</td>
+</tr>
+<tr>
+<td>755</td>
+<td>读写和执行的权限</td>
+</tr>
+<tr>
+<td>700</td>
+<td>脚本私有，只有你可以读写和执行</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>切换到你保存脚本的目录，执行脚本。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./ myscript</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="初识Linux-Shell"><a href="#初识Linux-Shell" class="headerlink" title="初识Linux Shell"></a>初识Linux Shell</h2><h3 id="2-1-Bash-Shell"><a href="#2-1-Bash-Shell" class="headerlink" title="2.1 Bash Shell"></a>2.1 Bash Shell</h3><h3 id="2-1-1-Bash-简介"><a href="#2-1-1-Bash-简介" class="headerlink" title="2.1.1 Bash 简介"></a>2.1.1 Bash 简介</h3><ul>
+<li><code>Bash</code>是一个与<code>Bourne Shell</code>兼容的、执行从输入设备或文件读取命令的命令语言解释器。</li>
+<li><code>Bash</code> 与原来的<code>Unix sh Shell</code>向后兼容，并且融合了一些有用的<code>Korn Shell</code> 和 <code>C Shell</code>的特性。它相对于<code>sh</code>在编程和交互式使用两方面都做了功能改进。</li>
+<li><code>Bash</code>具有很好的一致性，它使用构建时发现编译平台特征的配置系统，因此可以构建在几乎任何一种<code>Unix</code>版本上。</li>
+</ul>
+<h3 id="2-1-2-Bash-提供的改进"><a href="#2-1-2-Bash-提供的改进" class="headerlink" title="2.1.2 Bash 提供的改进"></a>2.1.2 Bash 提供的改进</h3><ul>
+<li><code>Bash</code> 语法是<code>Bourne Shell</code> 语法的一个改进版本。大多数情况下<code>Bourne Shel</code>l脚本可以被<code>Bash</code>正常地运行。</li>
+</ul>
+<h2 id="2-2-Shell-在Linux环境中的角色"><a href="#2-2-Shell-在Linux环境中的角色" class="headerlink" title="2.2 Shell 在Linux环境中的角色"></a>2.2 Shell 在Linux环境中的角色</h2><h3 id="2-2-1-与登录Shell相关的文件"><a href="#2-2-1-与登录Shell相关的文件" class="headerlink" title="2.2.1 与登录Shell相关的文件"></a>2.2.1 与登录Shell相关的文件</h3><ul>
+<li>用户登录时<code>Bash</code>将会使用以下初始化文件和启动脚本。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>文件目录</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/etc/profile</code></td>
+<td>系统级的初始化文件，定义了一些环境变量，由登录<code>Shell</code>调用执行</td>
+</tr>
+<tr>
+<td><code>/etc/bash.bashrc</code> 、 <code>/etc/bashrc</code></td>
+<td>其文件名根据不同的<code>Linux</code>发行版本而异，每个交互式Shell的系统级的启动脚本，定义了一些函数和别名</td>
+</tr>
+<tr>
+<td><code>/etc/bash.logout</code></td>
+<td>系统级的登录<code>Shell</code>清理脚本，当登录<code>Shell</code>退出时执行，部分<code>Linux</code>发行版默认没有此文件</td>
+</tr>
+<tr>
+<td><code>$HOME/.bash_profile</code>、<code>$HOME/.bash_login</code>、<code>$HOME/.profile</code></td>
+<td>用户个人初始化脚本，由登录Shell调用执行。这三个脚本只有一个会被执行，按照此顺序查找，第一个才能在的将被执行。</td>
+</tr>
+<tr>
+<td><code>$Home/.bashrc</code></td>
+<td>用户个人的每个交互式<code>Shell</code>的启动脚本</td>
+</tr>
+<tr>
+<td><code>$HOME/.bash_logout</code></td>
+<td>用户个人的登录<code>Shell</code>清理脚本，当登录<code>Shell</code>退出时执行</td>
+</tr>
+<tr>
+<td><code>$HOME/.inputrc</code></td>
+<td>用户个人的由<code>readline</code>使用的启动脚本，定义了处理某些情况下的键盘映射</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-2-2-Bash-启动脚本"><a href="#2-2-2-Bash-启动脚本" class="headerlink" title="2.2.2 Bash 启动脚本"></a>2.2.2 Bash 启动脚本</h3><ul>
+<li>在用户登录时自动执行的脚本主要用来设置一些环境变量，例如设置<code>JAVA_HOME</code>的路径。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/etc/profile</code></td>
+<td>当用户在运行级别3登录系统时首先运行</td>
+</tr>
+<tr>
+<td><code>/etc/profile.d</code></td>
+<td>当<code>/etc/profile</code>运行时，会调用该目录下的脚本</td>
+</tr>
+<tr>
+<td><code>$HOME/.bash_profile</code>、<code>$HOME/.bash_login</code>和<code>$HOME/.profile</code></td>
+<td>在<code>/etc/profile</code>运行后第一个存在的被运行</td>
+</tr>
+<tr>
+<td><code>$HOME/.bashrc</code></td>
+<td>上述脚本的第一个运行后即调用此脚本</td>
+</tr>
+<tr>
+<td><code>/etc/bashrc</code></td>
+<td>将被<code>$HOME/.bashrc</code>调用运行</td>
+</tr>
+<tr>
+<td><code>/etc/profile.d</code></td>
+<td>此目录下的脚本将被<code>/etc/bashrc</code>或<code>/etc/bash.bashrc</code>调用运行</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>Bash</code>启动脚本主要设置的环境有</p>
+</blockquote>
+<ul>
+<li>设置环境变量<code>PATH</code>和<code>PSI</code></li>
+<li>通过变量<code>EDITOR</code>设置默认的文本编辑器</li>
+<li>设置默认的<code>umask</code>（文件或目录的权限属性）</li>
+<li>覆盖活移除不想要的变量或别名</li>
+<li>设置别名</li>
+<li>加载函数</li>
+</ul>
+<h3 id="2-2-3-定制自己的Bash登录脚本"><a href="#2-2-3-定制自己的Bash登录脚本" class="headerlink" title="2.2.3 定制自己的Bash登录脚本"></a>2.2.3 定制自己的Bash登录脚本</h3><h3 id="2-2-4-Bash-退出脚本"><a href="#2-2-4-Bash-退出脚本" class="headerlink" title="2.2.4 Bash 退出脚本"></a>2.2.4 Bash 退出脚本</h3><blockquote>
+<p>当登录<code>Shell</code>退出时，如果<code>$HOME/.bash_logout</code>脚本存在的话，Bash会读取并执行脚本的内容，此脚本的主要用途：</p>
+</blockquote>
+<ul>
+<li>使用<code>clear</code>命令清理你的屏幕终端输出</li>
+<li>移除一些临时文件</li>
+<li>自动运行一些命令或脚本等</li>
+</ul>
+<h3 id="2-2-5-定制自己的Bash-退出脚本"><a href="#2-2-5-定制自己的Bash-退出脚本" class="headerlink" title="2.2.5 定制自己的Bash 退出脚本"></a>2.2.5 定制自己的Bash 退出脚本</h3><h3 id="2-2-6-有效的登录Shell路径"><a href="#2-2-6-有效的登录Shell路径" class="headerlink" title="2.2.6 有效的登录Shell路径"></a>2.2.6 有效的登录<code>Shell</code>路径</h3><ul>
+<li><code>/etc/shells</code> 是一个包含有效的登录<code>Shell</code>全路径名的文本文件，这个文件会被<code>chsh</code>命令（变更你的登录Shell）所使用也可被其他程序查询使用。比如<code>ftp</code>服务，查看<code>etc/shells</code>的内容。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ cat /etc/shells</div><div class="line">out:</div><div class="line">/bin/sh</div><div class="line">/bin/bash</div><div class="line">/bin/nologin</div><div class="line">/bin/tcsh</div><div class="line">/bin/cs</div><div class="line">/bin/ksh</div></pre></td></tr></table></figure>
+<blockquote>
+<p>你也可以使用which命令显示shell的全路径</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ which bash</div><div class="line">out:	</div><div class="line">/bin/bash</div></pre></td></tr></table></figure>
+<h2 id="2-3-SHell中的变量"><a href="#2-3-SHell中的变量" class="headerlink" title="2.3 SHell中的变量"></a>2.3 SHell中的变量</h2><h3 id="2-3-1-Shell-中变量的类型"><a href="#2-3-1-Shell-中变量的类型" class="headerlink" title="2.3.1 Shell 中变量的类型"></a>2.3.1 Shell 中变量的类型</h3><ul>
+<li>Shell中有两种变量的类型：系统变量（环境变量）和用户自定义的变量（本地变量或Shell变量）</li>
+<li>系统变量由<code>Linux Bash Shell</code> 创建和维护的变量，你可以通过修改系统变量，如<code>PS1</code>、<code>PATH</code>、<code>LANG</code>、<code>HISTSIZE</code>、<code>ISPLAY</code>等，配置<code>Shell</code>的样式</li>
+<li>常用的系统变量（环境变量）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>系统变量</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BASH_VERSION</code></td>
+<td>保存<code>bash</code>实例的版本</td>
+</tr>
+<tr>
+<td><code>DISPLAY</code></td>
+<td>设置<code>X display</code>名字</td>
+</tr>
+<tr>
+<td><code>EDITOR</code></td>
+<td>设置默认的文本编辑器</td>
+</tr>
+<tr>
+<td><code>HISTFILE</code></td>
+<td>保存命令历史的文件名</td>
+</tr>
+<tr>
+<td><code>HISTFILESIZE</code></td>
+<td>命令历史文件所能包含的最大行数</td>
+</tr>
+<tr>
+<td><code>HISTSIZE</code></td>
+<td>记录在命令历史中的命令数</td>
+</tr>
+<tr>
+<td><code>HOME</code></td>
+<td>当前用户的主目录</td>
+</tr>
+<tr>
+<td><code>HOSTNAME</code></td>
+<td>你的计算机的主机名</td>
+</tr>
+<tr>
+<td><code>IFS</code></td>
+<td>定义<code>Shell</code>的内部字段分隔符，一般是空格符、制表符和换行符</td>
+</tr>
+<tr>
+<td><code>PATH</code></td>
+<td>搜索命令的路径。它是以冒号分隔的目录列表。<code>Linux</code>下的标准命令之所以能在<code>Shell</code>命令行下的任何路径直接使用，就是因为这些标准命令所在的目录的路径定义在了<code>PATH</code>变量中，<code>Shell</code>会在<code>PATH</code>环境变量指定的全部路径中搜索任何匹配的可执行文件</td>
+</tr>
+<tr>
+<td><code>PS1</code></td>
+<td>你的提示符设定</td>
+</tr>
+<tr>
+<td><code>PWD</code></td>
+<td>当前工作目录。由<code>cd</code>命令设置</td>
+</tr>
+<tr>
+<td><code>SHELL</code></td>
+<td>设置登录<code>Shell</code>的路径</td>
+</tr>
+<tr>
+<td><code>TERM</code></td>
+<td>设置你的登录终端的类型</td>
+</tr>
+<tr>
+<td><code>TMOUT</code></td>
+<td>用于<code>Shell</code>内建命令<code>read</code>的默认超时时间。单位为秒。在交互式的<code>Shell</code>中，此变量的值作为发出命令后等待用户输入的秒数，如果没有输入用户将会自动退出</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>你可以添加上述变量到你账号的home目录下的初始化文件中，比如<code>~/.bash_profile</code>文件。这样每次登录系统时，这些变量会自动设置成你需要的值。</li>
+<li>使用<code>env</code>或者<code>printenv</code>查看当前<code>Shell</code>的所有系统变量。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ env</div><div class="line">或者</div><div class="line">$ printenv</div><div class="line">out:</div><div class="line">USER=BENNY</div><div class="line">LOGNAME=BENNY</div><div class="line">HOME=/home/usr</div><div class="line">...</div></pre></td></tr></table></figure>
+<h3 id="2-3-2-如何自定义变量和给变量赋值"><a href="#2-3-2-如何自定义变量和给变量赋值" class="headerlink" title="2.3.2 如何自定义变量和给变量赋值"></a>2.3.2 如何自定义变量和给变量赋值</h3><ul>
+<li>在<code>Shell</code>中创建和设置变量是很简单的，其语法如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">varName=varValue</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用<code>=</code>给变量赋值，输入的次序是：<code>变量名</code>、<code>赋值操作符</code>、<code>赋予的值</code>。<br>赋值操作符<strong><code>=</code></strong>的周围<strong>不要有任何空格</strong>,比如下面的变量定义将会得到<code>command not found</code>的错误。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">varName=  varValue</div><div class="line">varName  =varValue</div><div class="line">varName=  varValue</div></pre></td></tr></table></figure>
+<ul>
+<li>可以将任意字符集合复制给一个变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ username=&quot;benny&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li>或者</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ username=benny</div></pre></td></tr></table></figure>
+<ul>
+<li>将一个数字复制给变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ var=1</div></pre></td></tr></table></figure>
+<ul>
+<li>需要注意的是Shell的默认复制是字符串赋值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ var=$var+1</div><div class="line">$ echo $var</div><div class="line">out:</div><div class="line">1+1</div></pre></td></tr></table></figure>
+<ul>
+<li>在<code>Bash</code>中，要将算数表达式的数值给一个变量，可以使用<strong><code>let</code></strong>命令</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ let var=2+1</div><div class="line">$ echo $var</div><div class="line">out:</div><div class="line">3</div></pre></td></tr></table></figure>
+<ul>
+<li>将一个变量的值直接复制给另一个变量，如下所示：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ a=3</div><div class="line">$ b=$a</div><div class="line">$ echo $b</div><div class="line">out:</div><div class="line">3</div></pre></td></tr></table></figure>
+<ul>
+<li>将命令的执行结果复制给变量，如下所示：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ var=$(pwd)</div><div class="line">$ echo $var</div><div class="line">out：</div><div class="line">/home/benny</div></pre></td></tr></table></figure>
+<ul>
+<li>将<code>Bash</code>的内置命令<code>read</code>读入的内容复制给变量：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ echo -n &quot;Enter var:&quot;; read var</div><div class="line">Enter var:	此处需要你自己输入（比如输入520）</div><div class="line">$ echo $var</div><div class="line">out:</div><div class="line">520</div></pre></td></tr></table></figure>
+<h3 id="2-3-3-变量命名规则"><a href="#2-3-3-变量命名规则" class="headerlink" title="2.3.3 变量命名规则"></a>2.3.3 变量命名规则</h3><ul>
+<li>变量名必须以<strong>字母</strong>或<strong>下划线</strong>字符<strong><code>_</code></strong>开头，后面跟字母、数字或下划线字符，第一个字符不能为数字。不要使用<strong><code>？</code></strong> <strong><code>、</code></strong> <strong><code>*</code></strong>和其他特殊字符命名你的变量。</li>
+<li>变量名是大小写敏感的，比如定义几个变量<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ echo $var</div><div class="line">out:	123</div><div class="line">$ echo $Var</div><div class="line">out:	1</div><div class="line">$ echo $vAR</div><div class="line">out:	2</div><div class="line">$ echo $VAR</div><div class="line">out:	3</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-3-4-实例：使用echo和printf-打印变量的值"><a href="#2-3-4-实例：使用echo和printf-打印变量的值" class="headerlink" title="2.3.4 实例：使用echo和printf 打印变量的值"></a>2.3.4 实例：使用echo和printf 打印变量的值</h3><ul>
+<li>使用echo命令显示变量值，还可以使用printf命令显示变量值。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ var=123</div><div class="line">$ printf &quot;%s\n&quot; $var</div><div class="line">out:</div><div class="line">123</div></pre></td></tr></table></figure>
+<ul>
+<li>printf 命令的语法格式如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">printf &lt;FORMAT&gt; &lt;ARGUMENTS...&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>一个典型的    <code>printf</code>命令调用如下所示：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">printf &quot;FirstName&quot; : %s\nLastName:%s&quot;  &quot;$FIRSTNAME&quot;  &quot;LASTNAME&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>$FIRSTNAME</code>是格式规范，而后面的两个变量则是作为参数传入。格式用字符串中的<code>%s</code>是指示打印参数的格式类型的分类符，这些分类符有不同的名字。</li>
+<li>分类符表</li>
+<li>参考书中<code>page</code>20</li>
+<li>转义字符表</li>
+<li>参考书中<code>page</code>20</li>
+<li>与<code>printf</code>命令不同，<code>echo</code>命令没有提供格式化选项，因此<code>echo</code>命令比<code>printf</code>命令简单易用</li>
+<li><code>echo</code>命令也提供转义字符的功能，可以是用转义字符与<code>printf</code>命令中的基本相同，但需使用<code>-e</code>选项激活转义字符功能。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ var=10</div><div class="line">$ echo &quot;the number is $var&quot;</div><div class="line">out:</div><div class="line">the number is 10</div><div class="line">$ echo -e &quot;Username: $USER\tHome directory:$HOME\n&quot;</div><div class="line">out:</div><div class="line">Username:benny Home directory: /home/beny</div></pre></td></tr></table></figure>
+<ul>
+<li>有时，你需要使用<strong><code>${}</code></strong>避免一些歧义</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ LOGDIR=&quot;/var/log/&quot;</div><div class="line">$ echo &quot;the log file is $LOGDIRmessage&quot;</div><div class="line">out:</div><div class="line">the log file is</div></pre></td></tr></table></figure>
+<ul>
+<li>Bash将尝试找一个LOGDIRmessages的变量，而不是$LOGDIR,为了避免这种歧义，我们需要使用${}语法，如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ echo &quot;the log file is $&#123;LOGDIR&#125;messages&quot;</div><div class="line">the log file is /var/log/messages</div></pre></td></tr></table></figure>
+<h3 id="2-3-5-变量的引用"><a href="#2-3-5-变量的引用" class="headerlink" title="2.3.5 变量的引用"></a>2.3.5 变量的引用</h3><ul>
+<li>引用一个变量的时候，最好使用双引号将变量名括起来。例如：`”$cariable”‘</li>
+<li>这样可以防止被引用的变量值中的特殊字符（除：$、<code>&#39;</code>和<code>\</code>）被解释为其他错误含义。</li>
+<li>使用双引号可以防止变量中的值中由多个单词租车发给你的字符串分离，一个双引号括起来的变量使它自身编程一个单一词组，即使值中包含空格。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ var]# for var in $list</div><div class="line">&gt; do </div><div class="line">&gt; echo &quot;$var&quot;</div><div class="line">&gt; done</div><div class="line"></div><div class="line">one</div><div class="line">two</div><div class="line">three</div><div class="line"></div><div class="line">[root@iZ251k7t70aZ var]# for var in &quot;$list&quot;</div><div class="line">&gt; do echo &quot;$var&quot;</div><div class="line">&gt; done</div><div class="line"></div><div class="line">one two three</div></pre></td></tr></table></figure>
+<ul>
+<li><code>注意：</code> 单引号的操作类似与双引号，但是它不允许引用变量，因为在单引号中字符<code>&#39;$&#39;</code>的特殊含义将会失效。每个特殊的字符，除了字符<code>&#39;</code>，都将按字面含义解释。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ var]# var=123</div><div class="line">[root@iZ251k7t70aZ var]# echo &apos;$var&apos;</div><div class="line">$var</div><div class="line">[root@iZ251k7t70aZ var]# echo &quot;$var&quot;</div><div class="line">123</div></pre></td></tr></table></figure>
+<h3 id="2-3-6-export"><a href="#2-3-6-export" class="headerlink" title="2.3.6 export"></a>2.3.6 export</h3><ul>
+<li>使用<code>export</code>命令可以将变量被子<code>Shell</code>引用，可以使用<code>export</code>命令将变量进行输出</li>
+</ul>
+<blockquote>
+<p>命令：export [-fnp] [变量或函数名称]=[变量设置值] </p>
+</blockquote>
+<ul>
+<li><code>-f</code>表示<code>export</code>的一个函数；<code>-n</code>表示将<code>export</code>属性从指定变量多函数上移除   <code>p</code>表示打印当前Shell所有输出的变量，与单独执行<code>export</code>命令结果相同</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[root@iZ251k7t70aZ var]# echo $$</div><div class="line">17691</div><div class="line">[root@iZ251k7t70aZ var]# java_home=/usr/local</div><div class="line">[root@iZ251k7t70aZ var]# echo $java_home</div><div class="line">/usr/local</div><div class="line">[root@iZ251k7t70aZ var]# bash</div><div class="line">[root@iZ251k7t70aZ var]# echo $$</div><div class="line">17738</div><div class="line">[root@iZ251k7t70aZ var]# echo $java_home</div><div class="line"></div><div class="line">[root@iZ251k7t70aZ var]# exit</div><div class="line">exit</div><div class="line">[root@iZ251k7t70aZ var]# export java_home</div><div class="line">[root@iZ251k7t70aZ var]# bash</div><div class="line">[root@iZ251k7t70aZ var]# echo $$</div><div class="line">17750</div><div class="line">[root@iZ251k7t70aZ var]# echo $java_home</div><div class="line">/usr/local</div><div class="line">[root@iZ251k7t70aZ var]# bash</div><div class="line">[root@iZ251k7t70aZ var]# echo $$</div><div class="line">17762</div><div class="line">[root@iZ251k7t70aZ var]# echo $java_home </div><div class="line">/usr/local</div><div class="line">[root@iZ251k7t70aZ var]#</div></pre></td></tr></table></figure>
+<blockquote>
+<p>系统变量会自动输出到后续命令的执行环境</p>
+</blockquote>
+<hr>
+<h3 id="2-3-7-如何删除变量"><a href="#2-3-7-如何删除变量" class="headerlink" title="2.3.7　如何删除变量"></a>2.3.7　如何删除变量</h3><ul>
+<li><code>bash</code>下使用<code>unset</code>命令来删除相应的变量或函数。unsert命令会自动</li>
+</ul>
+<blockquote>
+<p>命令： unset [-fv] [变量或函数名称]</p>
+</blockquote>
+<ul>
+<li><code>-f</code>选项表示删除一个已定义的函数；<code>-v</code>选项表示删除一个变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ var]# echo $java_home</div><div class="line">/usr/local</div><div class="line">[root@iZ251k7t70aZ var]# unset java_home</div><div class="line">[root@iZ251k7t70aZ var]# echo $java_home</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用<code>unset</code>命令不能删除一个只读的变量，否则将会出现类似如下的错误：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ var]# readonly java_home=/usr/local</div><div class="line">[root@iZ251k7t70aZ var]# echo $java_home</div><div class="line">/usr/local</div><div class="line">[root@iZ251k7t70aZ var]# unset java_home</div><div class="line">bash: unset: java_home: cannot unset: readonly variable</div></pre></td></tr></table></figure>
+<h3 id="2-3-8-如何检查变量是否存在"><a href="#2-3-8-如何检查变量是否存在" class="headerlink" title="2.3.8 如何检查变量是否存在"></a>2.3.8 如何检查变量是否存在</h3><blockquote>
+<p>命令：${ varName? ERROR : The Varibale is not defined}</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ var]# JAVA_HOME=/usr/local</div><div class="line">[root@iZ251k7t70aZ var]# echo $&#123;JAVA_HOME?ERROR:The variable is not defined&#125;</div><div class="line">/usr/local</div><div class="line">[root@iZ251k7t70aZ var]# unset JAVA_HOME</div><div class="line">[root@iZ251k7t70aZ var]# echo $&#123;JAVA_HOME?ERROR:The variable is not defined&#125;</div><div class="line">bash: JAVA_HOME: ERROR:The variable is not defined</div><div class="line">[root@iZ251k7t70aZ var]#</div></pre></td></tr></table></figure>
+<h2 id="2-4-Shell环境进阶"><a href="#2-4-Shell环境进阶" class="headerlink" title="2.4 Shell环境进阶"></a>2.4 Shell环境进阶</h2><h3 id="2-4-1-回调历史命令"><a href="#2-4-1-回调历史命令" class="headerlink" title="2.4.1 回调历史命令"></a>2.4.1 回调历史命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ var]# history</div><div class="line">   44  ls</div><div class="line">   45  ./startup.sh</div><div class="line">   46  cd /usr</div><div class="line">   47  ls</div><div class="line">   48  cd local/</div><div class="line">   49  ls</div><div class="line">   50  c dtom</div><div class="line">   51  cd tomcat7/</div></pre></td></tr></table></figure>
+<ul>
+<li>在命令提示符下，可以通过<code>CTRL + R</code> 组合键输入相应的关键字可以搜索命令</li>
+<li>在<code>Shell</code>命令提示符下，可以简单的输入!!，来重复执行上一条执行过的命令</li>
+<li>你还可以回调最近一次执行的以指定字符开头的命令</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ var]# ls</div><div class="line">account  cache  cvs  db  empty  games  lib  local  lock  log  mail  nis  opt  preserve  racoon  run  spool  tmp  www  yp</div><div class="line">[root@iZ251k7t70aZ var]# !l</div><div class="line">ls</div><div class="line">account  cache  cvs  db  empty  games  lib  local  lock  log  mail  nis  opt  preserve  racoon  run  spool  tmp  www  yp</div></pre></td></tr></table></figure>
+<ul>
+<li>你可以使用由history命令列出的列表的行号来重新调用响应的命令</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ var]# history</div><div class="line"> 1052  ls -l</div><div class="line"> 1053  clear</div><div class="line"> 1054  ls</div><div class="line"> 1055  ls</div><div class="line"> 1056  clear</div><div class="line"> 1057  history</div><div class="line">[root@iZ251k7t70aZ var]# !1055</div><div class="line">ls</div><div class="line">account  cache  cvs  db  empty  games  lib  local  lock  log  mail  nis  opt  preserve  racoon  run  spool  tmp  www  yp</div><div class="line">[root@iZ251k7t70aZ var]#</div></pre></td></tr></table></figure>
+<h3 id="2-4-2-Shell中的拓展"><a href="#2-4-2-Shell中的拓展" class="headerlink" title="2.4.2 Shell中的拓展"></a>2.4.2 Shell中的拓展</h3><ul>
+<li><p><code>Shell</code>中的拓展有<strong>8</strong>中，分别是</p>
+<ul>
+<li>大括号拓展</li>
+<li>波浪号拓展</li>
+<li>参数和变量拓展</li>
+<li>命令替换</li>
+<li>算数拓展</li>
+<li>进程替换</li>
+<li>单词拆分</li>
+<li>文件名拓展</li>
+</ul>
+</li>
+<li><p>大括号拓展</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ var]# echo a&#123;b,c,d&#125;e</div><div class="line">abe ace ade</div><div class="line">[root@iZ251k7t70aZ var]# echo &#123;a..z&#125;</div><div class="line">a b c d e f g h i j k l m n o p q r s t u v w x y z</div><div class="line">[root@iZ251k7t70aZ var]# echo &#123;0..10&#125;</div><div class="line">0 1 2 3 4 5 6 7 8 9 10</div><div class="line">[root@iZ251k7t70aZ var]# echo &#123;5..-3&#125;</div><div class="line">5 4 3 2 1 0 -1 -2 -3</div><div class="line">[root@iZ251k7t70aZ var]# echo &#123;g..a&#125;</div><div class="line">g f e d c b a</div><div class="line">[root@iZ251k7t70aZ var]# </div><div class="line">[root@iZ251k7t70aZ var]# echo &#123;a..c&#125;&#123;1..3&#125;</div><div class="line">a1 a2 a3 b1 b2 b3 c1 c2 c3</div><div class="line">[root@iZ251k7t70aZ var]# echo a&#123;&#123;b,c,d&#125;a,&#123;e,f,g&#125;b,h&#125;i</div><div class="line">abai acai adai aebi afbi agbi ahi</div><div class="line">[root@iZ251k7t70aZ var]#</div></pre></td></tr></table></figure>
+<ul>
+<li>大括号可以拓展许多命令配合使用，使你的命令更简化</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># 在当前文件夹下创建dir1 dir2 dir3</div><div class="line">[root@iZ251k7t70aZ local]# ls</div><div class="line">aegis  bin  etc  filedirectroy  games  include  lib  lib64  libexec  mvnreporsitory  mysql  pic  sbin  share  src  tomcat7</div><div class="line">[root@iZ251k7t70aZ local]# mkdir &#123;dir1,dir2,dir3&#125;</div><div class="line">[root@iZ251k7t70aZ local]# ls</div><div class="line">aegis  bin  dir1  dir2  dir3  etc  filedirectroy  games  include  lib  lib64  libexec  mvnreporsitory  mysql  pic  sbin  share  src  tomcat7</div><div class="line">[root@iZ251k7t70aZ local]# </div><div class="line"></div><div class="line"># 在当前文件夹下创建 dir1 dir2 dir3</div><div class="line">[root@iZ251k7t70aZ usr]# mkdir / &#123;dir1,dir2&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>在<code>Bash</code>4.0中还提供给了一些大括号的新功能，比如在序列表达式中指定一个增量<code>&lt;INCR&gt;</code></li>
+</ul>
+<blockquote>
+<p>语法如下: {<start>..<end>..<incr>}</incr></end></start></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ echo &#123;1..10..2&#125;</div><div class="line">1   3   5   7   9</div></pre></td></tr></table></figure>
+<ul>
+<li>波浪号扩展可以用来指代你自己的主目录，或其他人的主目录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ benny]# cd ~             #进入自己的主目录</div><div class="line">[root@iZ251k7t70aZ ~]# pwd</div><div class="line">/root</div><div class="line">[root@iZ251k7t70aZ ~]# cd ~benny            #进入benny的主目录</div><div class="line">[root@iZ251k7t70aZ benny]# pwd</div><div class="line">/home/benny</div><div class="line">[root@iZ251k7t70aZ benny]#</div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>Bash</code>支持一下三种方式来实现文件名拓展</p>
+<ul>
+<li><code>*</code>    匹配任何字符串，包括空字符串</li>
+<li><code>？</code>   匹配任意单个字符</li>
+<li><code>[...]</code>匹配方括号内的任意字符</li>
+</ul>
+</li>
+<li><p>列出所有以字母a或b开头的配置文件</p>
+</li>
+</ul>
+<blockquote>
+<p>ls /etc/[ab]*.conf</p>
+</blockquote>
+<h2 id="创建和使用别名"><a href="#创建和使用别名" class="headerlink" title="创建和使用别名"></a>创建和使用别名</h2><ul>
+<li>在Linux系统环境下，我们通常需要使用命令行来处理一些任务，并且会很频繁的使用某些命令语句，为了节省时间，我们可以在文件<code>~/.bashrc</code>中为这些命令语句创建别名。</li>
+</ul>
+<blockquote>
+<p>一旦你修改了<code>~/.bashrc</code>文件，你必须重新启动<code>Shell</code>后，新的设置才会生效。</p>
+</blockquote>
+<ul>
+<li>语法如下：</li>
+</ul>
+<blockquote>
+<p> alias name=’command’</p>
+</blockquote>
+<pre><code>+ name 用户自定义的用于别名的任意简短字符
++ command  任意linux命令
+</code></pre><ul>
+<li>打开当前目录下最后被修改的文件</li>
+</ul>
+<blockquote>
+<p>alias Vim=’vim -ls -t | head -1’’</p>
+</blockquote>
+<ul>
+<li>找出当前目录下，5个最大的文件</li>
+</ul>
+<blockquote>
+<p>alias findbig=’find . -type f -exec ls -s {} \;’ | sort -n -r | head -5’</p>
+</blockquote>
+<ul>
+<li><p>列出当前目录下所有文件，包括隐藏文件，并附加指示符和颜色表识</p>
+<blockquote>
+<p>  alias ls=’ls -aF –color==always’</p>
+</blockquote>
+</li>
+<li><p>清楚全部历史命令记录和屏幕</p>
+<blockquote>
+<p>alias hcl=’history -c; clear’</p>
+</blockquote>
+</li>
+<li><p>查看磁盘控件使用情况</p>
+<blockquote>
+<p>alias dus=’df -h’</p>
+</blockquote>
+</li>
+<li><p>切换到不同目录</p>
+<blockquote>
+<p>alias ..=’cd ..’<br>alias …=’cd ../..’</p>
+</blockquote>
+</li>
+<li><p><code>alias</code>命令查看所有别名</p>
+</li>
+<li><p>查看一个特定的别名</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ /]# alias dus=&apos;df -h&apos;</div><div class="line">[root@iZ251k7t70aZ /]# dus</div><div class="line">Filesystem            Size  Used Avail Use% Mounted on</div><div class="line">/dev/hda1              20G  7.7G   11G  42% /</div><div class="line">tmpfs                 501M     0  501M   0% /dev/shm</div><div class="line">[root@iZ251k7t70aZ /]# alias dus</div><div class="line">alias dus=&apos;df -h&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>当你想调用实际的命令而暂时停止使用别名</p>
+<blockquote>
+<p>$ \aliasname</p>
+</blockquote>
+</li>
+<li><p>删除一个别名 <code>unalias</code></p>
+<blockquote>
+<p>unalias dus</p>
+</blockquote>
+</li>
+<li><p>删除所有别名</p>
+<blockquote>
+<p>unalias -a</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-4-4-修改Bash提示符"><a href="#2-4-4-修改Bash提示符" class="headerlink" title="2.4.4 修改Bash提示符"></a>2.4.4 修改<code>Bash</code>提示符</h2><blockquote>
+<p>此处没懂</p>
+</blockquote>
+<h2 id="2-4-5-设置Shell选项"><a href="#2-4-5-设置Shell选项" class="headerlink" title="2.4.5 设置Shell选项"></a>2.4.5 设置<code>Shell</code>选项</h2><ul>
+<li><code>set</code>可以设置的<code>Bash</code>选项</li>
+</ul>
+<blockquote>
+<p>语法： set(选项)(参数)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a：</td>
+<td>标示已修改的变量，以供输出至环境变量。</td>
+</tr>
+<tr>
+<td>-b：</td>
+<td>使被中止的后台程序立刻回报执行状态。</td>
+</tr>
+<tr>
+<td>-C：</td>
+<td>转向所产生的文件无法覆盖已存在的文件。</td>
+</tr>
+<tr>
+<td>-d：</td>
+<td>Shell预设会用杂凑表记忆使用过的指令，以加速指令的执行。使用-d参数可取消。</td>
+</tr>
+<tr>
+<td>-e：</td>
+<td>若指令传回值不等于0，则立即退出shell。</td>
+</tr>
+<tr>
+<td>-f：</td>
+<td>取消使用通配符。</td>
+</tr>
+<tr>
+<td>-h：</td>
+<td>自动记录函数的所在位置。</td>
+</tr>
+<tr>
+<td>-H</td>
+<td>Shell：可利用”!”加&lt;指令编号&gt;的方式来执行history中记录的指令。</td>
+</tr>
+<tr>
+<td>-k：</td>
+<td>指令所给的参数都会被视为此指令的环境变量。</td>
+</tr>
+<tr>
+<td>-l：</td>
+<td>记录for循环的变量名称。</td>
+</tr>
+<tr>
+<td>-m：</td>
+<td>使用监视模式。</td>
+</tr>
+<tr>
+<td>-n：</td>
+<td>只读取指令，而不实际执行。</td>
+</tr>
+<tr>
+<td>-p：</td>
+<td>启动优先顺序模式。</td>
+</tr>
+<tr>
+<td>-P：</td>
+<td>启动-P参数后，执行指令时，会以实际的文件或目录来取代符号连接。</td>
+</tr>
+<tr>
+<td>-t：</td>
+<td>执行完随后的指令，即退出shell。</td>
+</tr>
+<tr>
+<td>-u：</td>
+<td>当执行时使用到未定义过的变量，则显示错误信息。</td>
+</tr>
+<tr>
+<td>-v：</td>
+<td>显示shell所读取的输入值。</td>
+</tr>
+<tr>
+<td>-x：</td>
+<td>执行指令后，会先显示该指令及所下的参数。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>状态</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>allexport</td>
+<td>off</td>
+<td>从设置开始标记所有新的和修改过的用于输出的变量                          </td>
+</tr>
+<tr>
+<td>braceexpand</td>
+<td>on</td>
+<td>允许符号扩展,默认选项  </td>
+</tr>
+<tr>
+<td>emacs</td>
+<td>on</td>
+<td>在进行命令编辑的时候,使用内建的emacs编辑器, 默认选项</td>
+</tr>
+<tr>
+<td>errexit</td>
+<td>off</td>
+<td>如果一个命令返回一个非0退出状态值(失败),就退出.</td>
+</tr>
+<tr>
+<td>errtrace</td>
+<td>off</td>
+</tr>
+<tr>
+<td>functrace</td>
+<td>off</td>
+</tr>
+<tr>
+<td>hashall</td>
+<td>on</td>
+</tr>
+<tr>
+<td>histexpand</td>
+<td>on</td>
+<td>在做临时替换的时候允许使用!和!! 默认选项</td>
+</tr>
+<tr>
+<td>history</td>
+<td>on</td>
+<td>允许命令行历史,默认选项</td>
+</tr>
+<tr>
+<td>ignoreeof</td>
+<td>off</td>
+<td>禁止coontrol-D的方式退出shell，必须输入exit。</td>
+</tr>
+<tr>
+<td>interactive-comments</td>
+<td>on</td>
+<td>在交互式模式下， #用来表示注解</td>
+</tr>
+<tr>
+<td>keyword</td>
+<td>off</td>
+<td>命令把关键字参数放在环境中</td>
+</tr>
+<tr>
+<td>monitor</td>
+<td>on</td>
+<td>允许作业控制</td>
+</tr>
+<tr>
+<td>noclobber</td>
+<td>off</td>
+<td>保护文件在使用重新动向的时候不被覆盖</td>
+</tr>
+<tr>
+<td>noexec</td>
+<td>off</td>
+<td>在脚本状态下读取命令但是不执行，主要为了检查语法结构。</td>
+</tr>
+<tr>
+<td>nolog</td>
+<td>off</td>
+</tr>
+<tr>
+<td>noglob</td>
+<td>off</td>
+<td>禁止路径名扩展，即关闭通配符     </td>
+</tr>
+<tr>
+<td>notify</td>
+<td>off</td>
+<td>在后台作业以后通知客户</td>
+</tr>
+<tr>
+<td>nounset</td>
+<td>off</td>
+<td>在扩展一个没有的设置的变量的时候，    显示错误的信息     </td>
+</tr>
+<tr>
+<td>onecmd</td>
+<td>off</td>
+<td>在读取并执行一个新的命令后退出       </td>
+</tr>
+<tr>
+<td>physical</td>
+<td>off</td>
+<td>如果被设置，则在使用pwd和cd命令时不使用符号连接的路径 而是物理路径</td>
+</tr>
+<tr>
+<td>pipefail</td>
+<td>off</td>
+<td>限制错误。还可以使用trap来截获信号</td>
+</tr>
+<tr>
+<td>posix</td>
+<td>off</td>
+<td>改变shell行为以便符合POSIX要求</td>
+</tr>
+<tr>
+<td>privileged</td>
+<td>off</td>
+<td>一旦被设置，shell不再读取.profile文件和env文件 shell函数也不继承任何环境</td>
+</tr>
+<tr>
+<td>verbose</td>
+<td>off</td>
+<td>为调试打开verbose模式</td>
+</tr>
+<tr>
+<td>vi</td>
+<td>off</td>
+<td>在命令行编辑的时候使用内置的vi编辑器</td>
+</tr>
+<tr>
+<td>xtrace</td>
+<td>off</td>
+<td>打开调试回响模式</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>开启</strong>一个<code>Bash</code>命令,关闭<code>Ctrl+d</code></li>
+</ul>
+<blockquote>
+<p>set -o ignoreeof</p>
+</blockquote>
+<ul>
+<li><strong>关闭</strong>一个<code>Bash</code>选项</li>
+</ul>
+<blockquote>
+<p>set +o ignoreeof</p>
+</blockquote>
+<ul>
+<li>查看由<code>Bash</code>内只命令<code>shopt</code>控制的<code>Bash</code>选项及其状态</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cdable_vars</td>
+<td>off</td>
+</tr>
+<tr>
+<td>cdspell</td>
+<td>off</td>
+</tr>
+<tr>
+<td>checkhash</td>
+<td>off</td>
+</tr>
+<tr>
+<td>checkwinsize</td>
+<td>on</td>
+</tr>
+<tr>
+<td>cmdhist</td>
+<td>on</td>
+</tr>
+<tr>
+<td>dotglob</td>
+<td>off</td>
+</tr>
+<tr>
+<td>execfail</td>
+<td>off</td>
+</tr>
+<tr>
+<td>expand_aliases</td>
+<td>on</td>
+</tr>
+<tr>
+<td>extdebug</td>
+<td>off</td>
+</tr>
+<tr>
+<td>extglob</td>
+<td>off</td>
+</tr>
+<tr>
+<td>extquote</td>
+<td>on</td>
+</tr>
+<tr>
+<td>failglob</td>
+<td>off</td>
+</tr>
+<tr>
+<td>force_fignore</td>
+<td>on</td>
+</tr>
+<tr>
+<td>gnu_errfmt</td>
+<td>off</td>
+</tr>
+<tr>
+<td>histappend</td>
+<td>off</td>
+</tr>
+<tr>
+<td>histreedit</td>
+<td>off</td>
+</tr>
+<tr>
+<td>histverify</td>
+<td>off</td>
+</tr>
+<tr>
+<td>hostcomplete</td>
+<td>on</td>
+</tr>
+<tr>
+<td>huponexit</td>
+<td>off</td>
+</tr>
+<tr>
+<td>interactive_comments</td>
+<td>on</td>
+</tr>
+<tr>
+<td>lithist</td>
+<td>off</td>
+</tr>
+<tr>
+<td>login_shell</td>
+<td>on</td>
+</tr>
+<tr>
+<td>mailwarn</td>
+<td>off</td>
+</tr>
+<tr>
+<td>no_empty_cmd_completion</td>
+<td>off</td>
+</tr>
+<tr>
+<td>nocaseglob</td>
+<td>off</td>
+</tr>
+<tr>
+<td>nocasematch</td>
+<td>off</td>
+</tr>
+<tr>
+<td>nullglob</td>
+<td>off</td>
+</tr>
+<tr>
+<td>progcomp</td>
+<td>on</td>
+</tr>
+<tr>
+<td>promptvars</td>
+<td>on</td>
+</tr>
+<tr>
+<td>restricted_shell</td>
+<td>off</td>
+</tr>
+<tr>
+<td>shift_verbose</td>
+<td>off</td>
+</tr>
+<tr>
+<td>sourcepath</td>
+<td>on</td>
+</tr>
+<tr>
+<td>xpg_echo</td>
+<td>off</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>使用<code>shopt</code>命令开启和关闭<code>Bash</code>选项的语法如下</li>
+</ul>
+<blockquote>
+<p>shopt -s feature-name     # 开启一个Bash选项</p>
+<p>shopt -u feature-name     # 关闭一个bash选项</p>
+</blockquote>
+<ul>
+<li><code>shopt</code>命令，<code>cdspell</code>选项，用于检测<code>cd</code>命令中目录名字的拼写错误并纠正。错误检查包括调换的字符，缺少的字符，和重复的字符。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ ~]# cd /var/lid</div><div class="line">-bash: cd: /var/lid: No such file or directory</div><div class="line">[root@iZ251k7t70aZ ~]# shopt -s cdspell</div><div class="line">[root@iZ251k7t70aZ ~]# cd /var/lid</div><div class="line">/var/lib</div><div class="line">[root@iZ251k7t70aZ lib]# cd /var/lid</div><div class="line">/var/lib</div><div class="line">[root@iZ251k7t70aZ lib]# pwd</div><div class="line">/var/lib</div></pre></td></tr></table></figure>
+<blockquote>
+<p>选项<code>cdspell</code>只在交互式<code>Shell</code>中有效</p>
+</blockquote>
+<ul>
+<li>你可以使用shopt和set为你定制一个Bash环境，编辑你的<code>~/.bashrc</code>文件，可以添加如下命令：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"># 纠正目录拼写</div><div class="line">shopt -q -s cdspell</div><div class="line"></div><div class="line"># 当终端创建口大小改变时，确保显示得到更新</div><div class="line">shopt -q -s extglob</div><div class="line"></div><div class="line">#开启扩展模式匹配特性</div><div class="line">shopt -q -s extglob</div><div class="line"></div><div class="line"># 退出时追加而不是重启命令历史</div><div class="line">shopt -s histpapperd</div><div class="line"></div><div class="line"># 使Bash尝试保存历史记录中多行命令的所有行</div><div class="line">shopt -q -s cmdhist</div><div class="line"></div><div class="line"># 得到后天任务结束的及时通知</div><div class="line">set -o notify</div></pre></td></tr></table></figure>
+<h3 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h3><ul>
+<li>使用declare命令定义一个新的环境变量”mylove”，并且将其值设置为”java”，输入如下命令：</li>
+</ul>
+<blockquote>
+<p>declare mylove=’Visual C++’ #定义新环境变量</p>
+</blockquote>
+<ul>
+<li>再使用set命令将新定义的变量输出为环境变量，输入如下命令：</li>
+</ul>
+<blockquote>
+<p>set -a mylove #设置为环境变量</p>
+</blockquote>
+<ul>
+<li>执行该命令后，将会新添加对应的环境变量。用户可以使用env命令和grep命令分别显示和搜索环境变量”mylove”，输入命令如下：</li>
+</ul>
+<blockquote>
+<p>env | grep mylove #显示环境变量值</p>
+<p>你可以定制系统范围的<code>Bash</code>环境，默认情况下，文件<code>/etc/profile</code>作为Bash的系统范围用户参数文件，而在<code>CentOS</code>,<code>Fedora</code>和<code>Redhat</code>下推荐的方法是使用目录<code>/etc/profle.d</code>中的文件。</p>
+</blockquote>
+<h2 id="3-常用Shell（Bash）命令"><a href="#3-常用Shell（Bash）命令" class="headerlink" title="3 常用Shell（Bash）命令"></a>3 常用<code>Shell（Bash）</code>命令</h2><h2 id="4-Shell-命令进阶"><a href="#4-Shell-命令进阶" class="headerlink" title="4 Shell 命令进阶"></a>4 <code>Shell</code> 命令进阶</h2><h2 id="5-Shell-编程基础"><a href="#5-Shell-编程基础" class="headerlink" title="5 Shell 编程基础"></a>5 <code>Shell</code> 编程基础</h2><h3 id="5-1-Shell-脚本的第一行-quot-quot-Shebang"><a href="#5-1-Shell-脚本的第一行-quot-quot-Shebang" class="headerlink" title="5.1 Shell 脚本的第一行 &quot;#!&quot; (Shebang)"></a>5.1 <code>Shell</code> 脚本的第一行 <code>&quot;#!&quot; (Shebang)</code></h3><ul>
+<li><code>#!</code>（Shebang）是一个有<code>#</code> <code>!</code>构成的字符序列，出现在脚本文件第一行的前两个字符，用于指示一个解释程序。</li>
+<li>语法格式：</li>
+</ul>
+<blockquote>
+<p><code>#！INTERPRETER [OPTION]...</code><br>INTERPRETER必须是一个程序的绝对路径</p>
+</blockquote>
+<ul>
+<li>当一个内容经以<code>#!</code>开头的脚本作为一个程序运行时，程序加载器会将脚本第一行的<code>#!</code>之后的内容解析为一个解释程序，然互殴用这个指定的解释程序替代其运行，并将脚本的路径作为第一个参数传递给解释程序。</li>
+<li>例如一个脚本的路径名为<code>path/to/script</code> 并且它的内容如下行开头</li>
+</ul>
+<blockquote>
+<p><code>#!/bin/sh</code>
+　</p>
+<ul>
+<li>程序加载器被指示用解释程序<code>/bin/bash</code>替代其运行，并将路径<code>path/to/script</code>作为第一个参数传递给解释程序<code>/bin/bash</code></li>
+<li>几乎所有的<code>Bash</code>脚本的内容都是以<code>/bin/bash</code>开头，并确保<code>Bash</code>将作为脚本的解释程序</li>
+<li>如果没有指定<code>#!</code>，则会默认用<code>/bin/sh</code>作为解释程序，但还是推荐你将<code>Bash</code>脚本的第一行设为<code>#!/bin/bash</code></li>
+</ul>
+</blockquote>
+<p>5.2 <code>Shell</code> 中的注释 </p>
+<ul>
+<li>在<code>Shell</code>脚本中，<code>#</code>是注释表示符。</li>
+<li>在<code>Shell</code>脚本中, 还可以使用Bash的HERE DOCUMENT 特性添加多行的注释内容</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo &quot;下面是注释&quot;</div><div class="line"></div><div class="line">&lt;&lt;COMMENT</div><div class="line">    comment line 1</div><div class="line">    comment line 2</div><div class="line">    comment line 3</div><div class="line">COMMENT</div><div class="line"></div><div class="line">echo &quot;上面是注释&quot;</div></pre></td></tr></table></figure>
+<h3 id="5-3-设置脚本的权限和执行脚本"><a href="#5-3-设置脚本的权限和执行脚本" class="headerlink" title="5.3 设置脚本的权限和执行脚本"></a>5.3 设置脚本的权限和执行脚本</h3><ul>
+<li>在运行一个<code>Shell</code>脚本之前，确保<code>Shell</code>脚本文件具有可执行的权限，否则会报错<code>permission denied</code></li>
+<li>给脚本添加执行权限</li>
+</ul>
+<blockquote>
+<p><code>chmod u+x ./multicomments.sh</code></p>
+</blockquote>
+<ul>
+<li>给所有用户执行脚本的权限</li>
+</ul>
+<blockquote>
+<p><code>chmod +x ./multicomments.sh</code></p>
+</blockquote>
+<ul>
+<li><p>运行一个<code>Shell</code>脚本，使用<code>绝对路径</code>或<code>相对路径</code>两种方式都可以。</p>
+</li>
+<li><p>(1)绝对路径</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ /home/benny/scripts/helloworld.sh</div><div class="line">hello world!</div></pre></td></tr></table></figure>
+<ul>
+<li>(2)相对路径</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd /home/benny</div><div class="line">$ ./scripts/hellowrold.sh</div><div class="line">hello world!</div></pre></td></tr></table></figure>
+<ul>
+<li>如果想像运行一个命令一样运行一个脚本，即不需要指定绝对路径或相对路径只需要输入脚本名称即可。</li>
+<li>要实现这一目的，<strong>需要将脚本所在目录的路径添加到你的<code>PATH</code>环境变量中</strong>，那么就可以在任何路径下直接运行目录<code>PATH</code>环境变量中。</li>
+<li>例如：将目录路径<code>home/benny/scripts</code>加入<code>PATH</code>环境变量中，就可以在任何路径下直接运行目录<code>home/benny/scripts</code>下的<code>Shell</code>脚本。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$   export PATH=$PATH:/home/benny/scripts</div><div class="line">$   cd /tmp</div><div class="line">$   hellowrold.sh</div><div class="line">out :  hello world</div></pre></td></tr></table></figure>
+<blockquote>
+<p>通过<code>export</code>命令添加的<code>PATH</code>变量会在终端关闭后消失，所以建议通过编辑<code>/etc/profile</code>来改<code>PATH</code>环境变量,也可以改根目录下的<code>.bashrc</code>（即：<code>~/.bashrc</code>）</p>
+</blockquote>
+<h2 id="5-4-Shell变量进阶"><a href="#5-4-Shell变量进阶" class="headerlink" title="5.4 Shell变量进阶"></a>5.4 <code>Shell</code>变量进阶</h2><h3 id="5-4-1-Bash中的参数拓展"><a href="#5-4-1-Bash中的参数拓展" class="headerlink" title="5.4.1 Bash中的参数拓展"></a>5.4.1 Bash中的参数拓展</h3><h3 id="5-4-2-Bash的内部变量"><a href="#5-4-2-Bash的内部变量" class="headerlink" title="5.4.2 Bash的内部变量"></a>5.4.2 Bash的内部变量</h3><ul>
+<li><p>Bath的内部变量会影响Bash脚本的行为。</p>
+</li>
+<li><p><code>$BATH</code> 用于引用Bash实例的全路径名</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ echo $BATH</div><div class="line">/bin/bash</div></pre></td></tr></table></figure>
+<ul>
+<li><code>$HOME</code> 当前用户的home目录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ ~]# echo &quot;your home directory is $HOME&quot;</div><div class="line">your home directory is /root</div></pre></td></tr></table></figure>
+<ul>
+<li><code>$IFS</code> 是内部字段分隔符的缩写。此变量决定当Bath解析字符串时将怎样识别字段，或单词分界线。</li>
+<li>变量<code>$IFS</code> 的默认值是空格（空格、制表符和换行），但可以被修改。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ ~]# set x y z    #使用set命令，将x，y，z赋予位置参数1,2,3</div><div class="line">[root@iZ251k7t70aZ ~]# IFS=&quot;:;-&quot;    #指定Bash的内部字段分隔符</div><div class="line">[root@iZ251k7t70aZ ~]# echo &quot;$*&quot;    #拓展特殊参数*</div><div class="line">x:y:z</div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>$SECONDS</code>变量，脚本已经运行的秒数</p>
+</li>
+<li><p><code>$TMOUT</code>变量，如果<code>$TMOUT</code>变量指定了一个非零的值，此值就会被内部指令<code>read</code>作为默认的超市秒数，在一个交互式的Shell中$TMOUT的值被作为命令行提示符等待输入的秒数，如果在指定的秒数内没有输入，Bash将自动被终结。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo &quot;开始执行脚本&quot;</div><div class="line">set -o nounset</div><div class="line">TMOUT=3</div><div class="line"></div><div class="line">echo &quot;Are you sure (y/n)&quot;</div><div class="line">read input</div><div class="line"></div><div class="line">if [&quot;$input&quot; == &quot;y&quot;]</div><div class="line">then</div><div class="line">        echo &quot;Continue ....&quot;</div><div class="line">else</div><div class="line">        echo &quot;Exit!&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+<ul>
+<li><code>UID</code>当前用户账号标识码（<code>ID</code>号）与<code>/etc/passwd</code>中记录的相同，此变量记录的是当前账户的真实<code>ID</code>,即使该账户通过<code>su</code>命令已经临时获得了另一个账号的权限，<code>$UID</code>是一个只读变量，不接受从命令行或脚本的修改。</li>
+<li>使用<code>$UID</code>变量来判断当前账号是否为<code>root</code></li>
+</ul>
+<h3 id="5-4-3-Bash-中的位置参数和特殊参数"><a href="#5-4-3-Bash-中的位置参数和特殊参数" class="headerlink" title="5.4.3 Bash 中的位置参数和特殊参数"></a>5.4.3 Bash 中的位置参数和特殊参数</h3><ul>
+<li><code>Bash</code>中的位置参数事由除<code>0</code>以外的一个或多个数字表示的参数。</li>
+<li>位置参数事由<code>Shell</code>和<code>Shell</code>的函数呗引用时有<code>Shel</code>或<code>Shell</code>函数的参数赋值，并且可以使用Bash的内部命令<code>set</code>来重新赋值，位置参数可以被引用为<code>${N}</code>,或当N只含有一个数字时被引为<code>$N</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ myscript]# set 123 four five</div><div class="line">[root@iZ251k7t70aZ myscript]# echo &quot;$1 $2 $3 $4&quot;</div><div class="line">123 four five</div></pre></td></tr></table></figure>
+<ul>
+<li>多于一个数字的位置参数在拓展时必须放在大括号中，比如<code>${10}</code></li>
+<li>位置参数不能用过赋值语句来赋值，只能通过<code>Bash</code>的命令<code>set</code>和<code>shift</code>来设置和取消他们，当<code>shell</code>函数运行时候，位置参数会被临时替换。</li>
+</ul>
+<ul>
+<li>bash 对一些参数的处理比较特殊，<strong>这些参数只能被引用，但不能修改他们的值</strong>，这些特殊参数分别是<code>*</code>、<code>@</code>、 <code>#</code>、 <code>?</code>、 <code>-</code>、<code>$</code>、<code>!</code>、<code>0</code>、<code>_</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>释义</th>
+<th>更多</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>拓展为从1开始的所有位置参数</td>
+<td></td>
+</tr>
+<tr>
+<td><code>@</code></td>
+<td>也将拓展为从1开始的所有位置参数</td>
+</tr>
+<tr>
+<td><code>#</code></td>
+<td>拓展为位置参数的个数</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>拓展为最近一个在前台执行的命令的退出状态</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>拓展为当前的选项标志</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>拓展为当前Shell的进程号</td>
+</tr>
+<tr>
+<td><code>!</code></td>
+<td>拓展为最近一次执行的后台命令的进程号</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>拓展为Shell或Shell脚本的名称</td>
+</tr>
+<tr>
+<td><code>_</code></td>
+<td>在Shell启动时，它被设置为开始运行的shell或者Sehll脚本中</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>释义</th>
+<th>更多</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$0</code></td>
+<td>这个程式的执行名字</td>
+</tr>
+<tr>
+<td><code>$n</code></td>
+<td>这个程式的第n个参数值，n=1..9</td>
+</tr>
+<tr>
+<td><code>$*</code></td>
+<td>这个程式的所有参数,此选项参数可超过9个。</td>
+</tr>
+<tr>
+<td><code>$#</code></td>
+<td>这个程式的参数个数</td>
+</tr>
+<tr>
+<td><code>$$</code></td>
+<td>这个程式的PID(脚本运行的当前进程ID号)</td>
+</tr>
+<tr>
+<td><code>$!</code></td>
+<td>执行上一个背景指令的PID(后台运行的最后一个进程的进程ID号)</td>
+</tr>
+<tr>
+<td><code>$?</code></td>
+<td>执行上一个指令的返回值 (显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误)</td>
+</tr>
+<tr>
+<td><code>$-</code></td>
+<td>显示shell使用的当前选项，与set命令功能相同</td>
+</tr>
+<tr>
+<td><code>$@</code></td>
+<td>跟$*类似，但是可以当作数组用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-4-4-使用declare命令指定变量的类型"><a href="#5-4-4-使用declare命令指定变量的类型" class="headerlink" title="5.4.4 使用declare命令指定变量的类型"></a>5.4.4 使用<code>declare</code>命令指定变量的类型</h2><ul>
+<li><p><code>declare</code>命令是Bash的内部命令，用于声明变量和修改变量的属性，与Bash的另一个内部命令typeset的用法和用途完全相同</p>
+</li>
+<li><p><code>-r</code> 选项，declare命令将吧指定的变量定义为只读变量，这些变量将不能再赋予新值或被清除</p>
+</li>
+<li><p>-i 选项，declare命令将吧指定的变量定义为整数型变量，赋予整形变量的任何类型的值都将被换成整数 </p>
+</li>
+<li>-x 选项，declare命令将吧指定的变量通过环境输出到后续命令</li>
+<li>-p 选项，declare命令将显示指定变量的属性和值</li>
+</ul>
+<blockquote>
+<p>有时一个任务或命令会运行很长时间，如果不能确定这个任务什么时候才能结束，这是最好就是把它放到后台运行，然后一旦退出系统，这个任务将被终止</p>
+</blockquote>
+<ul>
+<li><code>nohup</code> 命令能让运行的命令或脚本在你退出系统后继续在后台运行。</li>
+<li>语法如下：</li>
+</ul>
+<blockquote>
+<p>nohup COMMAND [ARG]… &amp;</p>
+</blockquote>
+<ul>
+<li>COMMAND：Shell脚本或命令的名称</li>
+<li>[ARG]：脚本或命令的参数</li>
+<li>&amp;：nohup命令不能自动地将任务放在后台运行，你必须明确地在nohup命令的末尾添加操作控制符 <code>&amp;</code></li>
+</ul>
+<blockquote>
+<p>使用nohup命令运行一个脚本script.sh</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ nohup sh script.sh &amp;</div><div class="line">[1] 12496</div><div class="line">$  nohup : appending output to &apos;nohup.out&apos;</div></pre></td></tr></table></figure>
+<ul>
+<li>其中<code>[1]</code>是任务编号，<code>12496</code>是任务的进程号，最后一句表示当前脚本运行输出的内容都将被写入到但钱目录下的文件 nohup.out中。</li>
+<li>当你退出系统后在重新登陆，你仍会看到脚本script.sh在后台运行。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ps -ef | grep 12496</div><div class="line">out:benny 12496 1 0 18:15? 00:00:00 sh script.sh</div></pre></td></tr></table></figure>
+<p>5.4.5 Bash 中的数组变量</p>
+<ul>
+<li>声明一个数组的语法：</li>
+</ul>
+<blockquote>
+<p>ARRAYNAME[INDEX]=value</p>
+</blockquote>
+<ul>
+<li>INDEX手机一正数，或是一个值为正数的算数表达式</li>
+<li>显式的声明一个数组变量使使用Bash的内部命令declare</li>
+</ul>
+<blockquote>
+<p>$ declare -a ARRAYNAME</p>
+</blockquote>
+<ul>
+<li>带有一个索引编号的声明也是可以接受的，但索引编号将被忽略，数组的属性可以使用Bash的内部命令declare和readonly指定，这些属性将被应用到数组的所有变量。</li>
+<li>定一个数组变量</li>
+</ul>
+<blockquote>
+<p>$ declare -a linux={‘java’,’php’,’javascript’}</p>
+</blockquote>
+<ul>
+<li>数组变量还可以使用复合赋值的格式</li>
+</ul>
+<blockquote>
+<p>$ ARRAYNAME={value1,value2,value3…valueN}</p>
+</blockquote>
+<ul>
+<li>若要引用数中某一项的内容，必须使用<code>{}</code>，<strong>如果索引编号是<code>@</code>或<code>*</code>,那么数组的所有成员都将被使用</strong>。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$   echo $&#123;linux[@]&#125;</div><div class="line"></div><div class="line">out: java php javascript</div><div class="line"></div><div class="line">$   arr1=(one two three)</div><div class="line">$   echo $&#123;arr1[0]&#125; $&#123;arr1[1]&#125; $&#123;arr1[2]&#125; </div><div class="line"></div><div class="line">out: one two three</div><div class="line"></div><div class="line">$   echo $&#123;arr1[*]&#125;</div><div class="line"></div><div class="line">out: one two three</div><div class="line"></div><div class="line">$   echo $&#123;arr1[@]&#125;</div><div class="line"></div><div class="line">out: one two three</div><div class="line"></div><div class="line">$   arr1[3]=four</div><div class="line">$   echo $&#123;arr1[@]&#125;</div><div class="line"></div><div class="line">out:one two three four</div><div class="line"></div><div class="line">$   echo $arr1</div><div class="line"></div><div class="line">out:one</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>如果引用数组时，不指定索引编号，则引用的将是数组中的第一元素，即使用索引编号为0</strong></li>
+<li>使用<code>unset</code>命令可以<strong>删除一个数组或数组中的成员变量</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$   unset arr1[2]</div><div class="line">$   echo $&#123;arr1[@]&#125;</div><div class="line"></div><div class="line">out: one two four</div><div class="line"></div><div class="line">$   unset arr1</div><div class="line">$   echo $&#123;arr1[@]&#125;</div><div class="line"></div><div class="line">out:</div></pre></td></tr></table></figure>
+<h2 id="5-5-Shell-算术运算"><a href="#5-5-Shell-算术运算" class="headerlink" title="5.5 Shell 算术运算"></a>5.5 Shell 算术运算</h2><h3 id="5-5-1-Bash的算数运算符"><a href="#5-5-1-Bash的算数运算符" class="headerlink" title="5.5.1 Bash的算数运算符"></a>5.5.1 Bash的算数运算符</h3><h3 id="5-5-2-数字常量"><a href="#5-5-2-数字常量" class="headerlink" title="5.5.2 数字常量"></a>5.5.2 数字常量</h3><h3 id="5-5-3-使用算数拓展和let进行算数运算"><a href="#5-5-3-使用算数拓展和let进行算数运算" class="headerlink" title="5.5.3 使用算数拓展和let进行算数运算"></a>5.5.3 使用算数拓展和let进行算数运算</h3><h3 id="5-5-4-使用expr命令"><a href="#5-5-4-使用expr命令" class="headerlink" title="5.5.4 使用expr命令"></a>5.5.4 使用<code>expr</code>命令</h3><h2 id="5-6-退出脚本"><a href="#5-6-退出脚本" class="headerlink" title="5.6 退出脚本"></a>5.6 退出脚本</h2><h3 id="5-6-1-退出状态码"><a href="#5-6-1-退出状态码" class="headerlink" title="5.6.1 退出状态码"></a>5.6.1 退出状态码</h3><ul>
+<li>每一个命令都会返回一个退出状态</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">状态值</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>0</code></td>
+<td><strong>表示运行成功，程序执行未遇到任何问题</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>1 ~ 125</code></td>
+<td>表示运行失败，脚本命令、系统命令错误或参数传递错误</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>126</code></td>
+<td>找到了该命令但无法执行</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>127</code></td>
+<td>未找到要运行的命令</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&gt; 128</code></td>
+<td>命令被系统强行结束</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>Shell</code>脚本和它里面的函数也会返回一个退出状态码。</li>
+<li><strong>可以通过检查<code>Bash</code>的特殊变量<code>$?</code>来查看上一条命令的退出状态码</strong>。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ usr]# ls</div><div class="line">a  b  bin  etc  games  include  java  kerberos  lib  lib64  libexec  local  sbin  share  src  tmp  X11R6</div><div class="line">[root@iZ251k7t70aZ usr]# echo $?</div><div class="line">0</div><div class="line">[root@iZ251k7t70aZ usr]# ls /benny</div><div class="line">ls: /benny: No such file or directory</div><div class="line">[root@iZ251k7t70aZ usr]# echo $?</div><div class="line">2</div><div class="line">[root@iZ251k7t70aZ usr]#</div></pre></td></tr></table></figure>
+<h3 id="5-6-2-使用exit-命令"><a href="#5-6-2-使用exit-命令" class="headerlink" title="5.6.2 使用exit 命令"></a>5.6.2 使用<code>exit</code> 命令</h3><ul>
+<li>语法如下：退出并且返回退出状态码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$    exit  N</div></pre></td></tr></table></figure>
+<ul>
+<li>退出状态码<code>N</code>可以被其他命令或脚本用来采取他们自己的行为，如果退出状态码<code>N</code>被省略，则将把最后一条运行的命令的退出状态作为脚本的退出状态码。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"></div><div class="line">cd $SOME_DIR</div><div class="line"></div><div class="line">if [ $? -eq 0 ]; then</div><div class="line">    rm -rf *</div><div class="line">else</div><div class="line">    echo &apos;Cannot change directory!&apos;</div><div class="line">    </div><div class="line">exit 1</div><div class="line">fi</div></pre></td></tr></table></figure>
+<ul>
+<li>上述例子，检查<code>csd</code>命令的退出状态，如果其不为0，将打印一个错误消息，并使用<code>exit</code>命令终结脚本运行，返回退出状态码1。</li>
+<li><code>linux shell</code> 命令中判断对文件和文件夹的判断，判断表达式</li>
+</ul>
+<p><code>[ ]</code> 部分是判断表达式，<br><code>-d</code> 表示判断是否是目录(<code>directory</code>)<br><code>&amp;&amp;</code> 是“逻辑与”操作符（这个与C语法类似啊），只有&amp;&amp;前面的判断成立（返回逻辑真），后面的语句才会得到执行。<br>总之，含义就是：<br>若/root/Desktop/为目录，就执行 chmod 777 /root/Desktop/download.desktop<br>若/root/Desktop/不是目录（不存在该目录），就执行 chmod 777 /root/桌面/download.desktop<br>其实就是处理 Desktop 是英文和中文两种情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">BAK=/data</div><div class="line">TAPE=/dev/st0</div><div class="line">echo &quot;Trying to backup $&#123;BAK&#125; direcotry to type device $&#123;TAPE&#125;&quot;</div><div class="line"></div><div class="line">[! -d $BAK] &amp;&amp;&#123;echo &quot;Source backup directory $BAK not found&quot;&#125;</div><div class="line"></div><div class="line">if [$? -ne 0]</div><div class="line"></div><div class="line">then echo &quot;An Error occurred while making a type backup&quot;</div><div class="line">exit 3</div><div class="line">fi</div><div class="line">exit 0 #如果备份成功，则返回0</div></pre></td></tr></table></figure>
+<p><strong><strong><strong><strong><em>**</em></strong></strong></strong></strong>   [里面的参数 还有待继续学习]</p>
+<h2 id="5-7-调试脚本"><a href="#5-7-调试脚本" class="headerlink" title="5.7 调试脚本"></a>5.7 调试脚本</h2><ul>
+<li>常用的脚本调试方法是<code>Bash</code> 的<code>-x</code> 选项启动一个子<code>Shell</code></li>
+<li>它将以调试模式运行，使<code>Shell</code>在执行脚本的过程中把实际执行的每一个命令显示出来，并且在每一个命令行的行首显示一个 <code>+</code>号</li>
+<li><code>+</code>号后面显示的是经过了参数拓展之后的命令行的内容，有助于分析是什么命令。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ myscript]# ./param.sh </div><div class="line">this is /bin/bash</div><div class="line">Linux iZ251k7t70aZ 2.6.18-371.11.1.el5 #1 SMP Wed Jul 23 15:12:55 EDT 2014 x86_64 x86_64 x86_64 GNU/Linux</div><div class="line">[root@iZ251k7t70aZ myscript]# bash -x param.sh </div><div class="line">+ echo &apos;this is /bin/bash&apos;</div><div class="line">this is /bin/bash</div><div class="line">+ uname -a</div><div class="line">Linux iZ251k7t70aZ 2.6.18-371.11.1.el5 #1 SMP Wed Jul 23 15:12:55 EDT 2014 x86_64 x86_64 x86_64 GNU/Linux</div></pre></td></tr></table></figure>
+<ul>
+<li>Bash 中还有一个 <code>-v</code> 选项，该选项激活详细输出模式</li>
+<li>在此模式，由<code>Bash</code>读入的脚本的每一个命令行豆浆在执行前被输出。</li>
+<li><strong> 通常情况下，将<code>-v</code>选项和<code>-x</code>选项同时使用</strong> </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ myscript]# bash -xv param.sh </div><div class="line">#!/bin/bash</div><div class="line">echo &quot;this is /bin/bash&quot;</div><div class="line">+ echo &apos;this is /bin/bash&apos;</div><div class="line">this is /bin/bash</div><div class="line">uname -a</div><div class="line">+ uname -a</div><div class="line">Linux iZ251k7t70aZ 2.6.18-371.11.1.el5 #1 SMP Wed Jul 23 15:12:55 EDT 2014 x86_64 x86_64 x86_64 GNU/Linux</div><div class="line">[root@iZ251k7t70aZ myscript]#</div></pre></td></tr></table></figure>
+<ul>
+<li><code>-x</code>选项虽然使用起来比较方便，但它输出的调试信息仅限于参数拓展后的每一条执行命令以及行首的一个<code>+</code>号，但却没有代码行的行号这样的重要信息。</li>
+<li>可以通过<code>Bash</code>的一些内部环境变量来增加<code>-x</code>选项的输出信息</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>内部环境变量</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$LINENO</code></td>
+<td>表示Shell脚本的当前行号</td>
+</tr>
+<tr>
+<td><code>$FUNCNAME</code></td>
+<td>它是一个包含了当前在执行调用栈中的所有Shell函数名称的数组变量。${FUNCNAME[0]}代表正在执行的Shell函数的名称，${FUNCNAME[1]则代表调用函数${FUNCNAME[1]则代表调用函数${FUNCNAME[0]}的函数的名字，一次类推</td>
+</tr>
+<tr>
+<td>$PS4</td>
+<td>使用<code>Bash</code>的<code>-x</code>选项时，每一条执行的命令的行首会显示<code>+</code>号，而这个<code>+</code>号其实就是变量<code>$PS4</code>的默认值</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>利用变量<code>$PS4</code>的这一特性，结合上述另两个Bash内部变量，通过重新定义变量$PS4就可以增强<code>-x</code>选项的输出信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$  export  PS4=&apos;+&#123;$LINENO:$&#123;FUNCNAME[0]&#125;&#125;&apos;</div></pre></td></tr></table></figure>
+<ul>
+<li>然后使用Bash -xv 选项来调试脚本</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ myscript]# export PS4=&apos;+&#123;$LINENO:$&#123;FUNCNAME[0]&#125;&#125;&apos;</div><div class="line">[root@iZ251k7t70aZ myscript]# bash -xv param.sh </div><div class="line">#!/bin/bash</div><div class="line">echo &quot;this is /bin/bash&quot;</div><div class="line">+&#123;2:&#125;echo &apos;this is /bin/bash&apos;</div><div class="line">this is /bin/bash</div><div class="line">uname -a</div><div class="line">+&#123;3:&#125;uname -a</div><div class="line">Linux iZ251k7t70aZ 2.6.18-371.11.1.el5 #1 SMP Wed Jul 23 15:12:55 EDT 2014 x86_64 x86_64 x86_64 GNU/Linux</div><div class="line">[root@iZ251k7t70aZ myscript]#</div></pre></td></tr></table></figure>
+<ul>
+<li><p>Bash 中执行选项<code>-n</code>，用于测试Shell脚本中是否存在语法错误。</p>
+</li>
+<li><p>Bash 的内置变量总结</p>
+</li>
+</ul>
+<h2 id="5-8-Shell脚本编程风格"><a href="#5-8-Shell脚本编程风格" class="headerlink" title="5.8 Shell脚本编程风格"></a>5.8 Shell脚本编程风格</h2><ul>
+<li>每个代码行不多于80个字符</li>
+<li>保持一直的缩进深度，程序结构的缩进应与逻辑嵌套深度一致</li>
+<li>每一个代码块之间留一个空行，可以提高脚本的可读性</li>
+<li>每个脚本文件都必须要有一个文件头注释，任何一个不简短而不显而易见的函数都需要注释</li>
+<li>文件头提供文件名和他的内容等一些信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#</div><div class="line">#=====================================</div><div class="line">#</div><div class="line">#				 FILE: param.sh</div><div class="line">#</div><div class="line">#				USAGE: ./param.sh</div><div class="line">#</div><div class="line">#		  DESCRIPTION: Read the Bash variable $SECONDS</div><div class="line">#</div><div class="line">#			  OPTIONS: ----</div><div class="line">#</div><div class="line">#	      REQUIREMENTS：----</div><div class="line">#</div><div class="line">#			   	 BUGS:---</div><div class="line">#</div><div class="line">#				NOTES:---</div><div class="line">#</div><div class="line">#			ORGANIZATION:---</div><div class="line">#</div><div class="line">#			 CREATETED:---</div><div class="line">#</div><div class="line">#			  REVISION:---</div></pre></td></tr></table></figure>
+<h2 id="6-1-Shell的条件执行–条件测试"><a href="#6-1-Shell的条件执行–条件测试" class="headerlink" title="6.1 Shell的条件执行–条件测试"></a>6.1 Shell的条件执行–条件测试</h2><h3 id="6-1-1-使用test命令"><a href="#6-1-1-使用test命令" class="headerlink" title="6.1.1 使用test命令"></a>6.1.1 使用test命令</h3><ul>
+<li>Shell脚本可以使用条件逻辑，使脚本可以根据参数，Shell变量或是其他条件的值采取不同的行动。</li>
+<li>test命令运行你做各种测试并每当测试成功或失败时设置它的退出状态码为<code>0</code>（<code>表示真</code>）或<code>1</code>（<code>表示假</code>）</li>
+<li><p><code>test</code>命令可以用于：</p>
+<ul>
+<li>文件属性测试</li>
+<li>字符串测试</li>
+<li>算术测试</li>
+</ul>
+</li>
+<li><p>test命令的语法如下：</p>
+</li>
+</ul>
+<blockquote>
+<p>test EXPRESSION   ||    [<code>空格</code>EXPRESSION<code>空格</code>]</p>
+<p>[  <code>EXPRESSION</code> ]<strong> 注意： 表达式前后需要有空格</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ myscript]# test -d &quot;$HOME&quot;; echo $?</div><div class="line">0</div><div class="line">[root@iZ251k7t70aZ myscript]# test -d &quot;$HOMEs&quot;; echo $?</div><div class="line">1</div><div class="line">[root@iZ251k7t70aZ myscript]# [ &quot;abc&quot; != &quot;def&quot;]; echo $?</div><div class="line">-bash: [: missing `]&apos;</div><div class="line">2</div><div class="line">[root@iZ251k7t70aZ myscript]# [&quot;abc&quot; != &quot;def&quot; ]; echo $?</div><div class="line">-bash: [abc: command not found</div><div class="line">127</div><div class="line">[root@iZ251k7t70aZ myscript]# [ &quot;abc&quot; != &quot;def&quot; ]; echo $?</div><div class="line">0</div><div class="line">[root@iZ251k7t70aZ myscript]# test 8 -gt 3 &amp;&amp; echo TRUE || echo False</div><div class="line">TRUE</div><div class="line">[root@iZ251k7t70aZ myscript]# test -8 -gt 3 &amp;&amp; echo TRUE || echo False</div><div class="line">False</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>描述符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>-e</td>
+<td>文件存在</td>
+</tr>
+<tr>
+<td><del>-a</del></td>
+<td><del>文件存在，这个选项的效果与-e相同. 但是它已经被”弃用”了, 并且不鼓励使用.</del></td>
+</tr>
+<tr>
+<td>-f</td>
+<td>表示这个文件是一个一般文件(并不是目录或者设备文件)</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>文件大小不为零</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>表示这是一个目录</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>表示这是一个块设备(软盘, 光驱, 等等.)</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>表示这是一个字符设备(键盘, modem, 声卡, 等等.)</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>这个文件是一个管道</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>这是一个符号链接</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>这是一个符号链接</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>表示这是一个socket</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>文件(描述符)被关联到一个终端设备上这个测试选项一般被用来检测脚本中的stdin([ -t 0 ]) 或者stdout([ -t 1 ])是否来自于一个终端.</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>文件是否具有可读权限(指的是正在运行这个测试命令的用户是否具有读权限)</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>文件是否具有可写权限(指的是正在运行这个测试命令的用户是否具有写权限)</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>文件是否具有可执行权限(指的是正在运行这个测试命令的用户是否具有可执行权限)</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>set-group-id(sgid)标记被设置到文件或目录上，如果目录具有sgid标记的话, 那么在这个目录下所创建的文件将属于拥有这个目录的用户组, 而不必是创建这个文件的用户组. 这个特性对于在一个工作组中共享目录非常有用.</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>set-user-id (suid)标记被设置到文件上，如果一个root用户所拥有的二进制可执行文件设置了set-user-id标记位的话, 那么普通用户也会以root权限来运行这个文件. [1] 这对于需要访问系统硬件的执行程序(比如pppd和cdrecord)非常有用. 如果没有suid标志的话, 这些二进制执行程序是不能够被非root用户调用的.</td>
+</tr>
+<tr>
+<td>-O</td>
+<td>判断你是否是文件的拥有者</td>
+</tr>
+<tr>
+<td>-G</td>
+<td>文件的group-id是否与你的相同</td>
+</tr>
+<tr>
+<td>-N</td>
+<td>从文件上一次被读取到现在为止, 文件是否被修改过</td>
+</tr>
+<tr>
+<td>f1 <code>-nt</code> f2</td>
+<td>文件f1比文件f2新</td>
+</tr>
+<tr>
+<td>f1 <code>-ot</code> f2</td>
+<td>文件f1比文件f2旧</td>
+</tr>
+<tr>
+<td>f1 <code>-ef</code> f2</td>
+<td>文件f1和文件f2是相同文件的硬链接</td>
+</tr>
+<tr>
+<td>!</td>
+<td>“非” – 反转上边所有测试的结果(如果没给出条件, 那么返回真).</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>检查名命令文件<code>/bin/cp</code>是否存在，如果存在则打印找到此文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ myscript]# test -e /bin/cp &amp;&amp; &quot;the command $_ found &quot; || &quot;the command $_ not found&quot;</div><div class="line">-bash: the command /bin/cp found : No such file or directory</div><div class="line"></div><div class="line">[root@iZ251k7t70aZ myscript]# [ -d /local ] &amp;&amp; echo &quot;真&quot; || echo &quot;假&quot;</div><div class="line">真</div></pre></td></tr></table></figure>
+<blockquote>
+<p>上述命令语句中的<code>$_</code>表示前一个执行的命令中的额最后一个参数。</p>
+</blockquote>
+<ul>
+<li>字符串测试操作符表</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-z 《String》</td>
+<td>如果《String》为空则为真</td>
+</tr>
+<tr>
+<td>-n 《String》</td>
+<td>如果《String》不为空则为真</td>
+</tr>
+<tr>
+<td>《String1》=《String2》</td>
+<td>如果《String1》与《String2》相同则为真</td>
+</tr>
+<tr>
+<td>《String1》！=《String2》</td>
+<td>如果《String1》与《String2》不相同则为真</td>
+</tr>
+<tr>
+<td>《String1》&lt;《String2》</td>
+<td>如果《String1》的字典顺序排在《String2》之前则为真</td>
+</tr>
+<tr>
+<td>《String1》&gt;《String2》</td>
+<td>如果《String1》的字典顺序排在《String2》之后则为真</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>算术测试操作符表</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-eq</td>
+<td>等于,如:if [ “$a” -eq “$b” ] </td>
+</tr>
+<tr>
+<td>-ne</td>
+<td>不等于,如:if [ “$a” -ne “$b” ] </td>
+</tr>
+<tr>
+<td>-gt</td>
+<td>大于,如:if [ “$a” -gt “$b” ] </td>
+</tr>
+<tr>
+<td>-ge</td>
+<td>大于等于,如:if [ “$a” -ge “$b” ] </td>
+</tr>
+<tr>
+<td>-lt</td>
+<td>小于,如:if [ “$a” -lt “$b” ] </td>
+</tr>
+<tr>
+<td>-le</td>
+<td>小于等于,如:if [ “$a” -le “$b” ] </td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于(需要双括号),如:((“$a” &lt; “$b”)) </td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于(需要双括号),如:((“$a” &lt;= “$b”)) </td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于(需要双括号),如:((“$a” &gt; “$b”)) </td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于等于(需要双括号),如:((“$a” &gt;= “$b”)) </td>
+</tr>
+</tbody>
+</table>
+<h3 id="6-1-2-if结构的语法格式"><a href="#6-1-2-if结构的语法格式" class="headerlink" title="6.1.2 if结构的语法格式"></a>6.1.2 if结构的语法格式</h3><ul>
+<li><code>if</code>语句的基本语法：</li>
+</ul>
+<blockquote>
+<p>if TEST-COMMANDS ; then CONSEQUENT-COMMANDS ;  fi<br>或<br>if TEST-COMMANDS ; then<br>  CONSEQUENT-COMMANDS<br>fi<br>或<br>if TEST-COMMANDS<br>then<br>  CONSEQUENT-COMMANDS<br>fi</p>
+</blockquote>
+<h3 id="6-1-3-if…else…fi"><a href="#6-1-3-if…else…fi" class="headerlink" title="6.1.3 if…else…fi"></a>6.1.3 if…else…fi</h3><ul>
+<li>if…else…fi的语法基本结构</li>
+</ul>
+<blockquote>
+<p>if TEST-COMMANDS<br>then<br>       CONSEQUENT-COMMANDS<br>else<br>        CONSEQUENT-COMMANDS<br>fi</p>
+</blockquote>
+<h3 id="6-1-5-多级的if…elif…else…fi"><a href="#6-1-5-多级的if…elif…else…fi" class="headerlink" title="6.1.5 多级的if…elif…else…fi"></a>6.1.5 多级的if…elif…else…fi</h3><ul>
+<li>if…elif…else…fi语法结构：</li>
+</ul>
+<blockquote>
+<p>if TEST-COMMANDS<br>then<br>   CONSEQUENT-COMMANDS<br>elif TEST-COMMANDS<br>then<br>   CONSEQUENT-COMMANDS<br>elif TEST-COMMANDS<br>then<br>   CONSEQUENT-COMMANDS<br>else<br>   CONSEQUENT-COMMANDS<br>fi</p>
+</blockquote>
+<h2 id="6-2-条件执行"><a href="#6-2-条件执行" class="headerlink" title="6.2 条件执行"></a>6.2 条件执行</h2><h3 id="6-2-1-逻辑与-amp-amp"><a href="#6-2-1-逻辑与-amp-amp" class="headerlink" title="6.2.1 逻辑与&amp;&amp;"></a>6.2.1 逻辑与<code>&amp;&amp;</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if [ on $var ] &amp;&amp; [ -e $var ]</div><div class="line">then </div><div class="line">	echo &quot;...&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>在<code>test</code>命令中我们可以使用<code>-a</code> 选项来表示逻辑与。</strong></li>
+<li>将上述命令改写：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if [ -n $var -a -e $var ]</div><div class="line">then </div><div class="line">	echo &quot;...&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+<h3 id="6-2-2-逻辑或"><a href="#6-2-2-逻辑或" class="headerlink" title="6.2.2 逻辑或||"></a>6.2.2 逻辑或<code>||</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NOW=&apos;data +%a&apos;</div><div class="line">if [ &quot;$NOW&quot; = &quot;MON&quot; ] || [ &quot;$NOW&quot; = &quot;SAT&quot; ] </div><div class="line">then </div><div class="line">	echo &quot;...&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+<ul>
+<li>上述脚本中我们使用<code>&quot;[[ ]]&quot;</code> 代替<code>&quot;[]&quot;</code>，那么次脚本会简介一些</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NOW=&apos;data +%a&apos;</div><div class="line">if [[ $NOW = &quot;MON&quot; || $NOW = &quot;SAT&quot; ]]</div><div class="line">then </div><div class="line">	echo &quot;...&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>与<code>test</code>命令的<code>-a</code>选项类似，我们可以使用<code>test</code>命令的<code>-o</code>选项来表示逻辑或</strong></li>
+<li>将上述命令改写成：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 定义变量NOW,并将计算得到的今天是星期几赋值给变量NOW</div><div class="line">NOW=&apos;data +%a&apos;</div><div class="line">if [ &quot;$NOW&quot; = &quot;MON&quot; -o &quot;$NOW&quot; = &quot;$SAT&quot; ]</div><div class="line">then </div><div class="line">	echo &quot;...&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+<h3 id="6-2-3-逻辑非-“-”"><a href="#6-2-3-逻辑非-“-”" class="headerlink" title="6.2.3 逻辑非 “!”"></a>6.2.3 逻辑非 “!”</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">if [! -d /home/benny]</div><div class="line">then </div><div class="line">	mkdir /home/benny</div><div class="line">else</div><div class="line">	echo &quot;the directory is exist&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+<h2 id="6-3-case语句实例"><a href="#6-3-case语句实例" class="headerlink" title="6.3 case语句实例"></a>6.3 case语句实例</h2><ul>
+<li>case语句是多级的if…then…else…fi语句很好的替代方式。</li>
+<li>它可以让一个条件与多个模式相比较，而且case语句的结构的读写比较方便</li>
+<li>case语句的语法实例</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">case EXPRESSION in </div><div class="line">	PATTERN 1 )</div><div class="line">			CONSEQUENT-COMMANDS</div><div class="line">;;</div><div class="line">	PATTERN 2 )</div><div class="line">			CONSEQUENT-COMMANDS</div><div class="line">;;</div><div class="line">	</div><div class="line">	PATTERN N )</div><div class="line">			CONSEQUENT-COMAANDS</div><div class="line">;;</div><div class="line">esac</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>case</code>语句结构一定要以<code>&quot;esac&quot;</code>结尾，每一个命令列表都以两个<code>&quot;;;&quot;</code>为终结，只有最后一个命里该列表的<code>&quot;;;&quot;</code>可以被省略。</p>
+</blockquote>
+<ul>
+<li>通过一个<code>Linux</code>下信号处理的脚本来学习<code>case</code>语句的使用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"># ===============================</div><div class="line">#	FILE： killsignal.sh</div><div class="line">#	USAGE: ./killsignal.sh</div><div class="line"># 	DESCRIPTION:</div><div class="line"># 	AUTHOR:	benny</div><div class="line">#	CREATED: 10/24/2013</div><div class="line"># ===============================</div><div class="line">if [ $# -lt 2]</div><div class="line">then </div><div class="line">	echo &quot;...&quot;</div><div class="line">	exit</div><div class="line">fi</div><div class="line"></div><div class="line">case &quot;$1&quot; in</div><div class="line">	1)</div><div class="line">		echo &quot;...&quot;</div><div class="line">;;</div><div class="line">	2)</div><div class="line">	kill -SIGHUP $2</div><div class="line">;;</div><div class="line">	*)</div><div class="line">	echo &quot;前面的都没有匹配，则匹配此选项&quot;</div><div class="line">esac</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>多重模式匹配的case语句的脚本实例：</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"># ===============================</div><div class="line">#	FILE： killsignal.sh</div><div class="line">#	USAGE: ./killsignal.sh</div><div class="line"># 	DESCRIPTION:</div><div class="line"># 	AUTHOR:	benny</div><div class="line">#	CREATED: 10/24/2013</div><div class="line"># =============================== </div><div class="line">NOW=&apos;date +%a&apos;</div><div class="line"></div><div class="line">case $NOW in</div><div class="line">	# 若今天为星期一</div><div class="line">	Mon)</div><div class="line">		echo &quot;FULL Backup&quot;</div><div class="line">;;</div><div class="line"></div><div class="line">	#若今天为星期二、星期三、星期四</div><div class="line">	Tue | Wed | Thu )</div><div class="line">	echo &quot;Partial backup&quot;</div><div class="line">;;</div><div class="line">	# 若今天为星期六、星期天</div><div class="line">	Sat | Sun)</div><div class="line">	echo &quot;no backup&quot;</div><div class="line">;;</div><div class="line">	*)</div><div class="line">	echo &quot;notihing&quot;</div><div class="line">;;</div><div class="line"></div><div class="line">exac</div></pre></td></tr></table></figure>
+<h2 id="7-1-for循环"><a href="#7-1-for循环" class="headerlink" title="7.1 for循环"></a>7.1 for循环</h2><ul>
+<li>首先，循环条件中使用的变量必须是已经初始化的，然后在循环中开始执行</li>
+<li>在每一次循环开始时，进行一次测试</li>
+<li>重复的执行一个代码块</li>
+</ul>
+<h3 id="7-1-1-for循环语法"><a href="#7-1-1-for循环语法" class="headerlink" title="7.1.1 for循环语法"></a>7.1.1 for循环语法</h3><ul>
+<li>语法结构</li>
+<li>for循环的基本语法结构如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for VAR in item1 item2 ... itemN</div><div class="line">do</div><div class="line">	command1</div><div class="line">	command2</div><div class="line">	...</div><div class="line">	commandN</div><div class="line">done</div></pre></td></tr></table></figure>
+<ul>
+<li>for循环变量的内容的语法：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for VAR in $fileName</div><div class="line">do</div><div class="line">	command1</div><div class="line">	command2</div><div class="line">	...</div><div class="line">	commandN</div><div class="line">done</div></pre></td></tr></table></figure>
+<ul>
+<li>for循环命令替换语法：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">for var in $(Linux-command-name) </div><div class="line"># 或者使用 for VAR in &apos;Linux-command-name&apos;</div><div class="line">do</div><div class="line">	command1</div><div class="line">	command2</div><div class="line">	...</div><div class="line">	commandN</div><div class="line">done</div></pre></td></tr></table></figure>
+<ul>
+<li>在for循环中，每次指定列表中的（item1…itemN） 新值被赋值给变量VAR后，for循环都会执行一次，它将重复的执行do和done之间的所有语句，知道条件不满足时为止。</li>
+<li>这些值通常都是<ul>
+<li>字符串</li>
+<li>数字</li>
+<li>命令行参数</li>
+<li>文件名</li>
+<li>Linux命令的输出</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#=====================================</div><div class="line">#	FILE： killsignal.sh</div><div class="line">#	USAGE: ./killsignal.sh</div><div class="line"># 	DESCRIPTION:	简单的使用for循环脚本</div><div class="line"># 	AUTHOR:	benny</div><div class="line">#	CREATED: 10/24/2013</div><div class="line">#==========================</div><div class="line"></div><div class="line">for i in 1 2 3  # 从1~3循环</div><div class="line">do</div><div class="line">	echo &quot;the for loop is run $i times&quot;</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#=====================================</div><div class="line">#	FILE： killsignal.sh</div><div class="line">#	USAGE: ./killsignal.sh</div><div class="line"># 	DESCRIPTION:	使用变量内容的for循环脚本实例</div><div class="line"># 	AUTHOR:	benny</div><div class="line">#	CREATED: 10/24/2013</div><div class="line">#==========================</div><div class="line"></div><div class="line">filenames=&quot;/etc/yp.conf /etc/nsswitch.conf /etc/auto.master&quot;</div><div class="line"></div><div class="line">for file in $filenames</div><div class="line">do</div><div class="line">	[ -f $file ] &amp;&amp;  echo &quot;the file $file was found &quot; || echo &quot;the file is not found&quot;</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#=====================================</div><div class="line">#	FILE： killsignal.sh</div><div class="line">#	USAGE: ./killsignal.sh</div><div class="line"># 	DESCRIPTION:	使用变量内容的for循环脚本实例</div><div class="line"># 	AUTHOR:	benny</div><div class="line">#	CREATED: 10/24/2013</div><div class="line">#==========================</div><div class="line">echo &quot;Printing file list in /tmp diretroy:&quot;</div><div class="line">for file in &apos;ls /etm/*&apos;</div><div class="line">do </div><div class="line">	echo $file</div><div class="line">done</div></pre></td></tr></table></figure>
+<ul>
+<li>for循环还有三项表达式语法：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for ((  EXP1； EXP2; #XP3 ))</div><div class="line">do</div><div class="line">	command1</div><div class="line">	command2</div><div class="line">	...</div><div class="line">	commandN</div><div class="line">done</div></pre></td></tr></table></figure>
+<ul>
+<li>EXP1 初始化表达式</li>
+<li>EXP2 循环测试活条件</li>
+<li>EXP3 计算表达式</li>
+</ul>
+<h2 id="7-2-while-循环"><a href="#7-2-while-循环" class="headerlink" title="7.2 while 循环"></a>7.2 while 循环</h2><h3 id="7-2-1-while-循环语法"><a href="#7-2-1-while-循环语法" class="headerlink" title="7.2.1 while 循环语法"></a>7.2.1 while 循环语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">while [ Condition ]</div><div class="line">do</div><div class="line">	Command1</div><div class="line">	Command2</div><div class="line">	...</div><div class="line">	CommandN	</div><div class="line">done</div></pre></td></tr></table></figure>
+<ul>
+<li>while循环示例：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#=====================================</div><div class="line">#	FILE： killsignal.sh</div><div class="line">#	USAGE: ./killsignal.sh</div><div class="line"># 	DESCRIPTION:	简单的使用while循环</div><div class="line"># 	AUTHOR:	benny</div><div class="line">#	CREATED: 10/24/2013</div><div class="line">#==========================</div><div class="line"></div><div class="line">var=1</div><div class="line">while [ $var -lt 3 ]</div><div class="line">do</div><div class="line">	echo &quot;the for loop is run $var times&quot;</div><div class="line">	var=$((var+1))</div><div class="line">done</div></pre></td></tr></table></figure>
+<h3 id="7-2-2-无限while循环"><a href="#7-2-2-无限while循环" class="headerlink" title="7.2.2 无限while循环"></a>7.2.2 无限while循环</h3><ul>
+<li>定义一个无限while循环可以使用如下3种命令：<ul>
+<li>true 命令 —— 不做任何事，表示成功，返回退出状态码0</li>
+</ul>
+</li>
+<li>语法格式：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">while :</div><div class="line">do</div><div class="line">	echo	&quot;...&quot;</div><div class="line">done</div><div class="line"># 或</div><div class="line">while true</div><div class="line">do</div><div class="line">	echo	&quot;...&quot;</div><div class="line">done</div><div class="line"># 或</div></pre></td></tr></table></figure>
+<ul>
+<li>菜单驱动程序，持续运行知道用户按下”4”为止</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">while :</div><div class="line">do</div><div class="line">	clear	# 清理终端屏幕</div><div class="line">	echo &quot;=============&quot;</div><div class="line">	echo &quot; MAIN - MENU &quot;</div><div class="line">	echo &quot;=============&quot;</div><div class="line">	</div><div class="line">	read -p &quot;Enter your choice[ 1 - 4 ]:&quot; choice  # 从标准输入中读取用户的输入，并赋值给变量choice</div><div class="line">	case $choice in</div><div class="line">	1)</div><div class="line">	echo &quot;Today is $(date + %Y-%m-%d)&quot;</div><div class="line">	;;</div><div class="line">	2)</div><div class="line">	uname -a  # 打印系统信息</div><div class="line">	;;</div><div class="line">	3)</div><div class="line">	w</div><div class="line">	read -p &quot;Press [Enter] key to continue...&quot; readEnterKey</div><div class="line">	;;</div><div class="line">	4)</div><div class="line">	echo &quot;buy&quot;</div><div class="line">	exit 0</div><div class="line">	;;</div><div class="line">	*)</div><div class="line">	echo &quot;Error : Invalid option&quot;</div><div class="line">	read -p &quot;Presdss key to continue....&quot; readEnterKey</div><div class="line">	;;</div><div class="line">	exac</div></pre></td></tr></table></figure>
+<h2 id="7-3-until-循环语句实例"><a href="#7-3-until-循环语句实例" class="headerlink" title="7.3 until 循环语句实例"></a>7.3 until 循环语句实例</h2><ul>
+<li>until循环与while循环类似，也同样基于一个条件，但until循环的判断条件正好与while循环的判断条件相反，<strong>until循环在条件为假的条件下才会持续的运行</strong>。一旦条件被满足，即为真，就会退出循环。</li>
+<li>语法如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">until  [ COMMANDS ]</div><div class="line">do </div><div class="line">	command1</div><div class="line">	command2</div><div class="line">	...</div><div class="line">	commandN</div><div class="line">done</div></pre></td></tr></table></figure>
+<ul>
+<li>until循环与while循环相比：<ul>
+<li>until 循环执行直到返回0状态</li>
+<li>while 循环执行直到返回非0状态</li>
+<li>until循环总是执行至少一次</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-4-select-循环语句"><a href="#7-4-select-循环语句" class="headerlink" title="7.4 select 循环语句"></a>7.4 select 循环语句</h2><ul>
+<li>语法格式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">select VAR in LIST</div><div class="line">do </div><div class="line">	command1</div><div class="line">	command2</div><div class="line">	...</div><div class="line">	commandN</div><div class="line">done</div></pre></td></tr></table></figure>
+<ul>
+<li><p>select循环有以下特点</p>
+<ul>
+<li>select语句使用Bash内部变量PS3的值作为它的提示符之一</li>
+<li>打印到屏幕上的列表LIST中的每一项会在前面加上一个数字编号</li>
+<li>当用户输入的数字与某一个数字编号一致时，列表中的相应的项即被赋予变量VAR</li>
+<li>如果用户输入的内容为空，将重新显示列表LIST中的项和提示符信息</li>
+<li>可以通过添加一个退出选项，或按CTRL+C 或 CTRL+D组合键退出select循环</li>
+</ul>
+</li>
+<li><p>脚本实例</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">PS3=&quot;Run command:&quot;</div><div class="line"></div><div class="line">select choice in date w hostname &quot;uname -a &quot; Exit //指定select循环列表</div><div class="line">do</div><div class="line">	case $choice in</div><div class="line">		date)</div><div class="line">			echo &quot;==============&quot;</div><div class="line">			echo &quot;Current System date and time:&quot;</div><div class="line">			ehco &quot;================&quot;</div><div class="line">			;;</div><div class="line">		w)</div><div class="line">			echo &quot;==============&quot;</div><div class="line">			echo &quot;who is log on:&quot;</div><div class="line">			ehco &quot;================&quot;</div><div class="line">			;;</div><div class="line">		hostname)</div><div class="line">			echo &quot;==============&quot;</div><div class="line">			echo &quot;Hostname :&quot;</div><div class="line">			ehco &quot;================&quot;</div><div class="line">		;;</div><div class="line">		&quot;uname -a&quot;)</div><div class="line">			echo &quot;==============&quot;</div><div class="line">			echo &quot;System information&quot;</div><div class="line">			ehco &quot;================&quot;</div><div class="line">		;;</div><div class="line">		Exit)</div><div class="line">		echo &quot;Bye!&quot;</div><div class="line">		exit 0</div><div class="line">		;;</div><div class="line">	esac</div><div class="line">done</div></pre></td></tr></table></figure>
+<h2 id="7-5-循环控制"><a href="#7-5-循环控制" class="headerlink" title="7.5 循环控制"></a>7.5 循环控制</h2><h3 id="7-5-1-break-语句"><a href="#7-5-1-break-语句" class="headerlink" title="7.5.1 break 语句"></a>7.5.1 break 语句</h3><ul>
+<li>break 语句用于从for、while、until、select循环中退出、停止循环的执行</li>
+<li>语法如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">break [n]</div></pre></td></tr></table></figure>
+<ul>
+<li>n 代表嵌套循环的层级，如果指定了n，break将推出n级嵌套循环。</li>
+<li>如果没有指定n或n不大于等于1，则退出状态码为0，否则退出状态码为n</li>
+<li><strong>此实例需要查看</strong></li>
+</ul>
+<h3 id="7-5-2-continue-语句"><a href="#7-5-2-continue-语句" class="headerlink" title="7.5.2 continue 语句"></a>7.5.2 continue 语句</h3><ul>
+<li>continue 语句用于跳过循环体中剩余的命令直接跳转到循环体的顶部，而重新开始循环的下一次重复。</li>
+<li>continue语句可以应用于for、while或until循环</li>
+<li>语法如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">continue [n]</div></pre></td></tr></table></figure>
+<h2 id="第8章-Shell函数"><a href="#第8章-Shell函数" class="headerlink" title="第8章 Shell函数"></a>第8章 Shell函数</h2><h2 id="8-1-函数的定义"><a href="#8-1-函数的定义" class="headerlink" title="8.1 函数的定义"></a>8.1 函数的定义</h2><ul>
+<li>函数语法：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 函数名</div><div class="line">function_name()&#123;</div><div class="line">    # 函数体 ，在函数中执行的命令行</div><div class="line">    commands...</div><div class="line">     # 参数返回，return语句是可选的</div><div class="line">     #如果没有return语句，则以函数最后一条命令的运行结果作为返回值</div><div class="line">     #如果使用return语句，则return后跟数值n（数值范围：0~255）</div><div class="line">    [ return ini; ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>或者如果你愿意，可以在函数名字前面加上关键字<code>function</code> </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function function_name()&#123;</div><div class="line">    commands...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>如果有<code>function</code>关键字，则可以省略圆括号<code>&quot;()&quot;</code>。函数体，也叫做符合命令块，是包含在<code>{}</code>之间的命令列表。</p>
+</li>
+<li><p><strong>在一行内定义一个函数，此时，函数体内的个命令之间必须使用分号<code>;</code>隔开，语法如下</strong></p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function name &#123; commands1; commands2;commandsN; &#125;</div><div class="line"></div><div class="line">或者</div><div class="line"></div><div class="line">name() &#123;  commands1; commands2;commandsN;  &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>可以使用内部命令<code>unset</code>的’-f’选线过来取消函数的定义</li>
+</ul>
+<blockquote>
+<p>通常情况下，函数体外的大括号与函数体之间必须用空白符（空格、回车或制表符等）换行符分开，因为大括号{}是保留字，但只有<code>{</code>或<code>}</code>与其中间的命令列表呗加空格或者其它Shell元字符（比如 ， 或； 或|等）分隔时，才能被识别为保留字</p>
+</blockquote>
+<h2 id="8-2-函数的参数，变量与返回值"><a href="#8-2-函数的参数，变量与返回值" class="headerlink" title="8.2 函数的参数，变量与返回值"></a>8.2 函数的参数，变量与返回值</h2><h3 id="8-2-1-向函数传递参数"><a href="#8-2-1-向函数传递参数" class="headerlink" title="8.2.1 向函数传递参数"></a>8.2.1 向函数传递参数</h3><ul>
+<li>Shell函数有自己的命令行参数，函数使用特殊变量$1,$2,…,$n来范文传递给它的参数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">name()&#123;</div><div class="line">    arg1=$1</div><div class="line">    arg1=$2</div><div class="line">    arg1=$3</div><div class="line">    command on $arg1</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>使用如下语法来调用函数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">name foo bar</div></pre></td></tr></table></figure>
+<ul>
+<li><p>上面的函数中</p>
+<ul>
+<li>name = 函数名</li>
+<li>foo  = 参数1 传递给函数的第一个参数（位置参数$1）</li>
+<li>bar  = 参数2 传递给函数的第二个参数（位置参数$2）</li>
+</ul>
+</li>
+<li><p>示例</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#=====================================</div><div class="line">#	FILE： passed.sh</div><div class="line">#	USAGE: ./passed.sh</div><div class="line"># 	DESCRIPTION:	</div><div class="line"># 	AUTHOR:	benny</div><div class="line">#	CREATED: 10/24/2013</div><div class="line">#==========================</div><div class="line"></div><div class="line"># 定义函数passed</div><div class="line">passwed()&#123;</div><div class="line">    </div><div class="line">    # 定义变量a，将此传递给函数passed()的第一个参数赋值给此变量</div><div class="line">    a=$1</div><div class="line">    # 打印特殊函数0的值，即脚本名称</div><div class="line">    echo &quot;passed()： \$0 is $0 &quot; </div><div class="line">    </div><div class="line">    # 打印位置参数1的值，即指定给函数的第一个参数</div><div class="line">    echo &quot;passed() ： \$1 is $1&quot;</div><div class="line">    echo &quot;passed() ： \$a is $a&quot;</div><div class="line">    </div><div class="line">    # 打印传递给函数passed的参数个数</div><div class="line">    echo &quot;passed() ： total args is $#&quot;</div><div class="line">      </div><div class="line">    # 打印传递给函数passed()的所有函数</div><div class="line">    echo &quot;passed() ： total args is $@&quot;</div><div class="line">   # 打印传递给函数passed()的所有函数</div><div class="line">    echo &quot;passed() ： total args is $*&quot;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">echo &quot;**** calling passed() first time *****&quot;</div><div class="line"></div><div class="line"># 调用函数passwd()并指定一个参数&apos;one&apos;</div><div class="line">passed one</div><div class="line"></div><div class="line">echo &quot;**** calling passed() second time *****&quot;</div><div class="line">passed one two three</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">out:</div><div class="line">**** calling passed() first time *****</div><div class="line">passed()： $0 is ./passed.sh </div><div class="line">passed() ： $1 is one</div><div class="line">passed() ： $a is one</div><div class="line">passed() ： total args is 1</div><div class="line">passed() ： total args is one</div><div class="line">passed() ： total args is one</div><div class="line">**** calling passed() second time *****</div><div class="line">passed()： $0 is ./passed.sh </div><div class="line">passed() ： $1 is one</div><div class="line">passed() ： $a is one</div><div class="line">passed() ： total args is 3</div><div class="line">passed() ： total args is one two three</div><div class="line">passed() ： total args is one two three</div></pre></td></tr></table></figure>
+<ul>
+<li><p>在Shell函数中：</p>
+<ul>
+<li>所有函数参数都可以通过$1,$2,…,$N来访问</li>
+<li><code>$0</code> 指代Shell脚本的名字</li>
+<li><code>$*</code> <code>$@</code> 保存传递给函数所有的参数</li>
+<li><code>$#</code> 保存村递给函数的位置参数的个数</li>
+</ul>
+</li>
+<li><p>8.2.2 本地变量</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#!/bin/bash</div><div class="line">#=====================================</div><div class="line">#	FILE： fvar.sh</div><div class="line">#	USAGE: ./fvar.sh</div><div class="line"># 	DESCRIPTION:	本地变量</div><div class="line"># 	AUTHOR:	benny</div><div class="line">#	CREATED: 10/24/2013</div><div class="line">#==========================</div><div class="line"># 定义函数create_logFile</div><div class="line">create_logFile()&#123;</div><div class="line">    #修改变量d的名字</div><div class="line">    d=$1</div><div class="line">    echo &quot;create_logFile : d is set to $d&quot;</div><div class="line">&#125;</div><div class="line"></div><div class="line"># 定义变量d</div><div class="line">d=/tmp/diskUsage.log</div><div class="line"></div><div class="line">echo &quot;Before calling create_logFile d is set to $d&quot;</div><div class="line"></div><div class="line"># 调用函数create_logFile并指定一个参数</div><div class="line"></div><div class="line">create_logFile &quot;/home /benny/diskUsage.log&quot;</div><div class="line">echo &quot;After calling create_logFile d is set to $d&quot;</div><div class="line"></div><div class="line"></div><div class="line">out:</div><div class="line">[root@iZ251k7t70aZ myscript]# ./fvar.sh </div><div class="line">Before calling create_logFile d is set to /tmp/diskUsage.log</div><div class="line">create_logFile : d is set to /home /benny/diskUsage.log</div><div class="line">After calling create_logFile d is set to /home /benny/diskUsage.log</div></pre></td></tr></table></figure>
+<ul>
+<li>通常情况下，我们可以使用local命令来创建一个本地变量</li>
+<li>语法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">local var=value</div><div class="line">local varName</div><div class="line"></div><div class="line">或者</div><div class="line"></div><div class="line">function name()&#123;</div><div class="line"></div><div class="line">    # 定义一个本独变量var</div><div class="line">    local var=$1</div><div class="line">    command1 on $var</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>local命令只能在函数内部使用</li>
+<li>local命令将变量名的可见范围控制在函数内部</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"></div><div class="line"># 定义全变量d</div><div class="line">d=/tmp/diskUsage.log</div><div class="line"></div><div class="line">#定义函数create_logFile</div><div class="line">function create_logFile()&#123;</div><div class="line">        # 定义本地变量，这个变量制度及此函数可见</div><div class="line">        local d=$1</div><div class="line">echo &quot;create_logFIle（）： d is set to $d&quot;</div><div class="line">&#125;</div><div class="line">echo &quot;Before caling create_logFIle d is set to $d&quot;</div><div class="line"></div><div class="line"># 调用函数create_logFile() 并指定一个参数</div><div class="line">create_logFile &quot;/home/benny/diskUsage.log&quot;</div><div class="line"></div><div class="line">echo &quot;After calling create_log_file() d is set to $d&quot;</div><div class="line">~                                                       </div><div class="line"></div><div class="line">out:</div><div class="line">[root@iZ251k7t70aZ myscript]# ./localfvar.sh </div><div class="line">Before caling create_logFIle d is set to /tmp/diskUsage.log</div><div class="line">create_logFIle（）： d is set to /home/benny/diskUsage.log</div><div class="line">After calling create_log_file() d is set to /tmp/diskUsage.log</div></pre></td></tr></table></figure>
+<h2 id="8-2-3-使用return命令"><a href="#8-2-3-使用return命令" class="headerlink" title="8.2.3 使用return命令"></a>8.2.3 使用<code>return</code>命令</h2><ul>
+<li>如果函数理由<code>Shell</code>内置命令<code>return</code>，则函数执行到<code>return</code>语句时结束，并且返回到Shell脚本中调用函数位置的下一个命令。</li>
+<li>如果return带有一个数值型参数，则这个参数就是函数的返回值，返回值的最大值是<code>255</code>；否则函数的返回值就是函数体内最后一个执行的命令的返回状态</li>
+<li>示例</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ myscript]# vi checkpid.sh </div><div class="line">#!/bin/bash</div><div class="line">checkpid()&#123;</div><div class="line"># 定义本地变量</div><div class="line">local  i</div><div class="line"># 使用for循环遍历传递给此函数的所有参数</div><div class="line">for i in $*</div><div class="line">do</div><div class="line"></div><div class="line"># 如果目录/proc/$i存在，则执行此函数返回</div><div class="line"># 在一般的Linux系统中，如果进程正在运行，则在/proc目录下会存在一个以进程号命名的子目录</div><div class="line"></div><div class="line">[ -d &quot;/proc/$i&quot; ] &amp;&amp; return  0</div><div class="line">done</div><div class="line"></div><div class="line"># 返回1</div><div class="line">return 1</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">checkpid $pid1 $pis2 $pid3</div><div class="line"></div><div class="line">if [ $? == 0  ]</div><div class="line">then</div><div class="line">    echo &quot;the one of them is running&quot;</div><div class="line">else</div><div class="line">    echo &quot;These Pids are not running&quot;</div><div class="line">fi</div><div class="line"></div><div class="line">out:</div><div class="line">[root@iZ251k7t70aZ myscript]# ./checkpid.sh </div><div class="line">These Pids are not running</div></pre></td></tr></table></figure>
+<ul>
+<li>上述中的<code>if</code>判断语句也可以改成，因为返回值是<code>0</code>或<code>1</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">checkpid $pid1 $pis2 $pid3</div><div class="line"></div><div class="line">if [ $? == 0  ]</div><div class="line">then</div><div class="line">    echo &quot;the one of them is running&quot;</div><div class="line">else    </div><div class="line">    echo &quot;These Pids are not running&quot;</div><div class="line">fi</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">改成</div><div class="line"></div><div class="line">if （checkpid $pid1 $pis2 $pid3） ; then</div><div class="line">    echo &quot;the one of them is running&quot;</div><div class="line">else</div><div class="line">    echo &quot;These Pids are not running&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+<h2 id="8-3-函数的调用"><a href="#8-3-函数的调用" class="headerlink" title="8.3 函数的调用"></a>8.3 函数的调用</h2><h3 id="8-3-1-在Shell命令行调用函数"><a href="#8-3-1-在Shell命令行调用函数" class="headerlink" title="8.3.1 在Shell命令行调用函数"></a>8.3.1 在Shell命令行调用函数</h3><ul>
+<li>在命令行中，可以通过直接输入函数的名字，来调用或引用函数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$   funciton_name</div></pre></td></tr></table></figure>
+<ul>
+<li>定义yDay()函数来显示昨天的日期</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ myscript]# yDay() &#123; date --date=&apos;1 day ago&apos;; &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>引用函数dDay()</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ myscript]# yDay</div><div class="line">Wed Jul 13 15:09:44 CST 2016</div></pre></td></tr></table></figure>
+<h3 id="8-3-2-在脚本中调用函数"><a href="#8-3-2-在脚本中调用函数" class="headerlink" title="8.3.2 在脚本中调用函数"></a>8.3.2 在脚本中调用函数</h3><ul>
+<li>要在脚本中调用该函数<ul>
+<li>首先要创建函数</li>
+<li><strong>确保函数位于调用此函数的语句之前</strong></li>
+</ul>
+</li>
+<li>示例</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#!/bin/bash</div><div class="line"></div><div class="line"># 定义变量TEST</div><div class="line">TEST=&quot; /tmp/fileName&quot;</div><div class="line"></div><div class="line"># 调用delete_file; 失败</div><div class="line">delete_file</div><div class="line"></div><div class="line">#定义函数delete_file</div><div class="line">delete_file()&#123;</div><div class="line">echo &quot;Deleting file....&quot;</div><div class="line"></div><div class="line">out:</div><div class="line">[root@iZ251k7t70aZ myscript]# ./dfile.sh </div><div class="line">./dfile.sh: line 7: delete_file: command not found</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>出错的原因是因为脚本的执行顺序是从上而下运行</li>
+<li>调用了未定义的方法</li>
+<li>为了避免出现这样的问题，<strong>要在脚本的开头定义和编写函数</strong></li>
+<li>改写一下上面的脚本</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#!/bin/bash</div><div class="line"></div><div class="line"># 定义函数delete_file</div><div class="line">function delete_file()&#123;</div><div class="line">echo    &quot;Delteting ....&quot;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"># 定义变量TEST</div><div class="line">TEST=&quot; /tmp/fileName&quot;</div><div class="line"></div><div class="line"># 调用delete_file; </div><div class="line">delete_file</div></pre></td></tr></table></figure>
+<h3 id="8-3-3-从函数文件中调用函数"><a href="#8-3-3-从函数文件中调用函数" class="headerlink" title="8.3.3 从函数文件中调用函数"></a>8.3.3 从函数文件中调用函数</h3><ul>
+<li>你可以把所有的函数存储到一个文件中</li>
+<li>你可以把所有订单而函数加载到当前脚本或者是命令行</li>
+<li>加载函数文件中所有函数的语法如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$   . /path/to/your/functions.sh</div><div class="line"></div><div class="line">或者</div><div class="line"></div><div class="line">$   . functions.sh</div></pre></td></tr></table></figure>
+<ul>
+<li>示例</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#!/bin/bash</div><div class="line">#====================</div><div class="line">#       FILE: functions.sh</div><div class="line">#       USAGE:./functions.sh</div><div class="line">#       DESCRIPTION:</div><div class="line">#====================</div><div class="line"></div><div class="line"># 定义变量</div><div class="line">declare -r TRUE=0</div><div class="line">declare -r FLASE=1</div><div class="line">declare -r PASSWD_FILE=/etc/passwd</div><div class="line"></div><div class="line">################################</div><div class="line">#用途： 将字符串转换成小写</div><div class="line">#参数：</div><div class="line">#       $1 -&gt; 要转换为小写的字符串</div><div class="line">################################</div><div class="line"></div><div class="line">function to_lower()&#123;</div><div class="line"></div><div class="line"># 定义本地变量str</div><div class="line">local str=&quot;$@&quot;</div><div class="line"></div><div class="line"># 定义本地变量output</div><div class="line">local output</div><div class="line"></div><div class="line"># 将变量str的值转换为小写后赋值给变量output</div><div class="line">output=$(tr &apos;[A_Z]&apos; &apos;[a-z]&apos;&lt;&lt;&lt;&quot;&#123;str&#125;&quot;)</div><div class="line">echo $output</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>加载一个函数文件到脚本中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">[root@iZ251k7t70aZ myscript]# vi functiondemo.sh </div><div class="line"></div><div class="line">#!/bin/bash</div><div class="line">#============================</div><div class="line">#       FILE: functionDemo.sh</div><div class="line">#       AUTHOR: benny</div><div class="line">#       DESCRIPTION: 加载函数文件到脚本</div><div class="line">#       USAGE:  ./funcionDemo.sh</div><div class="line">#============================</div><div class="line"></div><div class="line"># 加载函数文件  functions.sh</div><div class="line"># 这里的路径需要根据你的手机环境做改动</div><div class="line">. /usr/local/myscript/functions.sh</div><div class="line"></div><div class="line"># 定义本地变量</div><div class="line"># var1 是没有被function.sh使用个</div><div class="line">var1=&quot;The manabharata is the longst and , arguably, one of the greatest epicpoems in any language&quot;</div><div class="line"></div><div class="line"># 调用函数is_root 执行成功或失败，会分别打印不同的信息</div><div class="line">is_root &amp;&amp; echo &quot;you are logged in as root&quot; || echo &quot;you are not logged in as root&quot;</div><div class="line"></div><div class="line"># 调用函数is_user_exists</div><div class="line">is_user_exists &quot;benny&quot; &amp;&amp; e &quot;Account found&quot; || echo &quot;Account not found&quot;</div><div class="line"></div><div class="line"># 打印变量的值</div><div class="line">echo -e &quot;*** orignal quote : \n$&#123;var1&#125;&quot;</div><div class="line"></div><div class="line"># 调用函数to_lower()</div><div class="line"># 将$var1 作为参数传递给to_lower()</div><div class="line"># 将echo内使用命令替换</div><div class="line">echo -e &quot;*** Lowercase version : \n$&#123;to_lower $(var1)&#125;&quot;</div></pre></td></tr></table></figure>
+<h3 id="8-3-4-递归函数调用"><a href="#8-3-4-递归函数调用" class="headerlink" title="8.3.4 递归函数调用"></a>8.3.4 递归函数调用</h3><ul>
+<li>递归函数是重复调用其自身的函数，并且没有递归调用次数的限制</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">factorial()&#123;</div><div class="line">    </div><div class="line">    # 定义本地变量</div><div class="line">    local i=$1</div><div class="line">    # 定义本地变量f</div><div class="line">    local f</div><div class="line">    # 声明变量i为整数</div><div class="line">    declare -i f</div><div class="line">    </div><div class="line">    # factorial被调用直到$f的值&lt;=2</div><div class="line">    # 开始递归</div><div class="line">    </div><div class="line">    [ $i -le 2 ] &amp;&amp; echo $i || &#123;f=$((i-1));f=$(factorial $f);f=$(( f * i ));echo $f; &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"># 显示函数的用户</div><div class="line">[ $# -eq 0 ] &amp;&amp; &#123; echo &quot;Usage : $0 number &quot;;exit 1; &#125;</div><div class="line"></div><div class="line"># 调用函数factorial</div><div class="line">factorial $1</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>在Bash下，递归函数执行速度慢，应尽可能避免使用递归函数。</strong></li>
+</ul>
+<h3 id="将函数放在后台运行"><a href="#将函数放在后台运行" class="headerlink" title="将函数放在后台运行"></a>将函数放在后台运行</h3><ul>
+<li><code>&amp;</code><strong>操作符可以将命令放在后台运行并释放你的终端，同样也可以将函数放在后台运行</strong></li>
+<li>语法规则</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 定义函数name</div><div class="line">name()&#123;</div><div class="line">    echo &quot;Do something&quot;</div><div class="line">    sleep 1</div><div class="line">&#125;</div><div class="line"></div><div class="line"># 将函数放在后台运行</div><div class="line"></div><div class="line">    name &amp;</div><div class="line"></div><div class="line"># 继续执行其他命令</div><div class="line">    commmands...</div></pre></td></tr></table></figure>
+<ul>
+<li>示例</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"></div><div class="line"># prigress.sh 当进行备份时显示进度</div><div class="line"></div><div class="line"># 定义函数progress</div><div class="line">progress()&#123;</div><div class="line">    </div><div class="line">    echo -n &quot;$0: please wait ....&quot;</div><div class="line">    while true</div><div class="line">    do</div><div class="line">    echo -n &quot;.&quot;</div><div class="line">    # 休眠5秒</div><div class="line">    sleep 5</div><div class="line">    done</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"># 定义函数dobackup</div><div class="line">dobackup()&#123;</div><div class="line">    # 运行备份命令</div><div class="line">    tar zcvf /dev/st0 /home &gt;/dev/null 2&gt;&amp;1</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"># 将函数放在后台运行</div><div class="line">progress &amp;</div><div class="line"></div><div class="line"># 保存函数 progress() 运行的进程号</div><div class="line"># 需要使用PID来结束此函数</div><div class="line">MYSELF=$!</div><div class="line"></div><div class="line">echo &quot;$MYSELF&quot;</div><div class="line"></div><div class="line"># 开始备份</div><div class="line"># 转移控制到函数dobackup</div><div class="line">dobackup</div><div class="line"></div><div class="line"># 杀死进程</div><div class="line">kill $MYSELF &gt;/dev/null 2&gt;&amp;1</div><div class="line">echo -n &quot;...done&quot;</div><div class="line">echo</div></pre></td></tr></table></figure>
+<ul>
+<li>shell中可能经常能看到：<code>&gt;/dev/null 2&gt;&amp;1</code><ul>
+<li>命令的结果可以通过<code>%&gt;</code>的形式来定义输出</li>
+<li><code>/dev/null</code> 代表空设备文件</li>
+<li><code>&gt;</code> 代表重定向到哪里，例如：<code>echo &quot;123&quot; &gt; /home/123.txt</code></li>
+<li><code>1</code> 表示<code>stdout</code>标准输出，系统默认值是<code>1</code>，所以<code>&gt;/dev/null</code>等同于<code>1&gt;/dev/null</code></li>
+<li><code>1</code> 表示<code>stderr</code>标准错误</li>
+<li><code>&amp;</code> 表示等同于的意思，<code>2&gt;&amp;1</code>，表示<code>2</code>的输出重定向等同于<code>1</code></li>
+<li><code>1&gt;/dev/null</code> 首先表示标准输出重定向到空设备文件，也就是不输出任何信息到终端，说白了就是不显示任何信息。</li>
+<li><code>2&gt;&amp;1</code> 接着，标准错误输出重定向等同于标准输出，因为之前标准输出已经重定向到了空设备文件，所以标准错误输出也重定向到空设备文件。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2016/07/03/160703_linuxShellLine/">Linux Shell 命令行及脚本编程</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Benny</a></p>
+        <p><span>Created:</span>2016-07-03, 08:50:27</p>
+        <p><span>Updated:</span>2016-07-15, 09:20:11</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2016/07/03/160703_linuxShellLine/" title="Linux Shell 命令行及脚本编程">http:51tutechan.cn/2016/07/03/160703_linuxShellLine/</a>
+            <span class="copy-path" data-clipboard-text="From http:51tutechan.cn/2016/07/03/160703_linuxShellLine/　　By Benny" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/07/05/160705_plantuml/">
+                    plantUML的使用
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/07/02/160706_clean_code/">
+                    代码整洁之道
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-及-Linux-Shell-简介"><span class="toc-number">1.</span> <span class="toc-text">Linux 及 Linux Shell 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-5-Linux的理念"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.5 Linux的理念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-什么是Linux-Shell"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 什么是Linux Shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Shell-的种类"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 Shell 的种类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-Shell脚本是什么"><span class="toc-number">1.4.</span> <span class="toc-text">1.5 Shell脚本是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-为什么使用Shell脚本"><span class="toc-number">1.5.</span> <span class="toc-text">1.6 为什么使用Shell脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-创建你的第一个Shell-脚本"><span class="toc-number">1.6.</span> <span class="toc-text">1.7 创建你的第一个Shell 脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初识Linux-Shell"><span class="toc-number">2.</span> <span class="toc-text">初识Linux Shell</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Bash-Shell"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Bash Shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-Bash-简介"><span class="toc-number">2.2.</span> <span class="toc-text">2.1.1 Bash 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-Bash-提供的改进"><span class="toc-number">2.3.</span> <span class="toc-text">2.1.2 Bash 提供的改进</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Shell-在Linux环境中的角色"><span class="toc-number">3.</span> <span class="toc-text">2.2 Shell 在Linux环境中的角色</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-与登录Shell相关的文件"><span class="toc-number">3.1.</span> <span class="toc-text">2.2.1 与登录Shell相关的文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-Bash-启动脚本"><span class="toc-number">3.2.</span> <span class="toc-text">2.2.2 Bash 启动脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-定制自己的Bash登录脚本"><span class="toc-number">3.3.</span> <span class="toc-text">2.2.3 定制自己的Bash登录脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4-Bash-退出脚本"><span class="toc-number">3.4.</span> <span class="toc-text">2.2.4 Bash 退出脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-5-定制自己的Bash-退出脚本"><span class="toc-number">3.5.</span> <span class="toc-text">2.2.5 定制自己的Bash 退出脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-6-有效的登录Shell路径"><span class="toc-number">3.6.</span> <span class="toc-text">2.2.6 有效的登录Shell路径</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-SHell中的变量"><span class="toc-number">4.</span> <span class="toc-text">2.3 SHell中的变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-Shell-中变量的类型"><span class="toc-number">4.1.</span> <span class="toc-text">2.3.1 Shell 中变量的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-如何自定义变量和给变量赋值"><span class="toc-number">4.2.</span> <span class="toc-text">2.3.2 如何自定义变量和给变量赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-变量命名规则"><span class="toc-number">4.3.</span> <span class="toc-text">2.3.3 变量命名规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-4-实例：使用echo和printf-打印变量的值"><span class="toc-number">4.4.</span> <span class="toc-text">2.3.4 实例：使用echo和printf 打印变量的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-5-变量的引用"><span class="toc-number">4.5.</span> <span class="toc-text">2.3.5 变量的引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-6-export"><span class="toc-number">4.6.</span> <span class="toc-text">2.3.6 export</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-7-如何删除变量"><span class="toc-number">4.7.</span> <span class="toc-text">2.3.7　如何删除变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-8-如何检查变量是否存在"><span class="toc-number">4.8.</span> <span class="toc-text">2.3.8 如何检查变量是否存在</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-Shell环境进阶"><span class="toc-number">5.</span> <span class="toc-text">2.4 Shell环境进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-回调历史命令"><span class="toc-number">5.1.</span> <span class="toc-text">2.4.1 回调历史命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-Shell中的拓展"><span class="toc-number">5.2.</span> <span class="toc-text">2.4.2 Shell中的拓展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建和使用别名"><span class="toc-number">6.</span> <span class="toc-text">创建和使用别名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-4-修改Bash提示符"><span class="toc-number">7.</span> <span class="toc-text">2.4.4 修改Bash提示符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-5-设置Shell选项"><span class="toc-number">8.</span> <span class="toc-text">2.4.5 设置Shell选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例："><span class="toc-number">8.1.</span> <span class="toc-text">实例：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-常用Shell（Bash）命令"><span class="toc-number">9.</span> <span class="toc-text">3 常用Shell（Bash）命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Shell-命令进阶"><span class="toc-number">10.</span> <span class="toc-text">4 Shell 命令进阶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Shell-编程基础"><span class="toc-number">11.</span> <span class="toc-text">5 Shell 编程基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Shell-脚本的第一行-quot-quot-Shebang"><span class="toc-number">11.1.</span> <span class="toc-text">5.1 Shell 脚本的第一行 "#!" (Shebang)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-设置脚本的权限和执行脚本"><span class="toc-number">11.2.</span> <span class="toc-text">5.3 设置脚本的权限和执行脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-Shell变量进阶"><span class="toc-number">12.</span> <span class="toc-text">5.4 Shell变量进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-1-Bash中的参数拓展"><span class="toc-number">12.1.</span> <span class="toc-text">5.4.1 Bash中的参数拓展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-2-Bash的内部变量"><span class="toc-number">12.2.</span> <span class="toc-text">5.4.2 Bash的内部变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-3-Bash-中的位置参数和特殊参数"><span class="toc-number">12.3.</span> <span class="toc-text">5.4.3 Bash 中的位置参数和特殊参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-4-使用declare命令指定变量的类型"><span class="toc-number">13.</span> <span class="toc-text">5.4.4 使用declare命令指定变量的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-Shell-算术运算"><span class="toc-number">14.</span> <span class="toc-text">5.5 Shell 算术运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-1-Bash的算数运算符"><span class="toc-number">14.1.</span> <span class="toc-text">5.5.1 Bash的算数运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-2-数字常量"><span class="toc-number">14.2.</span> <span class="toc-text">5.5.2 数字常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-3-使用算数拓展和let进行算数运算"><span class="toc-number">14.3.</span> <span class="toc-text">5.5.3 使用算数拓展和let进行算数运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-4-使用expr命令"><span class="toc-number">14.4.</span> <span class="toc-text">5.5.4 使用expr命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6-退出脚本"><span class="toc-number">15.</span> <span class="toc-text">5.6 退出脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-1-退出状态码"><span class="toc-number">15.1.</span> <span class="toc-text">5.6.1 退出状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-2-使用exit-命令"><span class="toc-number">15.2.</span> <span class="toc-text">5.6.2 使用exit 命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-7-调试脚本"><span class="toc-number">16.</span> <span class="toc-text">5.7 调试脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-8-Shell脚本编程风格"><span class="toc-number">17.</span> <span class="toc-text">5.8 Shell脚本编程风格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-Shell的条件执行–条件测试"><span class="toc-number">18.</span> <span class="toc-text">6.1 Shell的条件执行–条件测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-1-使用test命令"><span class="toc-number">18.1.</span> <span class="toc-text">6.1.1 使用test命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-2-if结构的语法格式"><span class="toc-number">18.2.</span> <span class="toc-text">6.1.2 if结构的语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-3-if…else…fi"><span class="toc-number">18.3.</span> <span class="toc-text">6.1.3 if…else…fi</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-5-多级的if…elif…else…fi"><span class="toc-number">18.4.</span> <span class="toc-text">6.1.5 多级的if…elif…else…fi</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-条件执行"><span class="toc-number">19.</span> <span class="toc-text">6.2 条件执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-1-逻辑与-amp-amp"><span class="toc-number">19.1.</span> <span class="toc-text">6.2.1 逻辑与&&</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-2-逻辑或"><span class="toc-number">19.2.</span> <span class="toc-text">6.2.2 逻辑或||</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-3-逻辑非-“-”"><span class="toc-number">19.3.</span> <span class="toc-text">6.2.3 逻辑非 “!”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-case语句实例"><span class="toc-number">20.</span> <span class="toc-text">6.3 case语句实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-for循环"><span class="toc-number">21.</span> <span class="toc-text">7.1 for循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-1-for循环语法"><span class="toc-number">21.1.</span> <span class="toc-text">7.1.1 for循环语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-while-循环"><span class="toc-number">22.</span> <span class="toc-text">7.2 while 循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-1-while-循环语法"><span class="toc-number">22.1.</span> <span class="toc-text">7.2.1 while 循环语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-2-无限while循环"><span class="toc-number">22.2.</span> <span class="toc-text">7.2.2 无限while循环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-until-循环语句实例"><span class="toc-number">23.</span> <span class="toc-text">7.3 until 循环语句实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-select-循环语句"><span class="toc-number">24.</span> <span class="toc-text">7.4 select 循环语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-循环控制"><span class="toc-number">25.</span> <span class="toc-text">7.5 循环控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-1-break-语句"><span class="toc-number">25.1.</span> <span class="toc-text">7.5.1 break 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-2-continue-语句"><span class="toc-number">25.2.</span> <span class="toc-text">7.5.2 continue 语句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第8章-Shell函数"><span class="toc-number">26.</span> <span class="toc-text">第8章 Shell函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-函数的定义"><span class="toc-number">27.</span> <span class="toc-text">8.1 函数的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-函数的参数，变量与返回值"><span class="toc-number">28.</span> <span class="toc-text">8.2 函数的参数，变量与返回值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-1-向函数传递参数"><span class="toc-number">28.1.</span> <span class="toc-text">8.2.1 向函数传递参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-3-使用return命令"><span class="toc-number">29.</span> <span class="toc-text">8.2.3 使用return命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-函数的调用"><span class="toc-number">30.</span> <span class="toc-text">8.3 函数的调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-1-在Shell命令行调用函数"><span class="toc-number">30.1.</span> <span class="toc-text">8.3.1 在Shell命令行调用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-2-在脚本中调用函数"><span class="toc-number">30.2.</span> <span class="toc-text">8.3.2 在脚本中调用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-3-从函数文件中调用函数"><span class="toc-number">30.3.</span> <span class="toc-text">8.3.3 从函数文件中调用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-4-递归函数调用"><span class="toc-number">30.4.</span> <span class="toc-text">8.3.4 递归函数调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将函数放在后台运行"><span class="toc-number">30.5.</span> <span class="toc-text">将函数放在后台运行</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Linux Shell 命令行及脚本编程　| Benny　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/07/05/160705_plantuml/" title="Pre: plantUML的使用">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/07/02/160706_clean_code/" title="Next: 代码整洁之道">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/25/160725_rsa_algorithm/">RSA加密签名</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/160706_linuxcommand/">关于Linux命令的那点小事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/05/160705_plantuml/">plantUML的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/03/160703_linuxShellLine/">Linux Shell 命令行及脚本编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/02/160706_clean_code/">代码整洁之道</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/30/160630_jqueryplugin/">jQuery plugin 插件编写时遇到的问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/28/160628_first/">博客初搭建</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Benny
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
