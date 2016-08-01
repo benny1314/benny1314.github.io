@@ -41,7 +41,7 @@
 
 
 
-    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="shortcut icon" href="http://file.ipadown.com/uploads/mjh/r3cqsmmw1pa.png">
 
 
 
@@ -80,7 +80,7 @@
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: undefined
+        search: true
     }
 </script>
 
@@ -104,7 +104,7 @@
 <div class="intrude-less">
     <header id="header" class="inner">
         <a href="/" class="profilepic">
-            <img src="/img/avatar.png" class="animated zoomIn">
+            <img src="http://file.ipadown.com/uploads/mjh/r3cqsmmw1pa.png" class="animated zoomIn">
         </a>
         <hgroup>
           <h1 class="header-author"><a href="/">Benny</a></h1>
@@ -114,6 +114,13 @@
         <p class="header-subtitle">Coding is my life</p>
         
 
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
         
 
 
@@ -180,7 +187,7 @@
                     <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa Email" href="/xiaoc1314@163.com" title="Email"></a>
+                                <a class="fa Email" href="mailto:xiaoc1314@163.com" title="Email"></a>
                             
                                 <a class="fa GitHub" href="#" title="GitHub"></a>
                             
@@ -216,7 +223,7 @@
                 
                 <section class="switch-part switch-part4">
                 
-                    <div id="js-aboutme">专注于前端</div>
+                    <div id="js-aboutme">Coding is my life</div>
                 </section>
                 
             </div>
@@ -233,7 +240,7 @@
     <div class="intrude-less">
         <header id="header" class="inner">
             <a href="/" class="profilepic">
-                <img src="/img/avatar.png" class="animated zoomIn">
+                <img src="http://file.ipadown.com/uploads/mjh/r3cqsmmw1pa.png" class="animated zoomIn">
             </a>
             <hgroup>
               <h1 class="header-author"><a href="/" title="回到主页">Benny</a></h1>
@@ -260,7 +267,7 @@
             <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa Email" target="_blank" href="/xiaoc1314@163.com" title="Email"></a>
+                                <a class="fa Email" target="_blank" href="mailto:xiaoc1314@163.com" title="Email"></a>
                             
                                 <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
                             
@@ -822,6 +829,20 @@
 
 
 
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2105061';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
     
 
 
