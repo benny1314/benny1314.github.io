@@ -18,12 +18,12 @@
 <meta name="description" content="ArrayList源码阅读【JDK8】">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ArrayList源码阅读">
-<meta property="og:url" content="/2016/08/01/160801_SC_jdk8_ArrayList/index.html">
+<meta property="og:url" content="/2016/08/01/160801_sc_jdk8_ArrayList/index.html">
 <meta property="og:site_name" content="Benny">
 <meta property="og:description" content="ArrayList源码阅读【JDK8】">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/610dc034jw1f65f0oqodoj20qo0hntc9.jpg">
 <meta property="og:image" content="http://7xjlkb.com1.z0.glb.clouddn.com/sourcecode_jdk8_arraylist.png">
-<meta property="og:updated_time" content="2016-08-01T07:53:19.107Z">
+<meta property="og:updated_time" content="2016-08-02T07:15:44.632Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ArrayList源码阅读">
 <meta name="twitter:description" content="ArrayList源码阅读【JDK8】">
@@ -270,10 +270,10 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-160801_SC_jdk8_ArrayList" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-160801_sc_jdk8_ArrayList" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/01/160801_SC_jdk8_ArrayList/" class="article-date">
+      <a href="/2016/08/01/160801_sc_jdk8_ArrayList/" class="article-date">
       <time datetime="2016-08-01T01:50:27.000Z" itemprop="datePublished">2016-08-01</time>
 </a>
 
@@ -314,8 +314,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="ArrayList源码阅读【JDK8】"><a href="#ArrayList源码阅读【JDK8】" class="headerlink" title="ArrayList源码阅读【JDK8】"></a>ArrayList源码阅读【JDK8】</h2><a id="more"></a>
-<p><img src="http://ww2.sinaimg.cn/large/610dc034jw1f65f0oqodoj20qo0hntc9.jpg" alt="07月25日"></p>
+        <h2 id="ArrayList源码阅读【JDK8】"><a href="#ArrayList源码阅读【JDK8】" class="headerlink" title="ArrayList源码阅读【JDK8】"></a>ArrayList源码阅读【JDK8】</h2><p><img src="http://ww2.sinaimg.cn/large/610dc034jw1f65f0oqodoj20qo0hntc9.jpg" alt="07月25日"></p>
+<a id="more"></a>
 <h3 id="arrayList的类图"><a href="#arrayList的类图" class="headerlink" title="arrayList的类图"></a>arrayList的类图</h3><p><img src="http://7xjlkb.com1.z0.glb.clouddn.com/sourcecode_jdk8_arraylist.png" alt="image"></p>
 
       
@@ -325,13 +325,13 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2016/08/01/160801_SC_jdk8_ArrayList/">ArrayList源码阅读</a></p>
+        <p><span>Title:</span><a href="/2016/08/01/160801_sc_jdk8_ArrayList/">ArrayList源码阅读</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Benny</a></p>
         <p><span>Created:</span>2016-08-01, 09:50:27</p>
-        <p><span>Updated:</span>2016-08-01, 15:53:19</p>
+        <p><span>Updated:</span>2016-08-02, 15:15:44</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/08/01/160801_SC_jdk8_ArrayList/" title="ArrayList源码阅读">/2016/08/01/160801_SC_jdk8_ArrayList/</a>
-            <span class="copy-path" data-clipboard-text="From /2016/08/01/160801_SC_jdk8_ArrayList/　　By Benny" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2016/08/01/160801_sc_jdk8_ArrayList/" title="ArrayList源码阅读">/2016/08/01/160801_sc_jdk8_ArrayList/</a>
+            <span class="copy-path" data-clipboard-text="From /2016/08/01/160801_sc_jdk8_ArrayList/　　By Benny" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -440,7 +440,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/01/160801_SC_jdk8_ArrayList/">ArrayList源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/25/160725_rsa_algorithm/">RSA加密签名</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/160706_linuxcommand/">关于Linux命令的那点小事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/05/160705_plantuml/">plantUML的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/03/160703_linuxShellLine/">Linux Shell 命令行及脚本编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/02/160706_clean_code/">代码整洁之道</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/30/160630_jqueryplugin/">jQuery plugin 插件编写时遇到的问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/28/160628_first/">博客初搭建</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/01/160801_sc_jdk8_ArrayList/">ArrayList源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/25/160725_rsa_algorithm/">RSA加密签名</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/160706_linuxcommand/">关于Linux命令的那点小事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/05/160705_plantuml/">plantUML的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/03/160703_linuxShellLine/">Linux Shell 命令行及脚本编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/02/160706_clean_code/">代码整洁之道</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/30/160630_jqueryplugin/">jQuery plugin 插件编写时遇到的问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/28/160628_first/">博客初搭建</a></li></ul>
 
 
 
