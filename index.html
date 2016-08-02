@@ -194,7 +194,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/">RSA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk8/">jdk8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery-plugin/">jquery plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plantUML/">plantUML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码整洁/">代码整洁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/问题/">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合/">集合</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/List/">List</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/">RSA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk8/">jdk8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery-plugin/">jquery plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plantUML/">plantUML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码整洁/">代码整洁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/问题/">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合/">集合</a></li></ul>
                     </div>
                 </section>
                 
@@ -273,6 +273,160 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-160802_designpatern_read" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/02/160802_designpatern_read/" class="article-date">
+      <time datetime="2016-08-02T01:50:27.000Z" itemprop="datePublished">2016-08-02</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/02/160802_designpatern_read/">【读书笔记】设计模式之禅</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="六大设计原则"><a href="#六大设计原则" class="headerlink" title="六大设计原则"></a>六大设计原则</h2><ul>
+<li>单一职责原则</li>
+<li>里氏替换原则</li>
+<li>依赖导致原则</li>
+<li>接口隔离原则</li>
+<li>迪米特法则</li>
+<li>开闭原则</li>
+</ul>
+<h3 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h3><ul>
+<li>接口、类、方法尽可能做一件事情。</li>
+<li>单一职责最难划分的就是职责。一个职责一个接口，但是职责没有标准。</li>
+<li>对于接口，我们在设计的时候一定要做到单一</li>
+<li>类的话，具体情况具体看</li>
+</ul>
+<blockquote>
+<p>我的建议是接口一定要做到单一职责，类的设计尽量做到只有一个原因引起变化</p>
+</blockquote>
+<ul>
+<li>单一职责原则的好处<ol>
+<li>类的复杂性降低，实现什么职责都有清晰明确的定义</li>
+<li>可读性提高，复杂性降低，那当然可读性提高了</li>
+<li>可维护性提高，可读性提高，那当然更容易维护了</li>
+<li>变更引起的风险降低，变更是必不可少的，如果接口的单一职责做得好，一个接口修<br>改只对相应的实现类有影响，对其他的接口无影响，这对系统的扩展性、维护性都有非常大<br>的帮助</li>
+</ol>
+</li>
+</ul>
+<h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3><ul>
+<li>在面向对象的语言中，<strong>继承</strong>不可或缺的，优秀的语言机制</li>
+</ul>
+<blockquote>
+<p>优点如下：</p>
+</blockquote>
+<ol>
+<li>代码共享，减少创建类的工作量，每个子类都拥有父类的方法和属性</li>
+<li>提高代码的重用性</li>
+<li>子类可以形似父类，但又异于父类，“龙生龙，凤生凤，老鼠生来会打洞”是说子拥有父的“种”，“世界上没有两片完全相同的叶子”是指明子与父的不同</li>
+<li>提高代码的可扩展性，实现父类的方法就可以“为所欲为”了，君不见很多开源框架的扩展接口都是通过继承父类来完成的</li>
+<li>提高产品或项目的开放性</li>
+</ol>
+<blockquote>
+<p>缺点如下：</p>
+</blockquote>
+<ol>
+<li>继承是侵入性的。<ul>
+<li>只要继承，就必须拥有父类的所有属性和方法</li>
+</ul>
+</li>
+<li>降低代码的灵活性。<ul>
+<li>子类必须拥有父类的属性和方法，让子类自由的世界中多了些约束；</li>
+</ul>
+</li>
+<li>增强了耦合性<ul>
+<li>当父类的常量、变量和方法被修改时，需要考虑子类的修改，而且在缺乏规范的环境下，这种修改可能会导致大量代码需要重构</li>
+</ul>
+</li>
+</ol>
+<h4 id="什么是里氏替换原则"><a href="#什么是里氏替换原则" class="headerlink" title="什么是里氏替换原则"></a>什么是里氏替换原则</h4><ul>
+<li>第一种定义：<ul>
+<li>如果对每一个类型为S的对象o1，都有类型为T的对象o2，使得以T定义的所有程序P在所有的对象o1都代换成o2时，程序P的行为没有发生变化，那么类型S是类型T的子类型 </li>
+</ul>
+</li>
+<li>第二种定义 <ul>
+<li>所有引用基类的地方必须能透明地使用其子类的<br>对象</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>第二个定义是最清晰明确的，通俗点讲，只要父类能出现的地方子类就可以出现，而且替换为子类也不会产生任何错误或异常，使用者可能根本就不需要知道是父类还是子类。但是，反过来就不行了，有子类出现的地方，父类未必就能适应<br>父类有的子类有，子类有的父类不一定有</p>
+</blockquote>
+<ol>
+<li>子类必须完全实现父类的方法</li>
+<li>子类可以有自己的个性</li>
+<li>覆盖或实现父类的方法时输入参数可以被放大</li>
+<li>覆写或实现父类的方法时输出结果可以被缩小</li>
+</ol>
+<blockquote>
+<p>在类中调用其他类时务必要使用父类或接口，如果不能使用父类或接口，则说明类的设计已经违背了LSP原则。</p>
+</blockquote>
+<h2 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h2><h3 id="依赖倒置原则的定义"><a href="#依赖倒置原则的定义" class="headerlink" title="依赖倒置原则的定义"></a>依赖倒置原则的定义</h3><ul>
+<li>高层模块不应该依赖低层模块，两者都应该依赖其抽象；</li>
+<li>抽象不应该依赖细节；</li>
+<li>细节应该依赖抽象。</li>
+</ul>
+<h3 id="依赖倒置原则在Java语言中的表现就是："><a href="#依赖倒置原则在Java语言中的表现就是：" class="headerlink" title="依赖倒置原则在Java语言中的表现就是："></a>依赖倒置原则在Java语言中的表现就是：</h3><ul>
+<li>模块间的依赖通过抽象发生，实现类之间不发生直接的依赖关系，其依赖关系是通过接口或抽象类产生的</li>
+<li>接口或抽象类不依赖于实现类；</li>
+<li>实现类依赖接口或抽象类</li>
+</ul>
+<blockquote>
+<p>更加精简的定义就是“面向接口编程”——OOD（Object-Oriented Design，面向对象设计）的精髓之一。</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/读书笔记/">读书笔记</a><a class="article-category-link" href="/categories/读书笔记/设计模式/">设计模式</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-160801_sc_arraylist" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -322,7 +476,7 @@
 
       
         <p class="article-more-link">
-          <a href="/2016/08/01/160801_sc_arraylist/#more">阅读全文 >></a>
+          <a href="/2016/08/01/160801_sc_arraylist/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -390,7 +544,7 @@
 
       
         <p class="article-more-link">
-          <a href="/2016/07/25/160725_rsa_algorithm/#more">阅读全文 >></a>
+          <a href="/2016/07/25/160725_rsa_algorithm/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -458,7 +612,7 @@
 
       
         <p class="article-more-link">
-          <a href="/2016/07/06/160706_linuxcommand/#more">阅读全文 >></a>
+          <a href="/2016/07/06/160706_linuxcommand/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -526,75 +680,7 @@
 
       
         <p class="article-more-link">
-          <a href="/2016/07/05/160705_plantuml/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-160703_linuxShellLine" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/03/160703_linuxShellLine/" class="article-date">
-      <time datetime="2016-07-03T00:50:27.000Z" itemprop="datePublished">2016-07-03</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/03/160703_linuxShellLine/">Linux Shell 命令行及脚本编程</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="Linux-及-Linux-Shell-简介"><a href="#Linux-及-Linux-Shell-简介" class="headerlink" title="Linux 及 Linux Shell 简介"></a>Linux 及 Linux Shell 简介</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034gw1f5pu0w0r56j20m80rsjuy.jpg" alt="image"></p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/linux/">linux</a><a class="article-category-link" href="/categories/linux/Shell编程/">Shell编程</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/07/03/160703_linuxShellLine/#more">阅读全文 >></a>
+          <a href="/2016/07/05/160705_plantuml/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
