@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[ArrayList源码阅读]]></title>
-      <url>/2016/08/01/160801_sc_jdk8_ArrayList/</url>
+      <url>/2016/08/01/160801_sc_arraylist/</url>
       <content type="html"><![CDATA[<h2 id="ArrayList源码阅读【JDK8】"><a href="#ArrayList源码阅读【JDK8】" class="headerlink" title="ArrayList源码阅读【JDK8】"></a>ArrayList源码阅读【JDK8】</h2><p><img src="http://ww2.sinaimg.cn/large/610dc034jw1f65f0oqodoj20qo0hntc9.jpg" alt="07月25日"></p>
 <a id="more"></a>
 <h3 id="arrayList的类图"><a href="#arrayList的类图" class="headerlink" title="arrayList的类图"></a>arrayList的类图</h3><p><img src="http://7xjlkb.com1.z0.glb.clouddn.com/sourcecode_jdk8_arraylist.png" alt="image"></p>
