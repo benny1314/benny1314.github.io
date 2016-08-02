@@ -4,9 +4,11 @@
   
     
     <entry>
-      <title><![CDATA[【读书笔记】设计模式之禅]]></title>
+      <title><![CDATA[设计模式之禅]]></title>
       <url>/2016/08/02/160802_designpatern_read/</url>
-      <content type="html"><![CDATA[<h2 id="六大设计原则"><a href="#六大设计原则" class="headerlink" title="六大设计原则"></a>六大设计原则</h2><ul>
+      <content type="html"><![CDATA[<h2 id="【读书笔记】设计模式之禅"><a href="#【读书笔记】设计模式之禅" class="headerlink" title="【读书笔记】设计模式之禅"></a>【读书笔记】设计模式之禅</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f69c9e22xjj20u011hjuu.jpg" alt="07月25日"></p>
+<a id="more"></a>
+<h2 id="六大设计原则"><a href="#六大设计原则" class="headerlink" title="六大设计原则"></a>六大设计原则</h2><ul>
 <li>单一职责原则</li>
 <li>里氏替换原则</li>
 <li>依赖导致原则</li>
