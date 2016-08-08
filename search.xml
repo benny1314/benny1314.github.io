@@ -4,10 +4,618 @@
   
     
     <entry>
-      <title><![CDATA[lambda表达式]]></title>
-      <url>/2016/08/04/160805_lambda/</url>
-      <content type="html"><![CDATA[<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f6aipo68yvj20qo0qoaee.jpg" alt="image"></p>
-<a id="more"></a>]]></content>
+      <title><![CDATA[Intellij idea的快捷键]]></title>
+      <url>/2016/08/08/160808_idea_shortcutKeys/</url>
+      <content type="html"><![CDATA[<h2 id="Intellij-idea的快捷键"><a href="#Intellij-idea的快捷键" class="headerlink" title="Intellij idea的快捷键"></a>Intellij idea的快捷键</h2><p><img src="http://ww4.sinaimg.cn/large/610dc034jw1f3zen8idmkj20dw0kun0i.jpg" alt="image"></p>
+<a id="more"></a>
+<h2 id="自己觉得有用的快捷键总结"><a href="#自己觉得有用的快捷键总结" class="headerlink" title="自己觉得有用的快捷键总结"></a>自己觉得有用的快捷键总结</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>解释</th>
+<th>详细解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ctrl + B</code></td>
+<td>转到声明</td>
+<td>快速打开光标处的类或方法</td>
+</tr>
+<tr>
+<td><code>Ctrl + Alt + B</code></td>
+<td>转向定义</td>
+<td>通俗点说从接口跳转到实现类</td>
+</tr>
+<tr>
+<td><code>Ctrl + U</code></td>
+<td>转向父类方法或父类</td>
+<td>从实现类跳转到接口</td>
+</tr>
+<tr>
+<td><code>Ctrl + Alt + F7</code></td>
+<td>查看一个方法或变量被使用的所有地方</td>
+<td>弹出一个包含所有使用处的列表，很容易地转向任意一个</td>
+</tr>
+<tr>
+<td><code>Ctrl + N</code></td>
+<td>转到类</td>
+<td>可以让你使用大写字母和<code>*</code>通配符搜索类名</td>
+</tr>
+<tr>
+<td><code>Ctrl + E</code></td>
+<td>最近修改文件</td>
+<td>弹出一个窗口包含了最近最常使用的15个文件</td>
+</tr>
+<tr>
+<td><code>Ctrl + F6</code></td>
+<td>改变方法签名</td>
+<td>要选中方法名,输入快捷键，改变签名</td>
+</tr>
+<tr>
+<td><code>Shift + F6</code></td>
+<td>改变方法签名</td>
+<td>要选中方法名,输入快捷键，改变签名</td>
+</tr>
+<tr>
+<td><code>ALT  + F7</code></td>
+<td>搜索对象被引用的地方</td>
+<td>查找整个工程中使用地某一个类、方法或者变量的位置</td>
+</tr>
+<tr>
+<td><code>Ctrl + F7</code></td>
+<td>搜索对象在当前文件被引用的地方</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + ~</code></td>
+<td>View Mode 审查代码很叼</td>
+<td>快速切换方案（界面外观、代码风格、快捷键映射等菜单</td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + C</code></td>
+<td>复制当前文件的全路径</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt +　2</code></td>
+<td>查看收藏(当前书签、断点</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt +　6</code></td>
+<td>查看TODO</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt +　7</code></td>
+<td>查看当前类结构</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>版本控制</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt + ~</code></td>
+<td>版本及控制操作菜单</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + K</code></td>
+<td>提交更改</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + T</code></td>
+<td>更新项目</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Alt + Shift + D</code></td>
+<td>显示变化</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>高亮</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + F</code></td>
+<td>选中的文字,高亮显示</td>
+<td>选中的文字,高亮显示 上下跳到下一个或者上一个</td>
+</tr>
+<tr>
+<td><code>F2 或 Shift + F2</code></td>
+<td>高亮错误或警告快速定位</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + F7</code></td>
+<td>高亮显示多个关键字</td>
+<td>高亮显示光标停留处的多个关键字</td>
+</tr>
+<tr>
+<td><strong>断点</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl+F2</code></td>
+<td>停止</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt+Shift+F9</code></td>
+<td>选择 Debug</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt+Shift+F10</code></td>
+<td>选择 Run</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+F9</code></td>
+<td>编译</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+F10</code></td>
+<td>运行</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+F8</code></td>
+<td>查看断点</td>
+<td></td>
+</tr>
+<tr>
+<td><code>F8</code></td>
+<td>步过</td>
+<td></td>
+</tr>
+<tr>
+<td><code>F7</code></td>
+<td>步入</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Shift+F7</code></td>
+<td>智能步入</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Shift+F8</code></td>
+<td>步出</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt+Shift+F8</code></td>
+<td>强制步过</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt+Shift+F7</code></td>
+<td>强制步入</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt+F9</code></td>
+<td>运行至光标处</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl+Alt+F9</code></td>
+<td>强制运行至光标处</td>
+<td></td>
+</tr>
+<tr>
+<td><code>F9</code></td>
+<td>恢复程序</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt+F10</code></td>
+<td>定位到断点</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl+F8</code></td>
+<td>切换行断点</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl+F9</code></td>
+<td>生成项目</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>重构</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl+Alt+Shift+T</code></td>
+<td>弹出重构菜单</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl+Alt+N</code></td>
+<td>内联</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt+Delete</code></td>
+<td>安全删除</td>
+<td></td>
+</tr>
+<tr>
+<td><code>F5</code></td>
+<td>复制</td>
+<td></td>
+</tr>
+<tr>
+<td><code>F6</code></td>
+<td>移动</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Shift+F6</code></td>
+<td>重命名</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>其他快捷方式</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + U</code></td>
+<td>切换大小写</td>
+<td>切换大小写</td>
+</tr>
+<tr>
+<td><code>CTRL + ALT + F12</code></td>
+<td>资源管理器打开文件夹</td>
+<td>资源管理器打开文件夹</td>
+</tr>
+<tr>
+<td><code>Shift + Alt + Insert</code></td>
+<td>竖行 编辑模式</td>
+<td>多行编辑和按住鼠标<code>中键</code>下拉一样的效果</td>
+</tr>
+<tr>
+<td><code>Shift + F6</code></td>
+<td>显示类结构图</td>
+<td>切换代码上方的<code>tab</code></td>
+</tr>
+<tr>
+<td><code>Ctrl + H</code></td>
+<td>在方法间快速移动定位</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Q</code></td>
+<td>在方法间快速移动定位</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Shif + 左键</code></td>
+<td>关闭<code>tab</code>栏</td>
+<td>和<code>Chrome</code> 鼠标中间点击关闭<code>tab</code>一样</td>
+</tr>
+<tr>
+<td><code>Ctrl + Tab</code></td>
+<td>转到下一个拆分器<code>Swicher</code></td>
+<td>调出<code>swicher</code>后,按<code>Tab</code>是下一个，<code>Shift + Tab</code>上一个</td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + Tab</code></td>
+<td>转到上一个拆分器</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Shift+Esc</code></td>
+<td>光标返回编辑框,关闭无用的窗口</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl+F4</code></td>
+<td>关闭窗口</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Alt + Shift + C</code></td>
+<td>复制引用</td>
+<td>必须选中类名或者方法名</td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + M</code></td>
+<td></td>
+<td>选中括号的时候按下可直接跳转到括号结尾处</td>
+</tr>
+<tr>
+<td><strong>复制快捷方式</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>F5</code></td>
+<td>拷贝文件快捷方式</td>
+<td></td>
+</tr>
+<tr>
+<td><code>CTRL+D</code></td>
+<td>复制行</td>
+<td></td>
+</tr>
+<tr>
+<td><code>CTRL+X</code></td>
+<td>剪切,删除行</td>
+<td></td>
+</tr>
+<tr>
+<td><code>CTRL+SHIFT+V</code></td>
+<td>可以复制多个文本</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>自动代码</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ALT+回车</code></td>
+<td>导入包,自动修正</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Alt + L</code></td>
+<td>格式化代码</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Alt + I</code></td>
+<td>自 动缩进</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Alt + O</code></td>
+<td>优化导入的类和包</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt + Insert</code></td>
+<td>生成代码(如GET,SET方法,构造函数等)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + E 或 Alt + Shift + C</code></td>
+<td>最近更改的代码</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+Space</code></td>
+<td>自动补全代码</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Space</code></td>
+<td>代码提示</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + ALT + Space</code></td>
+<td>类名或接口名提示</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + P</code></td>
+<td>方法参数提示</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + J</code></td>
+<td>自动代码</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Alt + T</code></td>
+<td>把选中的代码放在Tty{} If{} Else{}里</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>查询快捷键</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + N</code></td>
+<td>查找类</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + N</code></td>
+<td>查找文件</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + Alt + N</code></td>
+<td>查找类中的方法或变量</td>
+<td></td>
+</tr>
+<tr>
+<td><code>CIRL + B</code></td>
+<td>找变量的来源</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Alt + B</code></td>
+<td>找所有的子类</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + B</code></td>
+<td>找变量的 类</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + G</code></td>
+<td>定位行</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + F</code></td>
+<td>在当前窗口查找文本</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + F</code></td>
+<td>在指定窗口查找文本</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + R</code></td>
+<td>在当前窗口替换文本</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + R</code></td>
+<td>在指定窗口替换文本</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt + Shift + C</code></td>
+<td>找修改的文件</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + E</code></td>
+<td>最近打开的文件</td>
+<td></td>
+</tr>
+<tr>
+<td><code>F3</code></td>
+<td>向下查找关键字出现位置</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Shift + F3</code></td>
+<td>向上一个关键字出现位置</td>
+<td></td>
+</tr>
+<tr>
+<td><code>F4</code></td>
+<td>查找变量来源</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Alt + F7</code></td>
+<td>选中的字符 查找工程出现的地方</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + O</code></td>
+<td>弹出显示查找内容</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Idea 快捷键总结</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Enter</code></td>
+<td>上插一行</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Shift + Enter</code></td>
+<td>向下插一行</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Alt + Home</code></td>
+<td>跳转到导航栏</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Alt + Shift + S</code></td>
+<td>打开当前项目/模块属性</td>
+<td>等同于选中项目后<code>F4</code></td>
+</tr>
+<tr>
+<td><code>Ctrl + G</code></td>
+<td>定位行</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + I</code></td>
+<td>实现方法</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + W</code></td>
+<td>以选择单词继而语句继而行继而函数</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + W</code></td>
+<td>取消选择光标所在词</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + J</code></td>
+<td>整合两行</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + O</code></td>
+<td>重写方法</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Alt + J</code></td>
+<td>用动态模板环绕</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + J</code></td>
+<td>自动代码</td>
+<td>例如自己添加的<code>amd</code></td>
+</tr>
+<tr>
+<td><code>！</code></td>
+<td>否定完成，输入表达式时按 <code>！</code>键</td>
+<td>例如<code>3==2！</code> 按下<code>Tab</code>键，自动变成<code>3!=2</code></td>
+</tr>
+<tr>
+<td><code>Alt +　1</code></td>
+<td>查看当前类结构</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Shift+F12</code></td>
+<td>还原默认布局</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+F12</code></td>
+<td>隐藏/恢复所有窗口</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[vim]]></title>
+      <url>/2016/08/06/160806_vim/</url>
+      <content type="html"></content>
     </entry>
     
     <entry>
@@ -16,6 +624,13 @@
       <content type="html"><![CDATA[<h2 id="Spring源码阅读"><a href="#Spring源码阅读" class="headerlink" title="Spring源码阅读"></a>Spring源码阅读</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f6gcxc1t7vj20hs0hsgo1.jpg" alt="image"></p>
 <a id="more"></a>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[lambda表达式]]></title>
+      <url>/2016/08/04/160805_lambda/</url>
+      <content type="html"><![CDATA[<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f6aipo68yvj20qo0qoaee.jpg" alt="image"></p>
+<a id="more"></a>]]></content>
     </entry>
     
     <entry>
