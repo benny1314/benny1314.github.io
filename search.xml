@@ -6,9 +6,9 @@
     <entry>
       <title><![CDATA[Intellij idea的快捷键]]></title>
       <url>/2016/08/08/160808_idea_shortcutKeys/</url>
-      <content type="html"><![CDATA[<h2 id="Intellij-idea的快捷键"><a href="#Intellij-idea的快捷键" class="headerlink" title="Intellij idea的快捷键"></a>Intellij idea的快捷键</h2><p><img src="http://ww4.sinaimg.cn/large/610dc034jw1f3zen8idmkj20dw0kun0i.jpg" alt="image"></p>
+      <content type="html"><![CDATA[<h2 id="Intellij-idea的快捷键"><a href="#Intellij-idea的快捷键" class="headerlink" title="Intellij idea的快捷键"></a>Intellij idea的快捷键</h2><p><img src="http://ww4.sinaimg.cn/large/610dc034jw1f3zen8idmkj20dw0kun0i.jpg" alt="0518"></p>
 <a id="more"></a>
-<h2 id="自己觉得有用的快捷键总结"><a href="#自己觉得有用的快捷键总结" class="headerlink" title="自己觉得有用的快捷键总结"></a>自己觉得有用的快捷键总结</h2><table>
+<h2 id="自己觉得有用个快捷键总结"><a href="#自己觉得有用个快捷键总结" class="headerlink" title="自己觉得有用个快捷键总结"></a>自己觉得有用个快捷键总结</h2><table>
 <thead>
 <tr>
 <th>快捷键</th>
@@ -91,6 +91,41 @@
 <td><code>Alt +　7</code></td>
 <td>查看当前类结构</td>
 <td></td>
+</tr>
+<tr>
+<td><code>Shift + 鼠标滚轮</code></td>
+<td>左右移动</td>
+<td>可以查看过长的代码</td>
+</tr>
+<tr>
+<td><code>Alt + Home</code>再<code>Alt + insert</code></td>
+<td>快速创建文件</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + space</code></td>
+<td>代码提示</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + N</code></td>
+<td>查找一个文件</td>
+<td>可以勾选设置非项目文件也可以,还有旁边筛选器的使用</td>
+</tr>
+<tr>
+<td><code>Ctrl + 单击窗口的文件标题</code></td>
+<td>在资源浏览器中显示此文件</td>
+<td>弹出该文件路径,可通过此打开文件所在地相当于<code>Ctrl+alt+F12</code></td>
+</tr>
+<tr>
+<td><code>Ctrl+c 或 Ctrl+x</code></td>
+<td>复制行,剪切行</td>
+<td>光标任意行位置,按下就可以剪切行，复制行</td>
+</tr>
+<tr>
+<td><code>Ctrl + Shift + S</code></td>
+<td>在某些情况下,这个模糊查询是很无敌的</td>
+<td>（类似正则，你可以这样理解）</td>
 </tr>
 <tr>
 <td><strong>版本控制</strong></td>
@@ -605,7 +640,6 @@
 <tr>
 <td><code>Ctrl+Shift+F12</code></td>
 <td>隐藏/恢复所有窗口</td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -615,7 +649,15 @@
     <entry>
       <title><![CDATA[vim]]></title>
       <url>/2016/08/06/160806_vim/</url>
-      <content type="html"></content>
+      <content type="html"><![CDATA[<h2 id="Vim使用笔记"><a href="#Vim使用笔记" class="headerlink" title="Vim使用笔记"></a>Vim使用笔记</h2><p><img src="http://ww4.sinaimg.cn/large/610dc034jw1f47gspphiyj20ia0rf76w.jpg" alt="0525"></p>
+<a id="more"></a>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[lambda表达式]]></title>
+      <url>/2016/08/04/160805_lambda/</url>
+      <content type="html"><![CDATA[<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f6aipo68yvj20qo0qoaee.jpg" alt="image"></p>
+<a id="more"></a>]]></content>
     </entry>
     
     <entry>
@@ -624,13 +666,6 @@
       <content type="html"><![CDATA[<h2 id="Spring源码阅读"><a href="#Spring源码阅读" class="headerlink" title="Spring源码阅读"></a>Spring源码阅读</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f6gcxc1t7vj20hs0hsgo1.jpg" alt="image"></p>
 <a id="more"></a>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[lambda表达式]]></title>
-      <url>/2016/08/04/160805_lambda/</url>
-      <content type="html"><![CDATA[<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f6aipo68yvj20qo0qoaee.jpg" alt="image"></p>
-<a id="more"></a>]]></content>
     </entry>
     
     <entry>
