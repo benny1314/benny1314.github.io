@@ -133,6 +133,11 @@
 <td>快速查看方法或类的定义,无需在新的编辑页面打开它。</td>
 </tr>
 <tr>
+<td><code>Ctrl + T</code></td>
+<td>更新当前窗口下的所有项目</td>
+<td></td>
+</tr>
+<tr>
 <td><strong>版本控制</strong></td>
 <td></td>
 <td></td>
@@ -659,18 +664,18 @@
     </entry>
     
     <entry>
+      <title><![CDATA[lambda表达式]]></title>
+      <url>/2016/08/04/160805_lambda/</url>
+      <content type="html"><![CDATA[<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f6aipo68yvj20qo0qoaee.jpg" alt="image"></p>
+<a id="more"></a>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[【源码阅读】Spring源码阅读]]></title>
       <url>/2016/08/04/160804_sc_spring/</url>
       <content type="html"><![CDATA[<h2 id="Spring源码阅读"><a href="#Spring源码阅读" class="headerlink" title="Spring源码阅读"></a>Spring源码阅读</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f6gcxc1t7vj20hs0hsgo1.jpg" alt="image"></p>
 <a id="more"></a>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[lambda表达式]]></title>
-      <url>/2016/08/04/160805_lambda/</url>
-      <content type="html"><![CDATA[<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f6aipo68yvj20qo0qoaee.jpg" alt="image"></p>
-<a id="more"></a>]]></content>
     </entry>
     
     <entry>
