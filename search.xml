@@ -128,6 +128,12 @@
 <td>（类似正则，你可以这样理解）</td>
 </tr>
 <tr>
+<td><code>Ctrl + Shift + I</code></td>
+<td>(视图</td>
+<td>快速定义)</td>
+<td>快速查看方法或类的定义,无需在新的编辑页面打开它。</td>
+</tr>
+<tr>
 <td><strong>版本控制</strong></td>
 <td></td>
 <td></td>
