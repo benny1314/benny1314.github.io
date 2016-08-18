@@ -4,6 +4,718 @@
   
     
     <entry>
+      <title><![CDATA[基于Spring web 做单元测试]]></title>
+      <url>/2016/08/18/160818_junit_spirng_mock/</url>
+      <content type="html"><![CDATA[<h2 id="基于Spring-web-做单元测试"><a href="#基于Spring-web-做单元测试" class="headerlink" title="基于Spring web 做单元测试"></a>基于Spring web 做单元测试</h2><p><img src="http://ww1.sinaimg.cn/large/7a8aed7bgw1evdga4dimoj20qo0hsmzf.jpg" alt="image"></p>
+<a id="more"></a>
+<h2 id="Mock"><a href="#Mock" class="headerlink" title="Mock"></a>Mock</h2><ul>
+<li>mock对象就是在调试期间用来作为真实对象的替代品。</li>
+<li>mock测试就是在测试过程中，对那些不容易构建的对象用一个虚拟对象来代替测试的方法就叫mock测试。</li>
+</ul>
+<h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//Mockito-all测试框架</div><div class="line">compile group: &apos;org.mockito&apos;, name: &apos;mockito-all&apos;, version: &apos;2.0.2-beta&apos;</div></pre></td></tr></table></figure>
+<ul>
+<li>需要在@Before注解的setUp()中进行初始化（下面这个是个测试类的基类）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">MockitoBasedTest</span> </span>&#123;</div><div class="line">    <span class="meta">@Before</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">// 初始化测试用例类中由Mockito的注解标注的所有模拟对象</span></div><div class="line">        MockitoAnnotations.initMocks(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">toIndex</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        List&lt;String&gt; list = Mockito.mock(List.class);</div><div class="line">        </div><div class="line">		<span class="comment">//设置方法预期返回值								     【√】</span></div><div class="line">        Mockito.when(list.get(<span class="number">0</span>)).thenReturn(<span class="string">"helloworld"</span>);</div><div class="line">		</div><div class="line">		<span class="comment">//设置方法的预期返回值 不推荐不如上一种方式 可读性不高	【X】</span></div><div class="line">        Mockito.doReturn(<span class="string">"secondhello"</span>).when(list).get(<span class="number">1</span>);</div><div class="line"></div><div class="line">        String str = list.get(<span class="number">0</span>);</div><div class="line">        <span class="comment">//验证方法调用(是否调用了get(0))</span></div><div class="line">        Mockito.verify(list).get(<span class="number">0</span>);</div><div class="line">        <span class="comment">//junit测试</span></div><div class="line">        Assert.assertEquals(str, <span class="string">"helloworld"</span>);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>创建mock对象不能对<code>final</code>，<strong><code>Anonymous</code>(匿名类)</strong> ，<strong><code>primitive</code>（基本数据类型如int、double等和包装类）</strong>类进行mock。</p>
+<p>如果mock的话，会给你一个红灯：</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">org.mockito.exceptions.base.MockitoException: </div><div class="line">Cannot mock/spy class java.lang.Integer</div><div class="line">Mockito cannot mock/spy following:</div><div class="line">  - final classes</div><div class="line">  - anonymous classes</div><div class="line">  - primitive types</div></pre></td></tr></table></figure>
+<ul>
+<li>设置方法设定返回异常</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">toIndex</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">      <span class="comment">//创建mock对象，参数可以是类，也可以是接口</span></div><div class="line">       List&lt;String&gt; list = Mockito.mock(List.class);</div><div class="line"></div><div class="line">       <span class="comment">//设置方法设定返回异常</span></div><div class="line">       Mockito.when(list.get(<span class="number">1</span>)).thenThrow(<span class="keyword">new</span> RuntimeException(<span class="string">"这是类型的错误"</span>));</div><div class="line"></div><div class="line">       String result = list.get(<span class="number">1</span>);</div><div class="line">       <span class="comment">//junit测试</span></div><div class="line">       Assert.assertEquals(<span class="string">"helloworld"</span>, result);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>没有返回值的void方法与其设定(支持迭代风格，第一次调用donothing,第二次dothrow抛出runtime异常)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">toIndex</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">      <span class="comment">//创建mock对象，参数可以是类，也可以是接口</span></div><div class="line">      List&lt;String&gt; list = Mockito.mock(List.class);</div><div class="line"></div><div class="line">      Mockito.doNothing().doThrow(<span class="keyword">new</span> RuntimeException(<span class="string">"void exception"</span>)).when(list).clear();</div><div class="line">      </div><div class="line">      list.clear();</div><div class="line">      System.out.println(<span class="string">"第一次调用完"</span>);</div><div class="line">      list.clear();</div><div class="line">      System.out.println(<span class="string">"第二次调用完"</span>);</div><div class="line">      </div><div class="line">      <span class="comment">// Mockito.times(N) 调用N次</span></div><div class="line">      Mockito.verify(list,Mockito.times(<span class="number">2</span>)).clear();</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3 id="参数匹配器-Argument-Matcher"><a href="#参数匹配器-Argument-Matcher" class="headerlink" title="参数匹配器(Argument Matcher)"></a>参数匹配器(Argument Matcher)</h3><ul>
+<li>Matchers类内加你有很多参数匹配器 anyInt、anyString、anyMap…..Mockito类继承于Matchers,Stubbing时使用内建参数匹配器</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">toIndex</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">       <span class="comment">//创建mock对象，参数可以是类，也可以是接口</span></div><div class="line">       List&lt;String&gt; list = Mockito.mock(List.class);</div><div class="line">       </div><div class="line">       Mockito.when(list.get(Mockito.anyInt())).thenReturn(<span class="string">"hello"</span>, <span class="string">"world"</span>);</div><div class="line"></div><div class="line">       String result = list.get(<span class="number">0</span>) + list.get(<span class="number">1</span>);</div><div class="line"></div><div class="line">       Mockito.verify(list, Mockito.times(<span class="number">2</span>)).get(Mockito.anyInt());</div><div class="line"></div><div class="line">       Assert.assertEquals(<span class="string">"helloworld"</span>, result);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意</strong>：如果使用参数匹配器，那么所有的参数都要使用参数匹配器，不管是stubbing还是verify的时候都一样。</p>
+</blockquote>
+<h3 id="Intellij-Idea-的-converage"><a href="#Intellij-Idea-的-converage" class="headerlink" title="Intellij Idea 的 converage"></a>Intellij Idea 的 converage</h3><blockquote>
+<p>真的是好强大</p>
+</blockquote>
+<h2 id="Spring与单元测试"><a href="#Spring与单元测试" class="headerlink" title="Spring与单元测试"></a>Spring与单元测试</h2><h3 id="添加依赖-1"><a href="#添加依赖-1" class="headerlink" title="添加依赖"></a>添加依赖</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// https://mvnrepository.com/artifact/junit/junit</span></div><div class="line">compile group: <span class="string">'junit'</span>, name: <span class="string">'junit'</span>, version: <span class="string">'4.12'</span></div><div class="line"></div><div class="line"><span class="comment">// https://mvnrepository.com/artifact/org.mockito/mockito-core</span></div><div class="line">compile group: <span class="string">'org.mockito'</span>, name: <span class="string">'mockito-core'</span>, version: <span class="string">'2.0.106-beta'</span></div><div class="line"></div><div class="line"><span class="comment">//https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test</span></div><div class="line">compile group: <span class="string">'org.springframework.boot'</span>, name: <span class="string">'spring-boot-starter-test'</span>, version: <span class="string">'1.4.0.RELEASE'</span></div></pre></td></tr></table></figure>
+<ul>
+<li>如果你要用到一些<strong>Spring自带的注解</strong>，比如<code>@Autowired</code>的话，最好是在测试类的基类中，加入如下注解，这样会使得测试时先将<strong>SpringBoot</strong>运行起来。</li>
+</ul>
+<blockquote>
+<p>注意:</p>
+<p><code>@SpringgApplicationConfigtation</code>注解在<strong>SpringBoot</strong>的<strong>1.4</strong>版本以后不建议使用</p>
+<p>使用<code>SpringBootTest</code>注解替代<code>@SpringgApplicationConfigtation</code></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</div><div class="line"><span class="meta">@WebAppConfiguration</span></div><div class="line"><span class="meta">@SpringBootTest</span>(classes = Application.class)</div></pre></td></tr></table></figure>
+<ul>
+<li>接下来需要在@Before注解的setUp()中进行初始化</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</div><div class="line"><span class="meta">@WebAppConfiguration</span></div><div class="line"><span class="meta">@SpringBootTest</span>(classes = Application.class)</div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">MockitoBasedTest</span> </span>&#123;</div><div class="line">    <span class="meta">@Before</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">// 初始化测试用例类中由Mockito的注解标注的所有模拟对象</span></div><div class="line">        MockitoAnnotations.initMocks(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="被测类中-Autowired注解，如何控制其中Repository返回值"><a href="#被测类中-Autowired注解，如何控制其中Repository返回值" class="headerlink" title="被测类中@Autowired注解，如何控制其中Repository返回值"></a>被测类中<code>@Autowired</code>注解，如何控制其中Repository返回值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GameHelper</span> </span>&#123;</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> PointRepository pointRepository;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkLineItem</span><span class="params">(<span class="keyword">final</span> Line line)</span> </span>&#123;</div><div class="line">        Point fromPoint = pointRepository.findById(line.getFromPointId());  <span class="comment">//如何控制这个repository的返回？</span></div><div class="line">        Point toPoint = pointRepository.findById(line.getToPointId());</div><div class="line">        <span class="keyword">return</span> fromPoint.getID().equals(toPoint.getID());<span class="comment">//简化了原函数</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>对被测类中@Autowired的对象，用@Mocks标注；对被测类自己，用@InjectMocks标注。</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GameHelperTest</span> </span>&#123;</div><div class="line">    <span class="meta">@Mock</span></div><div class="line">    <span class="keyword">private</span> PointRepository pointRepository;</div><div class="line"></div><div class="line">    <span class="meta">@InjectMocks</span></div><div class="line">    <span class="keyword">private</span> GameHelper gamehelper;   <span class="comment">//pointRepository作为mock对象被注入到gamehelper中，gamehelper其他成员变量不变</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCheckLineItem</span><span class="params">()</span> </span>&#123;</div><div class="line">        Line line = <span class="keyword">new</span> Line(***);</div><div class="line">        when(pointRepository.findById(<span class="number">123L</span>)).thenReturn(<span class="keyword">new</span> Point(***));</div><div class="line">        when(pointRepository.findById(<span class="number">456L</span>)).thenReturn(<span class="keyword">new</span> Point(***));</div><div class="line">        assertTrue(gamehelper.checkLineItem(line));</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>官方解释：</p>
+<p>   @InjectMocks - injects mock or spy fields into tested object automatically.</p>
+</blockquote>
+<ul>
+<li>被<code>@Mock</code>标注的对象会自动注入到被<code>@InjectMocks</code>标注的对象中。</li>
+<li>在上例中，<strong>GameHelper</strong>中的成员变量pointRepository（的函数），就会被我们用在测试用例中改写过返回值的pointRepository对象替换掉。</li>
+</ul>
+<blockquote>
+<p>另外，经测试，thenReturn返回的是对象引用而不是深复制了对象本身（所以可以减少写thenReturn()的次数）。</p>
+</blockquote>
+<h3 id="被测函数调用被测类其他函数，怎么控制返回值？"><a href="#被测函数调用被测类其他函数，怎么控制返回值？" class="headerlink" title="被测函数调用被测类其他函数，怎么控制返回值？"></a>被测函数调用被测类其他函数，怎么控制返回值？</h3><p>比如在CreateGameServiceImpl这个类中，有这样一段函数<br>public class CreateGameServiceImpl implements CreateGameService {</p>
+<pre><code>...//省略成员变量
+
+public FullGame createGame(String name, Long creatorId, List&lt;Point&gt; points, List&lt;Selection&gt; selections, List&lt;Line&gt; lines) {
+    Game gameItem = createBlankGame(name, creatorId);    //createBlankGame()为CreateGameServiceImpl中另一个函数
+</code></pre><p>那么，如果我还没实现createBlackGame()，我在测试函数里应该怎么控制它呢？这次用2）中的方法@Mock + @InjectMocks就不行了，因为他们属于同一个类。</p>
+<p>（这个问题@Xander 觉得应该实现了被调用的函数才好，但是既然mock的存在很多时候是为了在函数都没实现的情况下编写测试，因此我觉得继续研究。）</p>
+<p>后来自己通过查阅<strong>官方的文档，解决办法</strong>是使用spy()命令，结合doReturn()：<br>public class CreateGameServiceImplTest {<br>    //这部分不需要改。省略其他成员变量<br>    @Mock<br>    private GameHelper gameHelper;</p>
+<pre><code>@InjectMocks
+CreateGameServiceImpl serviceimpl;
+
+@Test
+public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
+    serviceimpl = spy(serviceimpl); //将serviceimpl部分mock化
+    doReturn(***).when(serviceimpl).createBlankGame(a, b);  //这里必须用doReturn()而不能是when().thenReturn()
+    ...
+}
+</code></pre><p>}</p>
+<p>原因我们在最后解释。</p>
+<p>首先我们来看文档中对于Spy()的解释：</p>
+<p>You can create spies of real objects. When you use the spy then the methods are called (unless a method was stubbed).</p>
+<p>Spying on real objects can be associated with “partial mocking” concept.（重点是，spy与”部分mock”相关。）</p>
+<p>对于Spy，官方有个Sample：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">List list = <span class="keyword">new</span> LinkedList();</div><div class="line">List spy = spy(list);</div><div class="line"></div><div class="line"><span class="comment">//optionally, you can stub out some methods:</span></div><div class="line">when(spy.size()).thenReturn(<span class="number">100</span>);</div><div class="line"></div><div class="line"><span class="comment">//using the spy calls real methods</span></div><div class="line">spy.add(<span class="string">"one"</span>);</div><div class="line">spy.add(<span class="string">"two"</span>);</div><div class="line"></div><div class="line"><span class="comment">//prints "one" - 这个函数还是真实的</span></div><div class="line">System.out.println(spy.get(<span class="number">0</span>));</div><div class="line"></div><div class="line"><span class="comment">//100 is printed - size()函数被替换了</span></div><div class="line">System.out.println(spy.size());</div></pre></td></tr></table></figure>
+<ul>
+<li><p>通俗来讲，在我个人理解，Spy()可以使一个对象的一部分方法被用户替换。</p>
+</li>
+<li><p>在我们的例子中，CreateGameServiceImpl中的函数<code>createGame()</code>调用了<code>createBlankGame()</code>，而后者可能是未实现的。</p>
+</li>
+<li><p>但是此时CreateGameServiceImpl类的注解是<code>@InjectMocks</code>而不是<code>@Mock</code>，只能接收<code>@Mock</code>对象的注入，而自己的方法无法被<strong>mock(stub</strong>)。</p>
+</li>
+<li><p>因此我们通过<code>spy()</code>，将CreateGameServiceImpl部分<strong>mock</strong>化，从而将createBlankGame()函数替换掉。</p>
+</li>
+<li><p>不过这里如果遇到private的被调函数就没办法了。</p>
+</li>
+</ul>
+<h2 id="在JUnit中集成Spring上下文的支持"><a href="#在JUnit中集成Spring上下文的支持" class="headerlink" title="在JUnit中集成Spring上下文的支持"></a>在JUnit中集成Spring上下文的支持</h2><ul>
+<li>使用JUnit 4.x提供的注解<code>@RunWith</code>，可以指定单元测试的“运行类”，运行类必须继承自 <code>org.junit.runner.Runner</code> 并实现 <strong>run</strong> 方法。</li>
+<li>Spring Test 框架提供的运行类是 <strong>SpringJUnit4ClassRunner</strong> ，使用该类可以轻松的将<strong>Spring</strong>和<strong>JUnit</strong>进行集成。该类的用法示例如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span> ( SpringJUnit4ClassRunner.class ) <span class="comment">//指定单元测试运行类</span></div><div class="line"><span class="meta">@SpringBootTest</span>(classes = Application.class)</div><div class="line"><span class="comment">//很多情况下单元测试离不开事务，下面的注解指明使用的事务管理器</span></div><div class="line"><span class="comment">//如果defaultRollback为true，测试运行结束后，默认回滚事务，不影响数据库</span></div><div class="line"><span class="meta">@TransactionConfiguration</span> ( transactionManager = <span class="string">"txManager"</span>, defaultRollback = <span class="keyword">true</span> )</div><div class="line"><span class="meta">@Transactional</span> <span class="comment">//指定默认所有测试方法的事务特性</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceTest</span></span></div><div class="line">&#123;</div><div class="line"> </div><div class="line">    <span class="meta">@Inject</span></div><div class="line">    <span class="keyword">private</span> SpringManagedBean bean; <span class="comment">//任何Spring管理的Bean都可以注入到单元测试类</span></div><div class="line"> </div><div class="line">    <span class="meta">@BeforeClass</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setUpBeforeClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@AfterClass</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tearDownAfterClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="meta">@Before</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="meta">@After</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="meta">@Repeat</span> ( <span class="number">10</span> )<span class="comment">//重复测试10次</span></div><div class="line">    <span class="comment">//该测试期望抛出IllegalArgumentException，测试超时1秒</span></div><div class="line">    <span class="meta">@Test</span> ( expected = IllegalArgumentException.class, timeout = <span class="number">1000</span> )</div><div class="line">    <span class="meta">@Rollback</span> ( <span class="keyword">true</span> )</div><div class="line">    <span class="comment">//测试完毕后回滚</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Spring-MVC的测试"><a href="#Spring-MVC的测试" class="headerlink" title="Spring MVC的测试"></a>Spring MVC的测试</h2><h3 id="以前的测试方式"><a href="#以前的测试方式" class="headerlink" title="以前的测试方式"></a>以前的测试方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.sishuok.mvc.controller;</div><div class="line"><span class="comment">//省略import</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserControllerTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> UserController userController;</div><div class="line"></div><div class="line">    <span class="meta">@Before</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;</div><div class="line">        userController = <span class="keyword">new</span> UserController();</div><div class="line">        <span class="comment">//安装userCtroller依赖 比如userService</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testView</span><span class="params">()</span> </span>&#123;</div><div class="line">        MockHttpServletRequest req = <span class="keyword">new</span> MockHttpServletRequest();</div><div class="line">        ModelAndView mv = userController.view(<span class="number">1L</span>, req);</div><div class="line"></div><div class="line">        ModelAndViewAssert.assertViewName(mv, <span class="string">"user/view"</span>);</div><div class="line">        ModelAndViewAssert.assertModelAttributeAvailable(mv, <span class="string">"user"</span>);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>准备控制器</strong>：我们通过new方式创建一个，然后手工查找依赖注入进去（比如从spring容器获取/new的）；</p>
+</li>
+<li><p><strong>Mock Request</strong>：此处使用Spring提供的MockAPI模拟一个HttpServletRequest，其他的Servlet API也提供了相应的Mock类，具体请查看Javadoc；</p>
+</li>
+<li><p><strong>访问控制器方法</strong>：通过直接调用控制器方法进行访问，此处无法验证SpringMVC框架的类型转换、数据验证等是否正常；</p>
+</li>
+<li><p><strong>ModelAndViewAssert</strong>：通过这个Assert API验证我们的返回值是否正常；</p>
+</li>
+</ul>
+<blockquote>
+<p>这种方式的缺点：</p>
+</blockquote>
+<ul>
+<li>如不能走Spring MVC完整流程（不能走Servlet的过滤器链、SpringMVC的类型转换、数据验证、数据绑定、拦截器等等），如果做基本的测试没问题，这种方式就是纯粹的单元测试，我们想要的功能其实是一种集成测试，不过后续部分不区分</li>
+</ul>
+<h2 id="安装测试环境"><a href="#安装测试环境" class="headerlink" title="安装测试环境"></a>安装测试环境</h2><ul>
+<li><strong>spring mvc</strong>测试框架提供了两种方式，独立安装和集成Web环境测试（此种方式并不会集成真正的web环境，而是通过相应的Mock API进行模拟测试，无须启动服务器）。</li>
+</ul>
+<h3 id="独立测试方式"><a href="#独立测试方式" class="headerlink" title="独立测试方式"></a>独立测试方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserControllerStandaloneSetupTest</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> MockMvc mockMvc;  </div><div class="line">    <span class="meta">@Before</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;  </div><div class="line">        UserController userController = <span class="keyword">new</span> UserController();  </div><div class="line">        mockMvc = MockMvcBuilders.standaloneSetup(userController).build();  </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>首先自己创建相应的控制器，注入相应的依赖</li>
+<li>通过<strong>MockMvcBuilders.standaloneSetup</strong>模拟一个Mvc测试环境，通过build得到一个MockMvc</li>
+<li>MockMvc：是我们以后测试时经常使用的API，后边介绍</li>
+</ol>
+<h3 id="测试API"><a href="#测试API" class="headerlink" title="测试API"></a>测试API</h3><ul>
+<li>Spring mvc测试框架提供了测试MVC需要的API，主要包括<ul>
+<li><strong>Servlet/JSPMock</strong></li>
+<li><strong>MockMvcBuilder</strong></li>
+<li><strong>MockMvc</strong></li>
+<li><strong>RequestBuilder</strong></li>
+<li><strong>ResultMatcher</strong></li>
+<li><strong>ResultHandler</strong></li>
+<li><strong>MvcResult</strong> 等</li>
+</ul>
+</li>
+<li><p>另外提供了几个静态工厂方法便于测试：</p>
+<ul>
+<li><strong>MockMvcBuilders</strong></li>
+<li><strong>MockMvcRequestBuilder</strong></li>
+<li><strong>MockMvcResultMatchers</strong></li>
+<li><strong>MockMvcResultHandler</strong></li>
+</ul>
+</li>
+<li><p>在使用时请使用静态方法导入方便测试，如：</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.springframework.test.web.servlet.setup.MockMvcBuilders.*;  </div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;  </div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;  </div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;</div></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>Servlet/JSP API Mock</strong> 提供了对Servlet 3 相应API的Mock，如：</p>
+<ul>
+<li><code>MockServletContext</code></li>
+<li><code>MockHttpServletRequest</code></li>
+<li><code>MockHttpServletResponse</code> </li>
+</ul>
+</li>
+<li><p>具体请查看spring-test模块的org.springframework.mock.web包。</p>
+</li>
+</ul>
+<h3 id="API如下："><a href="#API如下：" class="headerlink" title="API如下："></a>API如下：</h3><h4 id="MockMvcBuilder-MockMvcBuilders主要API："><a href="#MockMvcBuilder-MockMvcBuilders主要API：" class="headerlink" title="MockMvcBuilder/MockMvcBuilders主要API："></a>MockMvcBuilder/MockMvcBuilders主要API：</h4><ul>
+<li><p><strong>MockMvcBuilder</strong>是用来构造<strong>MockMvc</strong>的构造器，其主要有两个实现：</p>
+<ul>
+<li><code>StandaloneMockMvcBuilder</code></li>
+<li><code>DefaultMockMvcBuilder</code></li>
+</ul>
+</li>
+<li><p>分别对应之前的两种测试方式。对于我们来说直接使用静态工厂<strong>MockMvcBuilders</strong>创建即可：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>API说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MockMvcBuilders.webAppContextSetup(WebApplicationContextcontext)</code></td>
+<td>指定<strong>WebApplicationContext</strong>，将会从该上下文获取相应的控制器并得到相应的<strong>MockMvc</strong>；</td>
+</tr>
+<tr>
+<td><code>MockMvcBuilders.standaloneSetup(Object... controllers)</code></td>
+<td>通过参数指定一组控制器，这样就不需要从上下文获取了</td>
+</tr>
+</tbody>
+</table>
+<h4 id="DefaultMockMvcBuilder主要API："><a href="#DefaultMockMvcBuilder主要API：" class="headerlink" title="DefaultMockMvcBuilder主要API："></a>DefaultMockMvcBuilder主要API：</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>API说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>addFilters(Filter... filters)/addFilter(Filter filter, String... urlPatterns)</code></td>
+<td>添加<strong>javax.servlet.Filter</strong>过滤器</td>
+</tr>
+<tr>
+<td><code>defaultRequest(RequestBuilderrequestBuilder)</code></td>
+<td>默认的<strong>RequestBuilder</strong>，每次执行时会合并到自定义的R<strong>equestBuilder</strong>中，即提供公共请求数据的；</td>
+</tr>
+<tr>
+<td><code>alwaysExpect(ResultMatcher resultMatcher)</code></td>
+<td>定义全局的结果验证器，即每次执行请求时都进行验证的规则；</td>
+</tr>
+<tr>
+<td><code>alwaysDo(ResultHandler resultHandler)</code></td>
+<td>定义全局结果处理器，即每次请求时都进行结果处理；</td>
+</tr>
+<tr>
+<td><code>dispatchOptions</code></td>
+<td><strong>DispatcherServlet</strong>是否分发<strong>OPTIONS</strong>请求方法到控制器；</td>
+</tr>
+</tbody>
+</table>
+<h4 id="StandaloneMockMvcBuilder继承了DefaultMockMvcBuilder"><a href="#StandaloneMockMvcBuilder继承了DefaultMockMvcBuilder" class="headerlink" title="StandaloneMockMvcBuilder继承了DefaultMockMvcBuilder"></a>StandaloneMockMvcBuilder继承了DefaultMockMvcBuilder</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>API说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setMessageConverters(HttpMessageConverter&lt;?&gt;…messageConverters)</td>
+<td>设置HTTP消息转换器；</td>
+</tr>
+<tr>
+<td>setValidator(Validator validator) `</td>
+<td>设置验证器；</td>
+</tr>
+<tr>
+<td>setConversionService(FormattingConversionService conversionService)</td>
+<td>设置转换服务；</td>
+</tr>
+<tr>
+<td>addInterceptors(HandlerInterceptor…interceptors)</td>
+<td>添加spring mvc拦截器；</td>
+</tr>
+<tr>
+<td>addMappedInterceptors(String[]pathPatterns,HandlerInterceptor… interceptors)</td>
+<td>添加spring mvc拦截器；</td>
+</tr>
+<tr>
+<td>setContentNegotiationManager(ContentNegotiationManager contentNegotiationManager)</td>
+<td>设置内容协商管理器；</td>
+</tr>
+<tr>
+<td>setAsyncRequestTimeout(long timeout)</td>
+<td>设置异步超时时间；</td>
+</tr>
+<tr>
+<td>setCustomArgumentResolvers(HandlerMethodArgumentResolver… argumentResolvers)</td>
+<td>设置自定义控制器方法参数解析器；</td>
+</tr>
+<tr>
+<td>setCustomReturnValueHandlers(HandlerMethodReturnValueHandler… handlers)</td>
+<td>设置自定义控制器方法返回值处理器；</td>
+</tr>
+<tr>
+<td>setHandlerExceptionResolvers(List<handlerexceptionresolver></handlerexceptionresolver></td>
+<td>exceptionResolvers)/setHandlerExceptionResolvers(HandlerExceptionResolver… exceptionResolvers)</td>
+<td>设置异常解析器；</td>
+</tr>
+<tr>
+<td>setViewResolvers(ViewResolver…resolvers)</td>
+<td>设置视图解析器；</td>
+</tr>
+<tr>
+<td>setSingleView(View view)</td>
+<td>设置单个视图，即视图解析时总是解析到这一个（仅适用于只有一个视图的情况）；</td>
+</tr>
+<tr>
+<td>setLocaleResolver(LocaleResolver localeResolver)</td>
+<td>设置Local解析器；</td>
+</tr>
+<tr>
+<td>setFlashMapManager(FlashMapManager flashMapManager)</td>
+<td>设置FlashMapManager，如存储重定向数据；</td>
+</tr>
+<tr>
+<td>setUseSuffixPatternMatch(boolean  useSuffixPatternMatch)`</td>
+<td>设置是否是后缀模式匹配，如“/user”是否匹配”/user.*”，默认真即匹配；</td>
+</tr>
+<tr>
+<td>setUseTrailingSlashPatternMatch(boolean  useTrailingSlashPatternMatch)</td>
+<td>设置是否自动后缀路径模式匹配，如“/user”是否匹配“/user/”，默认真即匹配；</td>
+</tr>
+<tr>
+<td>addPlaceHolderValue(String name, String value)</td>
+<td>添加request mapping中的占位符替代；</td>
+</tr>
+</tbody>
+</table>
+<h3 id="MockMvc主要API："><a href="#MockMvc主要API：" class="headerlink" title="MockMvc主要API："></a>MockMvc主要API：</h3><ul>
+<li>使用之前的<code>MockMvcBuilder.build()</code>得到构建好的<strong>MockMvc</strong>；</li>
+<li>这个是mvc测试的核心API，对于该API的使用方式如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get(<span class="string">"/user/1"</span>))  </div><div class="line">       .andExpect(MockMvcResultMatchers.view().name(<span class="string">"user/view"</span>))  </div><div class="line">       .andExpect(MockMvcResultMatchers.model().attributeExists(<span class="string">"user"</span>))  </div><div class="line">       .andDo(MockMvcResultHandlers.print())  </div><div class="line">       .andReturn();</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>API说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>perform</td>
+<td>执行一个RequestBuilder请求，会自动执行SpringMVC的流程并映射到相应的控制器执行处理；</td>
+</tr>
+<tr>
+<td>andExpect</td>
+<td>添加ResultMatcher验证规则，验证控制器执行完成后结果是否正确；</td>
+</tr>
+<tr>
+<td>andDo</td>
+<td>添加ResultHandler结果处理器，比如调试时打印结果到控制台；</td>
+</tr>
+<tr>
+<td>andReturn</td>
+<td>最后返回相应的MvcResult；然后进行自定义验证/进行下一步的异步处理；</td>
+</tr>
+<tr>
+<td></td>
+</tr>
+<tr>
+<td>还提供了以下API</td>
+</tr>
+<tr>
+<td>setDefaultRequest</td>
+<td>设置默认的RequestBuilder，用于在每次perform执行相应的RequestBuilder时自动把该默认的RequestBuilder合并到perform的RequestBuilder中；</td>
+</tr>
+<tr>
+<td>setGlobalResultMatchers</td>
+<td>设置全局的预期结果验证规则，如我们通过MockMvc测试多个控制器时，假设它们都想验证某个规则时，就可以使用这个；</td>
+</tr>
+<tr>
+<td>setGlobalResultHandlers</td>
+<td>设置全局的ResultHandler结果处理器；</td>
+</tr>
+</tbody>
+</table>
+<h3 id="RequestBuilder-MockMvcRequestBuilders"><a href="#RequestBuilder-MockMvcRequestBuilders" class="headerlink" title="RequestBuilder / MockMvcRequestBuilders"></a>RequestBuilder <code>/</code> MockMvcRequestBuilders</h3><ul>
+<li><p><strong>RequestBuilder</strong>用来构建请求的，其提供了一个方法<strong>buildRequest(ServletContextservletContext)</strong>用于构<strong>建MockHttpServletRequest</strong> 其主要有两个子类。</p>
+<ul>
+<li><strong>MockHttpServletRequestBuilder</strong></li>
+<li><strong>MockMultipartHttpServletRequestBuilder</strong>（如文件上传使用）</li>
+</ul>
+</li>
+<li><p>用来Mock客户端请求需要的所有数据。</p>
+</li>
+</ul>
+<h3 id="MockMvcRequestBuilders主要API："><a href="#MockMvcRequestBuilders主要API：" class="headerlink" title="MockMvcRequestBuilders主要API："></a>MockMvcRequestBuilders主要API：</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>API说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MockHttpServletRequestBuilderget(StringurlTemplate,Object…urlVariables)</td>
+<td>根据uri模板和uri变量值得到一个GET请求方式的MockHttpServletRequestBuilder；如get(“/user/{id}”, 1L)；</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder post(String urlTemplate, Object… urlVariables)</td>
+<td>同get类似，但是是POST方法；</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder put(String urlTemplate, Object… urlVariables)</td>
+<td>同get类似，但是是PUT方法；</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder delete(String urlTemplate, Object… urlVariables)</td>
+<td>同get类似，但是是DELETE方法；</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder options(String urlTemplate, Object…urlVariables)</td>
+<td>同get类似，但是是OPTIONS方法；</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilderrequest(HttpMethodhttpMethod,StringurlTemplate,Object…urlVariables)</td>
+<td>提供自己的Http请求方法及uri模板和uri变量，如上API都是委托给这个API；</td>
+</tr>
+<tr>
+<td>MockMultipartHttpServletRequestBuilderfileUpload(StringurlTemplate,Object…urlVariables)</td>
+<td>提供文件上传方式的请求，得到MockMultipartHttpServletRequestBuilder；</td>
+</tr>
+<tr>
+<td>RequestBuilder asyncDispatch(finalMvcResultmvcResult)</td>
+<td>创建一个从启动异步处理的请求的MvcResult进行异步分派的RequestBuilder；</td>
+</tr>
+</tbody>
+</table>
+<h3 id="MockHttpServletRequestBuilder和MockMultipartHttpServletRequestBuilder-API："><a href="#MockHttpServletRequestBuilder和MockMultipartHttpServletRequestBuilder-API：" class="headerlink" title="MockHttpServletRequestBuilder和MockMultipartHttpServletRequestBuilder API："></a>MockHttpServletRequestBuilder和MockMultipartHttpServletRequestBuilder API：</h3><h4 id="MockHttpServletRequestBuilder-API："><a href="#MockHttpServletRequestBuilder-API：" class="headerlink" title="MockHttpServletRequestBuilder API："></a>MockHttpServletRequestBuilder API：</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>API说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MockHttpServletRequestBuilderheader(Stringname,Object…values)</td>
+<td>添加头信息</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilderheaders(HttpHeaders  httpHeaders)</td>
+<td>添加头信息</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder contentType(MediaType mediaType)</td>
+<td>指定请求的contentType头信息</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilderaccept(MediaType…mediaTypes)/MockHttpServletRequestBuilderaccept(String…mediaTypes)</td>
+<td>指定请求的Accept头信息</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuildercontent(byte[]content)/MockHttpServletRequestBuildercontent(Stringcontent)</td>
+<td>指定请求Body体内容</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder cookie(Cookie… cookies)</td>
+<td>指定请求的Cookie</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder locale(Locale locale</td>
+<td>指定请求的Locale</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder characterEncoding(String encoding)</td>
+<td>指定请求字符编码</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder requestAttr(String name, Object value)</td>
+<td>设置请求属性数据</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder sessionAttr(String name, Object value)</td>
+<td>置请求session属性数据；</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder</td>
+<td>sessionAttrs(Map<string, object=""> sessionAttributes)</string,></td>
+<td>置请求session属性数据</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder flashAttr(String name, Object value)</td>
+<td>指定请求的flash信息，比如重定向后的属性信息</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder</td>
+<td>flashAttrs(Map<string,object>flashAttributes)</string,object></td>
+<td>指定请求的flash信息，比如重定向后的属性信息</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder session(MockHttpSession session)</td>
+<td>指定请求的Session</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder principal(Principal principal)</td>
+<td>指定请求的Principal</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuildercontextPath(StringcontextPath)</td>
+<td>指定请求的上下文路径，必须以“/”开头，且不能以“/”结尾</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder pathInfo(String pathInfo)</td>
+<td>请求的路径信息，必须以“/”开头</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilder secure(boolean secure)</td>
+<td>请求是否使用安全通道</td>
+</tr>
+<tr>
+<td>MockHttpServletRequestBuilderwith(RequestPostProcessorpostProcessor)</td>
+<td>请求的后处理器，用于自定义一些请求处理的扩展点</td>
+</tr>
+</tbody>
+</table>
+<h4 id="MockMultipartHttpServletRequestBuilder继承自MockHttpServletRequestBuilder，又提供了如下API："><a href="#MockMultipartHttpServletRequestBuilder继承自MockHttpServletRequestBuilder，又提供了如下API：" class="headerlink" title="MockMultipartHttpServletRequestBuilder继承自MockHttpServletRequestBuilder，又提供了如下API："></a>MockMultipartHttpServletRequestBuilder继承自MockHttpServletRequestBuilder，又提供了如下API：</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>API说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MockMultipartHttpServletRequestBuilder file(String name, byte[] content)</td>
+<td>指定要上传的文件</td>
+</tr>
+<tr>
+<td>MockMultipartHttpServletRequestBuilder file(MockMultipartFile file)</td>
+<td>指定要上传的文件</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ResultActions"><a href="#ResultActions" class="headerlink" title="ResultActions"></a>ResultActions</h4><ul>
+<li>调用<code>MockMvc.perform(RequestBuilder requestBuilder)</code>后将得到<strong>ResultActions</strong>，通过ResultActions完成如下三件事：<ul>
+<li><strong>ResultActions andExpect(ResultMatcher matcher)</strong> ：添加验证断言来判断执行请求后的结果是否是预期的；</li>
+<li><strong>ResultActions andDo(ResultHandlerhandler)</strong>：添加结果处理器，用于对验证成功后执行的动作，如输出下请求/结果信息用于调试；</li>
+<li><strong>MvcResult andReturn()</strong> ：<strong>返回验证成功后的MvcResult</strong>；用于自定义验证/下一步的异步处理；</li>
+</ul>
+</li>
+</ul>
+<h3 id="ResultMatcher-MockMvcResultMatchers"><a href="#ResultMatcher-MockMvcResultMatchers" class="headerlink" title="ResultMatcher / MockMvcResultMatchers"></a>ResultMatcher <code>/</code> MockMvcResultMatchers</h3><ul>
+<li><strong>ResultMatcher</strong>用来匹配执行完请求后的结果验证，其就一个 <strong><em>match(MvcResultresult)</em></strong> 断言方法，如果匹配失败将抛出相应的异常；</li>
+<li>spring mvc测试框架提供了很多ResultMatchers来满足测试需求。注意这些ResultMatchers并不是ResultMatcher的子类，而是返回ResultMatcher实例的。</li>
+<li><p>Spring mvc测试框架为了测试方便提供了<strong><em>MockMvcResultMatchers</em></strong>静态工厂方法方便操作；</p>
+</li>
+<li><p>具体的API如下：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>API说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HandlerResultMatchers handler()</td>
+<td>请求的Handler验证器，比如验证处理器类型/方法名；此处的Handler其实就是处理请求的控制器；</td>
+</tr>
+<tr>
+<td>RequestResultMatchers request()</td>
+<td>得到RequestResultMatchers验证器</td>
+</tr>
+<tr>
+<td>ModelResultMatchers model()</td>
+<td>得到模型验证器</td>
+</tr>
+<tr>
+<td>ViewResultMatchers view()</td>
+<td>得到视图验证器</td>
+</tr>
+<tr>
+<td>FlashAttributeResultMatchers flash()</td>
+<td>得到Flash属性验证</td>
+</tr>
+<tr>
+<td>StatusResultMatchers status()</td>
+<td>得到响应状态验证器</td>
+</tr>
+<tr>
+<td>HeaderResultMatchers header()</td>
+<td>得到响应Header验证器</td>
+</tr>
+<tr>
+<td>CookieResultMatchers cookie()</td>
+<td>得到响应Cookie验证器</td>
+</tr>
+<tr>
+<td>ContentResultMatchers content()</td>
+<td>得到响应内容验证器</td>
+</tr>
+<tr>
+<td>JsonPathResultMatchers jsonPath(String expression, Object … args)</td>
+<td>得到Json表达式验证器</td>
+</tr>
+<tr>
+<td>ResultMatcher jsonPath(String expression, Matcher<t> matcher)</t></td>
+<td>得到Json表达式验证器</td>
+</tr>
+<tr>
+<td>XpathResultMatchers xpath(String expression, Object… args)</td>
+<td>得到Xpath表达式验证器</td>
+</tr>
+<tr>
+<td>XpathResultMatchers xpath(String expression,Map<string,string>namespaces,Object…args)</string,string></td>
+<td>得到Xpath表达式验证器</td>
+</tr>
+<tr>
+<td>ResultMatcher forwardedUrl(final String expectedUrl)</td>
+<td>验证处理完请求后转发的url（绝对匹配）</td>
+</tr>
+<tr>
+<td>ResultMatcher forwardedUrlPattern(final String urlPattern)</td>
+<td>验证处理完请求后转发的url（Ant风格模式匹配，@since spring4）</td>
+</tr>
+<tr>
+<td>ResultMatcher redirectedUrl(final String expectedUrl)</td>
+<td>验证处理完请求后重定向的url（绝对匹配）</td>
+</tr>
+<tr>
+<td>ResultMatcher redirectedUrlPattern(final StringexpectedUrl)</td>
+<td>验证处理完请求后重定向的url（Ant风格模式匹配，@since</td>
+<td>spring4）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>得到相应的<strong>ResultMatchers</strong>后，接着再调用其相应的API得到<strong>ResultMatcher</strong>，</li>
+<li>如<code>ModelResultMatchers.attributeExists(final String...names)</code>判断Model属性是否存在。具体请查看相应的API。</li>
+</ul>
+<h4 id="ResultHandler-MockMvcResultHandlers"><a href="#ResultHandler-MockMvcResultHandlers" class="headerlink" title="ResultHandler/MockMvcResultHandlers"></a>ResultHandler/MockMvcResultHandlers</h4><ul>
+<li><strong>ResultHandler</strong>用于对处理的结果进行相应处理的，比如输出整个请求/响应等信息方便调试</li>
+<li>Springmvc测试框架提供了<strong><em>MockMvcResultHandlers</em></strong>静态工厂方法，该工厂提供了<code>ResultHandlerprint()</code>返回一个输出<strong>MvcResult</strong>详细信息到控制台的ResultHandler实现。</li>
+</ul>
+<h4 id="MvcResult"><a href="#MvcResult" class="headerlink" title="MvcResult"></a>MvcResult</h4><ul>
+<li>即执行完控制器后得到的整个结果，并不仅仅是返回值，其包含了测试时需要的所有信息，如：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>API说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MockHttpServletRequest getRequest()：</td>
+<td>得到执行的请求；</td>
+</tr>
+<tr>
+<td>MockHttpServletResponse getResponse()：</td>
+<td>得到执行后的响应；</td>
+</tr>
+<tr>
+<td>Object getHandler()：</td>
+<td>得到执行的处理器，一般就是控制器；</td>
+</tr>
+<tr>
+<td>HandlerInterceptor[] getInterceptors()：</td>
+<td>得到对处理器进行拦截的拦截器；</td>
+</tr>
+<tr>
+<td>ModelAndView getModelAndView()：</td>
+<td>得到执行后的ModelAndView；</td>
+</tr>
+<tr>
+<td>Exception getResolvedException()：</td>
+<td>得到HandlerExceptionResolver解析后的异常；</td>
+</tr>
+<tr>
+<td>FlashMap getFlashMap()：</td>
+<td>得到FlashMap；</td>
+</tr>
+<tr>
+<td>Object getAsyncResult()</td>
+<td>得到异步执行的结果；</td>
+</tr>
+<tr>
+<td>Object getAsyncResult(long timeout)</td>
+<td>得到异步执行的结果；</td>
+</tr>
+</tbody>
+</table>
+<h2 id="测试示例"><a href="#测试示例" class="headerlink" title="测试示例"></a>测试示例</h2><h3 id="测试普通控制器"><a href="#测试普通控制器" class="headerlink" title="测试普通控制器"></a>测试普通控制器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//测试普通控制器  </span></div><div class="line">mockMvc.perform(get(<span class="string">"/user/&#123;id&#125;"</span>, <span class="number">1</span>)) <span class="comment">//执行请求  </span></div><div class="line">        .andExpect(model().attributeExists(<span class="string">"user"</span>)) <span class="comment">//验证存储模型数据  </span></div><div class="line">        .andExpect(view().name(<span class="string">"user/view"</span>)) <span class="comment">//验证viewName  </span></div><div class="line">        .andExpect(forwardedUrl(<span class="string">"/WEB-INF/jsp/user/view.jsp"</span>))<span class="comment">//验证视图渲染时forward到的jsp  </span></div><div class="line">        .andExpect(status().isOk())<span class="comment">//验证状态码  </span></div><div class="line">        .andDo(print()); <span class="comment">//输出MvcResult到控制台</span></div></pre></td></tr></table></figure>
+<h3 id="测试普通控制器，但是URL错误，即404"><a href="#测试普通控制器，但是URL错误，即404" class="headerlink" title="测试普通控制器，但是URL错误，即404"></a>测试普通控制器，但是URL错误，即404</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//找不到控制器，404测试  </span></div><div class="line">MvcResult result = mockMvc.perform(get(<span class="string">"/user2/&#123;id&#125;"</span>, <span class="number">1</span>)) <span class="comment">//执行请求  </span></div><div class="line">        .andDo(print())  </div><div class="line">        .andExpect(status().isNotFound()) <span class="comment">//验证控制器不存在  </span></div><div class="line">        .andReturn();  </div><div class="line">Assert.assertNull(result.getModelAndView()); <span class="comment">//自定义断言</span></div></pre></td></tr></table></figure>
+<h3 id="得到MvcResult自定义验证"><a href="#得到MvcResult自定义验证" class="headerlink" title="得到MvcResult自定义验证"></a>得到MvcResult自定义验证</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">MvcResult result = mockMvc.perform(get(<span class="string">"/user/&#123;id&#125;"</span>, <span class="number">1</span>))<span class="comment">//执行请求  </span></div><div class="line">        .andReturn(); <span class="comment">//返回MvcResult  </span></div><div class="line">Assert.assertNotNull(result.getModelAndView().getModel().get(<span class="string">"user"</span>)); <span class="comment">//自定义断言</span></div></pre></td></tr></table></figure>
+<h3 id="验证请求参数绑定到模型数据及Flash属性"><a href="#验证请求参数绑定到模型数据及Flash属性" class="headerlink" title="验证请求参数绑定到模型数据及Flash属性"></a>验证请求参数绑定到模型数据及Flash属性</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mockMvc.perform(post(<span class="string">"/user"</span>).param(<span class="string">"name"</span>, <span class="string">"zhang"</span>)) <span class="comment">//执行传递参数的POST请求(也可以post("/user?name=zhang"))  </span></div><div class="line">        .andExpect(handler().handlerType(UserController.class)) <span class="comment">//验证执行的控制器类型  </span></div><div class="line">        .andExpect(handler().methodName(<span class="string">"create"</span>)) <span class="comment">//验证执行的控制器方法名  </span></div><div class="line">        .andExpect(model().hasNoErrors()) <span class="comment">//验证页面没有错误  </span></div><div class="line">        .andExpect(flash().attributeExists(<span class="string">"success"</span>)) <span class="comment">//验证存在flash属性  </span></div><div class="line">        .andExpect(view().name(<span class="string">"redirect:/user"</span>)); <span class="comment">//验证视图</span></div></pre></td></tr></table></figure>
+<h3 id="验证请求参数验证失败出错"><a href="#验证请求参数验证失败出错" class="headerlink" title="验证请求参数验证失败出错"></a>验证请求参数验证失败出错</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mockMvc.perform(post(<span class="string">"/user"</span>).param(<span class="string">"name"</span>, <span class="string">"admin"</span>)) <span class="comment">//执行请求  </span></div><div class="line">        .andExpect(model().hasErrors()) <span class="comment">//验证模型有错误  </span></div><div class="line">        .andExpect(model().attributeDoesNotExist(<span class="string">"name"</span>)) <span class="comment">//验证存在错误的属性  </span></div><div class="line">        .andExpect(view().name(<span class="string">"showCreateForm"</span>)); <span class="comment">//验证视图</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//文件上传  </span></div><div class="line"><span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[] &#123;<span class="number">1</span>, <span class="number">2</span>&#125;;  </div><div class="line">mockMvc.perform(fileUpload(<span class="string">"/user/&#123;id&#125;/icon"</span>, <span class="number">1L</span>).file(<span class="string">"icon"</span>, bytes)) <span class="comment">//执行文件上传  </span></div><div class="line">        .andExpect(model().attribute(<span class="string">"icon"</span>, bytes)) <span class="comment">//验证属性相等性  </span></div><div class="line">        .andExpect(view().name(<span class="string">"success"</span>)); <span class="comment">//验证视图</span></div></pre></td></tr></table></figure>
+<h3 id="JSON请求-响应验证"><a href="#JSON请求-响应验证" class="headerlink" title="JSON请求/响应验证"></a>JSON请求/响应验证</h3><ul>
+<li>测试时需要安装jackson Json和JsonPath依赖： </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">String requestBody = <span class="string">"&#123;\"id\":1, \"name\":\"zhang\"&#125;"</span>;  </div><div class="line">mockMvc.perform(post(<span class="string">"/user"</span>)  </div><div class="line">            .contentType(MediaType.APPLICATION_JSON).content(requestBody)  </div><div class="line">            .accept(MediaType.APPLICATION_JSON)) <span class="comment">//执行请求  </span></div><div class="line">        .andExpect(content().contentType(MediaType.APPLICATION_JSON)) <span class="comment">//验证响应contentType  </span></div><div class="line">        .andExpect(jsonPath(<span class="string">"$.id"</span>).value(<span class="number">1</span>)); <span class="comment">//使用Json path验证JSON 请参考http://goessner.net/articles/JsonPath/  </span></div><div class="line">  </div><div class="line">String errorBody = <span class="string">"&#123;id:1, name:zhang&#125;"</span>;  </div><div class="line">MvcResult result = mockMvc.perform(post(<span class="string">"/user"</span>)  </div><div class="line">        .contentType(MediaType.APPLICATION_JSON).content(errorBody)  </div><div class="line">        .accept(MediaType.APPLICATION_JSON)) <span class="comment">//执行请求  </span></div><div class="line">        .andExpect(status().isBadRequest()) <span class="comment">//400错误请求  </span></div><div class="line">        .andReturn();  </div><div class="line">  </div><div class="line">Assert.assertTrue(HttpMessageNotReadableException.class.isAssignableFrom(result.getResolvedException().getClass()));<span class="comment">//错误的请求内容体</span></div></pre></td></tr></table></figure>
+<h3 id="XML请求-响应验证"><a href="#XML请求-响应验证" class="headerlink" title="XML请求/响应验证"></a>XML请求/响应验证</h3><ul>
+<li>测试时需要安装<code>spring oxm</code>和<code>xstream</code>依赖： </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//XML请求/响应  </span></div><div class="line">String requestBody = <span class="string">"&lt;user&gt;&lt;id&gt;1&lt;/id&gt;&lt;name&gt;zhang&lt;/name&gt;&lt;/user&gt;"</span>;  </div><div class="line">mockMvc.perform(post(<span class="string">"/user"</span>)  </div><div class="line">        .contentType(MediaType.APPLICATION_XML).content(requestBody)  </div><div class="line">        .accept(MediaType.APPLICATION_XML)) <span class="comment">//执行请求  </span></div><div class="line">        .andDo(print())  </div><div class="line">        .andExpect(content().contentType(MediaType.APPLICATION_XML)) <span class="comment">//验证响应contentType  </span></div><div class="line">        .andExpect(xpath(<span class="string">"/user/id/text()"</span>).string(<span class="string">"1"</span>)); <span class="comment">//使用XPath表达式验证XML 请参考http://www.w3school.com.cn/xpath/  </span></div><div class="line">  </div><div class="line">String errorBody = <span class="string">"&lt;user&gt;&lt;id&gt;1&lt;/id&gt;&lt;name&gt;zhang&lt;/name&gt;"</span>;  </div><div class="line">MvcResult result = mockMvc.perform(post(<span class="string">"/user"</span>)  </div><div class="line">        .contentType(MediaType.APPLICATION_XML).content(errorBody)  </div><div class="line">        .accept(MediaType.APPLICATION_XML)) <span class="comment">//执行请求  </span></div><div class="line">        .andExpect(status().isBadRequest()) <span class="comment">//400错误请求  </span></div><div class="line">        .andReturn();  </div><div class="line">  </div><div class="line">Assert.assertTrue(HttpMessageNotReadableException.class.isAssignableFrom(result.getResolvedException().getClass()));<span class="comment">//错误的请求内容体</span></div></pre></td></tr></table></figure>
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//异常处理  </span></div><div class="line">MvcResult result = mockMvc.perform(get(<span class="string">"/user/exception"</span>)) <span class="comment">//执行请求  </span></div><div class="line">        .andExpect(status().isInternalServerError()) <span class="comment">//验证服务器内部错误  </span></div><div class="line">        .andReturn();  </div><div class="line">  </div><div class="line">Assert.assertTrue(IllegalArgumentException.class.isAssignableFrom(result.getResolvedException().getClass()));</div></pre></td></tr></table></figure>
+<h3 id="静态资源"><a href="#静态资源" class="headerlink" title="静态资源"></a>静态资源</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//静态资源  </span></div><div class="line">mockMvc.perform(get(<span class="string">"/static/app.js"</span>)) <span class="comment">//执行请求  </span></div><div class="line">        .andExpect(status().isOk()) <span class="comment">//验证状态码200  </span></div><div class="line">        .andExpect(content().string(CoreMatchers.containsString(<span class="string">"var"</span>)));<span class="comment">//验证渲染后的视图内容包含var  </span></div><div class="line">  </div><div class="line">mockMvc.perform(get(<span class="string">"/static/app1.js"</span>)) <span class="comment">//执行请求  </span></div><div class="line">        .andExpect(status().isNotFound());  <span class="comment">//验证状态码404</span></div></pre></td></tr></table></figure>
+<h3 id="异步测试"><a href="#异步测试" class="headerlink" title="异步测试"></a>异步测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Callable  </span></div><div class="line">MvcResult result = mockMvc.perform(get(<span class="string">"/user/async1?id=1&amp;name=zhang"</span>)) <span class="comment">//执行请求  </span></div><div class="line">        .andExpect(request().asyncStarted())  </div><div class="line">        .andExpect(request().asyncResult(CoreMatchers.instanceOf(User.class))) <span class="comment">//默认会等10秒超时  </span></div><div class="line">        .andReturn();  </div><div class="line">  </div><div class="line">mockMvc.perform(asyncDispatch(result))  </div><div class="line">        .andExpect(status().isOk())  </div><div class="line">        .andExpect(content().contentType(MediaType.APPLICATION_JSON))  </div><div class="line">        .andExpect(jsonPath(<span class="string">"$.id"</span>).value(<span class="number">1</span>));</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//DeferredResult  </span></div><div class="line">result = mockMvc.perform(get(<span class="string">"/user/async2?id=1&amp;name=zhang"</span>)) <span class="comment">//执行请求  </span></div><div class="line">        .andExpect(request().asyncStarted())  </div><div class="line">        .andExpect(request().asyncResult(CoreMatchers.instanceOf(User.class)))  <span class="comment">//默认会等10秒超时  </span></div><div class="line">        .andReturn();  </div><div class="line">  </div><div class="line">mockMvc.perform(asyncDispatch(result))  </div><div class="line">        .andExpect(status().isOk())  </div><div class="line">        .andExpect(content().contentType(MediaType.APPLICATION_JSON))  </div><div class="line">        .andExpect(jsonPath(<span class="string">"$.id"</span>).value(<span class="number">1</span>));</div></pre></td></tr></table></figure>
+<ul>
+<li>此处请在第一次请求时加上 <strong><em>andExpect(request().asyncResult(CoreMatchers.instanceOf(User.class)))</em></strong> 这样会等待结果返回/超时，无须自己设置线程等待了；此处注意<strong><em>request().asyncResult</em></strong>一定是在第一次请求发出；然后第二次通过<strong><em>asyncDispatch</em></strong>进行异步请求。</li>
+</ul>
+<h3 id="添加自定义过滤器"><a href="#添加自定义过滤器" class="headerlink" title="添加自定义过滤器"></a>添加自定义过滤器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mockMvc = webAppContextSetup(wac).addFilter(<span class="keyword">new</span> MyFilter(), <span class="string">"/*"</span>).build();  </div><div class="line">mockMvc.perform(get(<span class="string">"/user/1"</span>)).andExpect(request().attribute(<span class="string">"filter"</span>, <span class="keyword">true</span>));</div></pre></td></tr></table></figure>
+<h3 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mockMvc = webAppContextSetup(wac)  </div><div class="line">        .defaultRequest(get(<span class="string">"/user/1"</span>).requestAttr(<span class="string">"default"</span>, <span class="keyword">true</span>)) <span class="comment">//默认请求 如果其是Mergeable类型的，会自动合并的哦mockMvc.perform中的RequestBuilder  </span></div><div class="line">        .alwaysDo(print())  <span class="comment">//默认每次执行请求后都做的动作  </span></div><div class="line">        .alwaysExpect(request().attribute(<span class="string">"default"</span>, <span class="keyword">true</span>)) <span class="comment">//默认每次执行后进行验证的断言  </span></div><div class="line">        .build();  </div><div class="line">  </div><div class="line">mockMvc.perform(get(<span class="string">"/user/1"</span>))  </div><div class="line">        .andExpect(model().attributeExists(<span class="string">"user"</span>));</div></pre></td></tr></table></figure>
+<h2 id="记住测试步骤，按照步骤操作，整个测试过程是非常容易理解的："><a href="#记住测试步骤，按照步骤操作，整个测试过程是非常容易理解的：" class="headerlink" title="记住测试步骤，按照步骤操作，整个测试过程是非常容易理解的："></a>记住测试步骤，按照步骤操作，整个测试过程是非常容易理解的：</h2><ol>
+<li>准备测试环境</li>
+<li>通过MockMvc执行请求</li>
+<li>添加验证断言</li>
+<li>添加结果处理器</li>
+<li>得到MvcResult进行自定义断言/进行下一步的异步请求</li>
+<li>卸载测试环境</li>
+</ol>
+<h3 id="集成Web环境方式"><a href="#集成Web环境方式" class="headerlink" title="集成Web环境方式"></a>集成Web环境方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//XML风格  </span></div><div class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)  </div><div class="line"><span class="meta">@WebAppConfiguration</span>(value = <span class="string">"src/main/webapp"</span>)  </div><div class="line"><span class="meta">@ContextHierarchy</span>(&#123;  </div><div class="line">        <span class="meta">@ContextConfiguration</span>(name = <span class="string">"parent"</span>, locations = <span class="string">"classpath:spring-config.xml"</span>),  </div><div class="line">        <span class="meta">@ContextConfiguration</span>(name = <span class="string">"child"</span>, locations = <span class="string">"classpath:spring-mvc.xml"</span>)  </div><div class="line">&#125;)  </div><div class="line">  </div><div class="line"><span class="comment">//注解风格  </span></div><div class="line"><span class="comment">//@RunWith(SpringJUnit4ClassRunner.class)  </span></div><div class="line"><span class="comment">//@WebAppConfiguration(value = "src/main/webapp")  </span></div><div class="line"><span class="comment">//@ContextHierarchy(&#123;  </span></div><div class="line"><span class="comment">//        @ContextConfiguration(name = "parent", classes = AppConfig.class),  </span></div><div class="line"><span class="comment">//        @ContextConfiguration(name = "child", classes = MvcConfig.class)  </span></div><div class="line"><span class="comment">//&#125;)  </span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserControllerWebAppContextSetupTest</span> </span>&#123;  </div><div class="line">  </div><div class="line">    <span class="meta">@Autowired</span>  </div><div class="line">    <span class="keyword">private</span> WebApplicationContext wac;  </div><div class="line">    <span class="keyword">private</span> MockMvc mockMvc;  </div><div class="line">  </div><div class="line">    <span class="meta">@Before</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;  </div><div class="line">        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>通过<code>@Autowired</code> WebApplicationContextwac注入web环境的<strong>ApplicationContext</strong>容器；</li>
+<li>然后通过<code>MockMvcBuilders.webAppContextSetup(wac).build()</code>创建一个<strong>MockMvc</strong>进行测试；</li>
+</ul>
+<h3 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span>  </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testView</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;  </div><div class="line">    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get(<span class="string">"/user/1"</span>))  </div><div class="line">            .andExpect(MockMvcResultMatchers.view().name(<span class="string">"user/view"</span>))  </div><div class="line">            .andExpect(MockMvcResultMatchers.model().attributeExists(<span class="string">"user"</span>))  </div><div class="line">            .andDo(MockMvcResultHandlers.print())  </div><div class="line">            .andReturn();  </div><div class="line">      </div><div class="line">    Assert.assertNotNull(result.getModelAndView().getModel().get(<span class="string">"user"</span>));  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><strong>mockMvc.perform</strong> 执行一个请求；</li>
+<li><strong>MockMvcRequestBuilders.get(“/user/1”)</strong> 构造一个请求</li>
+<li><strong>ResultActions.andExpect</strong> 添加执行完成后的断言</li>
+<li><strong>ResultActions.andDo</strong> 添加一个结果处理器，表示要对结果做点什么事情，比如此处使用<strong>MockMvcResultHandlers.print()</strong> 输出整个响应结果信息。</li>
+<li><strong>ResultActions.andReturn</strong> 表示执行完成后返回相应的结果。</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[YAML]]></title>
       <url>/2016/08/17/160817_yaml/</url>
       <content type="html"><![CDATA[<h2 id="YAML"><a href="#YAML" class="headerlink" title="YAML"></a>YAML</h2><ul>
