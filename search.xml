@@ -96,16 +96,11 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <p>对于Spy，官方有个Sample：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">List list = <span class="keyword">new</span> LinkedList();</div><div class="line">List spy = spy(list);</div><div class="line"></div><div class="line"><span class="comment">//optionally, you can stub out some methods:</span></div><div class="line">when(spy.size()).thenReturn(<span class="number">100</span>);</div><div class="line"></div><div class="line"><span class="comment">//using the spy calls real methods</span></div><div class="line">spy.add(<span class="string">"one"</span>);</div><div class="line">spy.add(<span class="string">"two"</span>);</div><div class="line"></div><div class="line"><span class="comment">//prints "one" - 这个函数还是真实的</span></div><div class="line">System.out.println(spy.get(<span class="number">0</span>));</div><div class="line"></div><div class="line"><span class="comment">//100 is printed - size()函数被替换了</span></div><div class="line">System.out.println(spy.size());</div></pre></td></tr></table></figure>
 <ul>
-<li><p>通俗来讲，在我个人理解，Spy()可以使一个对象的一部分方法被用户替换。</p>
-</li>
-<li><p>在我们的例子中，CreateGameServiceImpl中的函数<code>createGame()</code>调用了<code>createBlankGame()</code>，而后者可能是未实现的。</p>
-</li>
-<li><p>但是此时CreateGameServiceImpl类的注解是<code>@InjectMocks</code>而不是<code>@Mock</code>，只能接收<code>@Mock</code>对象的注入，而自己的方法无法被<strong>mock(stub</strong>)。</p>
-</li>
-<li><p>因此我们通过<code>spy()</code>，将CreateGameServiceImpl部分<strong>mock</strong>化，从而将createBlankGame()函数替换掉。</p>
-</li>
-<li><p>不过这里如果遇到private的被调函数就没办法了。</p>
-</li>
+<li>通俗来讲，在我个人理解，Spy()可以使一个对象的一部分方法被用户替换。</li>
+<li>在我们的例子中，CreateGameServiceImpl中的函数<code>createGame()</code>调用了<code>createBlankGame()</code>，而后者可能是未实现的。</li>
+<li>但是此时CreateGameServiceImpl类的注解是<code>@InjectMocks</code>而不是<code>@Mock</code>，只能接收<code>@Mock</code>对象的注入，而自己的方法无法被<strong>mock(stub</strong>)。</li>
+<li>因此我们通过<code>spy()</code>，将CreateGameServiceImpl部分<strong>mock</strong>化，从而将createBlankGame()函数替换掉。</li>
+<li>不过这里如果遇到private的被调函数就没办法了。</li>
 </ul>
 <h2 id="在JUnit中集成Spring上下文的支持"><a href="#在JUnit中集成Spring上下文的支持" class="headerlink" title="在JUnit中集成Spring上下文的支持"></a>在JUnit中集成Spring上下文的支持</h2><ul>
 <li>使用JUnit 4.x提供的注解<code>@RunWith</code>，可以指定单元测试的“运行类”，运行类必须继承自 <code>org.junit.runner.Runner</code> 并实现 <strong>run</strong> 方法。</li>
@@ -114,20 +109,16 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span> ( SpringJUnit4ClassRunner.class ) <span class="comment">//指定单元测试运行类</span></div><div class="line"><span class="meta">@SpringBootTest</span>(classes = Application.class)</div><div class="line"><span class="comment">//很多情况下单元测试离不开事务，下面的注解指明使用的事务管理器</span></div><div class="line"><span class="comment">//如果defaultRollback为true，测试运行结束后，默认回滚事务，不影响数据库</span></div><div class="line"><span class="meta">@TransactionConfiguration</span> ( transactionManager = <span class="string">"txManager"</span>, defaultRollback = <span class="keyword">true</span> )</div><div class="line"><span class="meta">@Transactional</span> <span class="comment">//指定默认所有测试方法的事务特性</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceTest</span></span></div><div class="line">&#123;</div><div class="line"> </div><div class="line">    <span class="meta">@Inject</span></div><div class="line">    <span class="keyword">private</span> SpringManagedBean bean; <span class="comment">//任何Spring管理的Bean都可以注入到单元测试类</span></div><div class="line"> </div><div class="line">    <span class="meta">@BeforeClass</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setUpBeforeClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@AfterClass</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tearDownAfterClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="meta">@Before</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="meta">@After</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="meta">@Repeat</span> ( <span class="number">10</span> )<span class="comment">//重复测试10次</span></div><div class="line">    <span class="comment">//该测试期望抛出IllegalArgumentException，测试超时1秒</span></div><div class="line">    <span class="meta">@Test</span> ( expected = IllegalArgumentException.class, timeout = <span class="number">1000</span> )</div><div class="line">    <span class="meta">@Rollback</span> ( <span class="keyword">true</span> )</div><div class="line">    <span class="comment">//测试完毕后回滚</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="Spring-MVC的测试"><a href="#Spring-MVC的测试" class="headerlink" title="Spring MVC的测试"></a>Spring MVC的测试</h2><h3 id="以前的测试方式"><a href="#以前的测试方式" class="headerlink" title="以前的测试方式"></a>以前的测试方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.sishuok.mvc.controller;</div><div class="line"><span class="comment">//省略import</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserControllerTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> UserController userController;</div><div class="line"></div><div class="line">    <span class="meta">@Before</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;</div><div class="line">        userController = <span class="keyword">new</span> UserController();</div><div class="line">        <span class="comment">//安装userCtroller依赖 比如userService</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testView</span><span class="params">()</span> </span>&#123;</div><div class="line">        MockHttpServletRequest req = <span class="keyword">new</span> MockHttpServletRequest();</div><div class="line">        ModelAndView mv = userController.view(<span class="number">1L</span>, req);</div><div class="line"></div><div class="line">        ModelAndViewAssert.assertViewName(mv, <span class="string">"user/view"</span>);</div><div class="line">        ModelAndViewAssert.assertModelAttributeAvailable(mv, <span class="string">"user"</span>);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li><p><strong>准备控制器</strong>：我们通过new方式创建一个，然后手工查找依赖注入进去（比如从spring容器获取/new的）；</p>
-</li>
-<li><p><strong>Mock Request</strong>：此处使用Spring提供的MockAPI模拟一个HttpServletRequest，其他的Servlet API也提供了相应的Mock类，具体请查看Javadoc；</p>
-</li>
-<li><p><strong>访问控制器方法</strong>：通过直接调用控制器方法进行访问，此处无法验证SpringMVC框架的类型转换、数据验证等是否正常；</p>
-</li>
+<li><strong>准备控制器</strong>：我们通过new方式创建一个，然后手工查找依赖注入进去（比如从spring容器获取/new的）；</li>
+<li><strong>Mock Request</strong>：此处使用Spring提供的MockAPI模拟一个HttpServletRequest，其他的Servlet API也提供了相应的Mock类，具体请查看Javadoc；</li>
+<li><strong>访问控制器方法</strong>：通过直接调用控制器方法进行访问，此处无法验证SpringMVC框架的类型转换、数据验证等是否正常；</li>
 <li><p><strong>ModelAndViewAssert</strong>：通过这个Assert API验证我们的返回值是否正常；</p>
-</li>
-</ul>
 <blockquote>
 <p>这种方式的缺点：</p>
 </blockquote>
-<ul>
-<li>如不能走Spring MVC完整流程（不能走Servlet的过滤器链、SpringMVC的类型转换、数据验证、数据绑定、拦截器等等），如果做基本的测试没问题，这种方式就是纯粹的单元测试，我们想要的功能其实是一种集成测试，不过后续部分不区分</li>
+</li>
+<li><p>如不能走Spring MVC完整流程（不能走Servlet的过滤器链、SpringMVC的类型转换、数据验证、数据绑定、拦截器等等），如果做基本的测试没问题，这种方式就是纯粹的单元测试，我们想要的功能其实是一种集成测试，不过后续部分不区分</p>
+</li>
 </ul>
 <h2 id="安装测试环境"><a href="#安装测试环境" class="headerlink" title="安装测试环境"></a>安装测试环境</h2><ul>
 <li><strong>spring mvc</strong>测试框架提供了两种方式，独立安装和集成Web环境测试（此种方式并不会集成真正的web环境，而是通过相应的Mock API进行模拟测试，无须启动服务器）。</li>
@@ -1671,18 +1662,18 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
     </entry>
     
     <entry>
+      <title><![CDATA[lambda表达式]]></title>
+      <url>/2016/08/04/160805_lambda/</url>
+      <content type="html"><![CDATA[<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f6aipo68yvj20qo0qoaee.jpg" alt="image"></p>
+<a id="more"></a>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[【源码阅读】Spring源码阅读]]></title>
       <url>/2016/08/04/160804_sc_spring/</url>
       <content type="html"><![CDATA[<h2 id="Spring源码阅读"><a href="#Spring源码阅读" class="headerlink" title="Spring源码阅读"></a>Spring源码阅读</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f6gcxc1t7vj20hs0hsgo1.jpg" alt="image"></p>
 <a id="more"></a>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[lambda表达式]]></title>
-      <url>/2016/08/04/160805_lambda/</url>
-      <content type="html"><![CDATA[<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f6aipo68yvj20qo0qoaee.jpg" alt="image"></p>
-<a id="more"></a>]]></content>
     </entry>
     
     <entry>
