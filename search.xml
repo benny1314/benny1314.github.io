@@ -6,7 +6,7 @@
     <entry>
       <title><![CDATA[基于Spring web 做单元测试]]></title>
       <url>/2016/08/18/160818_junit_spirng_mock/</url>
-      <content type="html"><![CDATA[<h2 id="基于Spring-web-做单元测试"><a href="#基于Spring-web-做单元测试" class="headerlink" title="基于Spring web 做单元测试"></a>基于Spring web 做单元测试</h2><p><img src="http://ww1.sinaimg.cn/large/7a8aed7bgw1evdga4dimoj20qo0hsmzf.jpg" alt="image"></p>
+      <content type="html"><![CDATA[<h2 id="基于Spring-web-做单元测试"><a href="#基于Spring-web-做单元测试" class="headerlink" title="基于Spring web 做单元测试"></a>基于Spring web 做单元测试</h2><p><img src="http://ww1.sinaimg.cn/large/7a8aed7bgw1evdga4dimoj20qo0hsmzf.jpg" alt="0824"></p>
 <a id="more"></a>
 <h2 id="Mock"><a href="#Mock" class="headerlink" title="Mock"></a>Mock</h2><ul>
 <li>mock对象就是在调试期间用来作为真实对象的替代品。</li>
