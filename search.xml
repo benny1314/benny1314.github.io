@@ -426,7 +426,7 @@
 <p><code>ToIntFunction&lt;T&gt;</code>、IntToDoubleFunction等 </p>
 </blockquote>
 </blockquote>
-<table>
+<h4 id="java8常用函数式接口"><a href="#java8常用函数式接口" class="headerlink" title="java8常用函数式接口"></a>java8常用函数式接口</h4><table>
 <thead>
 <tr>
 <th>函数式接口</th>
@@ -481,8 +481,7 @@
 </tr>
 </tbody>
 </table>
-<p>####　附录1：Lambda及函数式接口的例子：</p>
-<table>
+<h4 id="附录1：Lambda及函数式接口的例子："><a href="#附录1：Lambda及函数式接口的例子：" class="headerlink" title="附录1：Lambda及函数式接口的例子："></a>附录1：Lambda及函数式接口的例子：</h4><table>
 <thead>
 <tr>
 <th>使用案例</th>
