@@ -22,7 +22,8 @@
 <meta property="og:site_name" content="Benny">
 <meta property="og:description" content="lambda表达式">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/610dc034jw1f6aipo68yvj20qo0qoaee.jpg">
-<meta property="og:updated_time" content="2016-09-07T07:39:34.699Z">
+<meta property="og:image" content="http://7xjlkb.com1.z0.glb.clouddn.com/learning_lambda.png">
+<meta property="og:updated_time" content="2016-09-09T09:19:59.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lambda表达式">
 <meta name="twitter:description" content="lambda表达式">
@@ -157,13 +158,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
-                        <li>关于我</li>
+                        <li>About Me</li>
                         
                     </ul>
                 </div>
@@ -277,7 +278,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap"><article id="post-160805_lambda" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -331,7 +332,7 @@
 <ul>
 <li>定义一个Bean类<code>Apple.java</code></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String color;</div><div class="line"></div><div class="line">   <span class="comment">// 省略 getter 和 setter</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Apple</span><span class="params">(String color)</span> </span>&#123; <span class="keyword">this</span>.color = color; &#125;</div><div class="line"></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="title">Apple</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"苹果的颜色是："</span>+color;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> String color;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> weight;</div><div class="line"></div><div class="line">   <span class="comment">// 省略 getter 和 setter</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Apple</span><span class="params">(String color,<span class="keyword">int</span> weight)</span> </span>&#123; <span class="keyword">this</span>.color = color; <span class="keyword">this</span>.weight = weight; &#125;</div><div class="line"></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="title">Apple</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"苹果的颜色是："</span>+color + <span class="string">"苹果的重量是："</span> + weight;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>定义一个接口<code>AppleService.java</code>，里面包含一个过滤红色苹果的方法</li>
 </ul>
@@ -343,11 +344,11 @@
 <ul>
 <li>测试：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestApple</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;Apple&gt; list;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        list = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        String colors[] = &#123;<span class="string">"green"</span>, <span class="string">"red"</span>&#125;;</div><div class="line">        Apple apple = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (String color : colors) &#123;</div><div class="line">            apple = <span class="keyword">new</span> Apple();</div><div class="line">            apple.setColor(colors[i]);</div><div class="line">            list.add(apple);</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        System.out.println(list.size());</div><div class="line">        <span class="keyword">new</span> AppleServiceImpl().filterRedApple(list);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestApple</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;Apple&gt; list;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        list = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        String colors[] = &#123;<span class="string">"green"</span>, <span class="string">"red"</span>&#125;;</div><div class="line">        Apple apple = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (String color : colors) &#123;</div><div class="line">            apple = <span class="keyword">new</span> Apple();</div><div class="line">            apple.setColor(colors[i]);</div><div class="line">            apple.setWeight(<span class="keyword">new</span> Random().nextInt(<span class="number">100</span>));</div><div class="line">            list.add(apple);</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        System.out.println(list.size());</div><div class="line">        <span class="keyword">new</span> AppleServiceImpl().filterRedApple(list);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>[x] 上面这段代码在优化一下</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestApple</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;Apple&gt; list;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        list = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        List&lt;Apple&gt; apples = Arrays.asList(<span class="keyword">new</span> Apple(<span class="string">"green"</span>), <span class="keyword">new</span> Apple(<span class="string">"red"</span>));</div><div class="line">        Apple apple = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (Apple a : apples) &#123;</div><div class="line">            apple = <span class="keyword">new</span> Apple();</div><div class="line">            apple.setColor(a.getColor());</div><div class="line">            list.add(apple);</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        System.out.println(list.size());</div><div class="line">        <span class="keyword">new</span> AppleServiceImpl().filterRedApple(list);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestApple</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;Apple&gt; list;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        list = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        List&lt;Apple&gt; apples = Arrays.asList(<span class="keyword">new</span> Apple(<span class="string">"green"</span>,<span class="number">65</span>), <span class="keyword">new</span> Apple(<span class="string">"red"</span>,<span class="number">50</span>));</div><div class="line">        Apple apple = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (Apple a : apples) &#123;</div><div class="line">            apple = <span class="keyword">new</span> Apple();</div><div class="line">            apple.setColor(a.getColor());</div><div class="line">            apple.setWeight(a.getWeight());</div><div class="line">            list.add(apple);</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        System.out.println(list.size());</div><div class="line">        <span class="keyword">new</span> AppleServiceImpl().filterRedApple(list);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>[x] 输出结果</li>
 </ul>
@@ -384,7 +385,7 @@
 <blockquote>
 <p>优化一下：</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestApple</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;Apple&gt; list;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        list = <span class="keyword">new</span> ArrayList&lt;Apple&gt;();</div><div class="line">        List&lt;Apple&gt; apples = Arrays.asList(<span class="keyword">new</span> Apple(<span class="string">"green"</span>), <span class="keyword">new</span> Apple(<span class="string">"red"</span>));</div><div class="line">        Apple apple = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (Apple a : apples) &#123;</div><div class="line">            apple = <span class="keyword">new</span> Apple();</div><div class="line">            apple.setColor(a.getColor());</div><div class="line">            list.add(apple);</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">	<span class="comment">/**</span></div><div class="line">     * 过了红色的苹果</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        List&lt;Apple&gt; apples = <span class="keyword">new</span> AppleServiceImpl().filterApple(list, <span class="keyword">new</span> Predicatet&lt;Apple&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">filterApple</span><span class="params">(Apple apple)</span> </span>&#123;</div><div class="line">                <span class="keyword">if</span> (isRedApple(apple)) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 过了绿色的苹果</div><div class="line">     */</div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        List&lt;Apple&gt; apples = <span class="keyword">new</span> AppleServiceImpl().filterApple(list, <span class="keyword">new</span> Predicatet&lt;Apple&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">filterApple</span><span class="params">(Apple apple)</span> </span>&#123;</div><div class="line">                <span class="keyword">if</span> (isGreenApple(apple))&#123;&#125;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isRedApple</span><span class="params">(Apple apple)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"red"</span>.equals(apple.getColor());</div><div class="line">    &#125;</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isGreenApple</span><span class="params">(Apple apple)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"red"</span>.equals(apple.getColor());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestA</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;Apple&gt; list;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        list = <span class="keyword">new</span> ArrayList&lt;Apple&gt;();</div><div class="line">        List&lt;Apple&gt; apples = Arrays.asList(<span class="keyword">new</span> Apple(<span class="string">"green"</span>), <span class="keyword">new</span> Apple(<span class="string">"red"</span>));</div><div class="line">        Apple apple = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (Apple a : apples) &#123;</div><div class="line">            apple = <span class="keyword">new</span> Apple();</div><div class="line">            apple.setColor(a.getColor());</div><div class="line">            list.add(apple);</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">	<span class="comment">/**</span></div><div class="line">     * 过了红色的苹果</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        List&lt;Apple&gt; apples = <span class="keyword">new</span> AppleServiceImpl().filterApple(list, <span class="keyword">new</span> Predicatet&lt;Apple&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">filterApple</span><span class="params">(Apple apple)</span> </span>&#123;</div><div class="line">                <span class="keyword">if</span> (isRedApple(apple)) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 过了绿色的苹果</div><div class="line">     */</div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        List&lt;Apple&gt; apples = <span class="keyword">new</span> AppleServiceImpl().filterApple(list, <span class="keyword">new</span> Predicatet&lt;Apple&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">filterApple</span><span class="params">(Apple apple)</span> </span>&#123;</div><div class="line">                <span class="keyword">if</span> (isGreenApple(apple))&#123;&#125;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isRedApple</span><span class="params">(Apple apple)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"red"</span>.equals(apple.getColor());</div><div class="line">    &#125;</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isGreenApple</span><span class="params">(Apple apple)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"red"</span>.equals(apple.getColor());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="使用大招-Lamda表达式-重构之前的方法-以过滤红苹果示例："><a href="#使用大招-Lamda表达式-重构之前的方法-以过滤红苹果示例：" class="headerlink" title="使用大招 Lamda表达式 重构之前的方法,以过滤红苹果示例："></a>使用大招 Lamda表达式 重构之前的方法,以过滤红苹果示例：</h3><ul>
 <li>重构之前：</li>
 </ul>
@@ -414,13 +415,450 @@
 <blockquote>
 <p>上面代码中：<strong>TestApple</strong> 代表的是当前类的名字。</p>
 </blockquote>
-<p>概念介绍：<strong>谓词</strong><br>上面的代码传递了方法<code>TestApple :: isReApple</code>(它接受参数apple并返回一个boolean值)给filterApple，后者则希望接受一个<code>Predicate&lt;Apple&gt;</code>参数。<br><strong>谓词(predicate)</strong>：<br>在数学上尝尝用来表示一个类似函数的东西，它接受一个参数值，并返回true或false,在后面你会看到，java8也会允许你写<code>Function&lt;Apple,Boolean&gt;</code>，但是用Predicate<apple>是更标准的方式，效率也会高一点，避免了boolean封装在Boolean装箱的过程。</apple></p>
+<p>概念介绍：<strong>谓词</strong><br>上面的代码传递了方法<code>TestApple :: isReApple</code>(它接受参数apple并返回一个boolean值)给filterApple，后者则希望接受一个<code>Predicate&lt;Apple&gt;</code>参数。<br><strong>谓词(predicate)</strong>：<br>在数学上尝尝用来表示一个类似函数的东西，它接受一个参数值，并返回true或false,在后面你会看到，java8也会允许你写<code>Function&lt;Apple,Boolean&gt;</code>，但是用Predicate<apple>是更标准的方式，效率也会高一点，避免了boolean封装在Boolean装箱的过程。<br>简单点说谓词（就是一个返回boolean值的函数）</apple></p>
 </blockquote>
 <hr>
 <ul>
 <li>完整版示例代码：</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FilteringApples</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String ... args)</span></span>&#123;</div><div class="line"></div><div class="line">        List&lt;Apple&gt; inventory = Arrays.asList(<span class="keyword">new</span> Apple(<span class="number">80</span>,<span class="string">"green"</span>),</div><div class="line">                                              <span class="keyword">new</span> Apple(<span class="number">155</span>, <span class="string">"green"</span>),</div><div class="line">                                              <span class="keyword">new</span> Apple(<span class="number">120</span>, <span class="string">"red"</span>));	</div><div class="line"></div><div class="line">        <span class="comment">// [Apple&#123;color='green', weight=80&#125;, Apple&#123;color='green', weight=155&#125;]</span></div><div class="line">        List&lt;Apple&gt; greenApples = filterApples(inventory, FilteringApples::isGreenApple);</div><div class="line">        System.out.println(greenApples);</div><div class="line">        </div><div class="line">        <span class="comment">// [Apple&#123;color='green', weight=155&#125;]</span></div><div class="line">        List&lt;Apple&gt; heavyApples = filterApples(inventory, FilteringApples::isHeavyApple);</div><div class="line">        System.out.println(heavyApples);</div><div class="line">        </div><div class="line">        <span class="comment">// [Apple&#123;color='green', weight=80&#125;, Apple&#123;color='green', weight=155&#125;]</span></div><div class="line">        List&lt;Apple&gt; greenApples2 = filterApples(inventory, (Apple a) -&gt; <span class="string">"green"</span>.equals(a.getColor()));</div><div class="line">        System.out.println(greenApples2);</div><div class="line">        </div><div class="line">        <span class="comment">// [Apple&#123;color='green', weight=155&#125;]</span></div><div class="line">        List&lt;Apple&gt; heavyApples2 = filterApples(inventory, (Apple a) -&gt; a.getWeight() &gt; <span class="number">150</span>);</div><div class="line">        System.out.println(heavyApples2);</div><div class="line">        </div><div class="line">        <span class="comment">// []</span></div><div class="line">        List&lt;Apple&gt; weirdApples = filterApples(inventory, (Apple a) -&gt; a.getWeight() &lt; <span class="number">80</span> || </div><div class="line">                                                                       <span class="string">"brown"</span>.equals(a.getColor()));</div><div class="line">        System.out.println(weirdApples);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Apple&gt; <span class="title">filterGreenApples</span><span class="params">(List&lt;Apple&gt; inventory)</span></span>&#123;</div><div class="line">        List&lt;Apple&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        <span class="keyword">for</span> (Apple apple: inventory)&#123;</div><div class="line">            <span class="keyword">if</span> (<span class="string">"green"</span>.equals(apple.getColor())) &#123;</div><div class="line">                result.add(apple);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Apple&gt; <span class="title">filterHeavyApples</span><span class="params">(List&lt;Apple&gt; inventory)</span></span>&#123;</div><div class="line">        List&lt;Apple&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        <span class="keyword">for</span> (Apple apple: inventory)&#123;</div><div class="line">            <span class="keyword">if</span> (apple.getWeight() &gt; <span class="number">150</span>) &#123;</div><div class="line">                result.add(apple);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isGreenApple</span><span class="params">(Apple apple)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"green"</span>.equals(apple.getColor()); </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isHeavyApple</span><span class="params">(Apple apple)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> apple.getWeight() &gt; <span class="number">150</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Apple&gt; <span class="title">filterApples</span><span class="params">(List&lt;Apple&gt; inventory, Predicate&lt;Apple&gt; p)</span></span>&#123;</div><div class="line">        List&lt;Apple&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        <span class="keyword">for</span>(Apple apple : inventory)&#123;</div><div class="line">            <span class="keyword">if</span>(p.test(apple))&#123;</div><div class="line">                result.add(apple);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;       </div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> weight = <span class="number">0</span>;</div><div class="line">        <span class="keyword">private</span> String color = <span class="string">""</span>;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Apple</span><span class="params">(<span class="keyword">int</span> weight, String color)</span></span>&#123;</div><div class="line">            <span class="keyword">this</span>.weight = weight;</div><div class="line">            <span class="keyword">this</span>.color = color;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Integer <span class="title">getWeight</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> weight;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWeight</span><span class="params">(Integer weight)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.weight = weight;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getColor</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> color;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setColor</span><span class="params">(String color)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.color = color;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">"Apple&#123;"</span> +</div><div class="line">                   <span class="string">"color='"</span> + color + <span class="string">'\''</span> +</div><div class="line">                   <span class="string">", weight="</span> + weight +</div><div class="line">                   <span class="string">'&#125;'</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="1-2-从方法传递到-lambda"><a href="#1-2-从方法传递到-lambda" class="headerlink" title="1.2 从方法传递到 lambda"></a>1.2 从方法传递到 lambda</h2><ul>
+<li>把方法作为值来传递显然很有用，但要是为了类似于<code>isRedApple()</code>和<code>isGreenApple()</code>这种只用一两次的短方法写一堆的定义有点烦人。</li>
+<li>所以在java8引入了一套新记法（匿名函数或者lambda），你可以这样写</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String... args)</span> </span>&#123;</div><div class="line">        <span class="keyword">new</span> AppleServiceImpl().filterApple(list, (Apple apple) -&gt; <span class="string">"red"</span>.equals(apple.getColor()));</div><div class="line">&#125;</div><div class="line"></div><div class="line">`</div></pre></td></tr></table></figure>
+<ul>
+<li>[x] 或者</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String... args)</span> </span>&#123;</div><div class="line">        <span class="keyword">new</span> AppleServiceImpl().filterApple(list, (Apple apple) -&gt;a.getWeight() &gt; <span class="number">150</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>[x] 再或者</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String... args)</span> </span>&#123;</div><div class="line">        List&lt;Apple&gt; apples = <span class="keyword">new</span> AppleServiceImpl().filterApple(list, (Apple apple) -&gt; <span class="string">"red"</span>.equals(apple.getColor()) || apple.getWeight() &gt; <span class="number">10</span>);</div><div class="line">        System.out.println(apples.size());</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>所以你甚至不需要为只用一次的方法写定义；</li>
+<li>代码更干净，更清晰</li>
+<li>因为你用不着去找自己到底传递了什么代码。</li>
+</ul>
+<hr>
+<ul>
+<li>但是如果Lambda的长度多以几行（它的行为也不是一目了然）的话，你还是应该用方法引用来指向一个有描述性名称的方法，而不是使用匿名的Lambda。</li>
+<li>应该以代码的清晰度为准绳</li>
+</ul>
+<blockquote>
+<p>本来java加上filter和几个相关的东西作为通用库方法就足以让人满意了。</p>
+</blockquote>
+<ul>
+<li>比如：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">static</span> &lt;T&gt; <span class="function">Collection&lt;T&gt; <span class="title">filter</span><span class="params">( CollectionM&lt;T&gt; c , Predicate&lt;T&gt; )</span></span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>[x] 这样你甚至都不需要写<strong>filterApple(List<apple> list,Predicatet<apple> predicatet)</apple></apple></strong>了</li>
+</ul>
+<ul>
+<li>比如</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">List&lt;Apple&gt; apples = <span class="keyword">new</span> AppleServiceImpl().filterApple(list, (Apple apple) -&gt; <span class="string">"red"</span>.equals(apple.getColor()));</div></pre></td></tr></table></figure>
+<ul>
+<li>[x] 直接使用调用库方法<strong>filter</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">List&lt;Apple&gt; greenApples2 = filter(inventory, <span class="keyword">new</span> AppleColorPredicate());</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ApplePredicate</span></span>&#123;</div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Apple a)</span></span>;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>但是为了更好地利用并行，java的设计师没有这么做。java8中有一整套新的集合API——Stream，他有一套函数式类似于filter的操作。<ul>
+<li>比如 map、reduce 还有接下来要学习的Collections和Streams之间做转换的方法。</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-3-流"><a href="#1-3-流" class="headerlink" title="1.3 流"></a>1.3 流</h2><ul>
+<li>先简单的让你体验一下Stream和Lambda表达式顺序或并行地从一个列表里筛选红颜色的苹果</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestApple</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;Apple&gt; list;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        list = <span class="keyword">new</span> ArrayList&lt;Apple&gt;();</div><div class="line">        String colors[] = &#123;<span class="string">"green"</span>, <span class="string">"red"</span>&#125;;</div><div class="line">        Apple apple = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (String color : colors) &#123;</div><div class="line">            apple = <span class="keyword">new</span> Apple();</div><div class="line">            apple.setColor(colors[i]);</div><div class="line">            apple.setWeight(<span class="keyword">new</span> Random().nextInt(<span class="number">100</span>));</div><div class="line">            list.add(apple);</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        List&lt;Apple&gt; red = list.stream().filter((Apple a) -&gt; a.getColor().equals(<span class="string">"red"</span>)).collect(Collectors.toList());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>做了几个简单的测试</li>
+<li>stream()比在数据量低于百万的时候 效率第一倍</li>
+</ul>
+<h2 id="集合的操作更加的人性化"><a href="#集合的操作更加的人性化" class="headerlink" title="集合的操作更加的人性化"></a>集合的操作更加的人性化</h2><ul>
+<li>jdk1.8之前，我们对集合的一些操作比如，排序，在之前，我们使用排序</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Collections.sort(appleList, <span class="keyword">new</span> Comparator&lt;Apple&gt;() &#123;</div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Apple o1, Apple o2)</span> </span>&#123;</div><div class="line">               <span class="keyword">return</span> o1.getWeight() - o2.getWeight();</div><div class="line">           &#125;</div><div class="line">       &#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>[x] 在1.8之后，我们可以 <strong>集合 . sort()</strong> 示例：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">appleList.sort(<span class="keyword">new</span> Comparator&lt;Apple&gt;() &#123;</div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Apple o1, Apple o2)</span> </span>&#123;</div><div class="line">               <span class="keyword">return</span> o1.getWeight() - o2.getWeight();</div><div class="line">           &#125;</div><div class="line">       &#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>[x] 请出神器 Lambda 示例：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">appleList.sort((o1, o2) -&gt; o1.getWeight() - o2.getWeight());</div></pre></td></tr></table></figure>
+<h2 id="1-4默认方法"><a href="#1-4默认方法" class="headerlink" title="1.4默认方法"></a>1.4默认方法</h2><ul>
+<li>在java8里，你可以直接对List调用sort方法</li>
+<li>它使用java8 List接口中如下所示的默认方法实现的，它会调用Collections.sort静态的方法。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">sort</span> <span class="params">(Comparator&lt;? <span class="keyword">super</span> E&gt; c)</span></span>&#123;</div><div class="line">	Coolections.sort(<span class="keyword">this</span>,c);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="第二章-通过行为参数化传递代码"><a href="#第二章-通过行为参数化传递代码" class="headerlink" title="第二章 通过行为参数化传递代码"></a>第二章 通过行为参数化传递代码</h2><h3 id="重构你的垃圾代码"><a href="#重构你的垃圾代码" class="headerlink" title="重构你的垃圾代码"></a>重构你的垃圾代码</h3><ul>
+<li>定义一个谓词方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Predicatet</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">test</span><span class="params">(T t)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>在列中定义一个公共的静态的泛型方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PredicateService</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">filter</span><span class="params">(List&lt;T&gt; list, Predicatet&lt;T&gt; predicatet)</span> </span>&#123;</div><div class="line">        List&lt;T&gt; result = <span class="keyword">new</span> ArrayList&lt;T&gt;();</div><div class="line">        <span class="keyword">for</span> (T t : list) &#123;</div><div class="line">            <span class="keyword">if</span> (predicatet.test(t)) &#123;</div><div class="line">                result.add(t);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>[x] 测试类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestApple</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String... args)</span> </span>&#123;</div><div class="line"> 		PredicateService.filter(list, <span class="keyword">new</span> Predicatet&lt;Apple&gt;() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Apple apple)</span> </span>&#123;</div><div class="line">                    <span class="keyword">return</span> apple.getWeight() &gt; <span class="number">19</span>;</div><div class="line">                &#125;</div><div class="line">         &#125;);</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此时如果</p>
+<ul>
+<li>[x] 使用Lambda表达式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 过滤苹果重量&gt;19的</span></div><div class="line">List&lt;Apple&gt; filter = PredicateService.filter(list, (Apple apple) -&gt; apple.getWeight() &gt; <span class="number">19</span>);</div><div class="line"></div><div class="line"><span class="comment">// 此时如果橘子也要过滤重量&gt;19的</span></div><div class="line">List&lt;Orange&gt; filter = PredicateService.filter(list, (Orange orange) -&gt; orange.getWeight() &gt; <span class="number">19</span>);</div><div class="line"></div><div class="line"><span class="comment">// 此时就非常的方便拓展了</span></div></pre></td></tr></table></figure>
+<h3 id="用Runnable-执行代码块"><a href="#用Runnable-执行代码块" class="headerlink" title="用Runnable 执行代码块"></a>用Runnable 执行代码块</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                System.out.println(<span class="string">"hello world"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;).start();</div></pre></td></tr></table></figure>
+<ul>
+<li>[x] Lambda 重构后</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">new</span> Thread(() -&gt; System.out.println(<span class="string">"hello"</span>)).start();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这里要说明的，像<code>run()</code>方法一样，方法没有参数，那么书写Lamda表达式的时候，写一对<strong> 空括号() </strong></p>
+</blockquote>
+<h2 id="Lambda-表达式"><a href="#Lambda-表达式" class="headerlink" title="Lambda 表达式"></a>Lambda 表达式</h2><blockquote>
+<p>Lambda 表达式理解为简洁地表示可传递的匿名函数的一种方式：它没有名称，但它有参数列表、函数主体、返回类型，可能还有一个可以抛出的异常列表。</p>
+</blockquote>
+<ul>
+<li><strong>匿名</strong>:<ul>
+<li>说其匿名，因为它不像普通的方法那样有一个明确的名称：写得少而想得多</li>
+</ul>
+</li>
+<li><strong>函数</strong><ul>
+<li>说其实函数，是因为Lambda函数不像方法那样属于某个特定的类，但和方法一样，lambda有参数列表、函数主体、返回类型、还可能有可以抛出的异常列表</li>
+</ul>
+</li>
+<li><strong>传递</strong><ul>
+<li>Lambda表达式可以作为参数传递给方法或存储在变量中</li>
+</ul>
+</li>
+<li><strong>简洁</strong><ul>
+<li>无需像匿名类那样写很多模板代码</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://7xjlkb.com1.z0.glb.clouddn.com/learning_lambda.png" alt="Lambda表达式构成"></p>
+<h3 id="详解-Lambda-表达式"><a href="#详解-Lambda-表达式" class="headerlink" title="详解 Lambda 表达式"></a>详解 Lambda 表达式</h3><ul>
+<li>Lambda 没有return语句 ，因为已经隐含了return</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">(String s ) -&gt; s.length()</div></pre></td></tr></table></figure>
+<ul>
+<li>Lambda表达式可以包含多行语句，用一对大括号包裹</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">(<span class="keyword">int</span> x ,  <span class="keyword">int</span> y )  -&gt; &#123;</div><div class="line">	System.out.println(<span class="string">"hello"</span>);</div><div class="line">    System.out.println(<span class="string">"world"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>如果return是一个控制流语句，要让Lambda有效，需要添加花括号<code>{}</code>包裹</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">( Integer i ) -&gt; &#123; <span class="keyword">return</span> <span class="string">"benny"</span> + i;&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Lambda 没有参数，并返回String作为表达式,这种情况下不能有<code>{}</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">( ) -&gt; <span class="string">"benny"</span></div></pre></td></tr></table></figure>
+<h3 id="java中有效的表达式"><a href="#java中有效的表达式" class="headerlink" title="java中有效的表达式"></a>java中有效的表达式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">(String s) -&gt; s.length()</div><div class="line"></div><div class="line">(Apple apple) -&gt; apple.getWeight() &gt; <span class="number">10</span></div><div class="line"></div><div class="line">(<span class="keyword">int</span> x ,  <span class="keyword">int</span> y )  -&gt; &#123;</div><div class="line">	System.out.println(<span class="string">"hello"</span>);</div><div class="line">    System.out.println(<span class="string">"world"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">() -&gt; <span class="number">42</span></div><div class="line"></div><div class="line">(Apple apple1, Apple apple2) -&gt; apple1.getWeight().compareTo(apple2.getWeight())</div><div class="line"></div><div class="line">( Integer i ) -&gt; &#123; <span class="keyword">return</span> <span class="string">"Alan"</span> + i &#125;</div></pre></td></tr></table></figure>
+<h3 id="3-2-1-函数式接口"><a href="#3-2-1-函数式接口" class="headerlink" title="3.2.1 函数式接口"></a>3.2.1 函数式接口</h3><ul>
+<li>我们之前声明的<code>Predicate&lt;T&gt;</code>接口就是一个函数式接口<ul>
+<li>因为Predicate仅仅定义了一个抽象方法</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">pubilc <span class="class"><span class="keyword">interface</span> <span class="title">Predicate</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">	</div><div class="line">    <span class="function">Boolean <span class="title">test</span><span class="params">( T t )</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>简单点说，函数式接口就是只定义<strong>一个</strong>抽象方法的接口。</li>
+<li>在java API中有很多函数式接口，例如<code>Comparator</code>和<code>Runnable</code>接口</li>
+</ul>
+<blockquote>
+<p>接口可以拥有默认方法，不管接口中有多少默认方法，只要接口中<strong>只定义了一个抽象方法（有且仅有一个）</strong>，它就是一个函数式接口，重载的方法也不行哦。</p>
+</blockquote>
+<ul>
+<li>如果你声明了一个函数式接口，用什么办法检查你是否声明的正确呢。</li>
+<li>使用<strong>@FunctionalInterface</strong> 注解（新版的API才有）</li>
+</ul>
+<blockquote>
+<p>如果你声明了一个函数式接口，而它却不是函数式接口，编译器将返回一个提示原因的错误。</p>
+</blockquote>
+<ul>
+<li>例如：错误提示可能是：<ul>
+<li>Multiple non-overriding abstract methods found in interface Foo， 表名存在多个抽象方法。</li>
+<li><strong>@FunctionalInterface</strong> 并不是必须的，但是对于设计函数式接口是比较好的做法。</li>
+<li>它就像是@Override标注表示方法被重写了一样。</li>
+</ul>
+</li>
+<li>看到这里 你可能还是不清楚为什么要要定义函数式接口（仅含有一个抽象方法的接口），因为，你定义多个方法，lambda无法确定是哪一个方法。</li>
+</ul>
+<h4 id="附录2：Java8中常用的函数式接口："><a href="#附录2：Java8中常用的函数式接口：" class="headerlink" title="附录2：Java8中常用的函数式接口："></a>附录2：Java8中常用的函数式接口：</h4><table>
+<thead>
+<tr>
+<th>函数式接口</th>
+<th>函数描述符</th>
+<th>原始烈性特化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Predicate&lt;T&gt;</code></td>
+<td>T -&gt; boolean</td>
+<td><code>IntPredicate&lt;T&gt;, LongPredicate&lt;T&gt;, DoublePredicate&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>Consumer&lt;T&gt;</code></td>
+<td>T -&gt; void</td>
+<td><code>IntConsumer, LongConsumer, DoubleConsumer</code></td>
+</tr>
+<tr>
+<td><code>Function&lt;T,R&gt;</code></td>
+<td>T -&gt; R</td>
+<td><code>IntFunction&lt;R&gt;, IntToDoubleFunction, IntToLongFunction, LongFunction&lt;R&gt;, LongToDoubleFunction, LongToIntFunction, DoubleFunction&lt;R&gt;, ToIntFunction&lt;T&gt;, ToDoubleFunction&lt;T&gt;, ToLongFunction&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>Supplier&lt;T&gt;</code></td>
+<td>() -&gt; T</td>
+<td><code>BooleanSupplier, BooleanSupplier, BooleanSupplier, BooleanSupplier</code></td>
+</tr>
+<tr>
+<td><code>UnaryOperator&lt;T&gt;</code></td>
+<td>T -&gt; T</td>
+<td><code>IntUnaryOperator, DoubleUnaryOperator, LongUnaryOperator</code></td>
+</tr>
+<tr>
+<td><code>BinaryOperator&lt;T&gt;</code></td>
+<td>(T,T) -&gt; T</td>
+<td><code>IntBinaryOperator, DoubleBinaryOperator, LongBinaryOperator</code></td>
+</tr>
+<tr>
+<td><code>BiPredicate&lt;L,R&gt;</code></td>
+<td>(L,R) -&gt; boolean</td>
+</tr>
+<tr>
+<td><code>BiConsumer&lt;T,U&gt;</code></td>
+<td>(T,U) -&gt; void</td>
+<td><code>ObjIntConsumer&lt;T&gt;, ObjLongConsumer&lt;T&gt;, ObjDoubleConsumer&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>BiFunction&lt;T,U,R&gt;</code></td>
+<td>(T,U) -&gt; R</td>
+<td><code>ToIntBiFunction&lt;T,U&gt;, ToLongBiFunction&lt;T,U&gt;, ToDoubleBiFunction&lt;T,U&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-2-2-函数描述符"><a href="#3-2-2-函数描述符" class="headerlink" title="3.2.2 函数描述符"></a>3.2.2 函数描述符</h3><ul>
+<li>函数式接口的抽象方法的签名基本就是Lambda表达式的签名，我们将这种抽象方法叫作函数描述符。</li>
+</ul>
+<h3 id="3-3-把Lambda-付诸实践，环绕执行模式"><a href="#3-3-把Lambda-付诸实践，环绕执行模式" class="headerlink" title="3.3 把Lambda 付诸实践，环绕执行模式"></a>3.3 把Lambda 付诸实践，环绕执行模式</h3><ul>
+<li>第一步：记得行为参数化<ul>
+<li>方法传参传递行为（也就是方法）</li>
+</ul>
+</li>
+<li>第二步： 使用函数式接口来传递行为</li>
+<li>第三步：执行一个行为<ul>
+<li>Lambda 表达式允许你直接内联系</li>
+<li>再次阐述一下流程</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">①：新建一个函数式接口  例：</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BufferReaderProcess</span> </span>&#123;</div><div class="line">    <span class="function">String <span class="title">process</span><span class="params">(BufferedReader bufferedReader)</span> <span class="keyword">throws</span> IOException</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">②：在Service中定义一个抽象方法</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FileService</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function">String <span class="title">processFile</span><span class="params">(BufferReaderProcess b)</span></span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">③：实现FileReadService接口</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileServiceImpl</span> <span class="keyword">implements</span> <span class="title">FileService</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">processFile</span><span class="params">(BufferReaderProcess b)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="keyword">try</span> (BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"data.txt"</span>))) &#123;</div><div class="line">            <span class="keyword">return</span> b.process(br);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">④ ：测试</div><div class="line"></div><div class="line">String s = <span class="keyword">new</span> FileServiceImpl().processFile(<span class="keyword">new</span> BufferReaderProcess() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">process</span><span class="params">(BufferedReader bufferedReader)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="keyword">return</span> bufferedReader.readLine() + bufferedReader.readLine();</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">⑤：使用Lambda</div><div class="line"></div><div class="line">String s = <span class="keyword">new</span> FileServiceImpl().processFile((BufferedReader buffer) -&gt; buffer.readLine());</div></pre></td></tr></table></figure>
+<blockquote>
+<p>以上四个步骤就是应用环绕执行模式所采取的四个步骤</p>
+</blockquote>
+<h3 id="3-4-使用函数式接口"><a href="#3-4-使用函数式接口" class="headerlink" title="3.4 使用函数式接口"></a>3.4 使用函数式接口</h3><ul>
+<li>函数式接口<br>  +<strong> 函数式接口只定义了一个抽象方法（有且仅有一个）</strong></li>
+<li>java8设计师在<code>java.util.function</code>包中引入了几个新的函数式接口。</li>
+</ul>
+<p>####3.4.1 Predicate（谓词）</p>
+<ul>
+<li><code>java.util.function.Predicate&lt;T&gt;</code>接口定义了一个叫 <strong>test()</strong>的抽象方法，它接受泛型<code>&lt;T&gt;</code>对象，并返回一个<strong>boolean</strong>  。</li>
+<li>在你需要表示一个涉及类型<code>&lt;T&gt;</code>的布尔表达式时，你就可以使用此接口。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">FunctionalInterface 	<span class="comment">// 此注解表示当前接口是一个函数式接口</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Predicate</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">test</span><span class="params">(T t)</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// 接口可以拥有默认方法，不管接口中有多少默认方法，只要接口中只定义了一个抽象方法（有且仅有一个），它就是一个函数式接口</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">default</span> Predicate&lt;T&gt; <span class="title">and</span><span class="params">(Predicate&lt;? <span class="keyword">super</span> T&gt; other)</span> </span>&#123;</div><div class="line">        Objects.requireNonNull(other);</div><div class="line">        <span class="keyword">return</span> (t) -&gt; test(t) &amp;&amp; other.test(t);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">default</span> Predicate&lt;T&gt; <span class="title">negate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (t) -&gt; !test(t);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">default</span> Predicate&lt;T&gt; <span class="title">or</span><span class="params">(Predicate&lt;? <span class="keyword">super</span> T&gt; other)</span> </span>&#123;</div><div class="line">        Objects.requireNonNull(other);</div><div class="line">        <span class="keyword">return</span> (t) -&gt; test(t) || other.test(t);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &lt;T&gt; <span class="function">Predicate&lt;T&gt; <span class="title">isEqual</span><span class="params">(Object targetRef)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">null</span> == targetRef)</div><div class="line">                ? Objects::isNull</div><div class="line">                : object -&gt; targetRef.equals(object);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用javaApi自带的Predicate函数式接口，代码示例：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPredicate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">filter</span><span class="params">(List&lt;T&gt; list, Predicate&lt;T&gt; predicate)</span> </span>&#123;</div><div class="line">        List&lt;T&gt; result = <span class="keyword">new</span> ArrayList&lt;T&gt;();</div><div class="line">        <span class="keyword">for</span> (T t : list) &#123;</div><div class="line">            <span class="keyword">if</span> (predicate.test(t)) &#123;</div><div class="line">                result.add(t);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">		List&lt;String&gt; result = Arrays.asList(<span class="string">"My"</span>, <span class="string">"name"</span>, <span class="string">"is"</span>,<span class="string">"benny"</span>);</div><div class="line">        List&lt;String&gt; benny = filter(result, <span class="keyword">new</span> Predicate&lt;String&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> s.equals(<span class="string">"benny"</span>);</div><div class="line">            &#125;</div><div class="line">    	&#125;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    <span class="comment">// 使用Lambda 表达式</span></div><div class="line"></div><div class="line">    <span class="comment">// 一步一步来</span></div><div class="line">    Predicate&lt;String&gt; predicate = (String str) -&gt; str.equals(<span class="string">"benny"</span>);</div><div class="line">    List&lt;String&gt; benny = filter(result, predicate);</div><div class="line">	<span class="comment">// 一步到位</span></div><div class="line">    List&lt;String&gt; benny1 = filter(result, (String str) -&gt; str.equals(<span class="string">"benny"</span>));</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Consumer（消费者）"><a href="#Consumer（消费者）" class="headerlink" title="Consumer（消费者）"></a>Consumer（消费者）</h4><ul>
+<li><code>java.util.function.Consumer&lt;T&gt;</code>定义了一个<strong>accept</strong>的抽象方法它接受泛型<code>&lt;T&gt;</code>的对象，没有返回值 <strong>void</strong>。</li>
+<li>在你需要访问类型<code>&lt;T&gt;</code>的对象，并对其执行某些操作，就可以使用此接口 。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@FunctionalInterface</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Consumer</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(T t)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">default</span> Consumer&lt;T&gt; <span class="title">andThen</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; after)</span> </span>&#123;</div><div class="line">        Objects.requireNonNull(after);</div><div class="line">        <span class="keyword">return</span> (T t) -&gt; &#123; accept(t); after.accept(t); &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用javaApi自带的Consumer函数式接口，代码示例：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*  foreach(result, new Consumer&lt;String&gt;() &#123;</span></div><div class="line">           @Override</div><div class="line">           public void accept(String s) &#123;</div><div class="line">               System.out.print(s+"\t");</div><div class="line">           &#125;</div><div class="line">       &#125;);*/</div><div class="line"></div><div class="line">	<span class="comment">// 使用Lambda 表达式</span></div><div class="line"> 		<span class="comment">// 一步一步来</span></div><div class="line">       Consumer&lt;String&gt; consumer = (String s) -&gt; System.out.print(s + <span class="string">"\t"</span>);</div><div class="line">       foreach(result, consumer);</div><div class="line">		 <span class="comment">// 一步到位</span></div><div class="line">       foreach(result, (String s) -&gt; System.out.print(s + <span class="string">"\t"</span>));</div></pre></td></tr></table></figure>
+<h4 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h4><ul>
+<li><code>java.util.function.Function&lt;T,R&gt;</code>接口定义了一个<strong>apply</strong>的抽象方法它接受泛型<code>&lt;T&gt;</code>的对象，它接受一个泛型<code>&lt;T&gt;</code>的对象，并返回一个泛型<code>&lt;R&gt;</code>的对象。</li>
+<li>如果你需要定义一个Lambda,将输入的对象的信息映射到输出，就可以使用这个接口 。<ul>
+<li>比如你传入一个 <code>List&lt;String&gt;</code> 返回一个 <code>List&lt;integer&gt;</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@FunctionalInterface</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Function</span>&lt;<span class="title">T</span>, <span class="title">R</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="function">R <span class="title">apply</span><span class="params">(T t)</span></span>;</div><div class="line"></div><div class="line">    <span class="keyword">default</span> &lt;V&gt; <span class="function">Function&lt;V, R&gt; <span class="title">compose</span><span class="params">(Function&lt;? <span class="keyword">super</span> V, ? extends T&gt; before)</span> </span>&#123;</div><div class="line">        Objects.requireNonNull(before);</div><div class="line">        <span class="keyword">return</span> (V v) -&gt; apply(before.apply(v));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">default</span> &lt;V&gt; <span class="function">Function&lt;T, V&gt; <span class="title">andThen</span><span class="params">(Function&lt;? <span class="keyword">super</span> R, ? extends V&gt; after)</span> </span>&#123;</div><div class="line">        Objects.requireNonNull(after);</div><div class="line">        <span class="keyword">return</span> (T t) -&gt; after.apply(apply(t));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &lt;T&gt; <span class="function">Function&lt;T, T&gt; <span class="title">identity</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> t -&gt; t;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用javaApi自带的Function函数式接口，代码示例：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestFunction</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T, R&gt; <span class="function">List&lt;R&gt; <span class="title">map</span><span class="params">(List&lt;T&gt; list, Function&lt;T, R&gt; function)</span> </span>&#123;</div><div class="line">        List&lt;R&gt; result = <span class="keyword">new</span> ArrayList&lt;R&gt;();</div><div class="line">        <span class="keyword">for</span> (T t : list) &#123;</div><div class="line">            result.add(function.apply(t));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">        List&lt;String&gt; result = Arrays.asList(<span class="string">"My"</span>, <span class="string">"name"</span>, <span class="string">"is"</span>,<span class="string">"benny"</span>);</div><div class="line">    	<span class="comment">// 使用Lambda 表达式</span></div><div class="line">    	<span class="comment">// 一步一步来</span></div><div class="line">        List&lt;Integer&gt; map = map(result, <span class="keyword">new</span> Function&lt;String, Integer&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> Integer <span class="title">apply</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> s.length();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">		<span class="comment">// 一步到位</span></div><div class="line">        List&lt;Integer&gt; map = map(result, (String str) -&gt; str.length());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="原始类型特化"><a href="#原始类型特化" class="headerlink" title="原始类型特化"></a>原始类型特化</h3><ul>
+<li>java类型有两种<ul>
+<li>引用类型</li>
+<li>基本数据类型</li>
+</ul>
+</li>
+<li>基本数据类型转换成引用类型，是装箱的过程。</li>
+<li>装箱的本质<ul>
+<li>将基本数据类型包裹起来，并保存在堆里。</li>
+<li>因此装箱后的值需要更多的内存，并需要额外的内存搜索来获取被包裹的原始值。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>java8为我们的函数式接口带来了一个专门的版本，以便在输入和输出值都是基本数据类型时避免自动装箱的操作。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>使用javaApi自带的IntPredicate函数式接口，代码示例：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">		IntPredicate intPredicate = (<span class="keyword">int</span> k) -&gt; i % <span class="number">2</span> == <span class="number">0</span>;</div><div class="line">        <span class="keyword">boolean</span> flag = intPredicate.test(<span class="number">1000</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用javaApi自带的IntPredicate函数式接口，代码示例：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">  	IntBinaryOperator intBinaryOperator = <span class="keyword">new</span> IntBinaryOperator() &#123;</div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">applyAsInt</span><span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</div><div class="line">              <span class="keyword">return</span> left + right;</div><div class="line">          &#125;</div><div class="line">      &#125;;</div><div class="line">      <span class="keyword">int</span> i = intBinaryOperator.applyAsInt(<span class="number">5</span>, <span class="number">21</span>);</div><div class="line">      </div><div class="line">      <span class="comment">// 使用Lambda表达式</span></div><div class="line">IntBinaryOperator intBinaryOperator = (<span class="keyword">int</span> i, <span class="keyword">int</span> j) -&gt; i + j;</div><div class="line">      <span class="keyword">int</span> i = intBinaryOperator.applyAsInt(<span class="number">2</span>, <span class="number">3</span>);</div><div class="line">      System.out.println(i);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用javaApi自带的BiFunction函数式接口，代码示例：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">BiFunction&lt;String, String, String&gt; stringStringStringBiFunction = <span class="keyword">new</span> BiFunction&lt;String, String, String&gt;()&#123;</div><div class="line"></div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> String <span class="title">apply</span><span class="params">(String s, String s2)</span> </span>&#123;</div><div class="line">               <span class="keyword">return</span> s + s2;</div><div class="line">           &#125;</div><div class="line">       &#125;;</div><div class="line"></div><div class="line">	<span class="comment">// 使用Lambda表达式  </span></div><div class="line">	BiFunction&lt;String, String, String&gt; stringStringStringBiFunction = (String s, String s2) -&gt; s + s2;</div><div class="line">	String apply = stringStringStringBiFunction.apply(<span class="string">"hello"</span>, <span class="string">"world"</span>);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用javaApi自带的BiFunction函数式接口，代码示例：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">	Supplier&lt;String&gt; stringSupplier = <span class="keyword">new</span> Supplier&lt;String&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> <span class="string">"hello world"</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">		String s = stringSupplier.get();</div><div class="line">        </div><div class="line">        <span class="comment">// 使用Lambda表达式  </span></div><div class="line">        Supplier&lt;String&gt; stringSupplier = () -&gt; <span class="string">"hello world"</span>;</div><div class="line">		String s = stringSupplier.get();</div><div class="line">        </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>一般来说，针对专门的输入输出参数类型的函数式接口的名称都要加上对应的原始类型前缀。<br>比如：</p>
+<blockquote>
+<p>DoublePredicate、IntConsumer、ingBinaryOperator，IntFunction等</p>
+</blockquote>
+</blockquote>
+<hr>
+<blockquote>
+<p>Function接口还有针对输出参数类型的变种：</p>
+<blockquote>
+<p><code>ToIntFunction&lt;T&gt;</code>、IntToDoubleFunction等 </p>
+</blockquote>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>函数式接口</th>
+<th>函数描述符</th>
+<th>原始烈性特化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Predicate&lt;T&gt;</code></td>
+<td>T -&gt; boolean</td>
+<td><code>IntPredicate&lt;T&gt;, LongPredicate&lt;T&gt;, DoublePredicate&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>Consumer&lt;T&gt;</code></td>
+<td>T -&gt; void</td>
+<td><code>IntConsumer, LongConsumer, DoubleConsumer</code></td>
+</tr>
+<tr>
+<td><code>Function&lt;T,R&gt;</code></td>
+<td>T -&gt; R</td>
+<td><code>IntFunction&lt;R&gt;, IntToDoubleFunction, IntToLongFunction, LongFunction&lt;R&gt;, LongToDoubleFunction, LongToIntFunction, DoubleFunction&lt;R&gt;, ToIntFunction&lt;T&gt;, ToDoubleFunction&lt;T&gt;, ToLongFunction&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>Supplier&lt;T&gt;</code></td>
+<td>() -&gt; T</td>
+<td><code>BooleanSupplier, BooleanSupplier, BooleanSupplier, BooleanSupplier</code></td>
+</tr>
+<tr>
+<td><code>UnaryOperator&lt;T&gt;</code></td>
+<td>T -&gt; T</td>
+<td><code>IntUnaryOperator, DoubleUnaryOperator, LongUnaryOperator</code></td>
+</tr>
+<tr>
+<td><code>BinaryOperator&lt;T&gt;</code></td>
+<td>(T,T) -&gt; T</td>
+<td><code>IntBinaryOperator, DoubleBinaryOperator, LongBinaryOperator</code></td>
+</tr>
+<tr>
+<td><code>BiPredicate&lt;L,R&gt;</code></td>
+<td>(L,R) -&gt; boolean</td>
+</tr>
+<tr>
+<td><code>BiConsumer&lt;T,U&gt;</code></td>
+<td>(T,U) -&gt; void</td>
+<td><code>ObjIntConsumer&lt;T&gt;, ObjLongConsumer&lt;T&gt;, ObjDoubleConsumer&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>BiFunction&lt;T,U,R&gt;</code></td>
+<td>(T,U) -&gt; R</td>
+<td><code>ToIntBiFunction&lt;T,U&gt;, ToLongBiFunction&lt;T,U&gt;, ToDoubleBiFunction&lt;T,U&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>####　附录1：Lambda及函数式接口的例子：</p>
+<table>
+<thead>
+<tr>
+<th>使用案例</th>
+<th>lambda例子</th>
+<th>对应函数式接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>布尔表达式</td>
+<td>(List<string> list) -&gt; list.isEmpty()</string></td>
+<td><code>Predicate&lt;List&lt;String&gt;&gt;</code></td>
+</tr>
+<tr>
+<td>创建对象</td>
+<td>() -&gt; new Fan()</td>
+<td><code>Supplier&lt;Fan&gt;</code></td>
+</tr>
+<tr>
+<td>消费一个对象void</td>
+<td>(Fan f) -&gt; sys…out(f.toString)</td>
+<td><code>Consumer&lt;Fan&gt;</code></td>
+</tr>
+<tr>
+<td>从一个对象中选择提取</td>
+<td>(String s) -&gt; s.length()</td>
+<td><code>Function&lt;String,Integer&gt;</code> 或 <code>ToIntFunction&lt;String&gt;</code></td>
+</tr>
+<tr>
+<td>合并2个值</td>
+<td>(int a , int b) -&gt; a+b</td>
+<td><code>IntBinaryOperator</code></td>
+</tr>
+<tr>
+<td>比较2个对象</td>
+<td>(Fan a , Fan b) -&gt; a.getXX().compareTo(b.getXX())</td>
+<td><code>Comparator&lt;Fan&gt;</code>或 <code>BiFunction&lt;Fan,Fan,Integer&gt;</code>或 <code>ToIntBiFunction&lt;Fan.Fan&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="异常、Lambda，还有函数式接口是什么鬼"><a href="#异常、Lambda，还有函数式接口是什么鬼" class="headerlink" title="异常、Lambda，还有函数式接口是什么鬼"></a>异常、Lambda，还有函数式接口是什么鬼</h3><blockquote>
+<p>注意： 任何函数式接口都不允许抛出受检异常</p>
+</blockquote>
+<ul>
+<li>如果你需要Lambda表达式抛出异常，有两种方式：<ul>
+<li>定义一个自己的函数式接口，并声明受检异常</li>
+<li>将Lambda表达式包裹在一个<code>try/catch</code>块中</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>自定义函数式接口，代码示例：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@FunctionalInterface</span></div><div class="line">pubilc <span class="class"><span class="keyword">interface</span> <span class="title">BufferedReaderPrcessor</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function">String <span class="title">process</span><span class="params">(BufferedReader br )</span> throw IOException</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">BufferedReaderProcessor p  = (BufferedReader br) -&gt; br.readLine();</div></pre></td></tr></table></figure>
+<ul>
+<li>但是你可能使用一个接受函数式接口的API,比如Function<t,r>，没有办法自己创建一个，在这种情况下，你可以显式的捕获受检异常</t,r></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Function&lt;BufferedReader,String&gt; f = (BufferedReader br) -&gt; &#123;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">    	<span class="keyword">return</span> br.readLine();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">catch</span>(IOException e)&#123;</div><div class="line">    	<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -429,17 +867,17 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/09/07/160805_lambda/">lambda表达式</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">Benny</a></p>
-        <p><span>发布时间:</span>2016-09-07, 09:50:27</p>
-        <p><span>最后更新:</span>2016-09-07, 15:39:34</p>
+        <p><span>Title:</span><a href="/2016/09/07/160805_lambda/">lambda表达式</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Benny</a></p>
+        <p><span>Created:</span>2016-09-07, 09:50:27</p>
+        <p><span>Updated:</span>2016-09-09, 17:19:59</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/09/07/160805_lambda/" title="lambda表达式">/2016/09/07/160805_lambda/</a>
-            <span class="copy-path" data-clipboard-text="原文: /2016/09/07/160805_lambda/　　作者: Benny" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2016/09/07/160805_lambda/" title="lambda表达式">/2016/09/07/160805_lambda/</a>
+            <span class="copy-path" data-clipboard-text="From /2016/09/07/160805_lambda/　　By Benny" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
         </p>
     </div>
 
@@ -460,9 +898,9 @@
 </article>
 
     <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda表达式"><span class="toc-number">1.</span> <span class="toc-text">lambda表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java8-实战"><span class="toc-number">2.</span> <span class="toc-text">java8 实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#看lamda表达式的时候一点小感悟"><span class="toc-number">2.1.</span> <span class="toc-text">看lamda表达式的时候一点小感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#此时如果增加新的需求要过滤绿色怎么办"><span class="toc-number">2.2.</span> <span class="toc-text">此时如果增加新的需求要过滤绿色怎么办</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用接口Predicate"><span class="toc-number">2.3.</span> <span class="toc-text">使用接口Predicate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用大招-Lamda表达式-重构之前的方法-以过滤红苹果示例："><span class="toc-number">2.4.</span> <span class="toc-text">使用大招 Lamda表达式 重构之前的方法,以过滤红苹果示例：</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda表达式"><span class="toc-number">1.</span> <span class="toc-text">lambda表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java8-实战"><span class="toc-number">2.</span> <span class="toc-text">java8 实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#看lamda表达式的时候一点小感悟"><span class="toc-number">2.1.</span> <span class="toc-text">看lamda表达式的时候一点小感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#此时如果增加新的需求要过滤绿色怎么办"><span class="toc-number">2.2.</span> <span class="toc-text">此时如果增加新的需求要过滤绿色怎么办</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用接口Predicate"><span class="toc-number">2.3.</span> <span class="toc-text">使用接口Predicate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用大招-Lamda表达式-重构之前的方法-以过滤红苹果示例："><span class="toc-number">2.4.</span> <span class="toc-text">使用大招 Lamda表达式 重构之前的方法,以过滤红苹果示例：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-从方法传递到-lambda"><span class="toc-number">3.</span> <span class="toc-text">1.2 从方法传递到 lambda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-流"><span class="toc-number">4.</span> <span class="toc-text">1.3 流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集合的操作更加的人性化"><span class="toc-number">5.</span> <span class="toc-text">集合的操作更加的人性化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4默认方法"><span class="toc-number">6.</span> <span class="toc-text">1.4默认方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二章-通过行为参数化传递代码"><span class="toc-number">7.</span> <span class="toc-text">第二章 通过行为参数化传递代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#重构你的垃圾代码"><span class="toc-number">7.1.</span> <span class="toc-text">重构你的垃圾代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用Runnable-执行代码块"><span class="toc-number">7.2.</span> <span class="toc-text">用Runnable 执行代码块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-表达式"><span class="toc-number">8.</span> <span class="toc-text">Lambda 表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#详解-Lambda-表达式"><span class="toc-number">8.1.</span> <span class="toc-text">详解 Lambda 表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java中有效的表达式"><span class="toc-number">8.2.</span> <span class="toc-text">java中有效的表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-函数式接口"><span class="toc-number">8.3.</span> <span class="toc-text">3.2.1 函数式接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#附录2：Java8中常用的函数式接口："><span class="toc-number">8.3.1.</span> <span class="toc-text">附录2：Java8中常用的函数式接口：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-函数描述符"><span class="toc-number">8.4.</span> <span class="toc-text">3.2.2 函数描述符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-把Lambda-付诸实践，环绕执行模式"><span class="toc-number">8.5.</span> <span class="toc-text">3.3 把Lambda 付诸实践，环绕执行模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-使用函数式接口"><span class="toc-number">8.6.</span> <span class="toc-text">3.4 使用函数式接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Consumer（消费者）"><span class="toc-number">8.6.1.</span> <span class="toc-text">Consumer（消费者）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Function"><span class="toc-number">8.6.2.</span> <span class="toc-text">Function</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原始类型特化"><span class="toc-number">8.7.</span> <span class="toc-text">原始类型特化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异常、Lambda，还有函数式接口是什么鬼"><span class="toc-number">8.8.</span> <span class="toc-text">异常、Lambda，还有函数式接口是什么鬼</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -476,10 +914,10 @@
         }
     </style>
 
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
 
     <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
     </script>
 
 
@@ -532,13 +970,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
 
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/08/18/160818_junit_spirng_mock/" title="下一篇: 基于Spring web 做单元测试">
+            <a href="/2016/08/18/160818_junit_spirng_mock/" title="Next: 基于Spring web 做单元测试">
                 <i class="fa fa-angle-right"></i>
             </a>
         
@@ -561,14 +999,14 @@
                 2016 Benny
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -577,7 +1015,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -610,9 +1048,9 @@
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
