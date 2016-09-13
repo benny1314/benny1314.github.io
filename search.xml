@@ -1104,7 +1104,7 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">boolean</span> flag = menu.stream().allMatch(d -&gt; d.getCalories() &lt; <span class="number">1000</span>);</div></pre></td></tr></table></figure>
 <ul>
-<li>短路求职<ul>
+<li>短路求值<ul>
 <li>有些操作不需要处理整个流就能得到结果。</li>
 </ul>
 </li>
