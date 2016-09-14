@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/610dc034jw1f6aipo68yvj20qo0qoaee.jpg">
 <meta property="og:image" content="http://7xjlkb.com1.z0.glb.clouddn.com/learning_lambda.png">
 <meta property="og:image" content="http://img01.taobaocdn.com/imgextra/i1/90219132/T2mBXnXQhXXXXXXXXX_!!90219132.jpg">
-<meta property="og:updated_time" content="2016-09-14T09:16:11.668Z">
+<meta property="og:updated_time" content="2016-09-14T09:21:43.383Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lambda表达式">
 <meta name="twitter:description" content="java8 基础知识">
@@ -1684,15 +1684,15 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String collect = transactions.stream()</div><div class="line">              .map((Transaction t) -&gt; t.getTrader().getName())</div><div class="line">              .sorted()</div><div class="line">              .distinct().collect(Collectors.joining());</div></pre></td></tr></table></figure>
 <ul>
-<li>流支持min和max方法，他们可以接受一个Comparator作为参数，制定计算最大或最小值要比较哪个键值</li>
+<li>流支持 <strong>min()</strong> 和 <strong>max()</strong> 方法，他们可以接受一个Comparator作为参数，制定计算最大或最小值要比较哪个键值</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Transaction transaction = transactions.stream()</div><div class="line">              .reduce((x, y) -&gt; x.getValue() &gt; y.getValue() ? x : y)</div><div class="line">              .get();</div></pre></td></tr></table></figure>
 <ul>
-<li>[x] 使用min方法</li>
+<li>[x] 使用 <strong>min()</strong>方法</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Transaction transaction = transactions.stream()</div><div class="line">              .min(Comparator.comparing(Transaction::getValue))</div><div class="line">              .get();</div></pre></td></tr></table></figure>
 <h3 id="数值流"><a href="#数值流" class="headerlink" title="数值流"></a>数值流</h3><ul>
-<li>在前面我们看到了可以使用reduce方法计算流中元素的总和</li>
+<li>在前面我们看到了可以使用 <strong>reduce()</strong> 方法计算流中元素的总和</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> reduce = menu.stream()</div><div class="line">              .map(Dish::getCalories)</div><div class="line">              .reduce(<span class="number">0</span>, Integer::sum);</div></pre></td></tr></table></figure>
 <ul>
@@ -1701,9 +1701,9 @@
 </ul>
 <h4 id="原始类型流特化"><a href="#原始类型流特化" class="headerlink" title="原始类型流特化"></a>原始类型流特化</h4><ul>
 <li>Java8 引入了三个原始类型特化流接口<ul>
-<li>IntStream</li>
-<li>DoubleStream</li>
-<li>LongStream</li>
+<li><strong>IntStream</strong></li>
+<li><strong>DoubleStream</strong></li>
+<li><strong>LongStream</strong></li>
 </ul>
 </li>
 <li>分别将流中的元素特化为 int 、long 和 double，从而避免暗含的装箱成本</li>
@@ -1712,32 +1712,32 @@
 <p>映射到数值流</p>
 </blockquote>
 <ul>
-<li>将流转换为特化版本的常用方法 mapToInt 、 mapToDouble 和 mapToLong</li>
-<li>这些方法和map方法的工作方式一样，只是他们返回的是一个特化流，而不是 Stream<t></t></li>
+<li>将流转换为特化版本的常用方法 <strong>mapToInt()</strong> 、 <strong>mapToDouble()</strong> 和 <strong>mapToLong()</strong></li>
+<li>这些方法和 map 方法的工作方式一样，只是他们返回的是一个特化流，而不是 `Stream<t>``</t></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> sum = menu.stream()</div><div class="line">              .mapToInt(Dish::getCalories)</div><div class="line">              .sum();</div></pre></td></tr></table></figure>
 <ul>
-<li>如果流是空的，sum默认返回0</li>
-<li>IntStream还支持其他的方法方法，如max、min、average等</li>
+<li>如果流是空的，<strong>sum()</strong>方法 默认返回0</li>
+<li>IntStream 还支持其他的方法方法，如 <strong>max()</strong>、<strong>min()</strong>、<strong>average()</strong> 等</li>
 </ul>
 <blockquote>
 <p>转换为对象流</p>
 </blockquote>
 <ul>
-<li>要将原始流转换为一般流，可以使用<strong> boxed()</strong> 方法</li>
+<li>要将原始流转换为一般流，可以使用 <strong>boxed()</strong> 方法</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">IntStream intStream = menu.stream()</div><div class="line">              .mapToInt(Dish::getCalories);</div><div class="line">      Stream&lt;Integer&gt; boxed = intStream.boxed();</div></pre></td></tr></table></figure>
 <blockquote>
-<p>默认值 OptionalInt</p>
+<p>默认值 <strong>OptionalInt</strong></p>
 </blockquote>
 <ul>
 <li>求和的例子很简单，因为它有一个默认值： 0 </li>
-<li>如果你要计算 IntStream中的最大元素，就得换个方法了，因为0是错误的结果</li>
+<li>如果你要计算 IntStream 中的最大元素，就得换个方法了，因为0是错误的结果</li>
 <li>如何区分没有元素的流和元素最大的流呢？</li>
-<li>对于三种原始流特化，也分别有一个Optional原始类型特化版本：<ul>
-<li>OptionalInt</li>
-<li>OptionDouble</li>
-<li>OptionalLong</li>
+<li>对于三种原始流特化，也分别有一个 Optional 原始类型特化版本：<ul>
+<li><strong>OptionalInt</strong></li>
+<li><strong>OptionDouble</strong></li>
+<li><strong>OptionalLong</strong></li>
 </ul>
 </li>
 </ul>
@@ -1746,7 +1746,7 @@
 <li>有的时候无法区分是没有元素的流，还是最大值真的是0的流，可以显式处理 OptionalInt 去定义一个默认最大值</li>
 </ul>
 <blockquote>
-<p>如果没有最大值的话，可以显式的处理 OptionalInt 去定义一个默认值</p>
+<p>如果没有最大值的话，可以显式的处理 <strong>OptionalInt</strong> 去定义一个默认值</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> max = opt.orElse(<span class="number">520</span>);		<span class="comment">// 如果没有默认值的话，显式的提供一个默认最大值</span></div></pre></td></tr></table></figure>
 <h4 id="数值范围"><a href="#数值范围" class="headerlink" title="数值范围"></a>数值范围</h4><ul>
@@ -1800,7 +1800,7 @@
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Stream.iterate(<span class="number">0</span>, n -&gt; n + <span class="number">2</span>).limit(<span class="number">10</span>).forEach(System.out::println);</div></pre></td></tr></table></figure>
 <blockquote>
-<p>Stream.generate(…)</p>
+<p><strong>Stream.generate(…)</strong></p>
 </blockquote>
 <ul>
 <li>与iterate方法类似，generate方法也可以让你按需生成一个无限流。但generate不是一次对每个新生成的值应用函数的。</li>
@@ -1815,15 +1815,15 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">IntStream.generate(<span class="keyword">new</span> IntSupplier() &#123;</div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAsInt</span><span class="params">()</span> </span>&#123;</div><div class="line">              <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">          &#125;</div><div class="line">      &#125;).limit(<span class="number">20</span>)</div><div class="line">      .forEach(System.out::print);</div><div class="line"><span class="comment">// 使用Lambda表达式</span></div><div class="line">IntStream.generate(() -&gt; <span class="number">2</span>)</div><div class="line">              .limit(<span class="number">20</span>)</div><div class="line">              .forEach(System.out::print);</div><div class="line">              IntStream.generate(() -&gt; <span class="number">2</span>)</div><div class="line">              .limit(<span class="number">20</span>)</div><div class="line">              .forEach(System.out::print);</div></pre></td></tr></table></figure>
 <ul>
-<li>generate() 方法将是用给定的供应源,并反复的调用getAsInt() 而这个方法总是返回2</li>
+<li><strong>generate()</strong> 方法将是用给定的供应源,并反复的调用 <strong>getAsInt()</strong> 而这个方法总是返回2</li>
 </ul>
 <ul>
-<li>[x] 比较generate() 和 iterate()</li>
+<li>[x] 比较 <strong>generate()</strong> 和 <strong>iterate()</strong></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用iterate()方法</span></div><div class="line">Stream.iterate(<span class="number">0</span>, x -&gt; x + <span class="number">2</span>).limit(<span class="number">5</span>).forEach(System.out::println);</div><div class="line"></div><div class="line"><span class="comment">// 使用 generate(...)方法</span></div><div class="line">IntSupplier intSupplier = <span class="keyword">new</span> IntSupplier() &#123;</div><div class="line">          <span class="keyword">int</span> previous = <span class="number">0</span>;</div><div class="line"></div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAsInt</span><span class="params">()</span> </span>&#123;</div><div class="line">              <span class="keyword">int</span> oldPrevious = <span class="keyword">this</span>.previous;</div><div class="line">              <span class="keyword">this</span>.previous = <span class="keyword">this</span>.previous + <span class="number">2</span>;</div><div class="line">              ;</div><div class="line">              <span class="keyword">return</span> oldPrevious;</div><div class="line">          &#125;</div><div class="line">      &#125;;</div><div class="line"></div><div class="line">      Stream.generate(intSupplier).limit(<span class="number">5</span>).forEach(System.out::println);</div><div class="line"></div><div class="line">outPut:	<span class="number">0</span>	<span class="number">2</span>	<span class="number">4</span>	<span class="number">6</span>	<span class="number">8</span></div></pre></td></tr></table></figure>
 <ul>
-<li>前面的代码创建了一个IntSupplier的实例</li>
-<li>此对象有可变的状态：他在两个实例变量中记录了前一个数，getAsInt()在调用时会改变对象的状态，由此在每次调用时产生新的值</li>
+<li>前面的代码创建了一个 <strong>IntSupplier</strong> 的实例</li>
+<li>此对象有可变的状态：他在两个实例变量中记录了前一个数，<strong>getAsInt()</strong> 在调用时会改变对象的状态，由此在每次调用时产生新的值</li>
 </ul>
 <blockquote>
 <p>注意：</p>
@@ -1857,7 +1857,7 @@
         <p><span>本文标题:</span><a href="/2016/09/07/160805_lambda/">lambda表达式</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Benny</a></p>
         <p><span>发布时间:</span>2016-09-07, 09:50:27</p>
-        <p><span>最后更新:</span>2016-09-14, 17:16:11</p>
+        <p><span>最后更新:</span>2016-09-14, 17:21:43</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/09/07/160805_lambda/" title="lambda表达式">/2016/09/07/160805_lambda/</a>
             <span class="copy-path" data-clipboard-text="原文: /2016/09/07/160805_lambda/　　作者: Benny" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
