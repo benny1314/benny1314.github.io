@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/610dc034jw1f6aipo68yvj20qo0qoaee.jpg">
 <meta property="og:image" content="http://7xjlkb.com1.z0.glb.clouddn.com/learning_lambda.png">
 <meta property="og:image" content="http://img01.taobaocdn.com/imgextra/i1/90219132/T2mBXnXQhXXXXXXXXX_!!90219132.jpg">
-<meta property="og:updated_time" content="2016-09-14T09:21:43.383Z">
+<meta property="og:updated_time" content="2016-09-14T09:22:39.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lambda表达式">
 <meta name="twitter:description" content="java8 基础知识">
@@ -1792,7 +1792,7 @@
 <li>由 <strong>iterate</strong> 和 <strong>generate</strong> 创建的流会用给定的函数按需创建主，因此可以无线创建下去</li>
 </ul>
 <blockquote>
-<p>Stream.iterate(…)<br>第一个参数是初始值，第二个参数是一个Lambda表达式(<code>UnaryOperator&lt;T&gt;</code>类型【UnaryOperator♥一元运算符】)</p>
+<p>Stream.iterate(…)<br>第一个参数是初始值，第二个参数是一个Lambda表达式(<code>UnaryOperator&lt;T&gt;</code>类型【UnaryOperator ♥ 一元运算符】)</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Stream.iterate(<span class="number">0</span>, <span class="keyword">new</span> UnaryOperator&lt;Integer&gt;() &#123;</div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> Integer <span class="title">apply</span><span class="params">(Integer integer)</span> </span>&#123;</div><div class="line">              <span class="keyword">return</span> integer + <span class="number">2</span>;</div><div class="line">          &#125;</div><div class="line">      &#125;).forEach(System.out::println);</div><div class="line">      </div><div class="line"><span class="comment">// 使用Lambda表达式</span></div><div class="line">      Stream.iterate(<span class="number">0</span>, n -&gt; n + <span class="number">2</span>).forEach(System.out::println);</div></pre></td></tr></table></figure>
 <blockquote>
@@ -1800,7 +1800,7 @@
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Stream.iterate(<span class="number">0</span>, n -&gt; n + <span class="number">2</span>).limit(<span class="number">10</span>).forEach(System.out::println);</div></pre></td></tr></table></figure>
 <blockquote>
-<p><strong>Stream.generate(…)</strong></p>
+<p>Stream.generate(…)</p>
 </blockquote>
 <ul>
 <li>与iterate方法类似，generate方法也可以让你按需生成一个无限流。但generate不是一次对每个新生成的值应用函数的。</li>
@@ -1857,7 +1857,7 @@
         <p><span>本文标题:</span><a href="/2016/09/07/160805_lambda/">lambda表达式</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Benny</a></p>
         <p><span>发布时间:</span>2016-09-07, 09:50:27</p>
-        <p><span>最后更新:</span>2016-09-14, 17:21:43</p>
+        <p><span>最后更新:</span>2016-09-14, 17:22:39</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/09/07/160805_lambda/" title="lambda表达式">/2016/09/07/160805_lambda/</a>
             <span class="copy-path" data-clipboard-text="原文: /2016/09/07/160805_lambda/　　作者: Benny" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
