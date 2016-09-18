@@ -2929,7 +2929,7 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <tr>
 <td><code>Shift + 鼠标滚轮</code></td>
 <td>左右移动</td>
-<td>可以查看过长的代码</td>
+<td>可以查看横向长度过长的代码</td>
 </tr>
 <tr>
 <td><code>Alt + Home</code>再<code>Alt + insert</code></td>
@@ -3022,32 +3022,32 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <td></td>
 </tr>
 <tr>
-<td><code>Ctrl+F2</code></td>
+<td><code>Ctrl + F2</code></td>
 <td>停止</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Alt+Shift+F9</code></td>
+<td><code>Alt + Shift + F9</code></td>
 <td>选择 Debug</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Alt+Shift+F10</code></td>
+<td><code>Alt + Shift + F10</code></td>
 <td>选择 Run</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Ctrl+Shift+F9</code></td>
+<td><code>Ctrl + Shift + F9</code></td>
 <td>编译</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Ctrl+Shift+F10</code></td>
+<td><code>Ctrl + Shift + F10</code></td>
 <td>运行</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Ctrl+Shift+F8</code></td>
+<td><code>Ctrl + Shift + F8</code></td>
 <td>查看断点</td>
 <td></td>
 </tr>
@@ -3062,27 +3062,27 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <td></td>
 </tr>
 <tr>
-<td><code>Shift+F7</code></td>
+<td><code>Shift + F7</code></td>
 <td>智能步入</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Shift+F8</code></td>
+<td><code>Shift + F8</code></td>
 <td>步出</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Alt+Shift+F8</code></td>
+<td><code>Alt + Shift + F8</code></td>
 <td>强制步过</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Alt+Shift+F7</code></td>
+<td><code>Alt + Shift + F7</code></td>
 <td>强制步入</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Alt+F9</code></td>
+<td><code>Alt + F9</code></td>
 <td>运行至光标处</td>
 <td></td>
 </tr>
@@ -3097,17 +3097,17 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <td></td>
 </tr>
 <tr>
-<td><code>Alt+F10</code></td>
+<td><code>Alt + F10</code></td>
 <td>定位到断点</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Ctrl+F8</code></td>
+<td><code>Ctrl + F8</code></td>
 <td>切换行断点</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Ctrl+F9</code></td>
+<td><code>Ctrl + F9</code></td>
 <td>生成项目</td>
 <td></td>
 </tr>
@@ -3122,12 +3122,12 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <td></td>
 </tr>
 <tr>
-<td><code>Ctrl+Alt+N</code></td>
+<td><code>Ctrl + Alt + N</code></td>
 <td>内联</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Alt+Delete</code></td>
+<td><code>Alt + Delete</code></td>
 <td>安全删除</td>
 <td></td>
 </tr>
@@ -3142,7 +3142,7 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <td></td>
 </tr>
 <tr>
-<td><code>Shift+F6</code></td>
+<td><code>Shift + F6</code></td>
 <td>重命名</td>
 <td></td>
 </tr>
@@ -3197,12 +3197,12 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <td></td>
 </tr>
 <tr>
-<td><code>Shift+Esc</code></td>
+<td><code>Shift + Esc</code></td>
 <td>光标返回编辑框,关闭无用的窗口</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Ctrl+F4</code></td>
+<td><code>Ctrl + F4</code></td>
 <td>关闭窗口</td>
 <td></td>
 </tr>
@@ -3227,17 +3227,17 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <td></td>
 </tr>
 <tr>
-<td><code>CTRL+D</code></td>
+<td><code>CTRL + D</code></td>
 <td>复制行</td>
 <td></td>
 </tr>
 <tr>
-<td><code>CTRL+X</code></td>
+<td><code>CTRL + X</code></td>
 <td>剪切,删除行</td>
 <td></td>
 </tr>
 <tr>
-<td><code>CTRL+SHIFT+V</code></td>
+<td><code>CTRL + Shift + V</code></td>
 <td>可以复制多个文本</td>
 <td></td>
 </tr>
@@ -3277,7 +3277,7 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <td></td>
 </tr>
 <tr>
-<td><code>Ctrl+Shift+Space</code></td>
+<td><code>Ctrl + Shift + Space</code></td>
 <td>自动补全代码</td>
 <td></td>
 </tr>
