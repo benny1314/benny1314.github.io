@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Benny" />
+
+
+
+<meta name="description" content="[toc]
+引言
+java语言支持四种类型：
+接口【interface】
+类【class】
+数组【array】
+基本类型【primitive】
+
+
+
+
+前三种类型成为引用类型，类实例和数组是对象，而基本类型的值不是对象。
+
+
+类的成员组成：
+域【field】
+方法【method】
+成员类【member class】
+成员接口【member interface】
+
+
+
+
+方法签名【signature">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective Java 第二版">
+<meta property="og:url" content="/2016/09/17/160917_effective_java/index.html">
+<meta property="og:site_name" content="Benny">
+<meta property="og:description" content="[toc]
+引言
+java语言支持四种类型：
+接口【interface】
+类【class】
+数组【array】
+基本类型【primitive】
+
+
+
+
+前三种类型成为引用类型，类实例和数组是对象，而基本类型的值不是对象。
+
+
+类的成员组成：
+域【field】
+方法【method】
+成员类【member class】
+成员接口【member interface】
+
+
+
+
+方法签名【signature">
+<meta property="og:updated_time" content="2016-09-18T02:00:48.159Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Effective Java 第二版">
+<meta name="twitter:description" content="[toc]
+引言
+java语言支持四种类型：
+接口【interface】
+类【class】
+数组【array】
+基本类型【primitive】
+
+
+
+
+前三种类型成为引用类型，类实例和数组是对象，而基本类型的值不是对象。
+
+
+类的成员组成：
+域【field】
+方法【method】
+成员类【member class】
+成员接口【member interface】
+
+
+
+
+方法签名【signature">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Benny" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="http://file.ipadown.com/uploads/mjh/r3cqsmmw1pa.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Effective Java 第二版 | Benny</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?cefc2b6ee3fc7b9bc86d0adb0741f5d7";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="http://file.ipadown.com/uploads/mjh/r3cqsmmw1pa.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Benny</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Coding is my life</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:xiaoc1314@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaweb/">javaweb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lambda/">lambda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plantUML/">plantUML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码整洁/">代码整洁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具类，类库/">工具类，类库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板/">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程工具/">编程工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/配置文件/">配置文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合/">集合</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高效的java/">高效的java</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Coding is my life</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Benny</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="http://file.ipadown.com/uploads/mjh/r3cqsmmw1pa.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Benny</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Coding is my life</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:xiaoc1314@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-160917_effective_java" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/17/160917_effective_java/" class="article-date">
+      <time datetime="2016-09-17T06:50:27.000Z" itemprop="datePublished">2016-09-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Effective Java 第二版
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/高效的java/">高效的java</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>[toc]</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><ul>
+<li>java语言支持四种类型：<ul>
+<li>接口【interface】</li>
+<li>类【class】</li>
+<li>数组【array】</li>
+<li>基本类型【primitive】</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>前三种类型成为引用类型，类实例和数组是对象，而基本类型的值不是对象。</p>
+</blockquote>
+<ul>
+<li>类的成员组成：<ul>
+<li>域【field】</li>
+<li>方法【method】</li>
+<li>成员类【member class】</li>
+<li>成员接口【member interface】</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>方法签名</strong>【signature】由它的<strong>名称</strong>和<strong>所有参数类型</strong>组成；<strong>签名不包括它的返回类型</strong></p>
+</blockquote>
+<h2 id="第二章-创建和销毁对象"><a href="#第二章-创建和销毁对象" class="headerlink" title="第二章 创建和销毁对象"></a>第二章 创建和销毁对象</h2><h3 id="第1条-考虑使用静态工厂方法替代构造器"><a href="#第1条-考虑使用静态工厂方法替代构造器" class="headerlink" title="第1条 考虑使用静态工厂方法替代构造器"></a>第1条 考虑使用静态工厂方法替代构造器</h3><ul>
+<li>获得对象实例常用的两种方式：<ul>
+<li>公开的构造器</li>
+<li>公开的静态工厂方法</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Boolean <span class="title">valueOf</span><span class="params">(<span class="keyword">boolean</span> b)</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> b ? Boolean.TRUE : Boolean.FALSE;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>类可以通过静态工厂方法提供它的客户端，而不是通过构造器。</p>
+</blockquote>
+<ul>
+<li>提供静态工厂方法而不是公有的构造器，这样做有几大优势<ol>
+<li>它们有名称</li>
+<li>不必在每次调用它们的时候都创建一个新的对象</li>
+<li>它们可以返回原返回类型的任何子类型的对象</li>
+<li>在创建参数化类型实例的时候，它们使代码变得更加简洁</li>
+</ol>
+</li>
+<li>静态工厂方法的主要缺点<ol>
+<li>类如果不含有公开的或者受保护的构造器，就不能被子类化</li>
+<li>它们与其他的静态方法实际上没有任何区别</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>逐一解释：</p>
+</blockquote>
+<ul>
+<li><strong>静态工厂方法与构造器不同的第一大优势在于，他们有名称</strong><ul>
+<li>如果构造器本身没有明确的描述正被返回的对象，那么具有适当名称的静态工厂会更容易使用，代码更容易阅读</li>
+<li>一个类只能够有一个带有制定签名的构造器</li>
+<li>由于静态工厂有名称，所以描述更为清楚</li>
+<li>当一个类需要多个带有相同签名的构造器时，就用静态工厂方法替代构造器，并慎重的选择名称以便突出它们之间的区别</li>
+</ul>
+</li>
+<li><strong>静态工厂方法与构造器不同的第二大优势在于，不必在每次调用他们的时候都创建一个新的对象</strong><ul>
+<li>这使得不可变类可以使用预先构建好的实例，或者将构建好的实例缓存起来，进行重复利用，从而避免创建不必要的重复对象。</li>
+<li>如果程序经常请求创建对象，并且创建对象的代价很高，则这项技术可以极大地提升性能</li>
+<li>静态方法能够为重复的调用返回相同的对象，这样有助于类总能严格的控制在某个时刻哪些实例应该存在，这种类被称作<strong>实例受控的类</strong></li>
+<li>设立受控的类可以确保它是 Singleton 或者是不可实例化的</li>
+<li>它还使得不可变的类可以确保不会存在两个相等的实例<ul>
+<li>即当且仅当  <code>a==b</code> 的时候才有 <code>a.equals(b)</code> 为 <code>true</code></li>
+<li>如果类保证了这一点就可以使用 <code>==</code>  操作符来替代 <code>equals (Object)</code> 方法，这样就可以提升性能</li>
+</ul>
+</li>
+<li>枚举类型保证了这一点</li>
+</ul>
+</li>
+<li><strong>静态工厂方法与构造器不同的第三大优势在于，它们可以返回原返回类型的任何子类型的对象</strong><ul>
+<li>静态工厂方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不必存在，这种领过的静态工厂方法构成了<strong>服务提供者框架</strong>的基础<ul>
+<li>服务提供者框架是指一个系统，多个服务提供者实现一个服务，系统为服务提供者的客户端提供多个市县，并把它们从多个实现中解耦出来</li>
+<li>服务提供者框架中有三个重要的组件<ul>
+<li>服务接口：这是提供者实现的</li>
+<li>提供者注册API：这是系统用来注册实现</li>
+<li>服务访问API：客户端用来获取服务实例，是“灵活的静态工厂”</li>
+<li>服务提供者API：提供者负责创建其服务实现的实例</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>静态工厂方法与构造器不同的第四大优势在于，在创建参数化类型实例的时候，它们使代码变得更加简洁</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Map&lt;String,List&lt;String&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;String,List&lt;String&gt;&gt;	()</div><div class="line"><span class="comment">// 1.7 以后， 添加了 类型推导</span></div><div class="line">Map&lt;String, List&lt;String&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div></pre></td></tr></table></figure>
+<ul>
+<li>我们使用静态工厂方法,先定义一个泛型方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;K, V&gt; <span class="function">Map&lt;K, V&gt; <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> HashMap&lt;K, V&gt;();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>[x] 是可以使用下面这句简洁的代码代替上面这段繁琐的声明</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Map&lt;String,List&lt;String&gt;&gt; map = HashMap.newInstance();</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>静态工厂的第一个缺点自愈，类如果不含有公开的或者受保护的构造器，就不能被子类化</strong><ul>
+<li>要想将Collections Framework 中的任何方法的实现类子类化，这是不可能的。</li>
+<li>它鼓励程序员使用复合【composition】，而不是继承</li>
+</ul>
+</li>
+<li><strong>静态工厂的第二个缺点自愈，他们与其他的静态方法没有任何区别</strong><ul>
+<li>静态工厂的一些惯用名称如下：</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>valueOf</td>
+<td>不严格的讲，该方法返回的实例与它的参数具有相同的值。这中方法实际上就是<strong>类型转换方法</strong></td>
+</tr>
+<tr>
+<td>of</td>
+<td>valueOf的一种更为简洁的替代，在EnumSet中使用并流行起来</td>
+</tr>
+<tr>
+<td>getInstance</td>
+<td>返回的实例是通过方法的参数来描述的，但是不能够说与参数具有同样的值</td>
+</tr>
+<tr>
+<td>newInstance</td>
+<td>像getInstance一样单newInstance能够确保能够返回的每个实例都与其所有其他实例不同</td>
+</tr>
+<tr>
+<td>getType</td>
+<td>像getInstatnce一样，但是在工厂方法处于不同的类中的时候使用。Type表示工厂方法返回的对象类型</td>
+</tr>
+<tr>
+<td>newType</td>
+<td>想newInstance一样，但是在工厂方法处于不同的类中的时候使用。Type表示工厂方法所返回的对象类型</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>静态工厂方法和公有构造器都各有用处，静态工厂通常更加合适，因此切忌第一反应就是提供共有的构造器，而不先考虑静态工厂</p>
+</blockquote>
+<h3 id="第2条-遇到多个构造器参数时要考虑用构建器"><a href="#第2条-遇到多个构造器参数时要考虑用构建器" class="headerlink" title="第2条 遇到多个构造器参数时要考虑用构建器"></a>第2条 遇到多个构造器参数时要考虑用构建器</h3><blockquote>
+<p>静态工厂和构造器都有个共同的局限性：<strong>它们都不能很好的扩展到大量的可选参数</strong></p>
+</blockquote>
+<ul>
+<li>[x] 使用重载构造器模式构建实例</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@author</span> by benny on 2016/9/17.</div><div class="line"> * <span class="doctag">@version</span> 1.0</div><div class="line"> * <span class="doctag">@description</span> 通过重载构造器模式</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstrutorBuilder</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servingSize;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> fat;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> sodium;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConstrutorBuilder</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> calories)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(servingSize, calories, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConstrutorBuilder</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> calories, <span class="keyword">int</span> fat)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(servingSize, calories, fat, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConstrutorBuilder</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> calories, <span class="keyword">int</span> fat, <span class="keyword">int</span> sodium)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.servingSize = servingSize;</div><div class="line">        <span class="keyword">this</span>.calories = calories;</div><div class="line">        <span class="keyword">this</span>.fat = fat;</div><div class="line">        <span class="keyword">this</span>.sodium = sodium;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="comment">// 虽然值传递了两个值 仍调用了所有参数的构造器</span></div><div class="line">        ConstrutorBuilder testBuilder = <span class="keyword">new</span> ConstrutorBuilder(<span class="number">240</span>, <span class="number">8</span>);</div><div class="line"></div><div class="line">        ConstrutorBuilder testBuilder1 = <span class="keyword">new</span> ConstrutorBuilder(<span class="number">240</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">35</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>[x] 使用JavaBean模式构建实例</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@author</span> by benny on 2016/9/17.</div><div class="line"> * <span class="doctag">@version</span> 1.0</div><div class="line"> * <span class="doctag">@description</span> 使用JavaBean模式</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaBeanBuilder</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> servingSize = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> calories = <span class="number">0</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> fat = <span class="number">0</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> sodium = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">JavaBeanBuilder</span><span class="params">()</span> </span>&#123; &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setServingSize</span><span class="params">(<span class="keyword">int</span> servingSize)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.servingSize = servingSize;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCalories</span><span class="params">(<span class="keyword">int</span> calories)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.calories = calories;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFat</span><span class="params">(<span class="keyword">int</span> fat)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.fat = fat;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSodium</span><span class="params">(<span class="keyword">int</span> sodium)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.sodium = sodium;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        JavaBeanBuilder builder = <span class="keyword">new</span> JavaBeanBuilder();</div><div class="line">        builder.setServingSize(<span class="number">240</span>);</div><div class="line">        builder.setCalories(<span class="number">35</span>);</div><div class="line">        builder.setFat(<span class="number">100</span>);</div><div class="line">        builder.setSodium(<span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用构建器模式：</p>
+</blockquote>
+<ul>
+<li>[x] 不使用抽象工厂构建实例</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@author</span> by benny on 2016/9/17.</div><div class="line"> * <span class="doctag">@version</span> 1.0</div><div class="line"> * <span class="doctag">@description</span> 构建器模式</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BuildBuilder</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servingSize;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> fat;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> sodium;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</div><div class="line">        <span class="comment">// 必选参数 必须设置</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servingSize;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories;</div><div class="line"></div><div class="line">        <span class="comment">// 可选参数  可以设置也不可不设置</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> fat;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> sodium;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Builder</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> calories)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.servingSize = servingSize;</div><div class="line">            <span class="keyword">this</span>.calories = calories;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">fat</span><span class="params">(<span class="keyword">int</span> fat)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.fat = fat;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">sodium</span><span class="params">(<span class="keyword">int</span> sodium)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.sodium = sodium;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> BuildBuilder <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BuildBuilder(<span class="keyword">this</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BuildBuilder</span><span class="params">(Builder builder)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.servingSize = builder.servingSize;</div><div class="line">        <span class="keyword">this</span>.calories = builder.calories;</div><div class="line">        <span class="keyword">this</span>.fat = builder.fat;</div><div class="line">        <span class="keyword">this</span>.sodium = builder.sodium;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        BuildBuilder build = <span class="keyword">new</span> BuildBuilder</div><div class="line">                .Builder(<span class="number">240</span>, <span class="number">19</span>)</div><div class="line">                .sodium(<span class="number">30</span>)</div><div class="line">                .fat(<span class="number">100</span>)</div><div class="line">                .build();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>[x] 使用抽象工厂</li>
+</ul>
+<ol>
+<li>定义抽象工厂</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@author</span> by benny on 2016/9/17.</div><div class="line"> * <span class="doctag">@version</span> 1.0</div><div class="line"> * <span class="doctag">@description</span> 抽象工厂</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BuilderFactory</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="function">T <span class="title">build</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>使用构建器模式构建实例</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@author</span> by benny on 2016/9/17.</div><div class="line"> * <span class="doctag">@version</span> 1.0</div><div class="line"> * <span class="doctag">@description</span> 构建器模式</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BuildBuilder</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servingSize;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> fat;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> sodium;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> <span class="keyword">implements</span> <span class="title">BuilderFactory</span>&lt;<span class="title">BuildBuilder</span>&gt; </span>&#123;</div><div class="line">        <span class="comment">// 必选参数 必须设置</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servingSize;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories;</div><div class="line"></div><div class="line">        <span class="comment">// 可选参数  可以设置也不可不设置</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> fat;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> sodium;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Builder</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> calories)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.servingSize = servingSize;</div><div class="line">            <span class="keyword">this</span>.calories = calories;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">fat</span><span class="params">(<span class="keyword">int</span> fat)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.fat = fat;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">sodium</span><span class="params">(<span class="keyword">int</span> sodium)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.sodium = sodium;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> BuildBuilder <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BuildBuilder(<span class="keyword">this</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BuildBuilder</span><span class="params">(Builder builder)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.servingSize = builder.servingSize;</div><div class="line">        <span class="keyword">this</span>.calories = builder.calories;</div><div class="line">        <span class="keyword">this</span>.fat = builder.fat;</div><div class="line">        <span class="keyword">this</span>.sodium = builder.sodium;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        BuildBuilder build = <span class="keyword">new</span> BuildBuilder.Builder(<span class="number">240</span>, <span class="number">19</span>)</div><div class="line">				.sodium(<span class="number">30</span>)</div><div class="line">                .fat(<span class="number">100</span>)</div><div class="line">                .build();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>总结：</p>
+</blockquote>
+<ul>
+<li>重载构造器模式可行，但是当有许多参数的时候，客户端代码会很难编写，并且仍然较难以阅读。</li>
+<li>构造器中参数如果很多的话，一长串类型相同的参数会导致一些微妙的错误，如果客户端不小心颠倒了其中两个参数的顺序，编译器也不会报错。</li>
+</ul>
+<hr>
+<ul>
+<li>JavaBean 模式弥补了重载构造器模式的不足，这种模式创建实例很容易，代码也很易读</li>
+<li>在这种模式下，调用一个无参的构造器来创建对象，然后调用<code>setter()</code>方法来这是每个必要的参数，以及每个相关的可选参数。</li>
+<li>遗憾的是，JavaBean模式自身有着很严重的缺点，因构造过程被分到几个调用中，在调用过程中，JavaBean可能处于不一致的状态，类无法仅通过构造器参数的有效性来保证一致性。</li>
+</ul>
+<hr>
+<ul>
+<li>Builder模式，技能保证凑在构造器模式那样的安全性，也能保证像JavaBeans模式那么好的可读性。</li>
+<li>Builder模式，不直接生成想要的对象，而是利用所有必要参数的<strong>构造器（或者静态工厂）</strong>，得到一个builder对象，然后让客户端在builder对象上调用类似于setter的方法，来设置每个相关的可选参数。最后调用无参的<code>build()</code>方法来生成不可变的对象,这个builder是它构建的类的静态成员类</li>
+<li>Builder模式也有自身的不足，为了常见对象，必须先创建它的构建器。</li>
+<li>Builder模式还比重载构造器模式更加冗长，因为它只有在很多参数的时候才使用(比如四个或4个以上的参数)，但是记住，将来你可能需要添加参数。</li>
+<li>如果一开始就使用构造器或者静态工厂，等到类需要多个参数时才添加构建器，就会无法控制，那些过时的构造器或者静态工厂十分不协调，因此，通常最好一开始就使用构建器模式</li>
+</ul>
+<blockquote>
+<p>简而言之：<br>如果类的构造器或者静态工厂中具有多个参数，设计这种类的时候，<strong>Builder模式</strong>就是不错的选择，特别是当大多数参数都是可选的时候，与使用传统的重载构造器模式相比，使用Builder模式的客户端代码将更易于阅读和编写，构建器也比JavaBeans更加安全。</p>
+</blockquote>
+<h3 id="第3条-用私有构造器或者枚举类型强化-SIngleton-属性"><a href="#第3条-用私有构造器或者枚举类型强化-SIngleton-属性" class="headerlink" title="第3条 用私有构造器或者枚举类型强化 SIngleton 属性"></a>第3条 用私有构造器或者枚举类型强化 SIngleton 属性</h3><ul>
+<li>Singleton 指仅仅被实例化一次的类</li>
+<li>Singleton 通常被用来代表大写本质上唯一的系统组件，比如文件系统，因为无法给 Singleton 替换模拟实现，除非它实现一个充当起类型的接口</li>
+</ul>
+<blockquote>
+<p>实现 Singleton 有两种方法，这两种方法都要把构造器保持为私有的，并导出共有的静态冰凉，一边允许客户端能够访问该类的唯一实例</p>
+</blockquote>
+<ul>
+<li>[x] 第一种方法，共有静态变量是个final域</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">	<span class="comment">// 私有静态final域  </span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</div><div class="line">	</div><div class="line">	<span class="comment">/* </span></div><div class="line">     * 私有构造器 </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123; &#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;</div><div class="line">		...</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>私有构造器仅被调用一次，用来实例化共有的静态 final 域<code>Singleton.INSTANCE</code></p>
+</blockquote>
+<ul>
+<li>[x] 第二种方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">	<span class="comment">// 私有静态final域  </span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</div><div class="line">	</div><div class="line">	<span class="comment">/* </span></div><div class="line">     * 私有构造器 </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123; &#125;</div><div class="line">	</div><div class="line">	<span class="comment">/* </span></div><div class="line">	 * 公有静态工厂方法 </div><div class="line">	 */ </div><div class="line">    <span class="function"><span class="keyword">public</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> INSTANCE;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;	...	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>对于<code>Singleton.getInstance()</code>的所有调用，都会返回一个对象引用</li>
+<li>静态工厂方法的优势在于，提供了灵活性<ul>
+<li>在不改变其API的前提下，我们可以改变该类是否为Singleton的想法</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>为了利用这其中一种方法实现的 Singleton 类是可序列化的(Serializable)仅在声明中加上<code>implements Serializable</code> 是不够的。<br>为了维护并保证 Singleton，必须声明所有实例域都是瞬时的(transient)，并提供一个<code>readResole()</code>方法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">	<span class="comment">// 私有静态final域  </span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</div><div class="line">	<span class="comment">/* </span></div><div class="line">     * 私有构造器 </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123; &#125;</div><div class="line">	</div><div class="line">	<span class="comment">/* </span></div><div class="line">	 * 公有静态工厂方法 </div><div class="line">	 */  </div><div class="line">    <span class="function"><span class="keyword">public</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> INSTANCE;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">	<span class="comment">/*</span></div><div class="line">     * 反序列化确保只有一个实例 </div><div class="line">     * 必须提供该方法，以便重新指定反序列化得到的对象. </div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> Object <span class="title">readResolve</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> INSTANCE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>[x] 从Java 1.5起，实现Singleton还有第三种方法，只需要编写一个包含单个元素的枚举类型</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton &#123;</div><div class="line">    </div><div class="line">    INSTANCE;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"hello wolrd"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Singleton singleton = Singleton.INSTANCE;</div><div class="line">        singleton.doSomething();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这种方法在功能上与公有域方法相近，但是它更加简洁，无偿地提供了序列化机制，绝对防止多次实例化，即使是在面对复杂的序列化或者反射攻击的时候，虽然这种方法还没有被广泛采用，但是 <strong>单元素的枚举类型已经成为Singleton的最佳方法</strong> </p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/09/17/160917_effective_java/">Effective Java 第二版</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Benny</a></p>
+        <p><span>发布时间:</span>2016-09-17, 14:50:27</p>
+        <p><span>最后更新:</span>2016-09-18, 10:00:48</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/09/17/160917_effective_java/" title="Effective Java 第二版">/2016/09/17/160917_effective_java/</a>
+            <span class="copy-path" data-clipboard-text="原文: /2016/09/17/160917_effective_java/　　作者: Benny" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/09/18/160918_singleton/">
+                    关于单例的那点事
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/09/07/160805_lambda/">
+                    java8
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二章-创建和销毁对象"><span class="toc-number">2.</span> <span class="toc-text">第二章 创建和销毁对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第1条-考虑使用静态工厂方法替代构造器"><span class="toc-number">2.1.</span> <span class="toc-text">第1条 考虑使用静态工厂方法替代构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第2条-遇到多个构造器参数时要考虑用构建器"><span class="toc-number">2.2.</span> <span class="toc-text">第2条 遇到多个构造器参数时要考虑用构建器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第3条-用私有构造器或者枚举类型强化-SIngleton-属性"><span class="toc-number">2.3.</span> <span class="toc-text">第3条 用私有构造器或者枚举类型强化 SIngleton 属性</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Effective Java 第二版　| Benny　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2105061';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/09/18/160918_singleton/" title="上一篇: 关于单例的那点事">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/09/07/160805_lambda/" title="下一篇: java8">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/09/18/160918_singleton/">关于单例的那点事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/160917_effective_java/">Effective Java 第二版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/160805_lambda/">java8</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/18/160818_junit_spirng_mock/">基于Spring web 做单元测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/17/160817_yaml/">YAML</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/15/160815_Thymeleaf/">Thymeleaf模板</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/12/160812_spring_boot/">Spring Boot</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/11/160811_beetl/">好用的java模板引擎Beetl</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/10/160810_guava_read/">使用Guava来编写优雅的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/08/160808_idea_shortcutKeys/">Intellij idea的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/06/160806_vim/">vim</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/160804_sc_spring/">【源码阅读】Spring源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/03/160803_analyze_javaweb/">深入分析Java Web</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/02/160802_designpatern_read/">设计模式之禅</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/01/160801_sc_arraylist/">ArrayList源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/25/160725_rsa_algorithm/">RSA加密签名</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/160706_linuxcommand/">关于Linux命令的那点小事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/05/160705_plantuml/">plantUML的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/03/160703_linuxShellLine/">Linux Shell 命令行及脚本编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/02/160706_clean_code/">代码整洁之道</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/30/160630_jqueryplugin/">jQuery plugin 插件编写时遇到的问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/28/160628_first/">博客初搭建</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Benny
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
