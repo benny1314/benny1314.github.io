@@ -281,7 +281,7 @@
 <li>Singleton 通常被用来代表大写本质上唯一的系统组件，比如文件系统，因为无法给 Singleton 替换模拟实现，除非它实现一个充当起类型的接口</li>
 </ul>
 <blockquote>
-<p>实现 Singleton 有两种方法，这两种方法都要把构造器保持为私有的，并导出共有的静态冰凉，一边允许客户端能够访问该类的唯一实例</p>
+<p>实现 Singleton 有两种方法，这两种方法都要把构造器保持为私有的，并导出公有的静态变量，一边允许客户端能够访问该类的唯一实例</p>
 </blockquote>
 <ul>
 <li>[x] 第一种方法，共有静态变量是个final域</li>
@@ -310,7 +310,7 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton &#123;</div><div class="line">    </div><div class="line">    INSTANCE;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"hello wolrd"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Singleton singleton = Singleton.INSTANCE;</div><div class="line">        singleton.doSomething();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>这种方法在功能上与公有域方法相近，但是它更加简洁，无偿地提供了序列化机制，绝对防止多次实例化，即使是在面对复杂的序列化或者反射攻击的时候，虽然这种方法还没有被广泛采用，但是 <strong>单元素的枚举类型已经成为Singleton的最佳方法</strong> </p>
+<p>这种方法在功能上与公有域方法相近，但是它更加简洁，无偿地提供了序列化机制，绝对防止多次实例化，即使是在面对复杂的序列化或者反射攻击（单例模式的反射攻击详情请参考：<a href="http://okjava.cn/2016/09/18/160918_singleton/" target="_blank" rel="external">关于单例的那点事</a>）的时候，虽然这种方法还没有被广泛采用，但是 <strong>单元素的枚举类型已经成为Singleton的最佳方法</strong> </p>
 </blockquote>
 ]]></content>
     </entry>
