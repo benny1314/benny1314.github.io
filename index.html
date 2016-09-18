@@ -312,68 +312,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <ul>
-<li>描述:<ul>
-<li>Singleton(单例)是设计模式的一种,为了保证一个类仅有一个实例，并提供一个访问它的全局访问点。</li>
-</ul>
-</li>
-<li>主要特点:     <ol>
-<li>单例类确保自己只有一个实例(构造函数私有:不被外部实例化,也不被继承)。</li>
-<li>单例类必须自己创建自己的实例。</li>
-<li>单例类必须为其他对象提供唯一的实例。</li>
-</ol>
-</li>
-<li>单例模式的应用：<ul>
-<li>资源管理器,回收站,打印机资源,线程池,缓存,配置信息类,管理类,控制类,门面类,代理类通常被设计为单例类</li>
-<li>如果程序有多个类加载器又同时使用单例模式就有可能多个单例并存就要找相应解决方法了</li>
-</ul>
-</li>
-<li>实现方法:<ul>
-<li>如果应用程序总是创建并使用单例实例或在创建和运行时开销不大。</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><a href="http://blog.csdn.net/u013256816/article/details/50427061" target="_blank" rel="external">单例模式的四种写法，占位符模式的写法比较OK</a>，详见如下：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Elvis</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Elvis</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span>  <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span></span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Elvis INSTANCE = <span class="keyword">new</span> Elvis();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Elvis <span class="title">getInstance</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> SingletonHolder.INSTANCE;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingElse</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>但这都是基于一个条件：确保不会通过反射机制调用私有的构造器。这里举个例子，通过JAVA的反射机制来“攻击”单例模式：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ElvisReflectAttack</span></span></div><div class="line">&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InstantiationException,</span></div><div class="line">	IllegalAccessException,</div><div class="line">	IllegalArgumentException,</div><div class="line">	InvocationTargetException,</div><div class="line">	NoSuchMethodException,</div><div class="line">	SecurityException</div><div class="line">	&#123;</div><div class="line">            Class&lt;?&gt; classType = Elvis.class;</div><div class="line">            </div><div class="line">            Constructor&lt;?&gt; c = classType.getDeclaredConstructor(<span class="keyword">null</span>);</div><div class="line">            c.setAccessible(<span class="keyword">true</span>);</div><div class="line">            Elvis e1 = (Elvis)c.newInstance();</div><div class="line">            Elvis e2 = Elvis.getInstance();</div><div class="line">            System.out.println(e1==e2);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>运行结果：<strong>false</strong></li>
-<li>可以看到</li>
-<li>通过反射获取构造函数，然后调用 <code>setAccessible(true)</code> 就可以调用私有的构造函数，所有e1和e2是两个不同的对象。</li>
-</ul>
-<hr>
-<blockquote>
-<p>如果要抵御这种攻击，可以<strong>修改构造器，让它在被要求创建第二个实例的时候抛出异常</strong>。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">synchronized</span> (Singleton.class) &#123;</div><div class="line">            <span class="keyword">if</span> (flag == <span class="keyword">false</span>) &#123;</div><div class="line">                flag = !flag;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"单例模式被狗日了！"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> SingletonHolder.INSTANCE;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingElse</span><span class="params">()</span> </span>&#123; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>测试代码：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestSingleton</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Class&lt;Singleton&gt; classType = Singleton.class;</div><div class="line"></div><div class="line">            Constructor&lt;Singleton&gt; c = classType.getDeclaredConstructor(<span class="keyword">null</span>);</div><div class="line">            c.setAccessible(<span class="keyword">true</span>);</div><div class="line">            </div><div class="line">            Singleton e1 = (Singleton) c.newInstance();</div><div class="line">            Singleton e2 = Singleton.getInstance();</div><div class="line">            </div><div class="line">            System.out.println(e1 == e2);</div><div class="line">            </div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>执行结果:    可以看到，<strong>成功的阻止了单例模式被破坏</strong></p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Exception in thread <span class="string">"main"</span> java.lang.ExceptionInInitializerError</div><div class="line">	at algorithms.Singleton.getInstance(Singleton.java:<span class="number">27</span>)</div><div class="line">	at algorithms.TestSingleton.main(TestSingleton.java:<span class="number">20</span>)</div><div class="line">Caused by: java.lang.RuntimeException: 单例模式被狗日了！</div><div class="line">	at algorithms.Singleton.&lt;init&gt;(Singleton.java:<span class="number">16</span>)</div><div class="line">	at algorithms.Singleton.&lt;init&gt;(Singleton.java:<span class="number">3</span>)</div><div class="line">	at algorithms.Singleton$SingletonHolder.&lt;clinit&gt;(Singleton.java:<span class="number">22</span>)</div><div class="line">	... <span class="number">2</span> more</div></pre></td></tr></table></figure>
-<hr>
-<blockquote>
-<p>从JDK1.5开始，实现Singleton还有新的写法，只需编写一个包含单个元素的枚举类型。推荐写法：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> EnumSingleton &#123;</div><div class="line"></div><div class="line">    INSTANCE;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"hello wolrd"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Singleton singleton = Singleton.INSTANCE;</div><div class="line">        singleton.doSomething();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>EnumSingleton 测试类</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestEnumSingleton</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span></span></div><div class="line">            NoSuchMethodException,</div><div class="line">            SecurityException,</div><div class="line">            InstantiationException,</div><div class="line">            IllegalAccessException,</div><div class="line">            IllegalArgumentException,</div><div class="line">            InvocationTargetException,</div><div class="line">            InvocationTargetException &#123;</div><div class="line"></div><div class="line">        Class&lt;EnumSingleton&gt; classType = EnumSingleton.class;</div><div class="line">        Constructor&lt;EnumSingleton&gt; c = (Constructor&lt;EnumSingleton&gt;) classType.getDeclaredConstructor();</div><div class="line">        c.setAccessible(<span class="keyword">true</span>);</div><div class="line">        c.newInstance();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>执行结果</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Exception in thread <span class="string">"main"</span> java.lang.NoSuchMethodException: algorithms.EnumSingleton.&lt;init&gt;()</div><div class="line">	at java.lang.Class.getConstructor0(Class.java:<span class="number">3082</span>)</div><div class="line">	at java.lang.Class.getDeclaredConstructor(Class.java:<span class="number">2178</span>)</div><div class="line">	at algorithms.TestEnumSingleton.main(TestEnumSingleton.java:<span class="number">22</span>)</div></pre></td></tr></table></figure>
-<hr>
-
+              <h2 id="关于单例的那点事"><a href="#关于单例的那点事" class="headerlink" title="关于单例的那点事"></a>关于单例的那点事</h2><p><img src="http://ww2.sinaimg.cn/large/610dc034gw1f7bm1unn17j20u00u00wm.jpg" alt="0830"></p>
+          
       
     </div>
     
@@ -390,6 +330,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单例模式/">单例模式</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/09/18/160918_singleton/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -436,243 +380,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>[toc]</p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><ul>
-<li>java语言支持四种类型：<ul>
-<li>接口【interface】</li>
-<li>类【class】</li>
-<li>数组【array】</li>
-<li>基本类型【primitive】</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>前三种类型成为引用类型，类实例和数组是对象，而基本类型的值不是对象。</p>
-</blockquote>
-<ul>
-<li>类的成员组成：<ul>
-<li>域【field】</li>
-<li>方法【method】</li>
-<li>成员类【member class】</li>
-<li>成员接口【member interface】</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><strong>方法签名</strong>【signature】由它的<strong>名称</strong>和<strong>所有参数类型</strong>组成；<strong>签名不包括它的返回类型</strong></p>
-</blockquote>
-<h2 id="第二章-创建和销毁对象"><a href="#第二章-创建和销毁对象" class="headerlink" title="第二章 创建和销毁对象"></a>第二章 创建和销毁对象</h2><h3 id="第1条-考虑使用静态工厂方法替代构造器"><a href="#第1条-考虑使用静态工厂方法替代构造器" class="headerlink" title="第1条 考虑使用静态工厂方法替代构造器"></a>第1条 考虑使用静态工厂方法替代构造器</h3><ul>
-<li>获得对象实例常用的两种方式：<ul>
-<li>公开的构造器</li>
-<li>公开的静态工厂方法</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Boolean <span class="title">valueOf</span><span class="params">(<span class="keyword">boolean</span> b)</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> b ? Boolean.TRUE : Boolean.FALSE;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>类可以通过静态工厂方法提供它的客户端，而不是通过构造器。</p>
-</blockquote>
-<ul>
-<li>提供静态工厂方法而不是公有的构造器，这样做有几大优势<ol>
-<li>它们有名称</li>
-<li>不必在每次调用它们的时候都创建一个新的对象</li>
-<li>它们可以返回原返回类型的任何子类型的对象</li>
-<li>在创建参数化类型实例的时候，它们使代码变得更加简洁</li>
-</ol>
-</li>
-<li>静态工厂方法的主要缺点<ol>
-<li>类如果不含有公开的或者受保护的构造器，就不能被子类化</li>
-<li>它们与其他的静态方法实际上没有任何区别</li>
-</ol>
-</li>
-</ul>
-<blockquote>
-<p>逐一解释：</p>
-</blockquote>
-<ul>
-<li><strong>静态工厂方法与构造器不同的第一大优势在于，他们有名称</strong><ul>
-<li>如果构造器本身没有明确的描述正被返回的对象，那么具有适当名称的静态工厂会更容易使用，代码更容易阅读</li>
-<li>一个类只能够有一个带有制定签名的构造器</li>
-<li>由于静态工厂有名称，所以描述更为清楚</li>
-<li>当一个类需要多个带有相同签名的构造器时，就用静态工厂方法替代构造器，并慎重的选择名称以便突出它们之间的区别</li>
-</ul>
-</li>
-<li><strong>静态工厂方法与构造器不同的第二大优势在于，不必在每次调用他们的时候都创建一个新的对象</strong><ul>
-<li>这使得不可变类可以使用预先构建好的实例，或者将构建好的实例缓存起来，进行重复利用，从而避免创建不必要的重复对象。</li>
-<li>如果程序经常请求创建对象，并且创建对象的代价很高，则这项技术可以极大地提升性能</li>
-<li>静态方法能够为重复的调用返回相同的对象，这样有助于类总能严格的控制在某个时刻哪些实例应该存在，这种类被称作<strong>实例受控的类</strong></li>
-<li>设立受控的类可以确保它是 Singleton 或者是不可实例化的</li>
-<li>它还使得不可变的类可以确保不会存在两个相等的实例<ul>
-<li>即当且仅当  <code>a==b</code> 的时候才有 <code>a.equals(b)</code> 为 <code>true</code></li>
-<li>如果类保证了这一点就可以使用 <code>==</code>  操作符来替代 <code>equals (Object)</code> 方法，这样就可以提升性能</li>
-</ul>
-</li>
-<li>枚举类型保证了这一点</li>
-</ul>
-</li>
-<li><strong>静态工厂方法与构造器不同的第三大优势在于，它们可以返回原返回类型的任何子类型的对象</strong><ul>
-<li>静态工厂方法返回的对象所属的类，在编写包含该静态工厂方法的类时可以不必存在，这种领过的静态工厂方法构成了<strong>服务提供者框架</strong>的基础<ul>
-<li>服务提供者框架是指一个系统，多个服务提供者实现一个服务，系统为服务提供者的客户端提供多个市县，并把它们从多个实现中解耦出来</li>
-<li>服务提供者框架中有三个重要的组件<ul>
-<li>服务接口：这是提供者实现的</li>
-<li>提供者注册API：这是系统用来注册实现</li>
-<li>服务访问API：客户端用来获取服务实例，是“灵活的静态工厂”</li>
-<li>服务提供者API：提供者负责创建其服务实现的实例</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>静态工厂方法与构造器不同的第四大优势在于，在创建参数化类型实例的时候，它们使代码变得更加简洁</strong></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Map&lt;String,List&lt;String&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;String,List&lt;String&gt;&gt;	()</div><div class="line"><span class="comment">// 1.7 以后， 添加了 类型推导</span></div><div class="line">Map&lt;String, List&lt;String&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div></pre></td></tr></table></figure>
-<ul>
-<li>我们使用静态工厂方法,先定义一个泛型方法</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;K, V&gt; <span class="function">Map&lt;K, V&gt; <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> HashMap&lt;K, V&gt;();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>[x] 是可以使用下面这句简洁的代码代替上面这段繁琐的声明</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Map&lt;String,List&lt;String&gt;&gt; map = HashMap.newInstance();</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>静态工厂的第一个缺点自愈，类如果不含有公开的或者受保护的构造器，就不能被子类化</strong><ul>
-<li>要想将Collections Framework 中的任何方法的实现类子类化，这是不可能的。</li>
-<li>它鼓励程序员使用复合【composition】，而不是继承</li>
-</ul>
-</li>
-<li><strong>静态工厂的第二个缺点自愈，他们与其他的静态方法没有任何区别</strong><ul>
-<li>静态工厂的一些惯用名称如下：</li>
-</ul>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>valueOf</td>
-<td>不严格的讲，该方法返回的实例与它的参数具有相同的值。这中方法实际上就是<strong>类型转换方法</strong></td>
-</tr>
-<tr>
-<td>of</td>
-<td>valueOf的一种更为简洁的替代，在EnumSet中使用并流行起来</td>
-</tr>
-<tr>
-<td>getInstance</td>
-<td>返回的实例是通过方法的参数来描述的，但是不能够说与参数具有同样的值</td>
-</tr>
-<tr>
-<td>newInstance</td>
-<td>像getInstance一样单newInstance能够确保能够返回的每个实例都与其所有其他实例不同</td>
-</tr>
-<tr>
-<td>getType</td>
-<td>像getInstatnce一样，但是在工厂方法处于不同的类中的时候使用。Type表示工厂方法返回的对象类型</td>
-</tr>
-<tr>
-<td>newType</td>
-<td>想newInstance一样，但是在工厂方法处于不同的类中的时候使用。Type表示工厂方法所返回的对象类型</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>静态工厂方法和公有构造器都各有用处，静态工厂通常更加合适，因此切忌第一反应就是提供共有的构造器，而不先考虑静态工厂</p>
-</blockquote>
-<h3 id="第2条-遇到多个构造器参数时要考虑用构建器"><a href="#第2条-遇到多个构造器参数时要考虑用构建器" class="headerlink" title="第2条 遇到多个构造器参数时要考虑用构建器"></a>第2条 遇到多个构造器参数时要考虑用构建器</h3><blockquote>
-<p>静态工厂和构造器都有个共同的局限性：<strong>它们都不能很好的扩展到大量的可选参数</strong></p>
-</blockquote>
-<ul>
-<li>[x] 使用重载构造器模式构建实例</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@author</span> by benny on 2016/9/17.</div><div class="line"> * <span class="doctag">@version</span> 1.0</div><div class="line"> * <span class="doctag">@description</span> 通过重载构造器模式</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstrutorBuilder</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servingSize;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> fat;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> sodium;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConstrutorBuilder</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> calories)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(servingSize, calories, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConstrutorBuilder</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> calories, <span class="keyword">int</span> fat)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(servingSize, calories, fat, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConstrutorBuilder</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> calories, <span class="keyword">int</span> fat, <span class="keyword">int</span> sodium)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.servingSize = servingSize;</div><div class="line">        <span class="keyword">this</span>.calories = calories;</div><div class="line">        <span class="keyword">this</span>.fat = fat;</div><div class="line">        <span class="keyword">this</span>.sodium = sodium;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="comment">// 虽然值传递了两个值 仍调用了所有参数的构造器</span></div><div class="line">        ConstrutorBuilder testBuilder = <span class="keyword">new</span> ConstrutorBuilder(<span class="number">240</span>, <span class="number">8</span>);</div><div class="line"></div><div class="line">        ConstrutorBuilder testBuilder1 = <span class="keyword">new</span> ConstrutorBuilder(<span class="number">240</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">35</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>[x] 使用JavaBean模式构建实例</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@author</span> by benny on 2016/9/17.</div><div class="line"> * <span class="doctag">@version</span> 1.0</div><div class="line"> * <span class="doctag">@description</span> 使用JavaBean模式</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaBeanBuilder</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> servingSize = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> calories = <span class="number">0</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> fat = <span class="number">0</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> sodium = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">JavaBeanBuilder</span><span class="params">()</span> </span>&#123; &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setServingSize</span><span class="params">(<span class="keyword">int</span> servingSize)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.servingSize = servingSize;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCalories</span><span class="params">(<span class="keyword">int</span> calories)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.calories = calories;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFat</span><span class="params">(<span class="keyword">int</span> fat)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.fat = fat;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSodium</span><span class="params">(<span class="keyword">int</span> sodium)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.sodium = sodium;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        JavaBeanBuilder builder = <span class="keyword">new</span> JavaBeanBuilder();</div><div class="line">        builder.setServingSize(<span class="number">240</span>);</div><div class="line">        builder.setCalories(<span class="number">35</span>);</div><div class="line">        builder.setFat(<span class="number">100</span>);</div><div class="line">        builder.setSodium(<span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>使用构建器模式：</p>
-</blockquote>
-<ul>
-<li>[x] 不使用抽象工厂构建实例</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@author</span> by benny on 2016/9/17.</div><div class="line"> * <span class="doctag">@version</span> 1.0</div><div class="line"> * <span class="doctag">@description</span> 构建器模式</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BuildBuilder</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servingSize;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> fat;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> sodium;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</div><div class="line">        <span class="comment">// 必选参数 必须设置</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servingSize;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories;</div><div class="line"></div><div class="line">        <span class="comment">// 可选参数  可以设置也不可不设置</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> fat;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> sodium;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Builder</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> calories)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.servingSize = servingSize;</div><div class="line">            <span class="keyword">this</span>.calories = calories;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">fat</span><span class="params">(<span class="keyword">int</span> fat)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.fat = fat;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">sodium</span><span class="params">(<span class="keyword">int</span> sodium)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.sodium = sodium;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> BuildBuilder <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BuildBuilder(<span class="keyword">this</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BuildBuilder</span><span class="params">(Builder builder)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.servingSize = builder.servingSize;</div><div class="line">        <span class="keyword">this</span>.calories = builder.calories;</div><div class="line">        <span class="keyword">this</span>.fat = builder.fat;</div><div class="line">        <span class="keyword">this</span>.sodium = builder.sodium;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        BuildBuilder build = <span class="keyword">new</span> BuildBuilder</div><div class="line">                .Builder(<span class="number">240</span>, <span class="number">19</span>)</div><div class="line">                .sodium(<span class="number">30</span>)</div><div class="line">                .fat(<span class="number">100</span>)</div><div class="line">                .build();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>[x] 使用抽象工厂</li>
-</ul>
-<ol>
-<li>定义抽象工厂</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@author</span> by benny on 2016/9/17.</div><div class="line"> * <span class="doctag">@version</span> 1.0</div><div class="line"> * <span class="doctag">@description</span> 抽象工厂</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BuilderFactory</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="function">T <span class="title">build</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>使用构建器模式构建实例</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@author</span> by benny on 2016/9/17.</div><div class="line"> * <span class="doctag">@version</span> 1.0</div><div class="line"> * <span class="doctag">@description</span> 构建器模式</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BuildBuilder</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servingSize;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> fat;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> sodium;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> <span class="keyword">implements</span> <span class="title">BuilderFactory</span>&lt;<span class="title">BuildBuilder</span>&gt; </span>&#123;</div><div class="line">        <span class="comment">// 必选参数 必须设置</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servingSize;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories;</div><div class="line"></div><div class="line">        <span class="comment">// 可选参数  可以设置也不可不设置</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> fat;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> sodium;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Builder</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> calories)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.servingSize = servingSize;</div><div class="line">            <span class="keyword">this</span>.calories = calories;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">fat</span><span class="params">(<span class="keyword">int</span> fat)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.fat = fat;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">sodium</span><span class="params">(<span class="keyword">int</span> sodium)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.sodium = sodium;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> BuildBuilder <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BuildBuilder(<span class="keyword">this</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BuildBuilder</span><span class="params">(Builder builder)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.servingSize = builder.servingSize;</div><div class="line">        <span class="keyword">this</span>.calories = builder.calories;</div><div class="line">        <span class="keyword">this</span>.fat = builder.fat;</div><div class="line">        <span class="keyword">this</span>.sodium = builder.sodium;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        BuildBuilder build = <span class="keyword">new</span> BuildBuilder.Builder(<span class="number">240</span>, <span class="number">19</span>)</div><div class="line">				.sodium(<span class="number">30</span>)</div><div class="line">                .fat(<span class="number">100</span>)</div><div class="line">                .build();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>总结：</p>
-</blockquote>
-<ul>
-<li>重载构造器模式可行，但是当有许多参数的时候，客户端代码会很难编写，并且仍然较难以阅读。</li>
-<li>构造器中参数如果很多的话，一长串类型相同的参数会导致一些微妙的错误，如果客户端不小心颠倒了其中两个参数的顺序，编译器也不会报错。</li>
-</ul>
-<hr>
-<ul>
-<li>JavaBean 模式弥补了重载构造器模式的不足，这种模式创建实例很容易，代码也很易读</li>
-<li>在这种模式下，调用一个无参的构造器来创建对象，然后调用<code>setter()</code>方法来这是每个必要的参数，以及每个相关的可选参数。</li>
-<li>遗憾的是，JavaBean模式自身有着很严重的缺点，因构造过程被分到几个调用中，在调用过程中，JavaBean可能处于不一致的状态，类无法仅通过构造器参数的有效性来保证一致性。</li>
-</ul>
-<hr>
-<ul>
-<li>Builder模式，技能保证凑在构造器模式那样的安全性，也能保证像JavaBeans模式那么好的可读性。</li>
-<li>Builder模式，不直接生成想要的对象，而是利用所有必要参数的<strong>构造器（或者静态工厂）</strong>，得到一个builder对象，然后让客户端在builder对象上调用类似于setter的方法，来设置每个相关的可选参数。最后调用无参的<code>build()</code>方法来生成不可变的对象,这个builder是它构建的类的静态成员类</li>
-<li>Builder模式也有自身的不足，为了常见对象，必须先创建它的构建器。</li>
-<li>Builder模式还比重载构造器模式更加冗长，因为它只有在很多参数的时候才使用(比如四个或4个以上的参数)，但是记住，将来你可能需要添加参数。</li>
-<li>如果一开始就使用构造器或者静态工厂，等到类需要多个参数时才添加构建器，就会无法控制，那些过时的构造器或者静态工厂十分不协调，因此，通常最好一开始就使用构建器模式</li>
-</ul>
-<blockquote>
-<p>简而言之：<br>如果类的构造器或者静态工厂中具有多个参数，设计这种类的时候，<strong>Builder模式</strong>就是不错的选择，特别是当大多数参数都是可选的时候，与使用传统的重载构造器模式相比，使用Builder模式的客户端代码将更易于阅读和编写，构建器也比JavaBeans更加安全。</p>
-</blockquote>
-<h3 id="第3条-用私有构造器或者枚举类型强化-SIngleton-属性"><a href="#第3条-用私有构造器或者枚举类型强化-SIngleton-属性" class="headerlink" title="第3条 用私有构造器或者枚举类型强化 SIngleton 属性"></a>第3条 用私有构造器或者枚举类型强化 SIngleton 属性</h3><ul>
-<li>Singleton 指仅仅被实例化一次的类</li>
-<li>Singleton 通常被用来代表大写本质上唯一的系统组件，比如文件系统，因为无法给 Singleton 替换模拟实现，除非它实现一个充当起类型的接口</li>
-</ul>
-<blockquote>
-<p>实现 Singleton 有两种方法，这两种方法都要把构造器保持为私有的，并导出共有的静态冰凉，一边允许客户端能够访问该类的唯一实例</p>
-</blockquote>
-<ul>
-<li>[x] 第一种方法，共有静态变量是个final域</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">	<span class="comment">// 私有静态final域  </span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</div><div class="line">	</div><div class="line">	<span class="comment">/* </span></div><div class="line">     * 私有构造器 </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123; &#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;</div><div class="line">		...</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>私有构造器仅被调用一次，用来实例化共有的静态 final 域<code>Singleton.INSTANCE</code></p>
-</blockquote>
-<ul>
-<li>[x] 第二种方法</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">	<span class="comment">// 私有静态final域  </span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</div><div class="line">	</div><div class="line">	<span class="comment">/* </span></div><div class="line">     * 私有构造器 </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123; &#125;</div><div class="line">	</div><div class="line">	<span class="comment">/* </span></div><div class="line">	 * 公有静态工厂方法 </div><div class="line">	 */ </div><div class="line">    <span class="function"><span class="keyword">public</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> INSTANCE;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;	...	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>对于<code>Singleton.getInstance()</code>的所有调用，都会返回一个对象引用</li>
-<li>静态工厂方法的优势在于，提供了灵活性<ul>
-<li>在不改变其API的前提下，我们可以改变该类是否为Singleton的想法</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>为了利用这其中一种方法实现的 Singleton 类是可序列化的(Serializable)仅在声明中加上<code>implements Serializable</code> 是不够的。<br>为了维护并保证 Singleton，必须声明所有实例域都是瞬时的(transient)，并提供一个<code>readResole()</code>方法</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">	<span class="comment">// 私有静态final域  </span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</div><div class="line">	<span class="comment">/* </span></div><div class="line">     * 私有构造器 </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123; &#125;</div><div class="line">	</div><div class="line">	<span class="comment">/* </span></div><div class="line">	 * 公有静态工厂方法 </div><div class="line">	 */  </div><div class="line">    <span class="function"><span class="keyword">public</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> INSTANCE;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">	<span class="comment">/*</span></div><div class="line">     * 反序列化确保只有一个实例 </div><div class="line">     * 必须提供该方法，以便重新指定反序列化得到的对象. </div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> Object <span class="title">readResolve</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> INSTANCE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>[x] 从Java 1.5起，实现Singleton还有第三种方法，只需要编写一个包含单个元素的枚举类型</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton &#123;</div><div class="line">    </div><div class="line">    INSTANCE;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"hello wolrd"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Singleton singleton = Singleton.INSTANCE;</div><div class="line">        singleton.doSomething();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这种方法在功能上与公有域方法相近，但是它更加简洁，无偿地提供了序列化机制，绝对防止多次实例化，即使是在面对复杂的序列化或者反射攻击的时候，虽然这种方法还没有被广泛采用，但是 <strong>单元素的枚举类型已经成为Singleton的最佳方法</strong> </p>
-</blockquote>
-
+              <h2 id="Effective-Java-第二版"><a href="#Effective-Java-第二版" class="headerlink" title="Effective Java 第二版"></a>Effective Java 第二版</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f756vb8zl2j20u011haec.jpg" alt="0825"></p>
+          
       
     </div>
     
@@ -689,6 +398,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/高效的java/">高效的java</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/09/17/160917_effective_java/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

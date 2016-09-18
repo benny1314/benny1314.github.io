@@ -6,7 +6,9 @@
     <entry>
       <title><![CDATA[关于单例的那点事]]></title>
       <url>/2016/09/18/160918_singleton/</url>
-      <content type="html"><![CDATA[<ul>
+      <content type="html"><![CDATA[<h2 id="关于单例的那点事"><a href="#关于单例的那点事" class="headerlink" title="关于单例的那点事"></a>关于单例的那点事</h2><p><img src="http://ww2.sinaimg.cn/large/610dc034gw1f7bm1unn17j20u00u00wm.jpg" alt="0830"></p>
+<a id="more"></a>
+<ul>
 <li>描述:<ul>
 <li>Singleton(单例)是设计模式的一种,为了保证一个类仅有一个实例，并提供一个访问它的全局访问点。</li>
 </ul>
@@ -73,7 +75,8 @@
     <entry>
       <title><![CDATA[Effective Java 第二版]]></title>
       <url>/2016/09/17/160917_effective_java/</url>
-      <content type="html"><![CDATA[<p>[toc]</p>
+      <content type="html"><![CDATA[<h2 id="Effective-Java-第二版"><a href="#Effective-Java-第二版" class="headerlink" title="Effective Java 第二版"></a>Effective Java 第二版</h2><p><img src="http://ww3.sinaimg.cn/large/610dc034jw1f756vb8zl2j20u011haec.jpg" alt="0825"></p>
+<a id="more"></a>
 <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><ul>
 <li>java语言支持四种类型：<ul>
 <li>接口【interface】</li>
