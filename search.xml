@@ -2972,6 +2972,21 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <td></td>
 </tr>
 <tr>
+<td><code>Ctrl + H</code></td>
+<td>显示类结构图</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl + P</code></td>
+<td>可以显示参数信息</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ctrl +</code>  <code>[</code> 或 <code>]</code></td>
+<td>可以跳到大括号的开头结尾</td>
+<td></td>
+</tr>
+<tr>
 <td><strong>版本控制</strong></td>
 <td></td>
 <td></td>
@@ -3172,13 +3187,8 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <td>切换代码上方的<code>tab</code></td>
 </tr>
 <tr>
-<td><code>Ctrl + H</code></td>
-<td>在方法间快速移动定位</td>
-<td></td>
-</tr>
-<tr>
 <td><code>Ctrl + Q</code></td>
-<td>在方法间快速移动定位</td>
+<td>显示注释文档</td>
 <td></td>
 </tr>
 <tr>
