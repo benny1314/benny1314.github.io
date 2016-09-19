@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="Benny">
 <meta property="og:description" content="Effective Java 第二版">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/610dc034jw1f756vb8zl2j20u011haec.jpg">
-<meta property="og:updated_time" content="2016-09-18T02:26:57.251Z">
+<meta property="og:updated_time" content="2016-09-19T06:58:11.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective Java 第二版">
 <meta name="twitter:description" content="Effective Java 第二版">
@@ -560,6 +560,36 @@
 <blockquote>
 <p>这种方法在功能上与公有域方法相近，但是它更加简洁，无偿地提供了序列化机制，绝对防止多次实例化，即使是在面对复杂的序列化或者反射攻击（单例模式的反射攻击详情请参考：<a href="http://okjava.cn/2016/09/18/160918_singleton/" target="_blank" rel="external">关于单例的那点事</a>）的时候，虽然这种方法还没有被广泛采用，但是 <strong>单元素的枚举类型已经成为Singleton的最佳方法</strong> </p>
 </blockquote>
+<h3 id="第4条：-通过私有构造器强化不可实例化的能力"><a href="#第4条：-通过私有构造器强化不可实例化的能力" class="headerlink" title="第4条： 通过私有构造器强化不可实例化的能力"></a>第4条： 通过私有构造器强化不可实例化的能力</h3><ul>
+<li>有时候你可能需要编写只包含静态方法和静态域的类</li>
+<li>这样的工具类（utility class）不希望被实例化，实例化对它没有任何意义，然而在缺少显示构造器的情况下，编译器会自动提供一个共有的，无参的缺省构造器（default constructor）</li>
+</ul>
+<blockquote>
+<p>企图通过将类做成抽象类来强制该类不可被实例化，这是行不通的。</p>
+</blockquote>
+<ul>
+<li>虽然抽象类不能够被实例化，但是该抽象类可以被子类化，并且该子类可以被实例化。</li>
+<li><p>并且声明为抽象类，会误导用户以为这种类是专门为了继承而设计的</p>
+</li>
+<li><p><strong>设置一个类不能被继承的两种方式</strong></p>
+<ul>
+<li>使用 <strong>final</strong> 修饰</li>
+<li>将构造器用 <strong>private</strong> 修饰（构造器私有）</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>[x] 由于只有当类中不包含显示的构造器时，编译器才会生成缺省的构造器，因此只要将这这个类包含有私有构造器，它就不能被实例化了</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParentClass</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span>  <span class="title">ParentClass</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SonClass</span> <span class="keyword">extends</span> <span class="title">ParentClass</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SonClass</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>();		★★★★★</div><div class="line">        <span class="comment">// 此处无法编译通过 报错 there is no default constructor avialiable in ParentClass</span></div><div class="line">        <span class="comment">// 因为父类显式的将构造器私有 所有无法找到默认的构造器</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>这种类也有一副作用，它使得一个类不能被子类化。所有的构造器都必须显式的活隐式地调用超类（superclass）构造器，在这种情况下，子类就没有可访问的超类构造器可调用了</li>
+</ul>
+<blockquote>
+<p>这种情况下是可以的：能够编译通过</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestParentConstructer</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="title">Parent</span><span class="params">()</span> </span>&#123;</div><div class="line">            System.out.println(<span class="string">"我是父类"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Son</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">super</span>();</div><div class="line">            System.out.println(<span class="string">"我是子类"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Son s = <span class="keyword">new</span> TestParentConstructer().new Son();</div><div class="line">        AbstractClass a = <span class="keyword">new</span> AbstractClass() &#123;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -571,7 +601,7 @@
         <p><span>本文标题:</span><a href="/2016/09/17/160917_effective_java/">Effective Java 第二版</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Benny</a></p>
         <p><span>发布时间:</span>2016-09-17, 14:50:27</p>
-        <p><span>最后更新:</span>2016-09-18, 10:26:57</p>
+        <p><span>最后更新:</span>2016-09-19, 14:58:11</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/09/17/160917_effective_java/" title="Effective Java 第二版">/2016/09/17/160917_effective_java/</a>
             <span class="copy-path" data-clipboard-text="原文: /2016/09/17/160917_effective_java/　　作者: Benny" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -607,7 +637,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Effective-Java-第二版"><span class="toc-number">1.</span> <span class="toc-text">Effective Java 第二版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">2.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二章-创建和销毁对象"><span class="toc-number">3.</span> <span class="toc-text">第二章 创建和销毁对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第1条-考虑使用静态工厂方法替代构造器"><span class="toc-number">3.1.</span> <span class="toc-text">第1条 考虑使用静态工厂方法替代构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第2条-遇到多个构造器参数时要考虑用构建器"><span class="toc-number">3.2.</span> <span class="toc-text">第2条 遇到多个构造器参数时要考虑用构建器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第3条-用私有构造器或者枚举类型强化-SIngleton-属性"><span class="toc-number">3.3.</span> <span class="toc-text">第3条 用私有构造器或者枚举类型强化 SIngleton 属性</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Effective-Java-第二版"><span class="toc-number">1.</span> <span class="toc-text">Effective Java 第二版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">2.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二章-创建和销毁对象"><span class="toc-number">3.</span> <span class="toc-text">第二章 创建和销毁对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第1条-考虑使用静态工厂方法替代构造器"><span class="toc-number">3.1.</span> <span class="toc-text">第1条 考虑使用静态工厂方法替代构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第2条-遇到多个构造器参数时要考虑用构建器"><span class="toc-number">3.2.</span> <span class="toc-text">第2条 遇到多个构造器参数时要考虑用构建器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第3条-用私有构造器或者枚举类型强化-SIngleton-属性"><span class="toc-number">3.3.</span> <span class="toc-text">第3条 用私有构造器或者枚举类型强化 SIngleton 属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第4条：-通过私有构造器强化不可实例化的能力"><span class="toc-number">3.4.</span> <span class="toc-text">第4条： 通过私有构造器强化不可实例化的能力</span></a></li></ol></li></ol>
         
     </div>
     <style>
