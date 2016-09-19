@@ -314,7 +314,7 @@
 </blockquote>
 <h3 id="第4条：-通过私有构造器强化不可实例化的能力"><a href="#第4条：-通过私有构造器强化不可实例化的能力" class="headerlink" title="第4条： 通过私有构造器强化不可实例化的能力"></a>第4条： 通过私有构造器强化不可实例化的能力</h3><ul>
 <li>有时候你可能需要编写只包含静态方法和静态域的类</li>
-<li>这样的工具类（utility class）不希望被实例化，实例化对它没有任何意义，然而在缺少显示构造器的情况下，编译器会自动提供一个共有的，无参的缺省构造器（default constructor）</li>
+<li>这样的工具类（utility class）不希望被实例化，实例化对它没有任何意义，然而在缺少显示构造器的情况下，编译器会自动提供一个公有的，无参的缺省构造器（default constructor）</li>
 </ul>
 <blockquote>
 <p>企图通过将类做成抽象类来强制该类不可被实例化，这是行不通的。</p>
@@ -322,9 +322,9 @@
 <ul>
 <li>虽然抽象类不能够被实例化，但是该抽象类可以被子类化，并且该子类可以被实例化</li>
 <li>并且声明为抽象类，会误导用户以为这种类是专门为了继承而设计的</li>
-<li>设置<strong>一个类不能被继承</strong>的两种方式<ul>
+<li>设置<strong>一个类不能被继承的两种方式</strong><ul>
 <li>使用 <strong>final</strong> 修饰</li>
-<li>将构造器用 <strong>private</strong> 修饰（构造器私有）</li>
+<li>将<strong>构造器</strong>用 <strong>private</strong> 修饰（构造器私有）</li>
 </ul>
 </li>
 </ul>
