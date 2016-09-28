@@ -3653,14 +3653,14 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <li><code>http://localhost:8080/err</code></li>
 </ul>
 </li>
-<li><p>req.getRequest<code>URI</code>() </p>
-<ul>
+<li>req.getRequest<code>URI</code>() <ul>
 <li><code>/err</code> </li>
 </ul>
 </li>
-<li><p>实现error.html页面展示：在templates目录下创建error.html，将请求的URL和Exception对象的message输出。</p>
-</li>
 </ul>
+<blockquote>
+<p>实现error.html页面展示：在templates目录下创建error.html，将请求的URL和Exception对象的message输出。</p>
+</blockquote>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;  </div><div class="line">&lt;html&gt;  </div><div class="line">&lt;head lang="en"&gt;  </div><div class="line">    &lt;meta charset="UTF-8" /&gt;</div><div class="line">    &lt;title&gt;统一异常处理&lt;/title&gt;</div><div class="line">&lt;/head&gt;  </div><div class="line">&lt;body&gt;  </div><div class="line">    &lt;h1&gt;Error Handler&lt;/h1&gt;</div><div class="line">    &lt;div th:text="$&#123;url&#125;"&gt;&lt;/div&gt;</div><div class="line">    &lt;div th:text="$&#123;exception.message&#125;"&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;  </div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>通过实现上述内容之后，我们只需要在<code>Controller</code>中抛出<code>Exception</code>，当然我们可能会有多种不同的<code>Exception</code>。然后在<code>@ControllerAdvice</code>类中，根据抛出的具体<code>Exception</code>类型匹配<code>@ExceptionHandler</code>中配置的异常类型来匹配错误映射和处理。</p>

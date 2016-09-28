@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="Benny">
 <meta property="og:description" content="Spring Boot">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/610dc034jw1f48mxqcvkvj20lt0pyaed.jpg">
-<meta property="og:updated_time" content="2016-09-28T06:21:06.668Z">
+<meta property="og:updated_time" content="2016-09-28T06:25:53.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot">
 <meta name="twitter:description" content="Spring Boot">
@@ -603,14 +603,14 @@
 <li><code>http://localhost:8080/err</code></li>
 </ul>
 </li>
-<li><p>req.getRequest<code>URI</code>() </p>
-<ul>
+<li>req.getRequest<code>URI</code>() <ul>
 <li><code>/err</code> </li>
 </ul>
 </li>
-<li><p>实现error.html页面展示：在templates目录下创建error.html，将请求的URL和Exception对象的message输出。</p>
-</li>
 </ul>
+<blockquote>
+<p>实现error.html页面展示：在templates目录下创建error.html，将请求的URL和Exception对象的message输出。</p>
+</blockquote>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;  </div><div class="line">&lt;html&gt;  </div><div class="line">&lt;head lang="en"&gt;  </div><div class="line">    &lt;meta charset="UTF-8" /&gt;</div><div class="line">    &lt;title&gt;统一异常处理&lt;/title&gt;</div><div class="line">&lt;/head&gt;  </div><div class="line">&lt;body&gt;  </div><div class="line">    &lt;h1&gt;Error Handler&lt;/h1&gt;</div><div class="line">    &lt;div th:text="$&#123;url&#125;"&gt;&lt;/div&gt;</div><div class="line">    &lt;div th:text="$&#123;exception.message&#125;"&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;  </div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>通过实现上述内容之后，我们只需要在<code>Controller</code>中抛出<code>Exception</code>，当然我们可能会有多种不同的<code>Exception</code>。然后在<code>@ControllerAdvice</code>类中，根据抛出的具体<code>Exception</code>类型匹配<code>@ExceptionHandler</code>中配置的异常类型来匹配错误映射和处理。</p>
@@ -1662,7 +1662,7 @@
         <p><span>本文标题:</span><a href="/2016/08/12/160812_spring_boot/">Spring Boot</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Benny</a></p>
         <p><span>发布时间:</span>2016-08-12, 14:50:27</p>
-        <p><span>最后更新:</span>2016-09-28, 14:21:06</p>
+        <p><span>最后更新:</span>2016-09-28, 14:25:53</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/08/12/160812_spring_boot/" title="Spring Boot">/2016/08/12/160812_spring_boot/</a>
             <span class="copy-path" data-clipboard-text="原文: /2016/08/12/160812_spring_boot/　　作者: Benny" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
