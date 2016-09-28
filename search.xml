@@ -3834,21 +3834,15 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="number">2016</span>-<span class="number">05</span>-<span class="number">19</span> <span class="number">13</span>:<span class="number">42</span>:<span class="number">13</span>,<span class="number">156</span>  INFO WebLogAspect:<span class="number">41</span> - URL : http:<span class="comment">//localhost:8080/hello  </span></div><div class="line"><span class="number">2016</span>-<span class="number">05</span>-<span class="number">19</span> <span class="number">13</span>:<span class="number">42</span>:<span class="number">13</span>,<span class="number">156</span>  INFO WebLogAspect:<span class="number">42</span> - HTTP_METHOD : http:<span class="comment">//localhost:8080/hello  </span></div><div class="line"><span class="number">2016</span>-<span class="number">05</span>-<span class="number">19</span> <span class="number">13</span>:<span class="number">42</span>:<span class="number">13</span>,<span class="number">157</span>  INFO WebLogAspect:<span class="number">43</span> - IP : <span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">1</span>  </div><div class="line"><span class="number">2016</span>-<span class="number">05</span>-<span class="number">19</span> <span class="number">13</span>:<span class="number">42</span>:<span class="number">13</span>,<span class="number">160</span>  INFO WebLogAspect:<span class="number">44</span> - CLASS_METHOD : com.didispace.web.HelloController.hello  </div><div class="line"><span class="number">2016</span>-<span class="number">05</span>-<span class="number">19</span> <span class="number">13</span>:<span class="number">42</span>:<span class="number">13</span>,<span class="number">160</span>  INFO WebLogAspect:<span class="number">45</span> - ARGS : [didi]  </div><div class="line"><span class="number">2016</span>-<span class="number">05</span>-<span class="number">19</span> <span class="number">13</span>:<span class="number">42</span>:<span class="number">13</span>,<span class="number">170</span>  INFO WebLogAspect:<span class="number">52</span> - RESPONSE:Hello didi</div></pre></td></tr></table></figure>
 <h3 id="优化：AOP切面中的同步问题"><a href="#优化：AOP切面中的同步问题" class="headerlink" title="优化：AOP切面中的同步问题"></a>优化：AOP切面中的同步问题</h3><ul>
-<li><p>WebLogAspect切面中，分别通过doBefore和doAfterReturning两个独立函数实现了切点头部和切点返回后执行的内容，若我们想统计请求的处理时间，就需要在doBefore处记录时间，并在doAfterReturning处通过当前时间与开始处记录的时间计算得到请求处理的消耗时间。</p>
-</li>
-<li><p>那么我们是否可以在WebLogAspect切面中定义一个成员变量来给doBefore和doAfterReturning一起访问呢？是否会有同步问题呢？</p>
-</li>
-<li><p>的确，直接在这里定义基本类型会有同步问题，所以我们可以引入ThreadLocal对象，像下面这样进行记录：</p>
-</li>
+<li>WebLogAspect切面中，分别通过doBefore和doAfterReturning两个独立函数实现了切点头部和切点返回后执行的内容，若我们想统计请求的处理时间，就需要在doBefore处记录时间，并在doAfterReturning处通过当前时间与开始处记录的时间计算得到请求处理的消耗时间。</li>
+<li>那么我们是否可以在WebLogAspect切面中定义一个成员变量来给doBefore和doAfterReturning一起访问呢？是否会有同步问题呢？</li>
+<li>的确，直接在这里定义基本类型会有同步问题，所以我们可以引入ThreadLocal对象，像下面这样进行记录：</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Aspect</span></div><div class="line"><span class="meta">@Component</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebLogAspect</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Logger logger = Logger.getLogger(getClass());</div><div class="line"></div><div class="line">    ThreadLocal&lt;Long&gt; startTime = <span class="keyword">new</span> ThreadLocal&lt;&gt;();</div><div class="line"></div><div class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(public * com.didispace.web..*.*(..))"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">webLog</span><span class="params">()</span></span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="meta">@Before</span>(<span class="string">"webLog()"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doBefore</span><span class="params">(JoinPoint joinPoint)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">        startTime.set(System.currentTimeMillis());</div><div class="line"></div><div class="line">        <span class="comment">// 省略日志记录内容</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@AfterReturning</span>(returning = <span class="string">"ret"</span>, pointcut = <span class="string">"webLog()"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterReturning</span><span class="params">(Object ret)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">        <span class="comment">// 处理完请求，返回内容</span></div><div class="line">        logger.info(<span class="string">"RESPONSE : "</span> + ret);</div><div class="line">        logger.info(<span class="string">"SPEND TIME : "</span> + (System.currentTimeMillis() - startTime.get()));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="优化：AOP切面的优先级"><a href="#优化：AOP切面的优先级" class="headerlink" title="优化：AOP切面的优先级"></a>优化：AOP切面的优先级</h3><ul>
-<li><p>由于通过AOP实现，程序得到了很好的解耦，但是也会带来一些问题，比如：我们可能会对Web层做多个切面，校验用户，校验头信息等等，这个时候经常会碰到切面的处理顺序问题。</p>
-</li>
-<li><p>所以，我们需要定义每个切面的优先级，我们需要<code>@Order(i)</code>注解来标识切面的优先级。i的值越小，优先级越高。假设我们还有一个切面是CheckNameAspect用来校验name必须为didi，我们为其设置<code>@Order(10)</code>，而上文中WebLogAspect设置为<code>@Order(5)</code>，所以WebLogAspect有更高的优先级，这个时候执行顺序是这样的：</p>
-</li>
-<li><p>在<code>@Before</code>中优先执行@Order(5)的内容，再执行<code>@Order(10)</code>的内容</p>
-</li>
+<li>由于通过AOP实现，程序得到了很好的解耦，但是也会带来一些问题，比如：我们可能会对Web层做多个切面，校验用户，校验头信息等等，这个时候经常会碰到切面的处理顺序问题。</li>
+<li>所以，我们需要定义每个切面的优先级，我们需要<code>@Order(i)</code>注解来标识切面的优先级。i的值越小，优先级越高。假设我们还有一个切面是CheckNameAspect用来校验name必须为didi，我们为其设置<code>@Order(10)</code>，而上文中WebLogAspect设置为<code>@Order(5)</code>，所以WebLogAspect有更高的优先级，这个时候执行顺序是这样的：</li>
+<li>在<code>@Before</code>中优先执行@Order(5)的内容，再执行<code>@Order(10)</code>的内容</li>
 <li>在<code>@After</code>和@<code>AfterReturning</code>中优先执行<code>@Order(10)</code>的内容，再执行@Order(5)的内容</li>
 <li>所以我们可以这样子总结：</li>
 </ul>
@@ -3856,10 +3850,8 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <p>在切入点前的操作，按order的值由小到大执行<br>在切入点后的操作，按order的值由大到小执行</p>
 </blockquote>
 <h2 id="SpringApplication"><a href="#SpringApplication" class="headerlink" title="SpringApplication"></a>SpringApplication</h2><h3 id="自定义Banner"><a href="#自定义Banner" class="headerlink" title="自定义Banner"></a>自定义Banner</h3><ul>
-<li><p>通过在classpath下添加一个banner.txt或设置banner.location来指定相应的文件可以改变启动过程中打印的banner。如果这个文件有特殊的编码，你可以使用banner.encoding设置它（默认为UTF-8）。</p>
-</li>
-<li><p>在banner.txt中可以使用如下的变量：</p>
-</li>
+<li>通过在classpath下添加一个banner.txt或设置banner.location来指定相应的文件可以改变启动过程中打印的banner。如果这个文件有特殊的编码，你可以使用banner.encoding设置它（默认为UTF-8）。</li>
+<li>在banner.txt中可以使用如下的变量：</li>
 </ul>
 <table>
 <thead>
@@ -3907,10 +3899,8 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <p>注：创建ApplicationContext层次时有些限制，比如，Web组件(components)必须包含在子上下文(child context)中，且相同的Environment即用于父上下文也用于子上下文中。</p>
 </blockquote>
 <h3 id="Application事件和监听器"><a href="#Application事件和监听器" class="headerlink" title="Application事件和监听器"></a>Application事件和监听器</h3><ul>
-<li><p>除了常见的Spring框架事件，比如<strong>ContextRefreshedEvent</strong>，一个<strong>SpringApplication</strong>也发送一<br>些额外的应用事件。一些事件实际上是在ApplicationContext被创建前触发的。</p>
-</li>
-<li><p>你可以使用多种方式注册事件监听器，最普通的是使用<code>SpringApplication.addListeners(…)</code>方<br>法。在你的应用运行时，应用事件会以下面的次序发送：</p>
-</li>
+<li>除了常见的Spring框架事件，比如<strong>ContextRefreshedEvent</strong>，一个<strong>SpringApplication</strong>也发送一<br>些额外的应用事件。一些事件实际上是在ApplicationContext被创建前触发的。</li>
+<li>你可以使用多种方式注册事件监听器，最普通的是使用<code>SpringApplication.addListeners(…)</code>方<br>法。在你的应用运行时，应用事件会以下面的次序发送：</li>
 </ul>
 <ol>
 <li>在运行开始，但除了监听器注册和初始化以外的任何处理之前，会发送一个<strong>ApplicationStartedEvent</strong></li>
@@ -3922,14 +3912,10 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <p>注：你通常不需要使用应用程序事件，但知道它们的存在会很方便（在某些场合可能会使用到）。<br>在Spring内部，Spring Boot使用事件处理各种各样的任务。</p>
 </blockquote>
 <h3 id="Web环境"><a href="#Web环境" class="headerlink" title="Web环境"></a>Web环境</h3><ul>
-<li><p>一个SpringApplication将尝试为你创建正确类型的ApplicationContext。</p>
-</li>
-<li><p>在默认情况下，使用AnnotationConfigApplicationContext或AnnotationConfigEmbeddedWebApplicationContext取决于你正在开发的是否是web应用。</p>
-</li>
-<li><p>用于确定一个web环境的算法相当简单（基于是否存在某些类）。如果需要覆盖默认行为，你可以使用setWebEnvironment(boolean webEnvironment)。</p>
-</li>
-<li><p>通过调用setApplicationContextClass(…)，你可以完全控制ApplicationContext的类型。</p>
-</li>
+<li>一个SpringApplication将尝试为你创建正确类型的ApplicationContext。</li>
+<li>在默认情况下，使用AnnotationConfigApplicationContext或AnnotationConfigEmbeddedWebApplicationContext取决于你正在开发的是否是web应用。</li>
+<li>用于确定一个web环境的算法相当简单（基于是否存在某些类）。如果需要覆盖默认行为，你可以使用setWebEnvironment(boolean webEnvironment)。</li>
+<li>通过调用setApplicationContextClass(…)，你可以完全控制ApplicationContext的类型。</li>
 </ul>
 <blockquote>
 <p>注：当JUnit测试里使用SpringApplication时，调用setWebEnvironment(false)是可取的。</p>
@@ -3942,12 +3928,9 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <li>如果一些<strong>CommandLineRunner beans</strong>被定义必须以特定的次序调用，你可以额外实现<br><code>org.springframework.core.Ordered</code>接口或使用<code>org.springframework.core.annotation.Order</code>注<br>解</li>
 </ul>
 <h3 id="Application退出"><a href="#Application退出" class="headerlink" title="Application退出"></a>Application退出</h3><ul>
-<li><p>每个<strong>SpringApplication</strong>在退出时为了确保<strong>ApplicationContext</strong>被优雅的关闭，将会注册一个<code>JVM</code>的<strong>shutdown</strong>钩子。</p>
-</li>
-<li><p>所有标准的Spring生命周期回调（比如，DisposableBean接口或@PreDestroy注解）都能使用。</p>
-</li>
-<li><p>如果beans想在应用结束时返回一个特定的退出码（exitcode），可以实现<code>org.springframework.boot.ExitCodeGenerator</code>接口。</p>
-</li>
+<li>每个<strong>SpringApplication</strong>在退出时为了确保<strong>ApplicationContext</strong>被优雅的关闭，将会注册一个<code>JVM</code>的<strong>shutdown</strong>钩子。</li>
+<li>所有标准的Spring生命周期回调（比如，DisposableBean接口或@PreDestroy注解）都能使用。</li>
+<li>如果beans想在应用结束时返回一个特定的退出码（exitcode），可以实现<code>org.springframework.boot.ExitCodeGenerator</code>接口。</li>
 </ul>
 <h2 id="外化配置"><a href="#外化配置" class="headerlink" title="外化配置"></a>外化配置</h2><ul>
 <li>Spring Boot允许外化（externalize）你的配置，这样你能够在不同的环境下使用相同的代码。</li>
@@ -3985,12 +3968,9 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 <li>random.int*语法是OPEN value (,max) CLOSE，此处OPEN，CLOSE可以是任何字符，并且value，max是整数。如果提供max，那么value是最小的值，max是最大的值（不包含在内）</li>
 </ul>
 <h3 id="访问命令行属性"><a href="#访问命令行属性" class="headerlink" title="访问命令行属性"></a>访问命令行属性</h3><ul>
-<li><p>默认情况下，<strong>SpringApplication</strong>将任何可选的命令行参数（以’–’开头，比如，<code>--server.port=9000</code>）转化为property，并将其添加到Spring Environment中。</p>
-</li>
-<li><p>如上所述，命令行属性总是优先于其他属性源。</p>
-</li>
-<li><p>如果你不想将命令行属性添加到Environment里，你可以使用<code>SpringApplication.setAddCommandLineProperties(false)</code>来禁止它们。</p>
-</li>
+<li>默认情况下，<strong>SpringApplication</strong>将任何可选的命令行参数（以’–’开头，比如，<code>--server.port=9000</code>）转化为property，并将其添加到Spring Environment中。</li>
+<li>如上所述，命令行属性总是优先于其他属性源。</li>
+<li>如果你不想将命令行属性添加到Environment里，你可以使用<code>SpringApplication.setAddCommandLineProperties(false)</code>来禁止它们。</li>
 </ul>
 <h2 id="Application属性文件"><a href="#Application属性文件" class="headerlink" title="Application属性文件"></a>Application属性文件</h2><ul>
 <li>SpringApplication将从以下位置加载application.properties文件，并把它们添加到Spring<br>Environment中：</li>
@@ -4032,20 +4012,16 @@ public void testCreateGameStringLongListOfPointListOfSelectionListOfLine() {
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">app.name=MyApp</div><div class="line">app.description=$&#123;app.name&#125; is a Spring Boot application</div></pre></td></tr></table></figure>
 <h3 id="使用YAML代替Properties"><a href="#使用YAML代替Properties" class="headerlink" title="使用YAML代替Properties"></a>使用YAML代替Properties</h3><ul>
-<li><p>YAML是JSON的一个超集，也是一种方便的定义层次配置数据的格式。</p>
-</li>
-<li><p>无论你何时将SnakeYAML库放到classpath下，SpringApplication类都会自动支持YAML作为properties的替换。</p>
-</li>
+<li>YAML是JSON的一个超集，也是一种方便的定义层次配置数据的格式。</li>
+<li>无论你何时将SnakeYAML库放到classpath下，SpringApplication类都会自动支持YAML作为properties的替换。</li>
 </ul>
 <blockquote>
 <p>注：如果你使用’starter POMs’，spring-boot-starter会自动提供SnakeYAML。</p>
 <p>注：你也能使用相应的技巧为存在的Spring Boot属性创建’短’变量</p>
 </blockquote>
 <h3 id="检查应用的运行状态。"><a href="#检查应用的运行状态。" class="headerlink" title="检查应用的运行状态。"></a>检查应用的运行状态。</h3><ul>
-<li><p>(参考文章：](<a href="http://www.itnose.net/detail/6359648.html" target="_blank" rel="external">http://www.itnose.net/detail/6359648.html</a>)</p>
-</li>
-<li><p>compile group: ‘org.springframework.boot’, name: ‘spring-boot-starter-actuator’, version: ‘1.4.0.RELEASE’</p>
-<ul>
+<li>(参考文章：](<a href="http://www.itnose.net/detail/6359648.html" target="_blank" rel="external">http://www.itnose.net/detail/6359648.html</a>)</li>
+<li>compile group: ‘org.springframework.boot’, name: ‘spring-boot-starter-actuator’, version: ‘1.4.0.RELEASE’<ul>
 <li>health可以用来检查应用的运行状态。</li>
 <li>它经常被监控软件用来提醒人们生产系统是否停止。</li>
 <li>health端点暴露的默认信息取决于端点是如何被访问的。</li>

@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="Benny">
 <meta property="og:description" content="Spring Boot">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/610dc034jw1f48mxqcvkvj20lt0pyaed.jpg">
-<meta property="og:updated_time" content="2016-09-28T06:27:08.421Z">
+<meta property="og:updated_time" content="2016-09-28T06:28:14.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot">
 <meta name="twitter:description" content="Spring Boot">
@@ -157,13 +157,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
-                        <li>关于我</li>
+                        <li>About Me</li>
                         
                     </ul>
                 </div>
@@ -277,7 +277,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap"><article id="post-160812_spring_boot" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -784,21 +784,15 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="number">2016</span>-<span class="number">05</span>-<span class="number">19</span> <span class="number">13</span>:<span class="number">42</span>:<span class="number">13</span>,<span class="number">156</span>  INFO WebLogAspect:<span class="number">41</span> - URL : http:<span class="comment">//localhost:8080/hello  </span></div><div class="line"><span class="number">2016</span>-<span class="number">05</span>-<span class="number">19</span> <span class="number">13</span>:<span class="number">42</span>:<span class="number">13</span>,<span class="number">156</span>  INFO WebLogAspect:<span class="number">42</span> - HTTP_METHOD : http:<span class="comment">//localhost:8080/hello  </span></div><div class="line"><span class="number">2016</span>-<span class="number">05</span>-<span class="number">19</span> <span class="number">13</span>:<span class="number">42</span>:<span class="number">13</span>,<span class="number">157</span>  INFO WebLogAspect:<span class="number">43</span> - IP : <span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="number">1</span>  </div><div class="line"><span class="number">2016</span>-<span class="number">05</span>-<span class="number">19</span> <span class="number">13</span>:<span class="number">42</span>:<span class="number">13</span>,<span class="number">160</span>  INFO WebLogAspect:<span class="number">44</span> - CLASS_METHOD : com.didispace.web.HelloController.hello  </div><div class="line"><span class="number">2016</span>-<span class="number">05</span>-<span class="number">19</span> <span class="number">13</span>:<span class="number">42</span>:<span class="number">13</span>,<span class="number">160</span>  INFO WebLogAspect:<span class="number">45</span> - ARGS : [didi]  </div><div class="line"><span class="number">2016</span>-<span class="number">05</span>-<span class="number">19</span> <span class="number">13</span>:<span class="number">42</span>:<span class="number">13</span>,<span class="number">170</span>  INFO WebLogAspect:<span class="number">52</span> - RESPONSE:Hello didi</div></pre></td></tr></table></figure>
 <h3 id="优化：AOP切面中的同步问题"><a href="#优化：AOP切面中的同步问题" class="headerlink" title="优化：AOP切面中的同步问题"></a>优化：AOP切面中的同步问题</h3><ul>
-<li><p>WebLogAspect切面中，分别通过doBefore和doAfterReturning两个独立函数实现了切点头部和切点返回后执行的内容，若我们想统计请求的处理时间，就需要在doBefore处记录时间，并在doAfterReturning处通过当前时间与开始处记录的时间计算得到请求处理的消耗时间。</p>
-</li>
-<li><p>那么我们是否可以在WebLogAspect切面中定义一个成员变量来给doBefore和doAfterReturning一起访问呢？是否会有同步问题呢？</p>
-</li>
-<li><p>的确，直接在这里定义基本类型会有同步问题，所以我们可以引入ThreadLocal对象，像下面这样进行记录：</p>
-</li>
+<li>WebLogAspect切面中，分别通过doBefore和doAfterReturning两个独立函数实现了切点头部和切点返回后执行的内容，若我们想统计请求的处理时间，就需要在doBefore处记录时间，并在doAfterReturning处通过当前时间与开始处记录的时间计算得到请求处理的消耗时间。</li>
+<li>那么我们是否可以在WebLogAspect切面中定义一个成员变量来给doBefore和doAfterReturning一起访问呢？是否会有同步问题呢？</li>
+<li>的确，直接在这里定义基本类型会有同步问题，所以我们可以引入ThreadLocal对象，像下面这样进行记录：</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Aspect</span></div><div class="line"><span class="meta">@Component</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebLogAspect</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Logger logger = Logger.getLogger(getClass());</div><div class="line"></div><div class="line">    ThreadLocal&lt;Long&gt; startTime = <span class="keyword">new</span> ThreadLocal&lt;&gt;();</div><div class="line"></div><div class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(public * com.didispace.web..*.*(..))"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">webLog</span><span class="params">()</span></span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="meta">@Before</span>(<span class="string">"webLog()"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doBefore</span><span class="params">(JoinPoint joinPoint)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">        startTime.set(System.currentTimeMillis());</div><div class="line"></div><div class="line">        <span class="comment">// 省略日志记录内容</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@AfterReturning</span>(returning = <span class="string">"ret"</span>, pointcut = <span class="string">"webLog()"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterReturning</span><span class="params">(Object ret)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">        <span class="comment">// 处理完请求，返回内容</span></div><div class="line">        logger.info(<span class="string">"RESPONSE : "</span> + ret);</div><div class="line">        logger.info(<span class="string">"SPEND TIME : "</span> + (System.currentTimeMillis() - startTime.get()));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="优化：AOP切面的优先级"><a href="#优化：AOP切面的优先级" class="headerlink" title="优化：AOP切面的优先级"></a>优化：AOP切面的优先级</h3><ul>
-<li><p>由于通过AOP实现，程序得到了很好的解耦，但是也会带来一些问题，比如：我们可能会对Web层做多个切面，校验用户，校验头信息等等，这个时候经常会碰到切面的处理顺序问题。</p>
-</li>
-<li><p>所以，我们需要定义每个切面的优先级，我们需要<code>@Order(i)</code>注解来标识切面的优先级。i的值越小，优先级越高。假设我们还有一个切面是CheckNameAspect用来校验name必须为didi，我们为其设置<code>@Order(10)</code>，而上文中WebLogAspect设置为<code>@Order(5)</code>，所以WebLogAspect有更高的优先级，这个时候执行顺序是这样的：</p>
-</li>
-<li><p>在<code>@Before</code>中优先执行@Order(5)的内容，再执行<code>@Order(10)</code>的内容</p>
-</li>
+<li>由于通过AOP实现，程序得到了很好的解耦，但是也会带来一些问题，比如：我们可能会对Web层做多个切面，校验用户，校验头信息等等，这个时候经常会碰到切面的处理顺序问题。</li>
+<li>所以，我们需要定义每个切面的优先级，我们需要<code>@Order(i)</code>注解来标识切面的优先级。i的值越小，优先级越高。假设我们还有一个切面是CheckNameAspect用来校验name必须为didi，我们为其设置<code>@Order(10)</code>，而上文中WebLogAspect设置为<code>@Order(5)</code>，所以WebLogAspect有更高的优先级，这个时候执行顺序是这样的：</li>
+<li>在<code>@Before</code>中优先执行@Order(5)的内容，再执行<code>@Order(10)</code>的内容</li>
 <li>在<code>@After</code>和@<code>AfterReturning</code>中优先执行<code>@Order(10)</code>的内容，再执行@Order(5)的内容</li>
 <li>所以我们可以这样子总结：</li>
 </ul>
@@ -806,10 +800,8 @@
 <p>在切入点前的操作，按order的值由小到大执行<br>在切入点后的操作，按order的值由大到小执行</p>
 </blockquote>
 <h2 id="SpringApplication"><a href="#SpringApplication" class="headerlink" title="SpringApplication"></a>SpringApplication</h2><h3 id="自定义Banner"><a href="#自定义Banner" class="headerlink" title="自定义Banner"></a>自定义Banner</h3><ul>
-<li><p>通过在classpath下添加一个banner.txt或设置banner.location来指定相应的文件可以改变启动过程中打印的banner。如果这个文件有特殊的编码，你可以使用banner.encoding设置它（默认为UTF-8）。</p>
-</li>
-<li><p>在banner.txt中可以使用如下的变量：</p>
-</li>
+<li>通过在classpath下添加一个banner.txt或设置banner.location来指定相应的文件可以改变启动过程中打印的banner。如果这个文件有特殊的编码，你可以使用banner.encoding设置它（默认为UTF-8）。</li>
+<li>在banner.txt中可以使用如下的变量：</li>
 </ul>
 <table>
 <thead>
@@ -857,10 +849,8 @@
 <p>注：创建ApplicationContext层次时有些限制，比如，Web组件(components)必须包含在子上下文(child context)中，且相同的Environment即用于父上下文也用于子上下文中。</p>
 </blockquote>
 <h3 id="Application事件和监听器"><a href="#Application事件和监听器" class="headerlink" title="Application事件和监听器"></a>Application事件和监听器</h3><ul>
-<li><p>除了常见的Spring框架事件，比如<strong>ContextRefreshedEvent</strong>，一个<strong>SpringApplication</strong>也发送一<br>些额外的应用事件。一些事件实际上是在ApplicationContext被创建前触发的。</p>
-</li>
-<li><p>你可以使用多种方式注册事件监听器，最普通的是使用<code>SpringApplication.addListeners(…)</code>方<br>法。在你的应用运行时，应用事件会以下面的次序发送：</p>
-</li>
+<li>除了常见的Spring框架事件，比如<strong>ContextRefreshedEvent</strong>，一个<strong>SpringApplication</strong>也发送一<br>些额外的应用事件。一些事件实际上是在ApplicationContext被创建前触发的。</li>
+<li>你可以使用多种方式注册事件监听器，最普通的是使用<code>SpringApplication.addListeners(…)</code>方<br>法。在你的应用运行时，应用事件会以下面的次序发送：</li>
 </ul>
 <ol>
 <li>在运行开始，但除了监听器注册和初始化以外的任何处理之前，会发送一个<strong>ApplicationStartedEvent</strong></li>
@@ -872,14 +862,10 @@
 <p>注：你通常不需要使用应用程序事件，但知道它们的存在会很方便（在某些场合可能会使用到）。<br>在Spring内部，Spring Boot使用事件处理各种各样的任务。</p>
 </blockquote>
 <h3 id="Web环境"><a href="#Web环境" class="headerlink" title="Web环境"></a>Web环境</h3><ul>
-<li><p>一个SpringApplication将尝试为你创建正确类型的ApplicationContext。</p>
-</li>
-<li><p>在默认情况下，使用AnnotationConfigApplicationContext或AnnotationConfigEmbeddedWebApplicationContext取决于你正在开发的是否是web应用。</p>
-</li>
-<li><p>用于确定一个web环境的算法相当简单（基于是否存在某些类）。如果需要覆盖默认行为，你可以使用setWebEnvironment(boolean webEnvironment)。</p>
-</li>
-<li><p>通过调用setApplicationContextClass(…)，你可以完全控制ApplicationContext的类型。</p>
-</li>
+<li>一个SpringApplication将尝试为你创建正确类型的ApplicationContext。</li>
+<li>在默认情况下，使用AnnotationConfigApplicationContext或AnnotationConfigEmbeddedWebApplicationContext取决于你正在开发的是否是web应用。</li>
+<li>用于确定一个web环境的算法相当简单（基于是否存在某些类）。如果需要覆盖默认行为，你可以使用setWebEnvironment(boolean webEnvironment)。</li>
+<li>通过调用setApplicationContextClass(…)，你可以完全控制ApplicationContext的类型。</li>
 </ul>
 <blockquote>
 <p>注：当JUnit测试里使用SpringApplication时，调用setWebEnvironment(false)是可取的。</p>
@@ -892,12 +878,9 @@
 <li>如果一些<strong>CommandLineRunner beans</strong>被定义必须以特定的次序调用，你可以额外实现<br><code>org.springframework.core.Ordered</code>接口或使用<code>org.springframework.core.annotation.Order</code>注<br>解</li>
 </ul>
 <h3 id="Application退出"><a href="#Application退出" class="headerlink" title="Application退出"></a>Application退出</h3><ul>
-<li><p>每个<strong>SpringApplication</strong>在退出时为了确保<strong>ApplicationContext</strong>被优雅的关闭，将会注册一个<code>JVM</code>的<strong>shutdown</strong>钩子。</p>
-</li>
-<li><p>所有标准的Spring生命周期回调（比如，DisposableBean接口或@PreDestroy注解）都能使用。</p>
-</li>
-<li><p>如果beans想在应用结束时返回一个特定的退出码（exitcode），可以实现<code>org.springframework.boot.ExitCodeGenerator</code>接口。</p>
-</li>
+<li>每个<strong>SpringApplication</strong>在退出时为了确保<strong>ApplicationContext</strong>被优雅的关闭，将会注册一个<code>JVM</code>的<strong>shutdown</strong>钩子。</li>
+<li>所有标准的Spring生命周期回调（比如，DisposableBean接口或@PreDestroy注解）都能使用。</li>
+<li>如果beans想在应用结束时返回一个特定的退出码（exitcode），可以实现<code>org.springframework.boot.ExitCodeGenerator</code>接口。</li>
 </ul>
 <h2 id="外化配置"><a href="#外化配置" class="headerlink" title="外化配置"></a>外化配置</h2><ul>
 <li>Spring Boot允许外化（externalize）你的配置，这样你能够在不同的环境下使用相同的代码。</li>
@@ -935,12 +918,9 @@
 <li>random.int*语法是OPEN value (,max) CLOSE，此处OPEN，CLOSE可以是任何字符，并且value，max是整数。如果提供max，那么value是最小的值，max是最大的值（不包含在内）</li>
 </ul>
 <h3 id="访问命令行属性"><a href="#访问命令行属性" class="headerlink" title="访问命令行属性"></a>访问命令行属性</h3><ul>
-<li><p>默认情况下，<strong>SpringApplication</strong>将任何可选的命令行参数（以’–’开头，比如，<code>--server.port=9000</code>）转化为property，并将其添加到Spring Environment中。</p>
-</li>
-<li><p>如上所述，命令行属性总是优先于其他属性源。</p>
-</li>
-<li><p>如果你不想将命令行属性添加到Environment里，你可以使用<code>SpringApplication.setAddCommandLineProperties(false)</code>来禁止它们。</p>
-</li>
+<li>默认情况下，<strong>SpringApplication</strong>将任何可选的命令行参数（以’–’开头，比如，<code>--server.port=9000</code>）转化为property，并将其添加到Spring Environment中。</li>
+<li>如上所述，命令行属性总是优先于其他属性源。</li>
+<li>如果你不想将命令行属性添加到Environment里，你可以使用<code>SpringApplication.setAddCommandLineProperties(false)</code>来禁止它们。</li>
 </ul>
 <h2 id="Application属性文件"><a href="#Application属性文件" class="headerlink" title="Application属性文件"></a>Application属性文件</h2><ul>
 <li>SpringApplication将从以下位置加载application.properties文件，并把它们添加到Spring<br>Environment中：</li>
@@ -982,20 +962,16 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">app.name=MyApp</div><div class="line">app.description=$&#123;app.name&#125; is a Spring Boot application</div></pre></td></tr></table></figure>
 <h3 id="使用YAML代替Properties"><a href="#使用YAML代替Properties" class="headerlink" title="使用YAML代替Properties"></a>使用YAML代替Properties</h3><ul>
-<li><p>YAML是JSON的一个超集，也是一种方便的定义层次配置数据的格式。</p>
-</li>
-<li><p>无论你何时将SnakeYAML库放到classpath下，SpringApplication类都会自动支持YAML作为properties的替换。</p>
-</li>
+<li>YAML是JSON的一个超集，也是一种方便的定义层次配置数据的格式。</li>
+<li>无论你何时将SnakeYAML库放到classpath下，SpringApplication类都会自动支持YAML作为properties的替换。</li>
 </ul>
 <blockquote>
 <p>注：如果你使用’starter POMs’，spring-boot-starter会自动提供SnakeYAML。</p>
 <p>注：你也能使用相应的技巧为存在的Spring Boot属性创建’短’变量</p>
 </blockquote>
 <h3 id="检查应用的运行状态。"><a href="#检查应用的运行状态。" class="headerlink" title="检查应用的运行状态。"></a>检查应用的运行状态。</h3><ul>
-<li><p>(参考文章：](<a href="http://www.itnose.net/detail/6359648.html" target="_blank" rel="external">http://www.itnose.net/detail/6359648.html</a>)</p>
-</li>
-<li><p>compile group: ‘org.springframework.boot’, name: ‘spring-boot-starter-actuator’, version: ‘1.4.0.RELEASE’</p>
-<ul>
+<li>(参考文章：](<a href="http://www.itnose.net/detail/6359648.html" target="_blank" rel="external">http://www.itnose.net/detail/6359648.html</a>)</li>
+<li>compile group: ‘org.springframework.boot’, name: ‘spring-boot-starter-actuator’, version: ‘1.4.0.RELEASE’<ul>
 <li>health可以用来检查应用的运行状态。</li>
 <li>它经常被监控软件用来提醒人们生产系统是否停止。</li>
 <li>health端点暴露的默认信息取决于端点是如何被访问的。</li>
@@ -1659,17 +1635,17 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/08/12/160812_spring_boot/">Spring Boot</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">Benny</a></p>
-        <p><span>发布时间:</span>2016-08-12, 14:50:27</p>
-        <p><span>最后更新:</span>2016-09-28, 14:27:08</p>
+        <p><span>Title:</span><a href="/2016/08/12/160812_spring_boot/">Spring Boot</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Benny</a></p>
+        <p><span>Created:</span>2016-08-12, 14:50:27</p>
+        <p><span>Updated:</span>2016-09-28, 14:28:14</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/08/12/160812_spring_boot/" title="Spring Boot">/2016/08/12/160812_spring_boot/</a>
-            <span class="copy-path" data-clipboard-text="原文: /2016/08/12/160812_spring_boot/　　作者: Benny" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2016/08/12/160812_spring_boot/" title="Spring Boot">/2016/08/12/160812_spring_boot/</a>
+            <span class="copy-path" data-clipboard-text="From /2016/08/12/160812_spring_boot/　　By Benny" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
         </p>
     </div>
 
@@ -1696,7 +1672,7 @@
 </article>
 
     <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Contents</strong>
         
             <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot"><span class="toc-number">1.</span> <span class="toc-text">Spring Boot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一个项目"><span class="toc-number">2.</span> <span class="toc-text">第一个项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目构建"><span class="toc-number">3.</span> <span class="toc-text">项目构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目结构"><span class="toc-number">4.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot属性配置文件详解"><span class="toc-number">5.</span> <span class="toc-text">Spring Boot属性配置文件详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义属性与加载"><span class="toc-number">5.1.</span> <span class="toc-text">自定义属性与加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数间的引用"><span class="toc-number">5.2.</span> <span class="toc-text">参数间的引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用随机数"><span class="toc-number">5.3.</span> <span class="toc-text">使用随机数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过命令行设置属性值"><span class="toc-number">5.4.</span> <span class="toc-text">通过命令行设置属性值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多环境配置"><span class="toc-number">5.5.</span> <span class="toc-text">多环境配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-boot-应用的入口"><span class="toc-number">6.</span> <span class="toc-text">Spring boot 应用的入口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建web项目应用模板"><span class="toc-number">7.</span> <span class="toc-text">构建web项目应用模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spring-boot-配置Tomcat"><span class="toc-number">8.</span> <span class="toc-text">spring boot 配置Tomcat</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在application-java中配置，-配置文件配置tomcat"><span class="toc-number">8.1.</span> <span class="toc-text">在application.java中配置， 配置文件配置tomcat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码配置tomcat"><span class="toc-number">8.2.</span> <span class="toc-text">代码配置tomcat</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spring-boot-整合-thymeleaf-热部署"><span class="toc-number">9.</span> <span class="toc-text">spring boot 整合 thymeleaf 热部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Swagger2构建强大的RESTful-API文档"><span class="toc-number">10.</span> <span class="toc-text">使用Swagger2构建强大的RESTful API文档</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加文档内容"><span class="toc-number">10.1.</span> <span class="toc-text">添加文档内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot中Web应用的统一异常处理"><span class="toc-number">11.</span> <span class="toc-text">Spring Boot中Web应用的统一异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建全局异常处理类："><span class="toc-number">11.1.</span> <span class="toc-text">创建全局异常处理类：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#返回JSON格式"><span class="toc-number">11.2.</span> <span class="toc-text">返回JSON格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot中使用JdbcTemplate访问数据库"><span class="toc-number">12.</span> <span class="toc-text">Spring Boot中使用JdbcTemplate访问数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据源配置"><span class="toc-number">12.1.</span> <span class="toc-text">数据源配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#嵌入式数据库支持"><span class="toc-number">12.2.</span> <span class="toc-text">嵌入式数据库支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连接生产数据源"><span class="toc-number">12.3.</span> <span class="toc-text">连接生产数据源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用JdbcTemplate操作数据库"><span class="toc-number">12.4.</span> <span class="toc-text">使用JdbcTemplate操作数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot中使用Spring-data-jpa让数据访问更简单、更优雅"><span class="toc-number">13.</span> <span class="toc-text">Spring Boot中使用Spring-data-jpa让数据访问更简单、更优雅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot中使用Redis数据库"><span class="toc-number">14.</span> <span class="toc-text">Spring Boot中使用Redis数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入依赖"><span class="toc-number">14.1.</span> <span class="toc-text">引入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数配置"><span class="toc-number">14.2.</span> <span class="toc-text">参数配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot整合MyBatis"><span class="toc-number">15.</span> <span class="toc-text">Spring Boot整合MyBatis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#整合依赖"><span class="toc-number">15.1.</span> <span class="toc-text">整合依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用MyBatis"><span class="toc-number">15.2.</span> <span class="toc-text">使用MyBatis</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot中使用AOP统一处理Web请求日志"><span class="toc-number">16.</span> <span class="toc-text">Spring Boot中使用AOP统一处理Web请求日志</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入依赖-1"><span class="toc-number">16.1.</span> <span class="toc-text">引入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现Web层的日志切面"><span class="toc-number">16.2.</span> <span class="toc-text">实现Web层的日志切面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化：AOP切面中的同步问题"><span class="toc-number">16.3.</span> <span class="toc-text">优化：AOP切面中的同步问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化：AOP切面的优先级"><span class="toc-number">16.4.</span> <span class="toc-text">优化：AOP切面的优先级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringApplication"><span class="toc-number">17.</span> <span class="toc-text">SpringApplication</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义Banner"><span class="toc-number">17.1.</span> <span class="toc-text">自定义Banner</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义SpringApplicatio"><span class="toc-number">17.2.</span> <span class="toc-text">自定义SpringApplicatio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流畅的构建API"><span class="toc-number">17.3.</span> <span class="toc-text">流畅的构建API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Application事件和监听器"><span class="toc-number">17.4.</span> <span class="toc-text">Application事件和监听器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web环境"><span class="toc-number">17.5.</span> <span class="toc-text">Web环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行启动器"><span class="toc-number">17.6.</span> <span class="toc-text">命令行启动器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Application退出"><span class="toc-number">17.7.</span> <span class="toc-text">Application退出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#外化配置"><span class="toc-number">18.</span> <span class="toc-text">外化配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置随机值"><span class="toc-number">18.1.</span> <span class="toc-text">配置随机值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#访问命令行属性"><span class="toc-number">18.2.</span> <span class="toc-text">访问命令行属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application属性文件"><span class="toc-number">19.</span> <span class="toc-text">Application属性文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特定的Profile属性"><span class="toc-number">20.</span> <span class="toc-text">特定的Profile属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性占位符"><span class="toc-number">21.</span> <span class="toc-text">属性占位符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用YAML代替Properties"><span class="toc-number">21.1.</span> <span class="toc-text">使用YAML代替Properties</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#检查应用的运行状态。"><span class="toc-number">21.2.</span> <span class="toc-text">检查应用的运行状态。</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如果希望了解的更多一些，必须要试试这个参数-debug"><span class="toc-number">21.2.1.</span> <span class="toc-text">如果希望了解的更多一些，必须要试试这个参数 --debug</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-boot-整合Redis"><span class="toc-number">22.</span> <span class="toc-text">Spring boot 整合Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入依赖-2"><span class="toc-number">22.1.</span> <span class="toc-text">引入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数配置-1"><span class="toc-number">22.2.</span> <span class="toc-text">参数配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试访问"><span class="toc-number">22.3.</span> <span class="toc-text">测试访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis存储对象"><span class="toc-number">22.4.</span> <span class="toc-text">Redis存储对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot-使用Redis作为缓存"><span class="toc-number">23.</span> <span class="toc-text">Spring Boot 使用Redis作为缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入依赖-3"><span class="toc-number">23.1.</span> <span class="toc-text">引入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数配置-2"><span class="toc-number">23.2.</span> <span class="toc-text">参数配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写RedisCacheConfig配置类："><span class="toc-number">23.3.</span> <span class="toc-text">编写RedisCacheConfig配置类：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Redis-缓存配置"><span class="toc-number">23.3.1.</span> <span class="toc-text">Redis 缓存配置:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加注解-Cacheable-…"><span class="toc-number">23.4.</span> <span class="toc-text">添加注解@Cacheable(…)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存的生命周期"><span class="toc-number">24.</span> <span class="toc-text">缓存的生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存注解-Cacheable、-CachePut、-CacheEvict"><span class="toc-number">24.1.</span> <span class="toc-text">缓存注解 @Cacheable、@CachePut、@CacheEvict</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用注解-CacheConfig"><span class="toc-number">24.2.</span> <span class="toc-text">使用注解@CacheConfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义注解"><span class="toc-number">24.3.</span> <span class="toc-text">自定义注解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总算明白了-Cacheable注解如何缓存"><span class="toc-number">25.</span> <span class="toc-text">总算明白了@Cacheable注解如何缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存自定义对象"><span class="toc-number">25.1.</span> <span class="toc-text">缓存自定义对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spirng-Cache-Cacheable注解的key问题"><span class="toc-number">25.2.</span> <span class="toc-text">Spirng Cache @Cacheable注解的key问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取所有定义的Bean"><span class="toc-number">26.</span> <span class="toc-text">获取所有定义的Bean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于Spring提供支持不同设备的页面"><span class="toc-number">27.</span> <span class="toc-text">基于Spring提供支持不同设备的页面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加依赖"><span class="toc-number">27.1.</span> <span class="toc-text">添加依赖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建定时任务"><span class="toc-number">28.</span> <span class="toc-text">创建定时任务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在Spring-Boot的主类中加入-EnableScheduling注解，启用定时任务的配置"><span class="toc-number">28.1.</span> <span class="toc-text">在Spring Boot的主类中加入@EnableScheduling注解，启用定时任务的配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建定时任务实现类"><span class="toc-number">28.2.</span> <span class="toc-text">创建定时任务实现类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scheduled详解"><span class="toc-number">28.3.</span> <span class="toc-text">@Scheduled详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cron-详解"><span class="toc-number">28.4.</span> <span class="toc-text">cron 详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Spring-Security的配置类WebSecurityConfig"><span class="toc-number">28.5.</span> <span class="toc-text">创建Spring Security的配置类WebSecurityConfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定登录页地址"><span class="toc-number">28.6.</span> <span class="toc-text">指定登录页地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-boot-过滤器-拦截器"><span class="toc-number">29.</span> <span class="toc-text">Spring boot 过滤器 拦截器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义过滤器类"><span class="toc-number">29.1.</span> <span class="toc-text">自定义过滤器类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ServletContext监听器（Listener）ServletContextListener"><span class="toc-number">29.2.</span> <span class="toc-text">ServletContext监听器（Listener）ServletContextListener</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ServletContext监听器（Listener）-HttpSessionListener"><span class="toc-number">29.3.</span> <span class="toc-text">ServletContext监听器（Listener） HttpSessionListener</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot-整合-Spring-Security"><span class="toc-number">30.</span> <span class="toc-text">Spring Boot 整合 Spring Security</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加依赖-1"><span class="toc-number">30.1.</span> <span class="toc-text">添加依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#根据-http-状态码处理请求"><span class="toc-number">30.2.</span> <span class="toc-text">根据 http 状态码处理请求</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分析"><span class="toc-number">30.2.1.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加spring-Security配置"><span class="toc-number">30.3.</span> <span class="toc-text">添加spring Security配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#添加一个SecurityConfig类"><span class="toc-number">30.3.1.</span> <span class="toc-text">添加一个SecurityConfig类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义实现UserDetailsService接口"><span class="toc-number">30.3.2.</span> <span class="toc-text">自定义实现UserDetailsService接口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#角色权限："><span class="toc-number">30.4.</span> <span class="toc-text">角色权限：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求授权"><span class="toc-number">30.5.</span> <span class="toc-text">请求授权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定制登陆行为"><span class="toc-number">30.6.</span> <span class="toc-text">定制登陆行为</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-boot-的支持"><span class="toc-number">31.</span> <span class="toc-text">Spring boot 的支持</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#退出功能"><span class="toc-number">31.1.</span> <span class="toc-text">退出功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#消息队列-RabbitMQ"><span class="toc-number">32.</span> <span class="toc-text">消息队列 RabbitMQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加依赖-2"><span class="toc-number">32.1.</span> <span class="toc-text">添加依赖</span></a></li></ol></li></ol>
         
@@ -1712,10 +1688,10 @@
         }
     </style>
 
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
 
     <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
     </script>
 
 
@@ -1768,15 +1744,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/08/15/160815_Thymeleaf/" title="上一篇: Thymeleaf模板">
+            <a href="/2016/08/15/160815_Thymeleaf/" title="Pre: Thymeleaf模板">
                 <i class="fa fa-angle-left"></i>
             </a>
         
 
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/08/11/160811_beetl/" title="下一篇: 好用的java模板引擎Beetl">
+            <a href="/2016/08/11/160811_beetl/" title="Next: 好用的java模板引擎Beetl">
                 <i class="fa fa-angle-right"></i>
             </a>
         
@@ -1799,14 +1775,14 @@
                 2016 Benny
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -1815,7 +1791,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -1848,9 +1824,9 @@
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
